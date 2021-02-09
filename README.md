@@ -53,3 +53,66 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
   - avoid definition of height, use paddings instead of
   - use [combination of width and max-width](https://blog.prototypr.io/what-even-is-the-difference-between-width-and-max-width-8f37b282c7f1) if something should be not too big on bigger screens (width in %, max-width in px)
   - use flex with wrapping for example for lists items etc.
+
+## Directory Structure
+
+```
+
+├── .vscode
+│   └── launch.json
+├── client
+│   ├── build
+│   │   └── ...
+│   ├── node_modules
+│   │   └── ...
+│   ├── public
+│   │   └── ...
+│   ├── src
+│   │   ├── assets
+│   │   │   └── ...
+│   │   ├── components
+│   │   │   └── ...
+│   │   ├── styledComponents
+│   │   │   └── ...
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── index.jsx
+│   ├── package.json
+│   └── package-lock.json
+├── controllers
+│   ├── authControllers.js
+│   └── validControllers.js
+├── model
+├── node_modules
+│   └── ...
+├── routes
+│   ├── index.js
+│   └── users.js
+├── uploads
+├── .env
+├── .gitignore
+├── app.js
+├── package.json
+├── package-lock.json
+├── README.md
+└── server.js
+
+
+```
+
+- `.vscode/launch.json` - configuration for the debugging of node (using nodemon)
+- `controllers` - middlewares for authentication and validation of the data
+- `model` - model of database in Mongoos
+- `routes` - routes for backend APIs
+- `uploads` - everything that users upload - profile images, images for listings etc.....
+- `.env`- environment file to store all of the secret (everything that can not go to GH!)
+- `app.js` - basic structure of server from express generator
+- `server.js` - server creation and port assignment (port 5000 by default)
+- `client` - frontend of our app:
+  - `build` - builded version of React app that is served by server
+  - `src` - source for react app:
+    - `assets` - all images needed for creation of the frontend
+    - `components` - individual React components (with `.jsx` extension)
+    - `styledComponents` - all styled components + Global Style (extension `.jsx`), files with breakpoints, colors etc. variables (extension `.js`)
+    - `App.jsx` - main component of the whole app (it gives context to the all components)
+    - `index.jsx` - rendering of the app
