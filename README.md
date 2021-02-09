@@ -29,7 +29,7 @@
 
 **Packages:**
 
-Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-router-dom.....
+Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-router-dom, styled components, styled icons, react-router-hashlink (for internal linking through page), ant-design (antd).....
 
 **VSCode:**
 
