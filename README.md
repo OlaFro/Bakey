@@ -18,6 +18,7 @@
 - React functional components (Hooks)
 - React context for the sharing state variables (like isLogged flag, role...)?
 - order stored in Local/Session storage
+- react components/styled components with extension `.jsx`
 
 **Backend:**
 
