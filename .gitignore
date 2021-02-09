@@ -3,15 +3,15 @@ node_modules
 .env
 
 # dependencies
-/frontend/node_modules
-/.pnp
+/client/node_modules
+/client/.pnp
 .pnp.js
 
 # testing
-/coverage
+/client/coverage
 
 # production
-/build
+/client/build
 
 # misc
 .DS_Store
