@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Registration() {
   const history = useHistory();
@@ -83,7 +83,7 @@ export default function Registration() {
         <div>
           <label htmlFor="mail">E-mail</label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="mail"
             onInput={getValue}
@@ -124,9 +124,7 @@ export default function Registration() {
         <div>
           <button type="submit">Register</button>
         </div>
-        <p>
-          If you are already registered, please <Link to="/login">login</Link>.
-        </p>
+        <p>If you are already registered, please login.</p>
         {warning ? (
           <div>
             <p>User with this {warningContent} already exists, please log-in</p>

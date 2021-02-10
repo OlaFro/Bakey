@@ -1,5 +1,12 @@
+import Registration from "./components/Registration";
+
 function App() {
-  return <div className="App">bakey</div>;
+  return (
+    <div>
+      bakey
+      <Registration />
+    </div>
+  );
 }
 
 export default App;
