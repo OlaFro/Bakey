@@ -54,6 +54,15 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
   - use [combination of width and max-width](https://blog.prototypr.io/what-even-is-the-difference-between-width-and-max-width-8f37b282c7f1) if something should be not too big on bigger screens (width in %, max-width in px)
   - use flex with wrapping for example for lists items etc.
 
+## Axios
+
+- handle the errors from axios (usually errors caused by some problem on BE side, not caused by not getting user from DB etc.) => display OutOfOrder component
+
+## Handling data from FE
+
+- all input data from FE needs to go through validation on BE - needs to be trimmed and escaped
+- **use validControllers middleware in each router that deals with data from FE!**
+
 ## Directory Structure
 
 ```
