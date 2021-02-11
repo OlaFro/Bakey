@@ -10,9 +10,14 @@ const StyledWarning = styled.div`
   justify-content: center;
   align-items: center;
   & h2 {
+    font-size: 2rem;
+    margin: 0.5rem;
     color: ${colors.accent1};
     text-transform: uppercase;
     letter-spacing: 5px;
+  }
+  & p {
+    margin: 0.5rem 0 1rem 0;
   }
 `;
 
