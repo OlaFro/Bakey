@@ -1,34 +1,60 @@
-const validateData = (req, res, next) => {
+const validateData = {};
+
+validateData.sanitize = (req, res, next) => {
   console.log(req.body);
   Object.keys(req.body).map((input) => {
     req.check(`${input}`).trim().escape();
   });
 
-  let { fullName, email, password, uname, newPassword } = req.body;
+  let errors = req.validationErrors();
 
-  if (fullName) {
-    req.check("fullName", "fullname").custom((value) => {
-      return value.match(/^[A-Za-z ]+$/);
+  if (!errors) {
+    next();
+  } else {
+    res.send({ msg: errors });
+  }
+};
+
+validateData.register = (req, res, next) => {
+  const { cafeName, number, zip, street } = req.body;
+
+  req.check("firstName", "firstName").isAlpha();
+
+  req.check("lastName", "lastName").isAlpha();
+
+  if (cafeName) {
+    req.check("cafeName", "cafeName").isAlpha();
+  }
+
+  req.check("city", "city").isAlpha();
+
+  if (street) {
+    req.check("street", "street").isAlpha();
+  }
+
+  if (number) {
+    req.check("number", "number").isNumeric();
+  }
+
+  if (zip) {
+    req.check("zip", "zip").isNumeric();
+  }
+
+  req.check("email", "email").isEmail();
+
+  req.check("password", "password length").isLength({ min: 8 });
+
+  req
+    .check(
+      "passwordConfirm",
+      "confirmation of password does not correspond to the original one"
+    )
+    .custom((password) => {
+      if (password !== req.body.password) {
+        return false;
+      }
+      return true;
     });
-  }
-  if (email) {
-    req.check("email", "email").isEmail();
-  }
-
-  if (password) {
-    req
-      .check("password", "password length")
-      .isLength({ min: 10 })
-      .trim()
-      .escape();
-  }
-  if (uname) {
-    req.check("uname", "uname").isAlphanumeric();
-  }
-
-  if (newPassword) {
-    req.check("newPassword", "password length").isLength({ min: 10 });
-  }
 
   let errors = req.validationErrors();
 
