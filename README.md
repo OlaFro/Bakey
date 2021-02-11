@@ -19,6 +19,7 @@
 - React context for the sharing state variables (like isLogged flag, role...)?
 - order stored in Local/Session storage
 - react components/styled components with extension `.jsx`
+- google map API + api for geolocation ([video tutorial](https://www.youtube.com/watch?v=Pf7g32CwX_s))
 
 **Backend:**
 
