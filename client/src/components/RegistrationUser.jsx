@@ -27,7 +27,7 @@ export default function RegistrationUser() {
 
     Axios({
       method: "POST",
-      url: "register",
+      url: "/users/register",
       data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
