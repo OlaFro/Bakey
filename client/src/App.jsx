@@ -1,3 +1,5 @@
+import { GlobalStyle } from "./styledComponents/global";
+
 import Warning from "./components/Warning";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
@@ -5,6 +7,7 @@ import Registration from "./components/Registration";
 function App() {
   return (
     <div>
+      <GlobalStyle />
       <Warning />
       <Registration />
       <Login />
