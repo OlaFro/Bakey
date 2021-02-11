@@ -1,3 +1,6 @@
+import GlobalStyle from "./styledComponents/GlobalStyle";
+
+import Warning from "./components/Warning";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import {bakeyContext} from "../Context"
@@ -11,7 +14,8 @@ function App() {
 
   return (
     <div>
-      bakey
+      <GlobalStyle />
+      <Warning msg="site is not found" />
       <Registration />
       <Login />
     </div>
