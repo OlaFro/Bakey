@@ -7,7 +7,7 @@ export default function Warning(props) {
     <div>
       <StyledWarning>
         <h2>OOPS!</h2>
-        <StyledText>It looks like {props.msg} </StyledText>
+        <p>It looks like {props.msg} </p>
       </StyledWarning>
     </div>
   );
