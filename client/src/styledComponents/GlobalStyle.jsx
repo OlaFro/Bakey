@@ -3,13 +3,18 @@ const { createGlobalStyle } = require("styled-components");
 const GlobalStyle = createGlobalStyle`
 
 :root {
-  --display: "Dancing Script", cursive;
-  --text: "Raleway", sans-serif;
+  --logo: 'Montserrat Alternates', sans-serif;;
+  --text: 'Montserrat', sans-serif;
+  /* --text: 'Raleway', sans-serif; */
 
   --space-small: 0.75em;
   --space-medium: 1.5em;
   --space-larger: 2em;
   --space-large: 3em;
+
+  --border: 2px;
+
+
 }
 
 html {
@@ -25,6 +30,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--text);
+  color: #4A4A4A;
+  
 }
 `;
 

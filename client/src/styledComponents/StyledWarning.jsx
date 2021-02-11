@@ -2,9 +2,13 @@ import styled from "styled-components";
 import colors from "./colors";
 
 const StyledWarning = styled.div`
-  border: 2px solid ${colors.accent1};
-  width: auto;
-  height: 5rem;
+  border: var(--border) solid ${colors.accent1};
+  width: 20rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default StyledWarning;

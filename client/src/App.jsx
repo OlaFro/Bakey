@@ -1,4 +1,4 @@
-import { GlobalStyle } from "./styledComponents/global";
+import GlobalStyle from "./styledComponents/GlobalStyle";
 
 import Warning from "./components/Warning";
 import Login from "./components/Login";
@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <GlobalStyle />
-      <Warning />
+      <Warning msg="site is not found" />
       <Registration />
       <Login />
     </div>
