@@ -9,6 +9,11 @@ const StyledWarning = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  & h2 {
+    color: ${colors.accent1};
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
 `;
 
 export default StyledWarning;
