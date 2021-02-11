@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 let mongoose = require("mongoose");
 
-require('dotenv').config();
+require("dotenv").config();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -14,20 +14,21 @@ var app = express();
 
 //connecting DB
 
-let url = process.env.DB_URL
+let url = process.env.DB_URL;
+
 mongoose.connect(url, {
   useCreateIndex: true,
   useUnifiedTopology: true,
-  useNweUrlParser: true
+  useNweUrlParser: true,
 });
 
 let db = mongoose.connection;
 db.on("error", () => {
-  console.log("error in connection")
-})
+  console.log("error in connection");
+});
 db.once("open", () => {
-  console.log("db is connected")
-})
+  console.log("db is connected");
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
