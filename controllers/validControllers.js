@@ -32,6 +32,18 @@ validateData.register = (req, res, next) => {
 
   req.check("password", "password length").isLength({ min: 8 });
 
+  req
+    .check(
+      "passwordConfirm",
+      "confirmation of password does not correspond to the original one"
+    )
+    .custom((password) => {
+      if (password !== req.body.password) {
+        return false;
+      }
+      return true;
+    });
+
   let errors = req.validationErrors();
 
   if (!errors) {
