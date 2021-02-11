@@ -3,6 +3,9 @@ const { createGlobalStyle } = require("styled-components");
 const GlobalStyle = createGlobalStyle`
 
 :root {
+  --display: "Dancing Script", cursive;
+  --text: "Raleway", sans-serif;
+
   --space-small: 0.75em;
   --space-medium: 1.5em;
   --space-larger: 2em;
