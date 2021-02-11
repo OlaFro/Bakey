@@ -8,10 +8,11 @@ export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({});
-  const [msg, setMsg] = useState({});
+  const [msg, setMsg] = useState({ firstName: true });
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   const getValue = (e) => {
     setWarning(false);
@@ -26,7 +27,7 @@ export default function RegistrationUser() {
 
     Axios({
       method: "POST",
-      url: "/users/register",
+      url: "register",
       data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -54,11 +55,13 @@ export default function RegistrationUser() {
       })
       .catch((err) => {
         console.log(err);
-        //display out of order component
+        setShowWarning(true);
       });
   };
 
-  return (
+  return showWarning ? (
+    <Warning />
+  ) : (
     <section>
       <form onSubmit={submit}>
         <header>
@@ -74,7 +77,7 @@ export default function RegistrationUser() {
             required
           />
           {msg.firstName ? (
-            <small>Your name can contain only letters</small>
+            <small>Please write your name in letters</small>
           ) : null}
         </div>
         <div>
@@ -87,7 +90,7 @@ export default function RegistrationUser() {
             required
           />
           {msg.lastName ? (
-            <small>Your name can contain only letters</small>
+            <small>Please write your name in letters</small>
           ) : null}
         </div>
         <div>
@@ -131,7 +134,7 @@ export default function RegistrationUser() {
           <label htmlFor="city">See offers from:</label>
           <select id="city" name="city" onInput={getValue}>
             <option value="Leipzig">Leipzig</option>
-            <option value="Berlin">Berlin</option>
+            <option value="Hamburg">Hamburg</option>
             <option value="Düsseldorf">Düsseldorf</option>
           </select>
           {msg.password ? (
