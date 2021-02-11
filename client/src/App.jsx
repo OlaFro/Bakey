@@ -1,5 +1,11 @@
+import OutOfOrder from "./components/OutOfOrder";
+
 function App() {
-  return <div className="App">bakey</div>;
+  return (
+    <div>
+      <OutOfOrder />
+    </div>
+  );
 }
 
 export default App;
