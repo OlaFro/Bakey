@@ -31,7 +31,7 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
-  userType: { type: String, enum: ["cafe", "client"] },
+  userType: { type: String, enum: ["cafe", "client"], required: true },
   cafeName: {
     type: String,
   },
@@ -41,6 +41,20 @@ const UsersSchema = new Schema({
   cafeCover: {
     type: String,
   },
-});
+  cafeStreet: {
+    type: String
+  },
+  cafeStreetNr: {
+    type: String
+  }, 
+  cafeZip: {
+    type: String
+  },
+  cafeURL: {
+    type: String
+  }
+ })
+
+//coordinates?
 
 module.exports = mongoose.model("User", Users);
