@@ -46,7 +46,13 @@ const Users = new Schema({
   cafeCover: {
     type: String,
   },
-  cafeAddress: {
+  cafeStreet: {
+    type: String
+  },
+  cafeStreetNr: {
+    type: String
+  }, 
+  cafeZip: {
     type: String
   },
   cafeURL: {
