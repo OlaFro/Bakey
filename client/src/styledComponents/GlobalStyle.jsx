@@ -4,8 +4,8 @@ const GlobalStyle = createGlobalStyle`
 
 :root {
   --logo: 'Montserrat Alternates', sans-serif;;
-  --text: 'Montserrat', sans-serif;
-  /* --text: 'Raleway', sans-serif; */
+  --headings: 'Montserrat', sans-serif;
+  --text: 'Raleway', sans-serif;
 
   --space-small: 0.75em;
   --space-medium: 1.5em;
@@ -29,7 +29,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--text);
+  font-family: var(--headings);
   color: #4A4A4A;
   
 }
