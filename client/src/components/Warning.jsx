@@ -1,6 +1,5 @@
 import React from "react";
 import StyledWarning from "../styledComponents/StyledWarning";
-import StyledText from "../styledComponents/StyledText";
 
 export default function Warning(props) {
   return (

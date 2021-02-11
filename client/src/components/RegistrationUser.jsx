@@ -2,7 +2,9 @@ import Axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-export default function Registration() {
+import Warning from "./Warning";
+
+export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({});
@@ -62,63 +64,78 @@ export default function Registration() {
         <header>
           <h2>Registration</h2>
         </header>
-        <p>
-          This is just a mock-up, please{" "}
-          <strong>do not use real data for registration</strong> (no
-          confirmation e-mail is sent for registration)
-        </p>
         <div>
-          <label htmlFor="name">Full Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             type="text"
-            name="fullName"
-            id="name"
+            name="firstName"
+            id="firstName"
             onInput={getValue}
             required
           />
-          {msg.fullName ? (
-            <small>Your full name shall contain just letters</small>
+          {msg.firstName ? (
+            <small>Your name can contain only letters</small>
           ) : null}
         </div>
         <div>
-          <label htmlFor="mail">E-mail</label>
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            onInput={getValue}
+            required
+          />
+          {msg.lastName ? (
+            <small>Your name can contain only letters</small>
+          ) : null}
+        </div>
+        <div>
+          <label htmlFor="email">E-mail</label>
           <input
             type="email"
             name="email"
-            id="mail"
+            id="email"
             onInput={getValue}
             required
           />
-          {msg.email ? (
-            <small>E-mail do not correspond to typical rules for email</small>
-          ) : null}
+          {msg.email ? <small>Please use proper e-mail address</small> : null}
         </div>
         <div>
-          <label htmlFor="date">User name</label>
-          <input
-            type="text"
-            name="uname"
-            id="date"
-            onInput={getValue}
-            required
-          />
-          {msg.uname ? (
-            <small>Please use just letters and numbers in your username</small>
-          ) : null}
-        </div>
-        <div>
-          <label htmlFor="pwd">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
-            id="pwd"
+            id="password"
             onInput={getValue}
             required
           />
           {msg.password ? (
-            <small>
-              Your password is too short, you need at least 10 characters
-            </small>
+            <small>Your password does not meet the password criteria</small>
+          ) : null}
+        </div>
+        <div>
+          <label htmlFor="passwordConfirm">Repeat password</label>
+          <input
+            type="password"
+            name="passwordConfirm"
+            id="passwordConfirm"
+            onInput={getValue}
+            required
+          />
+          {msg.password ? (
+            <small>Your password does not meet the password criteria</small>
+          ) : null}
+        </div>
+        <div>
+          <label htmlFor="city">See offers from:</label>
+          <select id="city" name="city" onInput={getValue}>
+            <option value="Leipzig">Leipzig</option>
+            <option value="Berlin">Berlin</option>
+            <option value="Düsseldorf">Düsseldorf</option>
+          </select>
+          {msg.password ? (
+            <small>Your password does not meet the password criteria</small>
           ) : null}
         </div>
         <div>

@@ -2,15 +2,15 @@ import GlobalStyle from "./styledComponents/GlobalStyle";
 
 import Warning from "./components/Warning";
 import Login from "./components/Login";
-import Registration from "./components/Registration";
+import RegistrationUser from "./components/RegistrationUser";
 
 function App() {
   return (
     <div>
       <GlobalStyle />
-      <Warning msg="site is not found" />
-      <Registration />
-      <Login />
+      {/* <Warning msg="site is not found" /> */}
+      <RegistrationUser />
+      {/* <Login /> */}
     </div>
   );
 }
