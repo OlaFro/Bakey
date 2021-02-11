@@ -31,7 +31,7 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
-  userType: { type: String, enum: ["cafe", "client"] },
+  userType: { type: String, enum: ["cafe", "client"], required: true },
   cafeName: {
     type: String,
   },

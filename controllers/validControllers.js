@@ -1,34 +1,36 @@
-const validateData = (req, res, next) => {
+const validateData = {};
+
+validateData.sanitize = (req, res, next) => {
   console.log(req.body);
   Object.keys(req.body).map((input) => {
     req.check(`${input}`).trim().escape();
   });
 
-  let { fullName, email, password, uname, newPassword } = req.body;
+  let errors = req.validationErrors();
 
-  if (fullName) {
-    req.check("fullName", "fullname").custom((value) => {
-      return value.match(/^[A-Za-z ]+$/);
-    });
+  if (!errors) {
+    next();
+  } else {
+    res.send({ msg: errors });
   }
-  if (email) {
-    req.check("email", "email").isEmail();
-  }
+};
 
-  if (password) {
-    req
-      .check("password", "password length")
-      .isLength({ min: 10 })
-      .trim()
-      .escape();
-  }
-  if (uname) {
-    req.check("uname", "uname").isAlphanumeric();
+validateData.register = (req, res, next) => {
+  const { cafeName } = req.body;
+
+  req.check("firstName", "firstName").isAlpha();
+
+  req.check("lastName", "lastName").isAlpha();
+
+  if (cafeName) {
+    req.check("cafeName", "cafeName").isAlpha();
   }
 
-  if (newPassword) {
-    req.check("newPassword", "password length").isLength({ min: 10 });
-  }
+  req.check("city", "city").isAlpha();
+
+  req.check("email", "email").isEmail();
+
+  req.check("password", "password length").isLength({ min: 8 });
 
   let errors = req.validationErrors();
 
