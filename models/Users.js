@@ -41,6 +41,20 @@ const UsersSchema = new Schema({
   cafeCover: {
     type: String,
   },
-});
+  cafeStreet: {
+    type: String
+  },
+  cafeStreetNr: {
+    type: String
+  }, 
+  cafeZip: {
+    type: String
+  },
+  cafeURL: {
+    type: String
+  }
+ })
+
+//coordinates?
 
 module.exports = mongoose.model("User", Users);
