@@ -91,7 +91,7 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 ├── controllers
 │   ├── authControllers.js
 │   └── validControllers.js
-├── model
+├── models
 ├── node_modules
 │   └── ...
 ├── routes
@@ -111,7 +111,7 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 
 - `.vscode/launch.json` - configuration for the debugging of node (using nodemon)
 - `controllers` - middlewares for authentication and validation of the data
-- `model` - model of database in Mongoos
+- `models` - model of database in Mongoos
 - `routes` - routes for backend APIs
 - `uploads` - everything that users upload - profile images, images for listings etc.....
 - `.env`- environment file to store all of the secret (everything that can not go to GH!)
