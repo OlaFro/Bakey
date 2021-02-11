@@ -1,12 +1,11 @@
-import OutOfOrder from "./components/OutOfOrder";
+import Warning from "./components/Warning";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 
 function App() {
   return (
     <div>
-      <OutOfOrder />
-
+      <Warning />
       <Registration />
       <Login />
     </div>
