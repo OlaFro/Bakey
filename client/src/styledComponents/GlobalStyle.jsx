@@ -31,7 +31,10 @@ body {
   padding: 0;
   font-family: var(--headings);
   color: #4A4A4A;
-  
+}
+
+p {
+  font-family: var(--text);
 }
 `;
 
