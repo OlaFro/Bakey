@@ -1,3 +1,4 @@
+import Login from "./components/Login";
 import Registration from "./components/Registration";
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
     <div>
       bakey
       <Registration />
+      <Login />
     </div>
   );
 }
