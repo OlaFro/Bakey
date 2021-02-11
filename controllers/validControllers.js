@@ -29,15 +29,15 @@ validateData.register = (req, res, next) => {
   req.check("city", "city").isAlpha();
 
   if (street) {
-    req.check("street", "street").isAlpha();
+    req.check("cafeStreet", "cafeStreet").isAlpha();
   }
 
   if (number) {
-    req.check("number", "number").isNumeric();
+    req.check("cafeStreetNr", "cafeStreetNr").isNumeric();
   }
 
   if (zip) {
-    req.check("zip", "zip").isNumeric();
+    req.check("cafeZip", "cafeZip").isNumeric();
   }
 
   req.check("email", "email").isEmail();
