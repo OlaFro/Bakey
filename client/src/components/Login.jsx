@@ -42,7 +42,7 @@ export default function Login(props) {
       })
       .catch((err) => {
         console.log(err);
-        history.push("/ooo");
+        //display out of order component
       });
   };
 
