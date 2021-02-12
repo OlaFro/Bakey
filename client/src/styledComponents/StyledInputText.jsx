@@ -7,15 +7,24 @@ export const StyledInputContainer = styled.div`
 export const StyledLabel = styled.label`
   position: absolute;
   top: 22%;
-  left: 1%;
+  left: 15px;
   transition: all 150ms ease-in-out;
 `;
 
 export const StyledInputField = styled.input`
   padding: 0.5rem;
-  :focus ~ label {
+  background-color: none;
+  :focus + label {
     font-size: 0.8rem;
     top: -20%;
+    left: 10px;
+    background: white;
+    padding: 0 0.2rem;
+  }
+  :not(:placeholder-shown) + label {
+    font-size: 0.8rem;
+    top: -20%;
+    left: 10px;
     background: white;
     padding: 0 0.2rem;
   }

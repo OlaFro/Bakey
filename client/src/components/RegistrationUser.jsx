@@ -77,6 +77,7 @@ export default function RegistrationUser() {
             type="text"
             name="firstName"
             id="firstName"
+            placeholder=" "
             onInput={getValue}
             required
           />
