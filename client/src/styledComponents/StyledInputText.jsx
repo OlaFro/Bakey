@@ -1,9 +1,15 @@
 import styled from "styled-components";
-import { lighten, darken } from "polished";
+import { darken } from "polished";
 import colors from "./colors";
 
 export const StyledInputContainer = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+
+  & small {
+    padding: 5px;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -27,20 +33,14 @@ export const StyledInputField = styled.input`
     border: var(--border) solid ${darken(0.2, colors.gray)};
   }
   :focus {
-    border: 20px solid var(--accent1);
+    outline: none;
+    border: var(--border) solid ${colors.accent2};
   }
 
-  :focus + label {
-    font-size: 0.8rem;
-    top: -0.5rem;
-    left: 10px;
-    background: white;
-    padding: 0 0.2rem;
-  }
-
+  :focus + label,
   :not(:placeholder-shown) + label {
-    font-size: 0.8rem;
-    top: -20%;
+    font-size: 0.9rem;
+    top: -0.5rem;
     left: 10px;
     background: white;
     padding: 0 0.2rem;

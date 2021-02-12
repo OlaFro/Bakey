@@ -13,7 +13,7 @@ export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({});
-  const [msg, setMsg] = useState({});
+  const [msg, setMsg] = useState({ firstName: true });
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
@@ -81,10 +81,12 @@ export default function RegistrationUser() {
             onInput={getValue}
             required
           />
-          <StyledLabel htmlFor="firstName">First Name</StyledLabel>
-          {msg.firstName ? (
-            <small>Please use for your name letters only</small>
-          ) : null}
+          <StyledLabel htmlFor="firstName">
+            {/* Functionality to try out when form is connected */}
+            {/* {msg.firstName ? "Error" : "First Name"} */}
+            First Name
+          </StyledLabel>
+          {msg.firstName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         {/* <div>
           <label htmlFor="lastName">Last Name</label>
