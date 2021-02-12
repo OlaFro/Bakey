@@ -4,17 +4,13 @@ import { useHistory } from "react-router-dom";
 
 import Warning from "./Warning";
 import InputText from "./InputText";
-import {
-  StyledLabel,
-  StyledInputContainer,
-  StyledInputField,
-} from "../styledComponents/StyledInputText";
+import InputEmail from "./InputEmail";
 
 export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({});
-  const [msg, setMsg] = useState({ firstName: true });
+  const [msg, setMsg] = useState();
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
@@ -76,12 +72,20 @@ export default function RegistrationUser() {
         <InputText
           name={"First Name"}
           onInput={getValue}
+          required={true}
           msg={msg ? msg.firstName : null}
         />
         <InputText
           name={"Last Name"}
           onInput={getValue}
+          required={true}
           msg={msg ? msg.lastName : null}
+        />
+        <InputEmail
+          name={"Email"}
+          onInput={getValue}
+          required={true}
+          msg={msg ? msg.email : null}
         />
 
         {/* 
