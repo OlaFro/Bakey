@@ -6,6 +6,7 @@ export const StyledInputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin: 1rem 0;
 
   & small {
     padding: 5px;

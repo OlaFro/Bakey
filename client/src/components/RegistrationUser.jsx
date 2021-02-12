@@ -14,7 +14,7 @@ export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({});
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState({ firstName: true });
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
@@ -84,19 +84,7 @@ export default function RegistrationUser() {
           msg={msg ? msg.lastName : null}
         />
 
-        {/* <div>
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            onInput={getValue}
-            required
-          />
-          {msg.lastName ? (
-            <small>Please use for your name letters only</small>
-          ) : null}
-        </div>
+        {/* 
         <div>
           <label htmlFor="email">E-mail</label>
           <input
