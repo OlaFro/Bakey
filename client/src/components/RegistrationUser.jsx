@@ -3,12 +3,17 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Warning from "./Warning";
+import {
+  StyledLabel,
+  StyledInputContainer,
+  StyledInputField,
+} from "../styledComponents/StyledInputText";
 
 export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({});
-  const [msg, setMsg] = useState({ firstName: true });
+  const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
@@ -64,23 +69,23 @@ export default function RegistrationUser() {
   ) : (
     <section>
       <form onSubmit={submit}>
-        <header>
+        {/* <header>
           <h2>Registration</h2>
-        </header>
-        <div>
-          <label htmlFor="firstName">First Name</label>
-          <input
+        </header> */}
+        <StyledInputContainer>
+          <StyledInputField
             type="text"
             name="firstName"
             id="firstName"
             onInput={getValue}
             required
           />
+          <StyledLabel htmlFor="firstName">First Name</StyledLabel>
           {msg.firstName ? (
-            <small>Please write your name in letters</small>
+            <small>Please use for your name letters only</small>
           ) : null}
-        </div>
-        <div>
+        </StyledInputContainer>
+        {/* <div>
           <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
@@ -90,7 +95,7 @@ export default function RegistrationUser() {
             required
           />
           {msg.lastName ? (
-            <small>Please write your name in letters</small>
+            <small>Please use for your name letters only</small>
           ) : null}
         </div>
         <div>
@@ -150,7 +155,7 @@ export default function RegistrationUser() {
             <p>User with this {warningContent} already exists, please log-in</p>
           </div>
         ) : null}
-        {warningValidation ? <p>Please fill all fields!</p> : null}
+        {warningValidation ? <p>Please fill all fields!</p> : null} */}
       </form>
     </section>
   );
