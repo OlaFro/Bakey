@@ -34,7 +34,6 @@ export default function InputText(props) {
         {/* {msg.email ? "Error" : "Email"} */}
         {props.name}
       </StyledLabel>
-      {/* <StyledEyeClose onClick={showPassword} /> */}
       {visible ? (
         <StyledEye onClick={hidePassword} />
       ) : (

@@ -11,7 +11,7 @@ export default function InputText(props) {
       <StyledInputField
         type="text"
         name={props.dbName}
-        // we can think about some function that will change props.name to camelCase so that we can have one prop less to define
+        // we can think about some function that will change props.name to camelCase so we can have one prop less to define in the parent
         id={props.dbName}
         placeholder=" "
         onInput={props.getValue}

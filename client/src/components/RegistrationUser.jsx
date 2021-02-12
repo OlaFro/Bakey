@@ -6,6 +6,7 @@ import Warning from "./Warning";
 import InputText from "./InputText";
 import InputEmail from "./InputEmail";
 import InputPassword from "./InputPassword";
+import Select from "./Select";
 
 export default function RegistrationUser() {
   const history = useHistory();
@@ -73,7 +74,7 @@ export default function RegistrationUser() {
         <InputText
           name={"First Name"}
           dbName={"firstName"}
-          onInput={getValue}
+          onInput={(e) => getValue}
           required={true}
           msg={msg ? msg.firstName : null}
         />
@@ -103,6 +104,12 @@ export default function RegistrationUser() {
           onInput={getValue}
           required={true}
           msg={msg ? msg.password : null}
+        />
+        <Select
+          name={"See offers from:"}
+          dbName={"city"}
+          onInput={getValue}
+          required={false}
         />
 
         {/* <div>

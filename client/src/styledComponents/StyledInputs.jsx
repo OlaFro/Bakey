@@ -55,6 +55,33 @@ export const StyledInputField = styled.input`
   }
 `;
 
+export const StyledSelect = styled.select`
+  padding: 1rem;
+  background-color: white;
+  font-size: 1rem;
+  font-family: var(--heading);
+  border: var(--border) solid ${colors.gray};
+  border-radius: 6px;
+  :hover {
+    cursor: text;
+    border: var(--border) solid ${darken(0.2, colors.gray)};
+  }
+  :focus {
+    outline: none;
+    border: var(--border) solid ${colors.accent1};
+  }
+
+  :focus + label,
+  :not(:placeholder-shown) + label {
+    font-size: 0.9rem;
+    top: -0.5rem;
+    left: 13px;
+    background: white;
+    padding: 0 0.2rem;
+    letter-spacing: 2px;
+  }
+`;
+
 export const StyledEyeClose = styled(EyeClose)`
   width: 1rem;
   height: 1rem;
