@@ -3,13 +3,26 @@ import {
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
+  StyledEyeClose,
+  StyledEye,
 } from "../styledComponents/StyledInputs";
+import { useState } from "react";
 
 export default function InputText(props) {
+  const [visible, setVisible] = useState(false);
+
+  const showPassword = () => {
+    setVisible(true);
+  };
+
+  const hidePassword = () => {
+    setVisible(false);
+  };
+
   return (
     <StyledInputContainer>
       <StyledInputField
-        type="text"
+        type="email"
         name={props.name}
         id={props.name}
         placeholder=" "
@@ -18,10 +31,17 @@ export default function InputText(props) {
       />
       <StyledLabel htmlFor={props.name}>
         {/* Functionality to try out when form is connected */}
-        {/* {msg.firstName ? "Error" : "First Name"} */}
+        {/* {msg.email ? "Error" : "Email"} */}
         {props.name}
       </StyledLabel>
-      {props.msg ? <small>Please use only letters</small> : null}
+      {/* <StyledEyeClose onClick={showPassword} /> */}
+      {visible ? (
+        <StyledEye onClick={hidePassword} />
+      ) : (
+        <StyledEyeClose onClick={showPassword} />
+      )}
+
+      {props.msg ? <small>Please use proper e-mail format</small> : null}
     </StyledInputContainer>
   );
 }

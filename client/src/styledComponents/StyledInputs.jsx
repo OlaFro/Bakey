@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
 import colors from "./colors";
+import { EyeClose, Eye } from "styled-icons/remix-line";
 
 export const StyledInputContainer = styled.div`
   position: relative;
@@ -18,7 +19,7 @@ export const StyledLabel = styled.label`
   position: absolute;
   font-family: var(--heading);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: 500;
   top: 1rem;
   left: 15px;
@@ -49,5 +50,24 @@ export const StyledInputField = styled.input`
     left: 10px;
     background: white;
     padding: 0 0.2rem;
+    letter-spacing: 2px;
   }
+`;
+
+export const StyledEyeClose = styled(EyeClose)`
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  right: 10px;
+  top: 1rem;
+  cursor: pointer;
+`;
+
+export const StyledEye = styled(Eye)`
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  right: 10px;
+  top: 1rem;
+  cursor: pointer;
 `;

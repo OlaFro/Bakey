@@ -3,7 +3,7 @@ import {
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
-} from "../styledComponents/StyledInputText";
+} from "../styledComponents/StyledInputs";
 
 export default function InputText(props) {
   return (
@@ -21,6 +21,7 @@ export default function InputText(props) {
         {/* {msg.email ? "Error" : "Email"} */}
         {props.name}
       </StyledLabel>
+
       {props.msg ? <small>Please use proper e-mail format</small> : null}
     </StyledInputContainer>
   );
