@@ -72,24 +72,34 @@ export default function RegistrationUser() {
         </header>
         <InputText
           name={"First Name"}
+          dbName={"firstName"}
           onInput={getValue}
           required={true}
           msg={msg ? msg.firstName : null}
         />
         <InputText
           name={"Last Name"}
+          dbName={"lastName"}
           onInput={getValue}
           required={true}
           msg={msg ? msg.lastName : null}
         />
         <InputEmail
-          name={"Email"}
+          name={"email"}
           onInput={getValue}
           required={true}
           msg={msg ? msg.email : null}
         />
         <InputPassword
           name={"password"}
+          dbName={"password"}
+          onInput={getValue}
+          required={true}
+          msg={msg ? msg.password : null}
+        />
+        <InputPassword
+          name={"Repeat Password"}
+          dbName={"confirmPassword"}
           onInput={getValue}
           required={true}
           msg={msg ? msg.password : null}

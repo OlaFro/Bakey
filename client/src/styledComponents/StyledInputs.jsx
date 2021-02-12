@@ -58,7 +58,7 @@ export const StyledEyeClose = styled(EyeClose)`
   width: 1rem;
   height: 1rem;
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 1.2rem;
   cursor: pointer;
 `;
@@ -67,7 +67,7 @@ export const StyledEye = styled(Eye)`
   width: 1rem;
   height: 1rem;
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 1.2rem;
   cursor: pointer;
 `;

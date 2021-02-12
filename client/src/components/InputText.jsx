@@ -10,13 +10,14 @@ export default function InputText(props) {
     <StyledInputContainer>
       <StyledInputField
         type="text"
-        name={props.name}
-        id={props.name}
+        name={props.dbName}
+        // we can think about some function that will change props.name to camelCase so that we can have one prop less to define
+        id={props.dbName}
         placeholder=" "
         onInput={props.getValue}
         required={props.required}
       />
-      <StyledLabel htmlFor={props.name}>
+      <StyledLabel htmlFor={props.dbName}>
         {/* Functionality to try out when form is connected */}
         {/* {msg.firstName ? "Error" : "First Name"} */}
         {props.name}
