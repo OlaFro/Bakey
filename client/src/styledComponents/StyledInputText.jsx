@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { lighten, darken } from "polished";
+import colors from "./colors";
 
 export const StyledInputContainer = styled.div`
   position: relative;
@@ -18,9 +19,13 @@ export const StyledInputField = styled.input`
   background-color: white;
   font-size: 1rem;
   font-family: var(--heading);
-  border: 1px solid #acacac;
+  border: var(--border) solid ${colors.gray};
   border-radius: 6px;
 
+  :hover {
+    cursor: text;
+    border: var(--border) solid ${darken(0.2, colors.gray)};
+  }
   :focus {
     border: 20px solid var(--accent1);
   }
