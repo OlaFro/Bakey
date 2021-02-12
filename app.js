@@ -19,7 +19,7 @@ let url = process.env.DB_URL;
 mongoose.connect(url, {
   useCreateIndex: true,
   useUnifiedTopology: true,
-  useNweUrlParser: true,
+  useNewUrlParser: true,
 });
 
 let db = mongoose.connection;
