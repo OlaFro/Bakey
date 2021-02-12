@@ -46,7 +46,7 @@ export const StyledInputField = styled.input`
 
   :focus + label,
   :not(:placeholder-shown) + label {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     top: -0.5rem;
     left: 13px;
     background: white;
@@ -73,7 +73,7 @@ export const StyledSelect = styled.select`
 
   :focus + label,
   :not(:placeholder-shown) + label {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     top: -0.5rem;
     left: 13px;
     background: white;
