@@ -41,7 +41,9 @@ export default function InputText(props) {
         <StyledEyeClose onClick={showPassword} />
       )}
 
-      {props.msg ? <small>Please use proper e-mail format</small> : null}
+      {props.msg ? (
+        <small>Your password does not meet the password criteria</small>
+      ) : null}
     </StyledInputContainer>
   );
 }

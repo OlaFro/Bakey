@@ -10,7 +10,7 @@ import InputPassword from "./InputPassword";
 export default function RegistrationUser() {
   const history = useHistory();
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ userType: "client" });
   const [msg, setMsg] = useState();
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
@@ -105,45 +105,7 @@ export default function RegistrationUser() {
           msg={msg ? msg.password : null}
         />
 
-        {/* 
-        <div>
-          <label htmlFor="email">E-mail</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            onInput={getValue}
-            required
-          />
-          {msg.email ? <small>Please use proper e-mail address</small> : null}
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onInput={getValue}
-            required
-          />
-          {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
-          ) : null}
-        </div>
-        <div>
-          <label htmlFor="passwordConfirm">Repeat password</label>
-          <input
-            type="password"
-            name="passwordConfirm"
-            id="passwordConfirm"
-            onInput={getValue}
-            required
-          />
-          {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
-          ) : null}
-        </div>
-        <div>
+        {/* <div>
           <label htmlFor="city">See offers from:</label>
           <select id="city" name="city" onInput={getValue}>
             <option value="Leipzig">Leipzig</option>
@@ -153,7 +115,9 @@ export default function RegistrationUser() {
           {msg.password ? (
             <small>Your password does not meet the password criteria</small>
           ) : null}
-        </div>
+        </div> */}
+        {/* 
+       
         <div>
           <button type="submit">Register</button>
         </div>

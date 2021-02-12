@@ -4,6 +4,7 @@ import colors from "./colors";
 import { EyeClose, Eye } from "styled-icons/remix-line";
 
 export const StyledInputContainer = styled.div`
+  width: 25rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -47,7 +48,7 @@ export const StyledInputField = styled.input`
   :not(:placeholder-shown) + label {
     font-size: 0.9rem;
     top: -0.5rem;
-    left: 10px;
+    left: 13px;
     background: white;
     padding: 0 0.2rem;
     letter-spacing: 2px;
