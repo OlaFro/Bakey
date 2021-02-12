@@ -9,12 +9,16 @@ export const StyledInputContainer = styled.div`
 
   & small {
     padding: 5px;
+    color: red;
   }
 `;
 
 export const StyledLabel = styled.label`
   position: absolute;
   font-family: var(--heading);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
   top: 1rem;
   left: 15px;
   transition: all 200ms ease-in-out;
@@ -34,7 +38,7 @@ export const StyledInputField = styled.input`
   }
   :focus {
     outline: none;
-    border: var(--border) solid ${colors.accent2};
+    border: var(--border) solid ${colors.accent1};
   }
 
   :focus + label,
