@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import InputText from "./InputText";
 import InputEmail from "./InputEmail";
+import InputPassword from "./InputPassword";
 
 export default function RegistrationUser() {
   const history = useHistory();
@@ -86,6 +87,12 @@ export default function RegistrationUser() {
           onInput={getValue}
           required={true}
           msg={msg ? msg.email : null}
+        />
+        <InputPassword
+          name={"password"}
+          onInput={getValue}
+          required={true}
+          msg={msg ? msg.password : null}
         />
 
         {/* 

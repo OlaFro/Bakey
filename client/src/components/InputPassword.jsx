@@ -22,7 +22,7 @@ export default function InputText(props) {
   return (
     <StyledInputContainer>
       <StyledInputField
-        type="email"
+        type={visible ? "text" : "password"}
         name={props.name}
         id={props.name}
         placeholder=" "
