@@ -5,6 +5,8 @@ import device from "./device";
 import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
+/* only for preview purposes */
+margin-top: 3rem;
   border: var(--border) solid
     ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
   padding: 2rem 4rem 3rem 4rem;
@@ -37,23 +39,6 @@ export const StyledForm = styled.form`
   }}
 `;
 
-export const StyledInputPairs = styled.div`
-  display: grid;
-  grid-template-columns: auto;
-  @media ${device.tabletLandscape} {
-    grid-template-columns: auto auto;
-    > div:first-child {
-      margin-right: 2rem;
-    }
-  }
-  /* {
-    > div:first-child {
-      margin-right: 2rem;
-    }
-    flex-direction: row;
-    justify-content: space-between;
-  } */
-`;
 export const StyledInputContainer = styled.div`
   width: 15rem;
   position: relative;
@@ -86,7 +71,8 @@ export const StyledInputField = styled.input`
   background-color: white;
   font-size: 1rem;
   font-family: var(--heading);
-  border: var(--border) solid ${colors.gray};
+  border: var(--border) solid
+    ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
   border-radius: var(--border-radius);
 
   :hover {
@@ -120,7 +106,8 @@ export const StyledSelect = styled.select`
   background-color: white;
   font-size: 1rem;
   font-family: var(--heading);
-  border: var(--border) solid ${colors.gray};
+  border: var(--border) solid
+    ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
   border-radius: var(--border-radius);
 
   :hover {

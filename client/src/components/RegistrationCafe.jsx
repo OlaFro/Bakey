@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
   StyledForm,
-  StyledInputPairs,
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
@@ -15,7 +14,7 @@ import {
 import StyledH2 from "../styledComponents/StyledH2";
 import StyledButton from "../styledComponents/StyledButton";
 
-export default function RegistrationUser() {
+export default function RegistrationCafe() {
   const history = useHistory();
 
   const [data, setData] = useState({ userType: "cafe" });
@@ -241,7 +240,7 @@ export default function RegistrationUser() {
 
         <StyledButton cafe>Register</StyledButton>
       </StyledForm>
-      <p>If you are already registered, please login.</p>
+      <p>If you have already registered, please login.</p>
       {warning ? (
         <div>
           <p>User with this {warningContent} already exists, please log-in</p>

@@ -4,14 +4,16 @@ import Warning from "./components/Warning";
 import Login from "./components/Login";
 import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
+import { LayoutColumn } from "styled-icons/remix-line";
 
 // this style is just for preview purposes
 const temporalAlign = {
-  height: "100vh",
+  height: "250vh",
   display: "flex",
-  justifyContent: "center",
-  alignItems: "flex-start",
-  padding: "5rem",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  alignItems: "center",
+  padding: "2rem",
 };
 
 function App() {
@@ -19,7 +21,7 @@ function App() {
     <div style={temporalAlign}>
       <GlobalStyle />
       {/* <Warning msg="site is not found" /> */}
-      {/* <RegistrationUser /> */}
+      <RegistrationUser />
       <RegistrationCafe />
       {/* <Login /> */}
     </div>

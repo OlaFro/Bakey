@@ -198,7 +198,7 @@ export default function RegistrationUser() {
         </StyledInputContainer>
         <StyledButton>Register</StyledButton>
       </StyledForm>
-      <p>If you are already registered, please login.</p>
+      <p>If you have already registered, please login.</p>
       {warning ? (
         <div>
           <p>User with this {warningContent} already exists, please log-in</p>
