@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
 import colors from "./colors";
-import { EyeClose, Eye } from "styled-icons/remix-line";
-import { ArrowDownShort } from "styled-icons/bootstrap";
+import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
 export const StyledInputContainer = styled.div`
   width: 25rem;
@@ -108,10 +107,10 @@ export const StyledEye = styled(Eye)`
   cursor: pointer;
 `;
 
-export const StyledArrow = styled(ArrowDownShort)`
-  width: 1.5rem;
+export const StyledArrow = styled(ArrowDown)`
+  width: 1rem;
   position: absolute;
-  top: 1rem;
-  right: 0.5rem;
+  right: 12px;
+  top: 1.2rem;
   pointer-events: none;
 `;

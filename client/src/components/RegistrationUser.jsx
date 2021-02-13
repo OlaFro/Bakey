@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Warning from "./Warning";
-import InputText from "./InputText";
+import {
+  StyledLabel,
+  StyledInputContainer,
+  StyledInputField,
+} from "../styledComponents/StyledInputs";
+
 import InputEmail from "./InputEmail";
 import InputPassword from "./InputPassword";
 import Select from "./Select";
@@ -71,7 +76,40 @@ export default function RegistrationUser() {
         <header>
           <h2>Registration</h2>
         </header>
-        <InputText
+        <StyledInputContainer>
+          <StyledInputField
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="firstName">
+            {/* Functionality to try out when form is connected */}
+            {/* {msg.firstName ? "Error" : "First Name"} */}
+            First Name
+          </StyledLabel>
+          {msg ? <small>Please use only letters</small> : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="lastName">
+            {/* Functionality to try out when form is connected */}
+            {/* {msg.firstName ? "Error" : "First Name"} */}
+            Last Name
+          </StyledLabel>
+          {msg ? <small>Please use only letters</small> : null}
+        </StyledInputContainer>
+
+        {/* <InputText
           name={"First Name"}
           dbName={"firstName"}
           onInput={(e) => getValue}
@@ -110,7 +148,7 @@ export default function RegistrationUser() {
           dbName={"city"}
           onInput={getValue}
           required={false}
-        />
+        /> */}
 
         {/* <div>
           <label htmlFor="city">See offers from:</label>
