@@ -3,6 +3,7 @@ import {
   StyledLabel,
   StyledInputContainer,
   StyledSelect,
+  StyledArrow,
 } from "../styledComponents/StyledInputs";
 
 export default function InputText(props) {
@@ -20,6 +21,7 @@ export default function InputText(props) {
       </StyledSelect>
 
       <StyledLabel htmlFor={props.dbName}>{props.name}</StyledLabel>
+      <StyledArrow />
     </StyledInputContainer>
   );
 }

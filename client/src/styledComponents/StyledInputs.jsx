@@ -56,6 +56,11 @@ export const StyledInputField = styled.input`
 `;
 
 export const StyledSelect = styled.select`
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -ms-appearance: none;
   padding: 1rem;
   background-color: white;
   font-size: 1rem;
@@ -69,6 +74,7 @@ export const StyledSelect = styled.select`
   :focus {
     outline: none;
     border: var(--border) solid ${colors.accent1};
+    font-family: var(--heading);
   }
 
   :focus + label,
@@ -98,4 +104,28 @@ export const StyledEye = styled(Eye)`
   right: 12px;
   top: 1.2rem;
   cursor: pointer;
+`;
+
+export const StyledArrow = styled.span`
+  width: 2rem;
+  height: inherit;
+  top: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  ::after {
+    content: "⌄";
+    position: absolute;
+    background-color: white;
+    padding: 2px;
+    color: ${colors.black};
+    left: 6px;
+    top: 12px;
+    transform: scale(1.7);
+  }
+  :hover::after {
+  
+    color: black};
+  }
 `;
