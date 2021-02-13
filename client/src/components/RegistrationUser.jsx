@@ -9,9 +9,9 @@ import {
   StyledInputField,
   StyledEyeClose,
   StyledEye,
+  StyledSelect,
+  StyledArrow,
 } from "../styledComponents/StyledInputs";
-
-import Select from "./Select";
 
 export default function RegistrationUser() {
   const history = useHistory();
@@ -157,6 +157,41 @@ export default function RegistrationUser() {
           {msg ? (
             <small>Your password does not meet the password criteria</small>
           ) : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            type={visible ? "text" : "password"}
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder=" "
+            onInput={getValue}
+            required="true"
+          />
+          <StyledLabel htmlFor="confirmPassword">
+            {/* Functionality to try out when form is connected */}
+            {/* {msg.email ? "Error" : "Email"} */}
+            Repeat password
+          </StyledLabel>
+          {visible ? (
+            <StyledEye onClick={hidePassword} />
+          ) : (
+            <StyledEyeClose onClick={showPassword} />
+          )}
+
+          {msg ? (
+            <small>Your password does not meet the password criteria</small>
+          ) : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledSelect id="city" name="city" onInput={getValue}>
+            <option value="Leipzig">Leipzig</option>
+            <option value="Hamburg">Hamburg</option>
+            <option value="Düsseldorf">Düsseldorf</option>
+            {/* we can later add a map function with dynamic city names */}
+          </StyledSelect>
+
+          <StyledLabel htmlFor="city">See offers from:</StyledLabel>
+          <StyledArrow />
         </StyledInputContainer>
 
         {/* <InputText
