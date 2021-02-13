@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { darken } from "polished";
 import colors from "./colors";
 import { EyeClose, Eye } from "styled-icons/remix-line";
+import { ArrowDownShort } from "styled-icons/bootstrap";
 
 export const StyledInputContainer = styled.div`
   width: 25rem;
@@ -67,8 +68,9 @@ export const StyledSelect = styled.select`
   font-family: var(--heading);
   border: var(--border) solid ${colors.gray};
   border-radius: 6px;
+
   :hover {
-    cursor: text;
+    cursor: pointer;
     border: var(--border) solid ${darken(0.2, colors.gray)};
   }
   :focus {
@@ -106,26 +108,10 @@ export const StyledEye = styled(Eye)`
   cursor: pointer;
 `;
 
-export const StyledArrow = styled.span`
-  width: 2rem;
-  height: inherit;
-  top: 0;
-  right: 0;
+export const StyledArrow = styled(ArrowDownShort)`
+  width: 1.5rem;
   position: absolute;
-  z-index: 1;
+  top: 1rem;
+  right: 0.5rem;
   pointer-events: none;
-  ::after {
-    content: "⌄";
-    position: absolute;
-    background-color: white;
-    padding: 2px;
-    color: ${colors.black};
-    left: 6px;
-    top: 12px;
-    transform: scale(1.7);
-  }
-  :hover::after {
-  
-    color: black};
-  }
 `;
