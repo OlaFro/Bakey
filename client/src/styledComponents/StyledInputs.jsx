@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
 import colors from "./colors";
+import device from "./device";
 import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
@@ -8,6 +9,9 @@ export const StyledForm = styled.form`
   padding: 2rem 4rem 3rem 4rem;
   border-radius: var(--border-radius);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   > Header {
     background-color: white;
     padding: 0.5rem 1rem;
@@ -21,15 +25,18 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledInputContainer = styled.div`
-  width: 25rem;
+  width: 15rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 2rem 0;
+  margin: 1rem 0;
 
   & small {
     padding: 5px;
     color: red;
+  }
+  @media (min-width: ${device.tabletLandscape}) {
+    width: 25rem;
   }
 `;
 

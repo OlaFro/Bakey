@@ -20,7 +20,7 @@ export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({ userType: "client" });
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState({ email: true });
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
@@ -102,7 +102,7 @@ export default function RegistrationUser() {
             {/* {msg.firstName ? "Error" : "First Name"} */}
             First Name
           </StyledLabel>
-          {msg ? <small>Please use only letters</small> : null}
+          {msg.firstName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -118,7 +118,7 @@ export default function RegistrationUser() {
             {/* {msg.firstName ? "Error" : "First Name"} */}
             Last Name
           </StyledLabel>
-          {msg ? <small>Please use only letters</small> : null}
+          {msg.lastName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -135,7 +135,7 @@ export default function RegistrationUser() {
             Email
           </StyledLabel>
 
-          {msg ? <small>Please use proper e-mail format</small> : null}
+          {msg.email ? <small>Please use proper email format</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -157,7 +157,7 @@ export default function RegistrationUser() {
             <StyledEyeClose onClick={showPassword} />
           )}
 
-          {msg ? (
+          {msg.password ? (
             <small>Your password does not meet the password criteria</small>
           ) : null}
         </StyledInputContainer>
@@ -181,7 +181,7 @@ export default function RegistrationUser() {
             <StyledEyeClose onClick={showPassword} />
           )}
 
-          {msg ? (
+          {msg.password ? (
             <small>Your password does not meet the password criteria</small>
           ) : null}
         </StyledInputContainer>
