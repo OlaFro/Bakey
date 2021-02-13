@@ -98,12 +98,62 @@ export default function RegistrationUser() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeName">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.firstName ? "Error" : "First Name"} */}
-            Café Name
-          </StyledLabel>
+          <StyledLabel htmlFor="cafeName">Café Name</StyledLabel>
           {msg.cafeName ? <small>Please use only letters</small> : null}
+        </StyledInputContainer>
+
+        <StyledInputContainer>
+          <StyledInputField
+            cafe
+            type="text"
+            name="cafeStreet"
+            id="cafeStreet"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="cafeStreet">Address / Street</StyledLabel>
+          {msg.cafeStreet ? <small>???</small> : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            cafe
+            type="text"
+            name="cafeStreetNr"
+            id="cafeStreetNr"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr</StyledLabel>
+          {msg.cafeStreetNr ? <small>???</small> : null}
+        </StyledInputContainer>
+
+        <StyledInputContainer>
+          <StyledInputField
+            cafe
+            type="text"
+            name="cafeZip"
+            id="cafeZip"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="cafeZip">Address / ZIP code</StyledLabel>
+          {msg.cafeZip ? <small>???</small> : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            cafe
+            type="text"
+            name="city"
+            id="city"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="city">Address / City</StyledLabel>
+          {msg.city ? <small>???</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -115,11 +165,7 @@ export default function RegistrationUser() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="ownerName">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.firstName ? "Error" : "First Name"} */}
-            Last Name
-          </StyledLabel>
+          <StyledLabel htmlFor="ownerName">Owner Name</StyledLabel>
           {msg.ownerName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
@@ -132,11 +178,7 @@ export default function RegistrationUser() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="email">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.email ? "Error" : "Email"} */}
-            Email
-          </StyledLabel>
+          <StyledLabel htmlFor="email">Email</StyledLabel>
 
           {msg.email ? <small>Please use proper email format</small> : null}
         </StyledInputContainer>
@@ -150,11 +192,7 @@ export default function RegistrationUser() {
             onInput={getValue}
             required="true"
           />
-          <StyledLabel htmlFor="password">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.email ? "Error" : "Email"} */}
-            Password
-          </StyledLabel>
+          <StyledLabel htmlFor="password">Password</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -175,11 +213,7 @@ export default function RegistrationUser() {
             onInput={getValue}
             required="true"
           />
-          <StyledLabel htmlFor="confirmPassword">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.email ? "Error" : "Email"} */}
-            Repeat password
-          </StyledLabel>
+          <StyledLabel htmlFor="confirmPassword">Repeat password</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -190,17 +224,7 @@ export default function RegistrationUser() {
             <small>Your password does not meet the password criteria</small>
           ) : null}
         </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledSelect cafe id="city" name="city" onInput={getValue}>
-            <option value="Leipzig">Leipzig</option>
-            <option value="Hamburg">Hamburg</option>
-            <option value="Düsseldorf">Düsseldorf</option>
-            {/* we can later add a map function with dynamic city names */}
-          </StyledSelect>
 
-          <StyledLabel htmlFor="city">See offers from:</StyledLabel>
-          <StyledArrow />
-        </StyledInputContainer>
         <StyledButton cafe>Register</StyledButton>
       </StyledForm>
       <p>If you are already registered, please login.</p>
