@@ -13,6 +13,7 @@ import {
   StyledSelect,
   StyledArrow,
 } from "../styledComponents/StyledInputs";
+import StyledH2 from "../styledComponents/StyledH2";
 import StyledButton from "../styledComponents/StyledButton";
 
 export default function RegistrationUser() {
@@ -85,7 +86,7 @@ export default function RegistrationUser() {
     <section>
       <StyledForm onSubmit={submit}>
         <header>
-          <h2>Registration</h2>
+          <StyledH2>Registration</StyledH2>
         </header>
         <StyledInputContainer>
           <StyledInputField

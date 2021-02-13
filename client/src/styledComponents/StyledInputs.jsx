@@ -5,7 +5,7 @@ import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
   border: var(--border) solid ${colors.accent1};
-  padding: 3rem 4rem;
+  padding: 2rem 4rem 3rem 4rem;
   border-radius: var(--border-radius);
   position: relative;
   > Header {
@@ -13,6 +13,7 @@ export const StyledForm = styled.form`
     padding: 0.5rem 1rem;
     position: absolute;
     top: -2.8rem;
+    left: 3rem;
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 700;
