@@ -12,6 +12,7 @@ import {
   StyledSelect,
   StyledArrow,
 } from "../styledComponents/StyledInputs";
+import StyledButton from "../styledComponents/StyledButton";
 
 export default function RegistrationUser() {
   const history = useHistory();
@@ -193,59 +194,7 @@ export default function RegistrationUser() {
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
         </StyledInputContainer>
-
-        {/* <InputText
-          name={"First Name"}
-          dbName={"firstName"}
-          onInput={(e) => getValue}
-          required={true}
-          msg={msg ? msg.firstName : null}
-        />
-        <InputText
-          name={"Last Name"}
-          dbName={"lastName"}
-          onInput={getValue}
-          required={true}
-          msg={msg ? msg.lastName : null}
-        />
-        <InputEmail
-          name={"email"}
-          onInput={getValue}
-          required={true}
-          msg={msg ? msg.email : null}
-        />
-        <InputPassword
-          name={"password"}
-          dbName={"password"}
-          onInput={getValue}
-          required={true}
-          msg={msg ? msg.password : null}
-        />
-        <InputPassword
-          name={"Repeat Password"}
-          dbName={"confirmPassword"}
-          onInput={getValue}
-          required={true}
-          msg={msg ? msg.password : null}
-        />
-        <Select
-          name={"See offers from:"}
-          dbName={"city"}
-          onInput={getValue}
-          required={false}
-        /> */}
-
-        {/* <div>
-          <label htmlFor="city">See offers from:</label>
-          <select id="city" name="city" onInput={getValue}>
-            <option value="Leipzig">Leipzig</option>
-            <option value="Hamburg">Hamburg</option>
-            <option value="Düsseldorf">Düsseldorf</option>
-          </select>
-          {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
-          ) : null}
-        </div> */}
+        <StyledButton>Register</StyledButton>
         {/* 
        
         <div>
