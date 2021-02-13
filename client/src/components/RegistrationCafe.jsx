@@ -20,7 +20,7 @@ export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({ userType: "cafe" });
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
@@ -84,12 +84,13 @@ export default function RegistrationUser() {
     <Warning />
   ) : (
     <section>
-      <StyledForm onSubmit={submit}>
+      <StyledForm onSubmit={submit} cafe>
         <header>
           <StyledH2>Registration</StyledH2>
         </header>
         <StyledInputContainer>
           <StyledInputField
+            cafe
             type="text"
             name="cafeName"
             id="cafeName"
@@ -106,6 +107,7 @@ export default function RegistrationUser() {
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
+            cafe
             type="text"
             name="ownerName"
             id="ownerName"
@@ -116,12 +118,13 @@ export default function RegistrationUser() {
           <StyledLabel htmlFor="ownerName">
             {/* Functionality to try out when form is connected */}
             {/* {msg.firstName ? "Error" : "First Name"} */}
-            Owner Name
+            Last Name
           </StyledLabel>
           {msg.ownerName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
+            cafe
             type="email"
             name="email"
             id="email"
@@ -139,6 +142,7 @@ export default function RegistrationUser() {
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
+            cafe
             type={visible ? "text" : "password"}
             name="password"
             id="password"
@@ -163,6 +167,7 @@ export default function RegistrationUser() {
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
+            cafe
             type={visible ? "text" : "password"}
             name="confirmPassword"
             id="confirmPassword"
@@ -186,7 +191,7 @@ export default function RegistrationUser() {
           ) : null}
         </StyledInputContainer>
         <StyledInputContainer>
-          <StyledSelect id="city" name="city" onInput={getValue}>
+          <StyledSelect cafe id="city" name="city" onInput={getValue}>
             <option value="Leipzig">Leipzig</option>
             <option value="Hamburg">Hamburg</option>
             <option value="Düsseldorf">Düsseldorf</option>
@@ -196,7 +201,7 @@ export default function RegistrationUser() {
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
         </StyledInputContainer>
-        <StyledButton>Register</StyledButton>
+        <StyledButton cafe>Register</StyledButton>
       </StyledForm>
       <p>If you are already registered, please login.</p>
       {warning ? (

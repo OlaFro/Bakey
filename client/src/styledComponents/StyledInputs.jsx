@@ -5,7 +5,8 @@ import device from "./device";
 import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
-  border: var(--border) solid ${colors.accent1};
+  border: var(--border) solid
+    ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
   padding: 2rem 4rem 3rem 4rem;
   border-radius: var(--border-radius);
   position: relative;
@@ -65,7 +66,8 @@ export const StyledInputField = styled.input`
   }
   :focus {
     outline: none;
-    border: var(--border) solid ${colors.accent1};
+    border: var(--border) solid
+      ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
   }
 
   :focus + label,

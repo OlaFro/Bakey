@@ -4,7 +4,10 @@ import { darken } from "polished";
 
 const StyledButton = styled.button`
   font-family: var(--headings);
-  background-color: ${colors.accent1};
+  background-color: ${(props) =>
+    props.cafe
+      ? `var(--border) solid ${colors.accent2}`
+      : `var(--border) solid ${colors.accent1}`};
   border: var(--border) solid transparent;
   color: white;
   font-size: 1rem;
