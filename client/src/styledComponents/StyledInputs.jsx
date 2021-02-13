@@ -35,7 +35,7 @@ export const StyledInputContainer = styled.div`
     padding: 5px;
     color: red;
   }
-  @media (min-width: ${device.tabletLandscape}) {
+  @media ${device.tabletLandscape} {
     width: 25rem;
   }
 `;
