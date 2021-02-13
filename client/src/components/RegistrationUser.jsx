@@ -108,6 +108,23 @@ export default function RegistrationUser() {
           </StyledLabel>
           {msg ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            type="email"
+            name="email"
+            id="email"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="email">
+            {/* Functionality to try out when form is connected */}
+            {/* {msg.email ? "Error" : "Email"} */}
+            Email
+          </StyledLabel>
+
+          {msg ? <small>Please use proper e-mail format</small> : null}
+        </StyledInputContainer>
 
         {/* <InputText
           name={"First Name"}
