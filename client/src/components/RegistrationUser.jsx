@@ -7,10 +7,10 @@ import {
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
+  StyledEyeClose,
+  StyledEye,
 } from "../styledComponents/StyledInputs";
 
-import InputEmail from "./InputEmail";
-import InputPassword from "./InputPassword";
 import Select from "./Select";
 
 export default function RegistrationUser() {
@@ -22,6 +22,15 @@ export default function RegistrationUser() {
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const showPassword = () => {
+    setVisible(true);
+  };
+
+  const hidePassword = () => {
+    setVisible(false);
+  };
 
   const getValue = (e) => {
     setWarning(false);
@@ -124,6 +133,30 @@ export default function RegistrationUser() {
           </StyledLabel>
 
           {msg ? <small>Please use proper e-mail format</small> : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            type={visible ? "text" : "password"}
+            name="password"
+            id="password"
+            placeholder=" "
+            onInput={getValue}
+            required="true"
+          />
+          <StyledLabel htmlFor="password">
+            {/* Functionality to try out when form is connected */}
+            {/* {msg.email ? "Error" : "Email"} */}
+            Password
+          </StyledLabel>
+          {visible ? (
+            <StyledEye onClick={hidePassword} />
+          ) : (
+            <StyledEyeClose onClick={showPassword} />
+          )}
+
+          {msg ? (
+            <small>Your password does not meet the password criteria</small>
+          ) : null}
         </StyledInputContainer>
 
         {/* <InputText
