@@ -5,9 +5,7 @@ import { darken } from "polished";
 const StyledButton = styled.button`
   font-family: var(--headings);
   background-color: ${(props) =>
-    props.cafe
-      ? `var(--border) solid ${colors.accent2}`
-      : `var(--border) solid ${colors.accent1}`};
+    props.cafe ? colors.accent2 : colors.accent1};
   border: var(--border) solid transparent;
   color: white;
   font-size: 1rem;
@@ -20,16 +18,19 @@ const StyledButton = styled.button`
 
   :hover {
     cursor: pointer;
-    background-color: ${darken(0.1, colors.accent1)};
+    background-color: ${(props) =>
+      props.cafe ? darken(0.1, colors.accent2) : darken(0.1, colors.accent1)};
   }
   :active {
     background-color: white;
-    border: var(--border) solid ${colors.accent1};
-    color: ${colors.accent1};
+    border: var(--border) solid
+      ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
+    color: ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
   }
   :focus {
     outline: none;
-    border: var(--border) solid ${colors.accent1};
+    border: var(--border) solid
+      ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
   }
 `;
 
