@@ -20,7 +20,7 @@ export default function RegistrationUser() {
   const history = useHistory();
 
   const [data, setData] = useState({ userType: "client" });
-  const [msg, setMsg] = useState({ email: true });
+  const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
