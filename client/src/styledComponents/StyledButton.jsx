@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   color: white;
   font-size: 1rem;
   padding: 1rem 2rem;
-  border-radius: 6px;
+  border-radius: var(--border-radius);
   text-transform: uppercase;
   letter-spacing: 3px;
   font-weight: 700;

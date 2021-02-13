@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   --space-large: 3em;
 
   --border: 2px;
-
+  --border-radius: 6px;
 
 }
 

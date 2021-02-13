@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import Warning from "./Warning";
 import {
+  StyledForm,
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
@@ -82,7 +83,7 @@ export default function RegistrationUser() {
     <Warning />
   ) : (
     <section>
-      <form onSubmit={submit}>
+      <StyledForm onSubmit={submit}>
         <header>
           <h2>Registration</h2>
         </header>
@@ -195,19 +196,14 @@ export default function RegistrationUser() {
           <StyledArrow />
         </StyledInputContainer>
         <StyledButton>Register</StyledButton>
-        {/* 
-       
+      </StyledForm>
+      <p>If you are already registered, please login.</p>
+      {warning ? (
         <div>
-          <button type="submit">Register</button>
+          <p>User with this {warningContent} already exists, please log-in</p>
         </div>
-        <p>If you are already registered, please login.</p>
-        {warning ? (
-          <div>
-            <p>User with this {warningContent} already exists, please log-in</p>
-          </div>
-        ) : null}
-        {warningValidation ? <p>Please fill all fields!</p> : null} */}
-      </form>
+      ) : null}
+      {warningValidation ? <p>Please fill all fields!</p> : null}
     </section>
   );
 }

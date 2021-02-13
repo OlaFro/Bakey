@@ -3,12 +3,28 @@ import { darken } from "polished";
 import colors from "./colors";
 import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
+export const StyledForm = styled.form`
+  border: var(--border) solid ${colors.accent1};
+  padding: 3rem 4rem;
+  border-radius: var(--border-radius);
+  position: relative;
+  > Header {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: -2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+  }
+`;
+
 export const StyledInputContainer = styled.div`
   width: 25rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  margin: 2rem 0;
 
   & small {
     padding: 5px;
@@ -33,7 +49,7 @@ export const StyledInputField = styled.input`
   font-size: 1rem;
   font-family: var(--heading);
   border: var(--border) solid ${colors.gray};
-  border-radius: 6px;
+  border-radius: var(--border-radius);
 
   :hover {
     cursor: text;
@@ -66,7 +82,7 @@ export const StyledSelect = styled.select`
   font-size: 1rem;
   font-family: var(--heading);
   border: var(--border) solid ${colors.gray};
-  border-radius: 6px;
+  border-radius: var(--border-radius);
 
   :hover {
     cursor: pointer;
