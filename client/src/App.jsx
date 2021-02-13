@@ -7,10 +7,11 @@ import RegistrationCafe from "./components/RegistrationCafe";
 
 // this style is just for preview purposes
 const temporalAlign = {
-  height: "100vh",
+  height: "200vh",
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "flex-start",
+  padding: "5rem",
 };
 
 function App() {

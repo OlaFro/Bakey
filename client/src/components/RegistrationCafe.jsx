@@ -159,14 +159,27 @@ export default function RegistrationUser() {
           <StyledInputField
             cafe
             type="text"
-            name="ownerName"
-            id="ownerName"
+            name="firstName"
+            id="firstName"
             placeholder=" "
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="ownerName">Owner Name</StyledLabel>
-          {msg.ownerName ? <small>Please use only letters</small> : null}
+          <StyledLabel htmlFor="firstName">Owner First Name</StyledLabel>
+          {msg.firstName ? <small>Please use only letters</small> : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            cafe
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="lastName">Owner Last Name</StyledLabel>
+          {msg.lastName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
