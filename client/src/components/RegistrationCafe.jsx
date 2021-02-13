@@ -5,13 +5,12 @@ import { useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
   StyledForm,
+  StyledInputPairs,
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
   StyledEyeClose,
   StyledEye,
-  StyledSelect,
-  StyledArrow,
 } from "../styledComponents/StyledInputs";
 import StyledH2 from "../styledComponents/StyledH2";
 import StyledButton from "../styledComponents/StyledButton";
@@ -101,6 +100,20 @@ export default function RegistrationUser() {
           <StyledLabel htmlFor="cafeName">Café Name</StyledLabel>
           {msg.cafeName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
+            cafe
+            type="email"
+            name="email"
+            id="email"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="email">Email</StyledLabel>
+
+          {msg.email ? <small>Please use proper email format</small> : null}
+        </StyledInputContainer>
 
         <StyledInputContainer>
           <StyledInputField
@@ -155,6 +168,7 @@ export default function RegistrationUser() {
           <StyledLabel htmlFor="city">Address / City</StyledLabel>
           {msg.city ? <small>???</small> : null}
         </StyledInputContainer>
+
         <StyledInputContainer>
           <StyledInputField
             cafe
@@ -181,20 +195,7 @@ export default function RegistrationUser() {
           <StyledLabel htmlFor="lastName">Owner Last Name</StyledLabel>
           {msg.lastName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="email"
-            name="email"
-            id="email"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
 
-          {msg.email ? <small>Please use proper email format</small> : null}
-        </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
             cafe

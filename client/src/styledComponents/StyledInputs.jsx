@@ -22,9 +22,38 @@ export const StyledForm = styled.form`
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 700;
+    grid-column-gap
   }
+  ${(props) => {
+    if (props.cafe) {
+      return ` display: grid;
+    grid-template-columns: auto;
+    @media ${device.tabletLandscape} {
+    grid-template-columns: auto auto;
+    grid-column-gap: 2rem;
+    }
+  }`;
+    }
+  }}
 `;
 
+export const StyledInputPairs = styled.div`
+  display: grid;
+  grid-template-columns: auto;
+  @media ${device.tabletLandscape} {
+    grid-template-columns: auto auto;
+    > div:first-child {
+      margin-right: 2rem;
+    }
+  }
+  /* {
+    > div:first-child {
+      margin-right: 2rem;
+    }
+    flex-direction: row;
+    justify-content: space-between;
+  } */
+`;
 export const StyledInputContainer = styled.div`
   width: 15rem;
   position: relative;
