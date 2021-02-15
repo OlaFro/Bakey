@@ -9,7 +9,7 @@ export const StyledForm = styled.form`
   margin-top: 3rem;
 
   width: 90%;
-  max-width: 35rem;
+  max-width: 33rem;
   border: var(--border) solid ${colors.accent1};
   padding: var(--space-s);
   border-radius: var(--border-radius);
@@ -23,13 +23,17 @@ export const StyledForm = styled.form`
     padding: var(--space-xs) var(--space-s);
     position: absolute;
     top: -1.5rem;
-    left: var(--space-l);
+    left: var(--space-s);
     font-size: 0.5rem;
     @media ${device.mobile} {
       font-size: 1rem;
       top: -2.8rem;
       left: var(--space-l);
     }
+  }
+  > small {
+    padding: var(--space-xs);
+    color: ${colors.warning};
   }
   @media ${device.mobile} {
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
@@ -62,7 +66,7 @@ export const StyledInputContainer = styled.div`
 
   & small {
     padding: var(--space-xs);
-    color: ${colors.red};
+    color: ${colors.warning};
   }
 
   @media ${device.tabletLandscape} {

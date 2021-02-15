@@ -25,8 +25,9 @@ function App() {
     >
       <GlobalStyle />
       <RegistrationUser />
-      <RegistrationCafe />
+
       <Login />
+      <RegistrationCafe />
     </bakeyContext.Provider>
   );
 }
