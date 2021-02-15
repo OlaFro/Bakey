@@ -3,6 +3,7 @@ const validateData = require("../controllers/validControllers");
 const UserModel = require("../models/UserModel");
 const { verifyPassword } = require("../controllers/authControllers");
 const bcrypt = require("bcrypt");
+var jwt = require("jsonwebtoken");
 var router = express.Router();
 
 /* GET users listing. */
