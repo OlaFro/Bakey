@@ -80,7 +80,6 @@ export default function RegistrationCafe() {
 
   return (
     <section>
-      {showWarning ? <Warning msg="service is out of order" /> : null}
       <StyledForm onSubmit={submit} cafe>
         <header>
           <h2>Registration</h2>
