@@ -9,8 +9,7 @@ export const StyledForm = styled.form`
   margin-top: 3rem;
 
   border: var(--border) solid ${colors.accent1};
-  padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
-    calc(var(--space-m) * 2);
+  padding: var(--space-s);
   border-radius: var(--border-radius);
   position: relative;
   display: flex;
@@ -20,11 +19,15 @@ export const StyledForm = styled.form`
     background-color: white;
     padding: var(--space-xs) var(--space-s);
     position: absolute;
-    top: -2.8rem;
-    left: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 700;
+    top: 0;
+    left: 0;
+    @media ${device.mobile} {
+      left: var(--space-l);
+    }
+  }
+  @media ${device.mobile} {
+    padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
+      calc(var(--space-m) * 2);
   }
 
   ${(props) =>
@@ -45,12 +48,13 @@ export const StyledInputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: var(--space-s) 0;
+  margin: var(--space-xs) 0;
 
   & small {
-    padding: 5px;
+    padding: var(--space-xs);
     color: ${colors.red};
   }
+
   @media ${device.tabletLandscape} {
     width: 25rem;
   }
@@ -60,10 +64,10 @@ export const StyledLabel = styled.label`
   position: absolute;
   font-family: var(--heading);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: calc(0.33 * var(--ls));
   font-weight: 500;
-  top: 1rem;
-  left: 15px;
+  top: var(--space-s);
+  left: var(--space-s);
   transition: all 200ms ease-in-out;
 `;
 
@@ -91,7 +95,7 @@ export const StyledInputField = styled.input`
     left: 13px;
     background: white;
     padding: 0 calc(0.2 * var(--space-s));
-    letter-spacing: 2px;
+    letter-spacing: calc(0.66 * var(--ls));
   }
   ${(props) =>
     props.cafe &&
@@ -134,11 +138,11 @@ export const StyledSelect = styled.select`
   :focus + label,
   :not(:placeholder-shown) + label {
     font-size: 0.8rem;
-    top: -0.5rem;
+    top: -8px;
     left: 13px;
     background: white;
     padding: 0 calc(0.2 * var(--space-s));
-    letter-spacing: 2px;
+    letter-spacing: calc(0.66 * var(--ls));
   }
 
   ${(props) =>

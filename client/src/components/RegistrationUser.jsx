@@ -81,8 +81,6 @@ export default function RegistrationUser(props) {
 
   return (
     <section>
-      {showWarning ? <Warning msg="service is out of order" /> : null}
-
       <StyledForm onSubmit={submit}>
         <header>
           <h2>Registration</h2>
@@ -204,6 +202,7 @@ export default function RegistrationUser(props) {
         </div>
       ) : null}
       {warningValidation ? <p>Please fill all fields!</p> : null}
+      {showWarning ? <Warning msg="service is out of order" /> : null}
     </section>
   );
 }

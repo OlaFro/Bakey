@@ -246,6 +246,7 @@ export default function RegistrationCafe() {
         </div>
       ) : null}
       {warningValidation ? <p>Please fill all fields!</p> : null}
+      {showWarning ? <Warning msg="service is out of order" /> : null}
     </section>
   );
 }

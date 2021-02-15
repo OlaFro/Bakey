@@ -21,7 +21,7 @@ function App() {
     <div style={temporalAlign}>
       <GlobalStyle />
       {/* <Warning msg="site is not found" /> */}
-      <StyledButton>TEST</StyledButton>
+
       <RegistrationUser />
       <RegistrationCafe />
       {/* <Login /> */}

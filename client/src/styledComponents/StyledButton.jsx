@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   padding: var(--space-s) var(--space-m);
   border-radius: var(--border-radius);
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: var(--ls);
   font-weight: 700;
   transition: background-color 200ms;
 

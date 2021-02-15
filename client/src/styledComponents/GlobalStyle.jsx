@@ -7,10 +7,7 @@ const GlobalStyle = createGlobalStyle`
   --headings: 'Montserrat', sans-serif;
   --text: 'Raleway', sans-serif;
 
-  /* --space-small: 0.75em;
-  --space-medium: 1.5em;
-  --space-larger: 2em;
-  --space-large: 3em; */
+
 
   --border: 2px;
   --border-radius: 6px;
@@ -19,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
   --space-s: 1em;
   --space-m: 2em; 
   --space-l: 3em;
+
+  --ls: 0.15em;
 
 }
 
@@ -40,7 +39,7 @@ body {
 
 h2 {
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: var(--ls);
   font-weight: 700;
 }
 
