@@ -55,7 +55,7 @@ export const StyledInputContainer = styled.div`
 
   & small {
     padding: var(--space-xs);
-    color: ${colors.red};
+    color: ${colors.warning};
   }
 
   @media ${device.tabletLandscape} {

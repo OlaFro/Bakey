@@ -70,7 +70,7 @@ export default function RegistrationUser(props) {
         ) {
           setWarningValidation(true);
         } else {
-          history.push("/login");
+          // history.push("/login");
         }
       })
       .catch((err) => {
@@ -155,19 +155,19 @@ export default function RegistrationUser(props) {
           )}
 
           {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
+            <small>Your password should be at least 8 characters long</small>
           ) : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
             type={visible ? "text" : "password"}
-            name="confirmPassword"
-            id="confirmPassword"
+            name="passwordConfirm"
+            id="passwordConfirm"
             placeholder=" "
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="confirmPassword">
+          <StyledLabel htmlFor="passwordConfirm">
             {/* Functionality to try out when form is connected */}
             {/* {msg.email ? "Error" : "Email"} */}
             Repeat password
@@ -178,7 +178,7 @@ export default function RegistrationUser(props) {
             <StyledEyeClose onClick={showPassword} />
           )}
 
-          {msg.confirmPassword ? (
+          {msg.passwordConfirm ? (
             <small>Your passwords are not the same</small>
           ) : null}
         </StyledInputContainer>

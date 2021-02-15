@@ -69,7 +69,7 @@ export default function RegistrationCafe() {
         ) {
           setWarningValidation(true);
         } else {
-          history.push("/login");
+          // history.push("/login");
         }
       })
       .catch((err) => {
@@ -213,27 +213,27 @@ export default function RegistrationCafe() {
           )}
 
           {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
+            <small>Your password should be at least 8 characters long</small>
           ) : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
             cafe
             type={visible ? "text" : "password"}
-            name="confirmPassword"
-            id="confirmPassword"
+            name="passwordConfirm"
+            id="passwordConfirm"
             placeholder=" "
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="confirmPassword">Repeat password</StyledLabel>
+          <StyledLabel htmlFor="passwordConfirm">Repeat password</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
 
-          {msg.confirmPassword ? (
+          {msg.passwordConfirm ? (
             <small>Your passwords are not the same</small>
           ) : null}
         </StyledInputContainer>

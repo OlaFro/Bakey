@@ -16,6 +16,8 @@ validateData.sanitize = (req, res, next) => {
 };
 
 validateData.register = (req, res, next) => {
+  console.log(req.body);
+
   const { cafeName, number, zip, street } = req.body;
 
   req.check("firstName", "firstName").isAlpha();
