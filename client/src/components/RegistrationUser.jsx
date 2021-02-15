@@ -196,13 +196,15 @@ export default function RegistrationUser(props) {
         <StyledButton>Register</StyledButton>
         {warning ? (
           <div>
-            <p>
+            <p className="warning">
               User with this {warningContent} already exists, please log-in or
               use another password
             </p>
           </div>
         ) : null}
-        {warningValidation ? <p>Please fill all fields!</p> : null}
+        {warningValidation ? (
+          <p className="warning">Please fill all fields!</p>
+        ) : null}
         {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
       <p>If you have already registered, please login.</p>
