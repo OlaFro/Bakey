@@ -1,6 +1,6 @@
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { UserModel } = require("../model/UserModel");
+const UserModel = require("../models/UserModel");
 require("dotenv").config();
 
 const allowedAccess = {};
@@ -23,6 +23,7 @@ allowedAccess.authenticateToken = (req, res, next) => {
 };
 
 allowedAccess.verifyPassword = (req, res, next) => {
+  console.log("password verification");
   let userID;
   const { password } = req.body;
 
@@ -48,6 +49,7 @@ allowedAccess.verifyPassword = (req, res, next) => {
       });
   } else {
     userID = req.body.email;
+    console.log(userID);
     UserModel.find({ email: userID })
       .then((users) => {
         if (users.length) {
