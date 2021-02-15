@@ -8,6 +8,8 @@ export const StyledForm = styled.form`
   /* margin-top only for preview purposes */
   margin-top: 3rem;
 
+  width: 35%;
+  min-width: 40rem;
   border: var(--border) solid ${colors.accent1};
   padding: var(--space-s);
   border-radius: var(--border-radius);
@@ -36,6 +38,8 @@ export const StyledForm = styled.form`
   ${(props) =>
     props.cafe &&
     css`
+      width: 45%;
+      min-width: 55rem;
       border: var(--border) solid ${colors.accent2};
       display: grid;
       grid-template-columns: auto;
