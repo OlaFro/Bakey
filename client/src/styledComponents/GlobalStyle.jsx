@@ -33,6 +33,12 @@ body {
   color: #4A4A4A;
 }
 
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
 p {
   font-family: var(--text);
 }

@@ -13,7 +13,6 @@ import {
   StyledSelect,
   StyledArrow,
 } from "../styledComponents/StyledInputs";
-import StyledH2 from "../styledComponents/StyledH2";
 import StyledButton from "../styledComponents/StyledButton";
 
 export default function RegistrationUser(props) {
@@ -86,7 +85,7 @@ export default function RegistrationUser(props) {
 
       <StyledForm onSubmit={submit}>
         <header>
-          <StyledH2>Registration</StyledH2>
+          <h2>Registration</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField

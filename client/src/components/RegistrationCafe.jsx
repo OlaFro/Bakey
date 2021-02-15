@@ -11,7 +11,7 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledInputs";
-import StyledH2 from "../styledComponents/StyledH2";
+
 import StyledButton from "../styledComponents/StyledButton";
 
 export default function RegistrationCafe() {
@@ -83,7 +83,7 @@ export default function RegistrationCafe() {
       {showWarning ? <Warning msg="service is out of order" /> : null}
       <StyledForm onSubmit={submit} cafe>
         <header>
-          <StyledH2>Registration</StyledH2>
+          <h2>Registration</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField
