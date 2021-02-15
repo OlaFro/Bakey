@@ -24,21 +24,10 @@ validateData.register = (req, res, next) => {
 
   req.check("lastName", "lastName").isAlpha();
 
-  if (cafeName) {
+  if (req.body.userType === "cafe") {
     req.check("cafeName", "cafeName").isAlpha();
-  }
-
-  req.check("city", "city").isAlpha();
-
-  if (street) {
     req.check("street", "street").isAlpha();
-  }
-
-  if (number) {
-    req.check("number", "number").isNumeric();
-  }
-
-  if (zip) {
+    req.check("number", "number").isAlphanumeric();
     req.check("zip", "zip").isNumeric();
   }
 
