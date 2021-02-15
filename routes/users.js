@@ -45,6 +45,7 @@ router.post("/register", validateData.register, (req, res, next) => {
       });
     }
   });
+  // res.send("registration");
 });
 
 router.post("/login", (req, res, next) => {

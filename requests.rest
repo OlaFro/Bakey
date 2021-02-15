@@ -1,0 +1,13 @@
+GET http://localhost:5000/users/logout
+
+###
+
+POST http://localhost:5000/users/login
+
+###
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+    "email":"jane.doe@gmail.com"
+}
