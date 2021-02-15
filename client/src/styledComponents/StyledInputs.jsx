@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { darken } from "polished";
 import colors from "./colors";
 import device from "./device";
 import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
-/* only for preview purposes */
-margin-top: 3rem;
-  border: var(--border) solid
-    ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
+  /* margin-top only for preview purposes */
+  margin-top: 3rem;
+
+  border: var(--border) solid ${colors.accent1};
   padding: 2rem 4rem 3rem 4rem;
   border-radius: var(--border-radius);
   position: relative;
@@ -24,19 +24,19 @@ margin-top: 3rem;
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 700;
-    grid-column-gap
   }
-  ${(props) => {
-    if (props.cafe) {
-      return ` display: grid;
-    grid-template-columns: auto;
-    @media ${device.tabletLandscape} {
-    grid-template-columns: auto auto;
-    grid-column-gap: 2rem;
-    }
-  }`;
-    }
-  }}
+
+  ${(props) =>
+    props.cafe &&
+    css`
+      border: var(--border) solid ${colors.accent2};
+      display: grid;
+      grid-template-columns: auto;
+      @media ${device.tabletLandscape} {
+        grid-template-columns: auto auto;
+        grid-column-gap: 2rem;
+      }
+    `};
 `;
 
 export const StyledInputContainer = styled.div`
@@ -71,8 +71,7 @@ export const StyledInputField = styled.input`
   background-color: white;
   font-size: 1rem;
   font-family: var(--heading);
-  border: var(--border) solid
-    ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
+  border: var(--border) solid ${colors.accent1};
   border-radius: var(--border-radius);
 
   :hover {
@@ -81,8 +80,7 @@ export const StyledInputField = styled.input`
   }
   :focus {
     outline: none;
-    border: var(--border) solid
-      ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
+    border: var(--border) solid ${darken(0.2, colors.gray)};
   }
 
   :focus + label,
@@ -94,6 +92,19 @@ export const StyledInputField = styled.input`
     padding: 0 0.2rem;
     letter-spacing: 2px;
   }
+  ${(props) =>
+    props.cafe &&
+    css`
+      border: var(--border) solid ${colors.accent2};
+      :hover {
+        cursor: text;
+        border: var(--border) solid ${darken(0.2, colors.gray)};
+      }
+      :focus {
+        outline: none;
+        border: var(--border) solid ${darken(0.2, colors.gray)};
+      }
+    `};
 `;
 
 export const StyledSelect = styled.select`
