@@ -1,0 +1,19 @@
+GET http://localhost:5000/users/logout
+
+###
+
+POST http://localhost:5000/users/login
+
+###
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+    "email":"max.mustermann@gmail.com",
+    "firstName":"Max",
+    "lastName": "Mustermann",
+    "city":"Hamburg",
+    "password":"12345678910",
+    "passwordConfirm":"12345678910",
+    "userType":"client"
+}

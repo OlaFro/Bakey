@@ -50,6 +50,7 @@ validateData.register = (req, res, next) => {
       "confirmation of password does not correspond to the original one"
     )
     .custom((password) => {
+      console.log(password, req.body.password);
       if (password !== req.body.password) {
         return false;
       }

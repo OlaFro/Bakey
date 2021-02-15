@@ -2,6 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+let expressValidator = require("express-validator");
 var logger = require("morgan");
 let mongoose = require("mongoose");
 
@@ -38,6 +39,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressValidator());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "client", "build")));
 
@@ -57,7 +59,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.send("error");
 });
 
 module.exports = app;

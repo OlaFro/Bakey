@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 const UsersSchema = new Schema({
   id: {
     type: String,
+    unique: true,
     required: true,
   },
   email: {
@@ -42,19 +43,19 @@ const UsersSchema = new Schema({
     type: String,
   },
   cafeStreet: {
-    type: String
+    type: String,
   },
   cafeStreetNr: {
-    type: String
-  }, 
+    type: String,
+  },
   cafeZip: {
-    type: String
+    type: String,
   },
   cafeURL: {
-    type: String
-  }
- })
+    type: String,
+  },
+});
 
 //coordinates?
 
-module.exports = mongoose.model("User", Users);
+module.exports = mongoose.model("User", UsersSchema);
