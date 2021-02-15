@@ -8,6 +8,8 @@ export const StyledForm = styled.form`
   /* margin-top only for preview purposes */
   margin-top: 3rem;
 
+  width: 35%;
+  min-width: 40rem;
   border: var(--border) solid ${colors.accent1};
   padding: var(--space-s);
   border-radius: var(--border-radius);
@@ -28,6 +30,9 @@ export const StyledForm = styled.form`
       left: var(--space-l);
     }
   }
+  .warning {
+    color: ${colors.warning};
+  }
   @media ${device.mobile} {
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
       calc(var(--space-m) * 2);
@@ -36,6 +41,8 @@ export const StyledForm = styled.form`
   ${(props) =>
     props.cafe &&
     css`
+      width: 45%;
+      min-width: 55rem;
       border: var(--border) solid ${colors.accent2};
       display: grid;
       grid-template-columns: auto;
@@ -55,7 +62,7 @@ export const StyledInputContainer = styled.div`
 
   & small {
     padding: var(--space-xs);
-    color: ${colors.red};
+    color: ${colors.warning};
   }
 
   @media ${device.tabletLandscape} {
