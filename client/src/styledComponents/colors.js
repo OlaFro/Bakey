@@ -7,6 +7,7 @@ const colors = {
   shade1: "#cfab2B",
   shade2: "#CF7A9A",
   shade3: "#9AA63D",
+  warning: "red",
 };
 
 export default colors;

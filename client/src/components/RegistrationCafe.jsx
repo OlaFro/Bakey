@@ -10,7 +10,7 @@ import {
   StyledInputField,
   StyledEyeClose,
   StyledEye,
-} from "../styledComponents/StyledInputs";
+} from "../styledComponents/StyledForm";
 
 import StyledButton from "../styledComponents/StyledButton";
 

@@ -12,7 +12,7 @@ import {
   StyledEye,
   StyledSelect,
   StyledArrow,
-} from "../styledComponents/StyledInputs";
+} from "../styledComponents/StyledForm";
 import StyledButton from "../styledComponents/StyledButton";
 
 export default function RegistrationUser(props) {

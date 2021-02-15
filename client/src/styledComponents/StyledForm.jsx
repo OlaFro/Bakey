@@ -48,7 +48,7 @@ export const StyledInputContainer = styled.div`
 
   & small {
     padding: 5px;
-    color: red;
+    color: ${colors.red};
   }
   @media ${device.tabletLandscape} {
     width: 25rem;
@@ -117,8 +117,7 @@ export const StyledSelect = styled.select`
   background-color: white;
   font-size: 1rem;
   font-family: var(--heading);
-  border: var(--border) solid
-    ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
+  border: var(--border) solid ${colors.accent1};
   border-radius: var(--border-radius);
 
   :hover {
@@ -127,7 +126,7 @@ export const StyledSelect = styled.select`
   }
   :focus {
     outline: none;
-    border: var(--border) solid ${colors.accent1};
+    border: var(--border) solid ${darken(0.2, colors.gray)};
     font-family: var(--heading);
   }
 
@@ -140,6 +139,12 @@ export const StyledSelect = styled.select`
     padding: 0 0.2rem;
     letter-spacing: 2px;
   }
+
+  ${(props) =>
+    props.cafe &&
+    css`
+      border: var(--border) solid ${colors.accent2};
+    `};
 `;
 
 export const StyledEyeClose = styled(EyeClose)`

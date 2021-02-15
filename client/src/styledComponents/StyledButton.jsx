@@ -24,9 +24,6 @@ const StyledButton = styled.button`
     border: var(--border) solid ${colors.accent1};
     color: ${colors.accent1};
   }
-  :focus {
-    border: var(--border) solid ${colors.accent1};
-  }
 
   ${(props) =>
     props.cafe &&
@@ -40,9 +37,6 @@ const StyledButton = styled.button`
         background-color: white;
         border: var(--border) solid ${colors.accent2};
         color: ${colors.accent2};
-      }
-      :focus {
-        border: var(--border) solid ${colors.accent2};
       }
     `};
 `;
