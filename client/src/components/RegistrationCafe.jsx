@@ -78,10 +78,9 @@ export default function RegistrationCafe() {
       });
   };
 
-  return showWarning ? (
-    <Warning />
-  ) : (
+  return (
     <section>
+      {showWarning ? <Warning msg="service is out of order" /> : null}
       <StyledForm onSubmit={submit} cafe>
         <header>
           <StyledH2>Registration</StyledH2>
@@ -125,7 +124,7 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeStreet">Address / Street</StyledLabel>
-          {msg.cafeStreet ? <small>???</small> : null}
+          {msg.cafeStreet ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -152,7 +151,7 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeZip">Address / ZIP code</StyledLabel>
-          {msg.cafeZip ? <small>???</small> : null}
+          {msg.cafeZip ? <small>Please use only numbers</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -165,7 +164,7 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="city">Address / City</StyledLabel>
-          {msg.city ? <small>???</small> : null}
+          {msg.city ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -203,7 +202,7 @@ export default function RegistrationCafe() {
             id="password"
             placeholder=" "
             onInput={getValue}
-            required="true"
+            required={true}
           />
           <StyledLabel htmlFor="password">Password</StyledLabel>
           {visible ? (
@@ -224,7 +223,7 @@ export default function RegistrationCafe() {
             id="confirmPassword"
             placeholder=" "
             onInput={getValue}
-            required="true"
+            required={true}
           />
           <StyledLabel htmlFor="confirmPassword">Repeat password</StyledLabel>
           {visible ? (
@@ -233,8 +232,8 @@ export default function RegistrationCafe() {
             <StyledEyeClose onClick={showPassword} />
           )}
 
-          {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
+          {msg.confirmPassword ? (
+            <small>Your passwords are not the same</small>
           ) : null}
         </StyledInputContainer>
 

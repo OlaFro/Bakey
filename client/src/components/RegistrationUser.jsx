@@ -16,7 +16,7 @@ import {
 import StyledH2 from "../styledComponents/StyledH2";
 import StyledButton from "../styledComponents/StyledButton";
 
-export default function RegistrationUser() {
+export default function RegistrationUser(props) {
   const history = useHistory();
 
   const [data, setData] = useState({ userType: "client" });
@@ -80,10 +80,10 @@ export default function RegistrationUser() {
       });
   };
 
-  return showWarning ? (
-    <Warning />
-  ) : (
+  return (
     <section>
+      {showWarning ? <Warning msg="service is out of order" /> : null}
+
       <StyledForm onSubmit={submit}>
         <header>
           <StyledH2>Registration</StyledH2>
@@ -144,7 +144,7 @@ export default function RegistrationUser() {
             id="password"
             placeholder=" "
             onInput={getValue}
-            required="true"
+            required={true}
           />
           <StyledLabel htmlFor="password">
             {/* Functionality to try out when form is connected */}
@@ -168,7 +168,7 @@ export default function RegistrationUser() {
             id="confirmPassword"
             placeholder=" "
             onInput={getValue}
-            required="true"
+            required={true}
           />
           <StyledLabel htmlFor="confirmPassword">
             {/* Functionality to try out when form is connected */}
@@ -181,8 +181,8 @@ export default function RegistrationUser() {
             <StyledEyeClose onClick={showPassword} />
           )}
 
-          {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
+          {msg.confirmPassword ? (
+            <small>Your passwords are not the same</small>
           ) : null}
         </StyledInputContainer>
         <StyledInputContainer>

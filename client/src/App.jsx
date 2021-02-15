@@ -4,7 +4,6 @@ import Warning from "./components/Warning";
 import Login from "./components/Login";
 import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
-import { LayoutColumn } from "styled-icons/remix-line";
 
 // this style is just for preview purposes
 const temporalAlign = {
@@ -22,7 +21,7 @@ function App() {
       <GlobalStyle />
       {/* <Warning msg="site is not found" /> */}
       <RegistrationUser />
-      <RegistrationCafe />
+      {/* <RegistrationCafe /> */}
       {/* <Login /> */}
     </div>
   );
