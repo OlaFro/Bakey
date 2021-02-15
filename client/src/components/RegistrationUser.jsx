@@ -169,8 +169,8 @@ export default function RegistrationUser(props) {
           />
           <StyledLabel htmlFor="passwordConfirm">
             {/* Functionality to try out when form is connected */}
-            {/* {msg.email ? "Error" : "Email"} */}
-            Repeat password
+            {msg.passwordConfirm ? "Error" : "Email"}
+            {/* Repeat password */}
           </StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
@@ -194,6 +194,7 @@ export default function RegistrationUser(props) {
           <StyledArrow />
         </StyledInputContainer>
         <StyledButton>Register</StyledButton>
+        <StyledButton small>Small</StyledButton>
       </StyledForm>
       <p>If you have already registered, please login.</p>
       {warning ? (
