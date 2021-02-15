@@ -1,7 +1,10 @@
 var express = require("express");
 const validateData = require("../controllers/validControllers");
 const UserModel = require("../models/UserModel");
-const { verifyPassword } = require("../controllers/authControllers");
+const {
+  verifyPassword,
+  authenticateToken,
+} = require("../controllers/authControllers");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var router = express.Router();
@@ -9,6 +12,30 @@ var router = express.Router();
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");
+});
+
+router.get("/auth", authenticateToken, (req, res, next) => {
+  const user = req.user;
+  let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "3d",
+  });
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "strict",
+  });
+  UserModel.findById(user.id)
+    .then((result) => {
+      console.log(result);
+      res.send({
+        authenticated: true,
+        firstName: result.firstName,
+        profilePic: result.profilePic,
+        userType: result.userType,
+      });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 });
 
 router.post("/register", validateData.register, (req, res, next) => {
@@ -72,6 +99,7 @@ router.post(
       logged: true,
       firstName: user.firstName,
       profilePic: user.profilePic,
+      userType: user.userType,
     });
   }
 );

@@ -10,16 +10,16 @@ allowedAccess.authenticateToken = (req, res, next) => {
 
   if (!token) {
     res.send({ errorSource: "JWT" });
+  } else {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        res.send({ errorSource: "JWT" });
+      } else {
+        req.user = user;
+        next();
+      }
+    });
   }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      res.send({ errorSource: "JWT" });
-    } else {
-      req.user = user;
-      next();
-    }
-  });
 };
 
 allowedAccess.verifyPassword = (req, res, next) => {

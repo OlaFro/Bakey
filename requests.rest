@@ -23,3 +23,7 @@ Content-Type: application/json
     "passwordConfirm":"12345678910",
     "userType":"client"
 }
+
+###
+
+GET http://localhost:5000/users/auth
