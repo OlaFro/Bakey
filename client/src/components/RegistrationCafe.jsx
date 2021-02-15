@@ -137,7 +137,9 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr</StyledLabel>
-          {msg.cafeStreetNr ? <small>???</small> : null}
+          {msg.cafeStreetNr ? (
+            <small>Please use only letters and numbers.</small>
+          ) : null}
         </StyledInputContainer>
 
         <StyledInputContainer>
