@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
 import colors from "./colors";
 import { darken } from "polished";
 
 const StyledButton = styled.button`
   font-family: var(--headings);
-  background-color: ${(props) =>
-    props.cafe ? colors.accent2 : colors.accent1};
+  background-color: ${colors.accent1};
   border: var(--border) solid transparent;
   color: white;
   font-size: 1rem;
@@ -18,20 +18,34 @@ const StyledButton = styled.button`
 
   :hover {
     cursor: pointer;
-    background-color: ${(props) =>
-      props.cafe ? darken(0.1, colors.accent2) : darken(0.1, colors.accent1)};
+    background-color: ${darken(0.1, colors.accent1)};
   }
   :active {
     background-color: white;
-    border: var(--border) solid
-      ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
-    color: ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
+    border: var(--border) solid ${colors.accent1};
+    color: ${colors.accent1};
   }
   :focus {
-    outline: none;
-    border: var(--border) solid
-      ${(props) => (props.cafe ? colors.accent2 : colors.accent1)};
+    border: var(--border) solid ${colors.accent1};
   }
+
+  ${(props) =>
+    props.cafe &&
+    css`
+      background-color: ${colors.accent2};
+      :hover {
+        cursor: pointer;
+        background-color: ${darken(0.1, colors.accent2)};
+      }
+      :active {
+        background-color: white;
+        border: var(--border) solid ${colors.accent2};
+        color: ${colors.accent2};
+      }
+      :focus {
+        border: var(--border) solid ${colors.accent2};
+      }
+    `};
 `;
 
 export default StyledButton;

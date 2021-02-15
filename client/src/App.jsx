@@ -21,7 +21,7 @@ function App() {
       <GlobalStyle />
       {/* <Warning msg="site is not found" /> */}
       <RegistrationUser />
-      {/* <RegistrationCafe /> */}
+      <RegistrationCafe />
       {/* <Login /> */}
     </div>
   );
