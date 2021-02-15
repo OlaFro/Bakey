@@ -4,6 +4,13 @@ import Warning from "./components/Warning";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import { bakeyContext } from "./Context";
+import Navigation from "./components/Navigation";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -21,10 +28,13 @@ function App() {
         setProfilePic,
       }}
     >
+      <Router>
+      <Navigation />
       <GlobalStyle />
       <Warning msg="site is not found" />
       <Registration />
       <Login />
+      </Router>
     </bakeyContext.Provider>
   );
 }

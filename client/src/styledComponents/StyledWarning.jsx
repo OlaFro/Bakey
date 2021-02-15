@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "./colors";
+import device from "./device";
 
 const StyledWarning = styled.div`
   border: var(--border) solid ${colors.accent1};

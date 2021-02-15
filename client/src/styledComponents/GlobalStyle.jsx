@@ -3,7 +3,7 @@ const { createGlobalStyle } = require("styled-components");
 const GlobalStyle = createGlobalStyle`
 
 :root {
-  --logo: 'Montserrat Alternates', sans-serif;;
+  --logo: 'Montserrat Alternates', sans-serif;
   --headings: 'Montserrat', sans-serif;
   --text: 'Raleway', sans-serif;
 
