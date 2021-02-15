@@ -77,7 +77,9 @@ router.post(
 );
 
 router.get("/logout", (req, res, next) => {
-  res.send("logout");
+  console.log(req.cookies.token);
+  res.clearCookie("token");
+  res.send({ logged: false });
 });
 
 router.put("/update", (req, res, next) => {
