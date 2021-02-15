@@ -238,7 +238,9 @@ export default function RegistrationCafe() {
           ) : null}
         </StyledInputContainer>
 
-        <StyledButton cafe>Register</StyledButton>
+        <StyledButton cafe cafeRegister>
+          Register
+        </StyledButton>
       </StyledForm>
       <p>If you have already registered, please login.</p>
       {warning ? (

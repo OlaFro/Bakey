@@ -8,8 +8,8 @@ export const StyledForm = styled.form`
   /* margin-top only for preview purposes */
   margin-top: 3rem;
 
-  width: 35%;
-  min-width: 40rem;
+  width: 90%;
+  max-width: 35rem;
   border: var(--border) solid ${colors.accent1};
   padding: var(--space-s);
   border-radius: var(--border-radius);
@@ -17,6 +17,7 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   > Header {
     background-color: white;
     padding: var(--space-xs) var(--space-s);
@@ -38,15 +39,17 @@ export const StyledForm = styled.form`
   ${(props) =>
     props.cafe &&
     css`
-      width: 45%;
-      min-width: 55rem;
+      width: 90%;
+      max-width: 60rem;
       border: var(--border) solid ${colors.accent2};
+    
       display: grid;
       grid-template-columns: auto;
       @media ${device.tabletLandscape} {
         grid-template-columns: auto auto;
         grid-column-gap: var(--space-m);
-      }
+        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register";
+  
     `};
 `;
 
@@ -65,6 +68,7 @@ export const StyledInputContainer = styled.div`
   @media ${device.tabletLandscape} {
     width: 25rem;
   }
+  grid-area: "input";
 `;
 
 export const StyledLabel = styled.label`
