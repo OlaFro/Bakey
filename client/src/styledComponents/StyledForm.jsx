@@ -9,7 +9,8 @@ export const StyledForm = styled.form`
   margin-top: 3rem;
 
   border: var(--border) solid ${colors.accent1};
-  padding: 2rem 4rem 3rem 4rem;
+  padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
+    calc(var(--space-m) * 2);
   border-radius: var(--border-radius);
   position: relative;
   display: flex;
@@ -17,7 +18,7 @@ export const StyledForm = styled.form`
   justify-content: space-around;
   > Header {
     background-color: white;
-    padding: 0.5rem 1rem;
+    padding: var(--space-xs) var(--space-s);
     position: absolute;
     top: -2.8rem;
     left: 3rem;
@@ -34,7 +35,7 @@ export const StyledForm = styled.form`
       grid-template-columns: auto;
       @media ${device.tabletLandscape} {
         grid-template-columns: auto auto;
-        grid-column-gap: 2rem;
+        grid-column-gap: var(--space-m);
       }
     `};
 `;
@@ -44,7 +45,7 @@ export const StyledInputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  margin: var(--space-s) 0;
 
   & small {
     padding: 5px;
@@ -67,7 +68,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInputField = styled.input`
-  padding: 1rem;
+  padding: var(--space-s);
   background-color: white;
   font-size: 1rem;
   font-family: var(--heading);
@@ -89,7 +90,7 @@ export const StyledInputField = styled.input`
     top: -0.5rem;
     left: 13px;
     background: white;
-    padding: 0 0.2rem;
+    padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: 2px;
   }
   ${(props) =>
@@ -113,7 +114,7 @@ export const StyledSelect = styled.select`
   -moz-appearance: none;
   appearance: none;
   -ms-appearance: none;
-  padding: 1rem;
+  padding: var(--space-s);
   background-color: white;
   font-size: 1rem;
   font-family: var(--heading);
@@ -136,7 +137,7 @@ export const StyledSelect = styled.select`
     top: -0.5rem;
     left: 13px;
     background: white;
-    padding: 0 0.2rem;
+    padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: 2px;
   }
 

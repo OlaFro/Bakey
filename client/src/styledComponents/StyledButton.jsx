@@ -6,9 +6,9 @@ const StyledButton = styled.button`
   font-family: var(--headings);
   background-color: ${colors.accent1};
   border: var(--border) solid transparent;
-  color: white;
+  color: var(--black);
   font-size: 1rem;
-  padding: 1rem 2rem;
+  padding: var(--space-s) var(--space-m);
   border-radius: var(--border-radius);
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -22,7 +22,7 @@ const StyledButton = styled.button`
   :active {
     background-color: white;
     border: var(--border) solid ${colors.accent1};
-    color: ${colors.accent1};
+    color: var(--black);
   }
 
   ${(props) =>
@@ -36,7 +36,7 @@ const StyledButton = styled.button`
       :active {
         background-color: white;
         border: var(--border) solid ${colors.accent2};
-        color: ${colors.accent2};
+        color: var(--black);
       }
     `};
 `;
