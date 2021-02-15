@@ -11,6 +11,7 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledForm";
+import StyledButton from "../styledComponents/StyledButton";
 
 export default function Login(props) {
   const [loginData, setData] = useState({});
@@ -96,6 +97,7 @@ export default function Login(props) {
             <StyledEyeClose onClick={showPassword} />
           )}
         </StyledInputContainer>
+        <StyledButton>Log in</StyledButton>
         {warning ? (
           <div>
             <p>
