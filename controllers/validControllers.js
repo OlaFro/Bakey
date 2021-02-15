@@ -25,10 +25,10 @@ validateData.register = (req, res, next) => {
   req.check("lastName", "lastName").isAlpha();
 
   if (req.body.userType === "cafe") {
-    req.check("cafeName", "cafeName").isAlpha();
-    req.check("street", "street").isAlpha();
-    req.check("number", "number").isAlphanumeric();
-    req.check("zip", "zip").isNumeric();
+    req.check("cafeName", "cafeName").isLength({ min: 1 });
+    req.check("cafeStreet", "street").isAlpha();
+    req.check("cafeStreetNr", "number").isAlphanumeric();
+    req.check("cafeZip", "zip").isNumeric();
   }
 
   req.check("email", "email").isEmail();

@@ -95,7 +95,7 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeName">Café Name</StyledLabel>
-          {msg.cafeName ? <small>Please use only letters</small> : null}
+          {msg.cafeName ? <small>Cafe name had to be filled</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
