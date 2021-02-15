@@ -27,9 +27,10 @@ router.get("/auth", authenticateToken, (req, res, next) => {
     .then((result) => {
       console.log(result);
       res.send({
-        authorized: true,
+        authenticated: true,
         firstName: user.firstName,
         profilePic: user.profilePic,
+        userType: user.userType,
       });
     })
     .catch((err) => {
@@ -98,6 +99,7 @@ router.post(
       logged: true,
       firstName: user.firstName,
       profilePic: user.profilePic,
+      userType: user.userType,
     });
   }
 );
