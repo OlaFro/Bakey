@@ -2,15 +2,15 @@ import GlobalStyle from "./styledComponents/GlobalStyle";
 import { useState } from "react";
 import Warning from "./components/Warning";
 import Login from "./components/Login";
-import Registration from "./components/Registration";
+import RegistrationUser from "./components/RegistrationUser";
+import RegistrationCafe from "./components/RegistrationCafe";
+import StyledButton from "./styledComponents/StyledButton";
 import { bakeyContext } from "./Context";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState();
-
-  // just test
 
   return (
     <bakeyContext.Provider
@@ -24,10 +24,12 @@ function App() {
       }}
     >
       <GlobalStyle />
-      <Warning msg="site is not found" />
-      <Registration />
-      <Login />
+      <RegistrationUser />
+      <RegistrationCafe />
+      {/* <Login /> */}
+
     </bakeyContext.Provider>
+
   );
 }
 

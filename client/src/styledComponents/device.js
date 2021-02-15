@@ -1,4 +1,5 @@
 const size = {
+  mobile: "400px",
   tabletPortrait: "600px",
   tabletLandscape: "900px",
   desktop: "1200px",
@@ -6,6 +7,7 @@ const size = {
 };
 
 const device = {
+  mobile: `(min-width: ${size.mobile})`,
   tabletPortrait: `(min-width: ${size.tabletPortrait})`,
   tabletLandscape: `(min-width: ${size.tabletLandscape})`,
   desktop: `(min-width: ${size.desktop})`,
