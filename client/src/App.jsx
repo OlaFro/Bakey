@@ -2,7 +2,9 @@ import GlobalStyle from "./styledComponents/GlobalStyle";
 import { useState } from "react";
 import Warning from "./components/Warning";
 import Login from "./components/Login";
-import Registration from "./components/Registration";
+import RegistrationUser from "./components/RegistrationUser";
+import RegistrationCafe from "./components/RegistrationCafe";
+import StyledButton from "./styledComponents/StyledButton";
 import { bakeyContext } from "./Context";
 import Navigation from "./components/Navigation";
 import {
@@ -31,11 +33,12 @@ function App() {
       <Router>
       <Navigation />
       <GlobalStyle />
-      <Warning msg="site is not found" />
-      <Registration />
-      <Login />
-      </Router>
+      <RegistrationUser />
+      <RegistrationCafe />
+      {/* <Login /> */}
+
     </bakeyContext.Provider>
+
   );
 }
 

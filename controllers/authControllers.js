@@ -1,6 +1,6 @@
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { UserModel } = require("../model/UserModel");
+const UserModel = require("../models/UserModel");
 require("dotenv").config();
 
 const allowedAccess = {};
@@ -10,19 +10,20 @@ allowedAccess.authenticateToken = (req, res, next) => {
 
   if (!token) {
     res.send({ errorSource: "JWT" });
+  } else {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        res.send({ errorSource: "JWT" });
+      } else {
+        req.user = user;
+        next();
+      }
+    });
   }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      res.send({ errorSource: "JWT" });
-    } else {
-      req.user = user;
-      next();
-    }
-  });
 };
 
 allowedAccess.verifyPassword = (req, res, next) => {
+  console.log("password verification");
   let userID;
   const { password } = req.body;
 
@@ -48,6 +49,7 @@ allowedAccess.verifyPassword = (req, res, next) => {
       });
   } else {
     userID = req.body.email;
+    console.log(userID);
     UserModel.find({ email: userID })
       .then((users) => {
         if (users.length) {
