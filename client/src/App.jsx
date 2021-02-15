@@ -6,19 +6,9 @@ import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
 import StyledButton from "./styledComponents/StyledButton";
 
-// this style is just for preview purposes
-const temporalAlign = {
-  height: "250vh",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start",
-  alignItems: "center",
-  padding: "2rem",
-};
-
 function App() {
   return (
-    <div style={temporalAlign}>
+    <div>
       <GlobalStyle />
       {/* <Warning msg="site is not found" /> */}
 
