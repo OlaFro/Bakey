@@ -1,13 +1,14 @@
 import Axios from "axios";
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import {bakeyContext} from "../Context"
 
 export default function Login(props) {
-  // const { setIsLogged, setProfilePhoto } = useContext(loggContext); // later overwrite with new context - better named
-
+ 
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-
+  const {setIsLogged, setUserName, setProfilePic} = useContext(bakeyContext);
+  
   let history = useHistory();
 
   const getData = (e) => {
@@ -30,11 +31,9 @@ export default function Login(props) {
       .then((res) => {
         if (res.data.logged) {
           console.log(res.data);
-          // uncomment when there will be new context:
-
-          // setIsLogged(true);
-          // props.setLoggedUser(res.data.uname);
-          // setProfilePhoto(res.data.profileImage);
+          setIsLogged(true);
+          setUserName(res.data.firstName);
+          setProfilePic(res.data.profilePic);
           setData({});
         } else {
           setWarning(true);
