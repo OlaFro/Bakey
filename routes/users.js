@@ -28,9 +28,9 @@ router.get("/auth", authenticateToken, (req, res, next) => {
       console.log(result);
       res.send({
         authenticated: true,
-        firstName: user.firstName,
-        profilePic: user.profilePic,
-        userType: user.userType,
+        firstName: result.firstName,
+        profilePic: result.profilePic,
+        userType: result.userType,
       });
     })
     .catch((err) => {
