@@ -30,6 +30,9 @@ export const StyledForm = styled.form`
       left: var(--space-l);
     }
   }
+  .warning {
+    color: ${colors.warning};
+  }
   @media ${device.mobile} {
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
       calc(var(--space-m) * 2);
@@ -59,7 +62,7 @@ export const StyledInputContainer = styled.div`
 
   & small {
     padding: var(--space-xs);
-    color: ${colors.red};
+    color: ${colors.warning};
   }
 
   @media ${device.tabletLandscape} {

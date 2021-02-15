@@ -16,28 +16,19 @@ validateData.sanitize = (req, res, next) => {
 };
 
 validateData.register = (req, res, next) => {
+  console.log(req.body);
+
   const { cafeName, number, zip, street } = req.body;
 
   req.check("firstName", "firstName").isAlpha();
 
   req.check("lastName", "lastName").isAlpha();
 
-  if (cafeName) {
-    req.check("cafeName", "cafeName").isAlpha();
-  }
-
-  req.check("city", "city").isAlpha();
-
-  if (street) {
-    req.check("street", "street").isAlpha();
-  }
-
-  if (number) {
-    req.check("number", "number").isNumeric();
-  }
-
-  if (zip) {
-    req.check("zip", "zip").isNumeric();
+  if (req.body.userType === "cafe") {
+    req.check("cafeName", "cafeName").isLength({ min: 1 });
+    req.check("cafeStreet", "street").isAlpha();
+    req.check("cafeStreetNr", "number").isAlphanumeric();
+    req.check("cafeZip", "zip").isNumeric();
   }
 
   req.check("email", "email").isEmail();
