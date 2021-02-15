@@ -1,6 +1,7 @@
 var express = require("express");
 const validateData = require("../controllers/validControllers");
 const UserModel = require("../models/UserModel");
+const { verifyPassword } = require("../controllers/authControllers");
 const bcrypt = require("bcrypt");
 var router = express.Router();
 
@@ -49,9 +50,30 @@ router.post("/register", validateData.register, (req, res, next) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
-  res.send("login");
-});
+router.post(
+  "/login",
+  validateData.sanitize,
+  verifyPassword,
+  (req, res, next) => {
+    const user = req.user;
+    console.log(user);
+
+    let token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "3d",
+    });
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "strict",
+    });
+    console.log(token);
+
+    res.send({
+      logged: true,
+      firstName: user.firstName,
+      profilePic: user.profilePic,
+    });
+  }
+);
 
 router.get("/logout", (req, res, next) => {
   res.send("logout");
