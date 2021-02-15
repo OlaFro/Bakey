@@ -19,9 +19,12 @@ export const StyledForm = styled.form`
     background-color: white;
     padding: var(--space-xs) var(--space-s);
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -1.5rem;
+    left: var(--space-l);
+    font-size: 0.5rem;
     @media ${device.mobile} {
+      font-size: 1rem;
+      top: -2.8rem;
       left: var(--space-l);
     }
   }
