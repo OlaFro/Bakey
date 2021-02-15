@@ -10,8 +10,7 @@ import Navigation from "./components/Navigation";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect,
+  Route
 } from "react-router-dom";
 
 function App() {
@@ -33,9 +32,17 @@ function App() {
       <Router>
       <Navigation />
       <GlobalStyle />
+      <Switch>
+        <Route path="/registrationuser">
       <RegistrationUser />
+      </Route>
+      <Route path="/registrationcafe">
       <RegistrationCafe />
-      {/* <Login /> */}
+      </Route>
+      {/* <Route path="/login">
+      <Login /> 
+      </Route>*/}
+      </Switch>
       </Router>
 
     </bakeyContext.Provider>

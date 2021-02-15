@@ -33,14 +33,14 @@ export default function Navigation(props) {
       </StyledLogoContainer>
       <StyledNavContainer display={open}>
         <Link to="/">cafés</Link>
-        <Link to="/aboutus">about us</Link>
+        <Link to="/">about us</Link>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
         <StyledButton login small>
           <Link to="/login">log in</Link>{" "}
         </StyledButton>
         <StyledButton registration small>
-          <Link to="/registration">register</Link>
+          <Link to="/registrationuser">register</Link>
         </StyledButton>
       </StyledNavBtnsContainer>
     </StyledNavigation>
