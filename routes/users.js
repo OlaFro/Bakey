@@ -1,6 +1,7 @@
 var express = require("express");
 const validateData = require("../controllers/validControllers");
 const UserModel = require("../models/UserModel");
+const bcrypt = require("bcrypt");
 var router = express.Router();
 
 /* GET users listing. */
@@ -26,6 +27,7 @@ router.post("/register", validateData.register, (req, res, next) => {
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         city: newUser.city,
+        userType: newUser.userType,
       });
 
       bcrypt.hash(newUser.password, 10, (err, hashedPassword) => {
@@ -45,7 +47,6 @@ router.post("/register", validateData.register, (req, res, next) => {
       });
     }
   });
-  // res.send("registration");
 });
 
 router.post("/login", (req, res, next) => {
