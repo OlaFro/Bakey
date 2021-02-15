@@ -50,7 +50,7 @@ const StyledButton = styled.button`
     css`
       @media ${device.desktop} {
         background-color: ${colors.accent2};
-        border: var(--border) solid ${colors.accent2}
+        border: var(--border) solid ${colors.accent2};
         :hover {
           cursor: pointer;
           background-color: ${darken(0.1, colors.accent2)};
