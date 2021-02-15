@@ -1,11 +1,17 @@
 import GlobalStyle from "./styledComponents/GlobalStyle";
 import { useState } from "react";
-import Warning from "./components/Warning";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { bakeyContext } from "./Context";
 import Login from "./components/Login";
 import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
-import StyledButton from "./styledComponents/StyledButton";
-import { bakeyContext } from "./Context";
+import DashboardUser from "./components/DashboardUser";
+import DashboardCafe from "./components/DashboardCafe";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -23,13 +29,35 @@ function App() {
         setProfilePic,
       }}
     >
-      <GlobalStyle />
-      <RegistrationUser />
-      <RegistrationCafe />
-      {/* <Login /> */}
-
+      <Router>
+        <GlobalStyle />
+        <Switch>
+          <Route path="/" exact>
+            {" "}
+            <Redirect to="/registration" />{" "}
+          </Route>
+          <Route path="/registration">
+            <RegistrationUser />
+          </Route>
+          <Route path="/registration-cafe">
+            <RegistrationCafe />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/user">
+            <DashboardUser />
+          </Route>
+          <Route path="/cafe">
+            <DashboardCafe />
+          </Route>
+          <Route path="*">
+            {" "}
+            <Redirect to="/" />{" "}
+          </Route>
+        </Switch>
+      </Router>
     </bakeyContext.Provider>
-
   );
 }
 
