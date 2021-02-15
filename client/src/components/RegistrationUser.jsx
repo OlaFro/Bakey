@@ -18,7 +18,7 @@ import StyledButton from "../styledComponents/StyledButton";
 export default function RegistrationUser(props) {
   const history = useHistory();
 
-  const [data, setData] = useState({ userType: "client" });
+  const [data, setData] = useState({ userType: "client", city: "Leipzig" });
   const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
@@ -145,7 +145,7 @@ export default function RegistrationUser(props) {
           />
           <StyledLabel htmlFor="password">
             {/* Functionality to try out when form is connected */}
-            {/* {msg.email ? "Error" : "Email"} */}
+            {/* {msg.pqssword ? "Error" : "Password"} */}
             Password
           </StyledLabel>
           {visible ? (
@@ -169,8 +169,8 @@ export default function RegistrationUser(props) {
           />
           <StyledLabel htmlFor="passwordConfirm">
             {/* Functionality to try out when form is connected */}
-            {msg.passwordConfirm ? "Error" : "Email"}
-            {/* Repeat password */}
+            {/* {msg.passwordConfirm ? "Error" : "Repeat Password"} */}
+            Repeat password
           </StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
@@ -194,12 +194,14 @@ export default function RegistrationUser(props) {
           <StyledArrow />
         </StyledInputContainer>
         <StyledButton>Register</StyledButton>
-        <StyledButton small>Small</StyledButton>
       </StyledForm>
       <p>If you have already registered, please login.</p>
       {warning ? (
         <div>
-          <p>User with this {warningContent} already exists, please log-in</p>
+          <p>
+            User with this {warningContent} already exists, please log-in or use
+            another password
+          </p>
         </div>
       ) : null}
       {warningValidation ? <p>Please fill all fields!</p> : null}
