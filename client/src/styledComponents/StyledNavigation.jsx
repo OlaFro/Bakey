@@ -5,8 +5,8 @@ import device from "./device";
 export const StyledNavigation = styled.nav`
   width: 100%;
   padding: 10px;
-  border: 1px solid red;
   z-index: 1;
+  position: sticky;
   display: flex;
   flex-direction: column;
 
@@ -18,7 +18,7 @@ export const StyledNavigation = styled.nav`
 
   @media ${device.desktop} {
     display: grid;
-    grid-template-columns: 0.2fr 1fr 1fr;
+    grid-template-columns: auto 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "logoContainer navContainer btnsContainer";
   }
@@ -32,7 +32,6 @@ export const StyledNavContainer = styled.section`
   grid-area: navContainer;
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
-  border: 1px solid blue;
   font-family: var(--headings);
   font-size: 15px;
   @media ${device.desktop} {
@@ -40,14 +39,13 @@ export const StyledNavContainer = styled.section`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-  }
+   }
 `;
 
 export const StyledNavBtnsContainer = styled.section`
   grid-area: btnsContainer;
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
-  border: 1px solid green;
   @media ${device.desktop} {
     display: flex;
     flex-direction: row;

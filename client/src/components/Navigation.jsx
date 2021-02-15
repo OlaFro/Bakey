@@ -9,8 +9,8 @@ import {
   StyledNavBtnsContainer,
   StyledLogoContainer,
 } from "../styledComponents/StyledNavigation";
-
 import StyledLogo from "../styledComponents/StyledLogo";
+import StyledButton from "../styledComponents/StyledButton";
 
 export default function Navigation(props) {
   const [open, setOpen] = useState(0);
@@ -36,8 +36,12 @@ export default function Navigation(props) {
         <Link to="/aboutus">about us</Link>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
-        <Link to="/login">log in</Link>
-        <Link to="/registration">register</Link>
+        <StyledButton login small>
+          <Link to="/login">log in</Link>{" "}
+        </StyledButton>
+        <StyledButton registration small>
+          <Link to="/registration">register</Link>
+        </StyledButton>
       </StyledNavBtnsContainer>
     </StyledNavigation>
   );

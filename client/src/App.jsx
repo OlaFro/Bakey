@@ -36,6 +36,7 @@ function App() {
       <RegistrationUser />
       <RegistrationCafe />
       {/* <Login /> */}
+      </Router>
 
     </bakeyContext.Provider>
 
