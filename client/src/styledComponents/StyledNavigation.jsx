@@ -4,7 +4,7 @@ import device from "./device";
 
 export const StyledNavigation = styled.nav`
   width: 100%;
-  padding: 10px;
+  padding: var(--space-xs);
   z-index: 1;
   position: sticky;
   display: flex;
@@ -13,8 +13,8 @@ export const StyledNavigation = styled.nav`
   a {
     text-decoration: none;
     color: inherit;
-    padding: 0 5px;
-  }
+    padding: 0 var(--space-xs);
+    }
 
   @media ${device.desktop} {
     display: grid;
@@ -27,13 +27,14 @@ export const StyledLogoContainer = styled.section `
 grid-area: logoContainer;
 display: flex;
 justify-content: space-between;
+align-items: center;
 `;
 export const StyledNavContainer = styled.section`
   grid-area: navContainer;
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
   font-family: var(--headings);
-  font-size: 15px;
+  font-size: 1rem;
   @media ${device.desktop} {
     display: flex;
     flex-direction: row;
@@ -55,7 +56,7 @@ export const StyledNavBtnsContainer = styled.section`
 `;
 
 export const StyledMenu = styled(Menu)`
-  height: 3rem;
+  height: 30px;
   cursor: pointer;
   display: ${(props) => (props.display ? "none" : "flex")};
   @media ${device.desktop} {
@@ -66,7 +67,7 @@ export const StyledMenu = styled(Menu)`
 `;
 
 export const StyledExit = styled(X)`
-  height: 2.5rem;
+  height: 30px;
   cursor: pointer;
   display: ${(props) => (props.display ? "flex" : "none")};
   @media ${device.desktop} {

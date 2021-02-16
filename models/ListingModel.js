@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 require("dotenv").config();
 
 connectionString = process.env.DB_URL;

@@ -34,7 +34,7 @@ function App() {
       <RegistrationCafe />
       <GlobalStyle />
       <Switch>
-        <Route path="/registrationuser">
+        <Route path="/registration/user">
       <RegistrationUser />
       </Route>
       {/* <Route path="/login">
