@@ -18,6 +18,7 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState();
+  const [role, setRole] = useState("");
 
   return (
     <bakeyContext.Provider
@@ -28,6 +29,8 @@ function App() {
         setUserName,
         profilePic,
         setProfilePic,
+        role,
+        setRole,
       }}
     >
       <Router>
@@ -43,7 +46,7 @@ function App() {
           <Route path="/registration/cafe">
             <RegistrationCafe />
           </Route>
-          <Route path="/user/dashboard">
+          <Route path="/client/dashboard">
             <DashboardUser />
           </Route>
           <Route path="/cafe/dashboard">

@@ -17,7 +17,9 @@ import StyledButton from "../styledComponents/StyledButton";
 export default function Login(props) {
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-  const { setIsLogged, setUserName, setProfilePic } = useContext(bakeyContext);
+  const { setIsLogged, setUserName, setProfilePic, role, setRole } = useContext(
+    bakeyContext
+  );
   const [visible, setVisible] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
 
@@ -54,7 +56,9 @@ export default function Login(props) {
           setIsLogged(true);
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
+          setRole(() => res.data.userType);
           setData({});
+          history.push(`/${res.data.userType}/dashboard`);
         } else {
           setWarning(true);
         }
@@ -103,6 +107,10 @@ export default function Login(props) {
         {warning ? <small>Your email or password are incorrect.</small> : null}
         {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
+      <p>
+        If you have no account yet, please{" "}
+        <Link to="/registration/user">register</Link>.
+      </p>
     </section>
   );
 }

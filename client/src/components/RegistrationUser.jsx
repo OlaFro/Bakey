@@ -70,7 +70,7 @@ export default function RegistrationUser(props) {
         ) {
           setWarningValidation(true);
         } else {
-          // history.push("/login");
+          history.push("/login");
         }
       })
       .catch((err) => {
