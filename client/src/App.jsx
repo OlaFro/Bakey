@@ -6,6 +6,12 @@ import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
 import DashboardUser from "./components/DashboardUser";
 import { bakeyContext } from "./Context";
+import Navigation from "./components/Navigation";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -23,12 +29,22 @@ function App() {
         setProfilePic,
       }}
     >
+      <Router>
+      <Navigation />
       <GlobalStyle />
-
-      <DashboardUser />
+      <Switch>
+        <Route path="/registration/user">
       <RegistrationUser />
-      <Login />
-      <RegistrationCafe />
+      </Route>
+       <Route path="/registration/cafe">
+         <RegistrationCafe />
+       </Route> 
+      {/* <Route path="/login">
+      <Login /> 
+      </Route>*/}
+      </Switch>
+      </Router>
+
     </bakeyContext.Provider>
   );
 }
