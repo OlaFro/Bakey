@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import Warning from "./Warning";
 import {
@@ -253,7 +253,9 @@ export default function RegistrationCafe() {
         ) : null}
         {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
-      <p>If you have already registered, please login.</p>
+      <p>
+        If you have already registered, please <Link to="/login">login</Link>.
+      </p>
     </section>
   );
 }

@@ -18,15 +18,15 @@ validateData.sanitize = (req, res, next) => {
 validateData.register = (req, res, next) => {
   console.log(req.body);
 
-  const { cafeName, number, zip, street } = req.body;
-
   req.check("firstName", "firstName").isAlpha();
 
   req.check("lastName", "lastName").isAlpha();
 
   if (req.body.userType === "cafe") {
     req.check("cafeName", "cafeName").isLength({ min: 1 });
-    req.check("cafeStreet", "street").isAlpha();
+    req.check("cafeStreet", "street").custom((value) => {
+      return value.match(/^[A-Za-z ]+$/);
+    });
     req.check("cafeStreetNr", "number").isAlphanumeric();
     req.check("cafeZip", "zip").isNumeric();
   }

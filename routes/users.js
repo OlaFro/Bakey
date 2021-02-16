@@ -59,6 +59,13 @@ router.post("/register", validateData.register, (req, res, next) => {
         userType: newUser.userType,
       });
 
+      if (newUser.userType === "cafe") {
+        addedUser.cafeName = newUser.cafeName;
+        addedUser.cafeStreet = newUser.cafeStreet;
+        addedUser.cafeStreetNr = newUser.cafeStreetNr;
+        addedUser.cafeZip = newUser.cafeZip;
+      }
+
       bcrypt.hash(newUser.password, 10, (err, hashedPassword) => {
         if (!err) {
           addedUser.password = hashedPassword;
@@ -113,7 +120,5 @@ router.get("/logout", (req, res, next) => {
 router.put("/update", (req, res, next) => {
   res.send("settings");
 });
-
-
 
 module.exports = router;
