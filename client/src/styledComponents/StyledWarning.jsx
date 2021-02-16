@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import colors from "./colors";
-import device from "./device";
+import { lighten } from "polished";
 
 const StyledWarning = styled.div`
-  border: var(--border) solid ${colors.accent1};
-  width: 20rem;
+  border: var(--border) solid ${lighten(0.2, colors.warning)};
+  width: 320px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -12,13 +12,14 @@ const StyledWarning = styled.div`
   align-items: center;
   & h2 {
     font-size: 2rem;
-    margin: 0.5rem;
-    color: ${colors.accent1};
+    margin: var(--space-xs);
+    color: ${colors.warning};
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: var(--ls);
   }
   & p {
-    margin: 0.5rem 0 1rem 0;
+    margin: var(--space-xs) 0 var(--space-s) 0;
+    color: ${colors.warning};
   }
 `;
 

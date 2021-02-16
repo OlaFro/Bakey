@@ -39,6 +39,13 @@ const StyledButton = styled.button`
         color: var(--black);
       }
     `};
+
+  ${(props) =>
+    props.cafeRegister &&
+    css`
+      grid-area: register;
+      justify-self: center;
+    `}
 `;
 
 export default StyledButton;

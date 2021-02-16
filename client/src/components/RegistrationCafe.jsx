@@ -237,8 +237,10 @@ export default function RegistrationCafe() {
             <small>Your passwords are not the same</small>
           ) : null}
         </StyledInputContainer>
-
-        <StyledButton cafe>Register</StyledButton>
+        
+        <StyledButton cafe cafeRegister>
+          Register
+        </StyledButton>
         {warning ? (
           <div>
             <p className="warning">
