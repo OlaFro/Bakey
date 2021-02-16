@@ -16,10 +16,10 @@ import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState({ state: false, role: "" });
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState();
-  const [role, setRole] = useState("");
+  // const [role, setRole] = useState("");
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -30,17 +30,16 @@ function App() {
       .then((res) => {
         if (res.data.authenticated) {
           console.log(res.data);
-          setIsLogged(true);
+          setIsLogged({ state: true, role: res.data.userType });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
-          setRole(() => res.data.userType);
         } else {
-          setIsLogged(false);
+          setIsLogged({ state: false, role: "" });
         }
       })
       .catch((err) => {
         console.log(err);
-        setIsLogged(false);
+        setIsLogged({ state: false, role: "" });
       });
   }, []);
 
@@ -53,8 +52,6 @@ function App() {
         setUserName,
         profilePic,
         setProfilePic,
-        role,
-        setRole,
       }}
     >
       <Router>
@@ -64,27 +61,28 @@ function App() {
           <Route path="/" exact>
             <h1>Welcome to bakey</h1>
           </Route>
-          <Route path="/registration/user">
+          <Route path="/registration/user" exact>
             <RegistrationUser />
           </Route>
-          <Route path="/registration/cafe">
+          <Route path="/registration/cafe" exact>
             <RegistrationCafe />
           </Route>
-          <Route path="/client/dashboard">
-            {isLogged && role === "client" ? (
+          <Route path="/client-dashboard" exact>
+            {console.log(isLogged.state && isLogged.role === "client")}
+            {isLogged.state && isLogged.role === "client" ? (
               <DashboardUser />
             ) : (
-              <Redirect to="/login" />
+              <Redirect to="/" />
             )}
           </Route>
-          <Route path="/cafe/dashboard">
-            {isLogged && role === "cafe" ? (
+          <Route path="/cafe-dashboard" exact>
+            {isLogged.state && isLogged.role === "cafe" ? (
               <DashboardCafe />
             ) : (
-              <Redirect to="/login" />
+              <Redirect to="/" />
             )}
           </Route>
-          <Route path="/login">
+          <Route path="/login" exact>
             <Login />
           </Route>
           <Route path="*">
