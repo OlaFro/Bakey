@@ -1,8 +1,9 @@
 import styled, { css } from "styled-components";
 import colors from "./colors";
 import { darken } from "polished";
+import device from "./device";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
       font-family: var(--headings);
       background-color: ${colors.accent1};
       border: var(--border) solid transparent;
@@ -48,4 +49,35 @@ const StyledButton = styled.button`
     `}
 `;
 
-export default StyledButton;
+
+export const StyledSmallButton = styled.button `
+ background: none;
+ border: none;
+ font-family: var(--headings);
+ text-align: left;
+ font-size: 1rem;
+ padding: 0;
+ @media ${device.desktop} {
+   padding: var(--space-xs);
+   border-radius: var(--border-radius);
+   text-transform: uppercase;
+   letter-spacing: var(--ls0);
+   font-weight: 700;
+   transition: all 200ms;
+   background-color: ${colors.accent2};
+      border: var(--border) solid ${colors.accent2};
+      :hover {
+        cursor: pointer;
+        background-color: ${darken(0.1, colors.accent2)};
+        border: ${darken(0.1, colors.accent2)} var(--border) solid;
+      }
+      :active {
+        background-color: white;
+        border: var(--border) solid ${darken(0.1, colors.accent2)};
+        color: var(--black);
+      }
+      a {
+        padding-right: 0;
+      }
+ }
+`;

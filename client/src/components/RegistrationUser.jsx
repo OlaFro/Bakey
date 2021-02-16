@@ -13,7 +13,7 @@ import {
   StyledSelect,
   StyledArrow,
 } from "../styledComponents/StyledForm";
-import StyledButton from "../styledComponents/StyledButton";
+import {StyledButton}from "../styledComponents/StyledButton";
 
 export default function RegistrationUser(props) {
   const history = useHistory();
