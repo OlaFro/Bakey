@@ -17,7 +17,7 @@ import StyledButton from "../styledComponents/StyledButton";
 export default function Login(props) {
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-  const { setIsLogged, setUserName, setProfilePic, role, setRole } = useContext(
+  const { setIsLogged, setUserName, setProfilePic, setRole } = useContext(
     bakeyContext
   );
   const [visible, setVisible] = useState(false);
