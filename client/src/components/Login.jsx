@@ -1,15 +1,35 @@
 import Axios from "axios";
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import {bakeyContext} from "../Context"
+import { bakeyContext } from "../Context";
+
+import Warning from "./Warning";
+import {
+  StyledForm,
+  StyledLabel,
+  StyledInputContainer,
+  StyledInputField,
+  StyledEyeClose,
+  StyledEye,
+} from "../styledComponents/StyledForm";
+import StyledButton from "../styledComponents/StyledButton";
 
 export default function Login(props) {
- 
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-  const {setIsLogged, setUserName, setProfilePic} = useContext(bakeyContext);
-  
+  const { setIsLogged, setUserName, setProfilePic } = useContext(bakeyContext);
+  const [visible, setVisible] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
+
   let history = useHistory();
+
+  const showPassword = () => {
+    setVisible(true);
+  };
+
+  const hidePassword = () => {
+    setVisible(false);
+  };
 
   const getData = (e) => {
     setWarning(false);
@@ -41,56 +61,48 @@ export default function Login(props) {
       })
       .catch((err) => {
         console.log(err);
-        //display out of order component
+        setShowWarning(true);
       });
   };
 
   return (
     <section>
-      <form onSubmit={submit}>
+      <StyledForm onSubmit={submit}>
         <header>
           <h2>Login</h2>
         </header>
-        <div>
-          <label htmlFor="email">Email address</label>
-          <input
-            type="mail"
+        <StyledInputContainer>
+          <StyledInputField
+            type="email"
             name="email"
             id="email"
-            aria-describedby="emailHelp"
+            placeholder=" "
             onInput={getData}
-            required
+            required={true}
           />
-          <small id="emailHelp">
-            We'll never share your email with anyone else.
-          </small>
-        </div>
-        <div className="form-group">
-          <label htmlFor="pwd">Password</label>
-          <input
-            type="password"
+          <StyledLabel htmlFor="email">Email</StyledLabel>
+        </StyledInputContainer>
+
+        <StyledInputContainer>
+          <StyledInputField
+            type={visible ? "text" : "password"}
             name="password"
-            id="pwd"
+            id="password"
+            placeholder=" "
             onInput={getData}
-            required
+            required={true}
           />
-        </div>
-        <div>
-          <button type="submit">Login</button>
-        </div>
-        <p>
-          If you have no account already, please sign-up. Testing login data:
-          jane.doe@gmail.com, password 12345678910
-        </p>
-        {warning ? (
-          <div>
-            <p>
-              Access denied! Combination of the e-mail and password is not
-              correct
-            </p>
-          </div>
-        ) : null}
-      </form>
+          <StyledLabel htmlFor="password">Password</StyledLabel>
+          {visible ? (
+            <StyledEye onClick={hidePassword} />
+          ) : (
+            <StyledEyeClose onClick={showPassword} />
+          )}
+        </StyledInputContainer>
+        <StyledButton>Log in</StyledButton>
+        {warning ? <small>Your email or password are incorrect.</small> : null}
+        {showWarning ? <Warning msg="service is out of order" /> : null}
+      </StyledForm>
     </section>
   );
 }
