@@ -21,27 +21,28 @@ function App() {
   const [profilePic, setProfilePic] = useState();
   const [role, setRole] = useState("");
 
-  // useEffect(() => {
-  //   Axios({
-  //     method: "GET",
-  //     url: `users/auth`,
-  //   })
-  //     .then((res) => {
-  //       if (res.data.authorized) {
-  //         console.log(res.data);
-  //         setIsLogged(true);
-  //         setUserName(res.data.firstName);
-  //         setProfilePic(res.data.profilePic);
-  //         setRole(() => res.data.userType);
-  //       } else {
-  //         setIsLogged(false);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       setIsLogged(false);
-  //     });
-  // }, []);
+  useEffect(() => {
+    console.log("authentication  request sent");
+    Axios({
+      method: "GET",
+      url: `users/auth`,
+    })
+      .then((res) => {
+        if (res.data.authenticated) {
+          console.log(res.data);
+          setIsLogged(true);
+          setUserName(res.data.firstName);
+          setProfilePic(res.data.profilePic);
+          setRole(() => res.data.userType);
+        } else {
+          setIsLogged(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLogged(false);
+      });
+  }, []);
 
   return (
     <bakeyContext.Provider

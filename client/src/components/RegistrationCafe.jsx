@@ -42,6 +42,8 @@ export default function RegistrationCafe() {
   const submit = (e) => {
     e.preventDefault();
 
+    setShowWarning(false);
+
     setMsg({});
 
     Axios({

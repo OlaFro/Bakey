@@ -43,6 +43,8 @@ export default function RegistrationUser(props) {
   const submit = (e) => {
     e.preventDefault();
 
+    setShowWarning(false);
+
     setMsg({});
 
     Axios({

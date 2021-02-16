@@ -40,6 +40,7 @@ export default function Login(props) {
 
   const submit = (e) => {
     e.preventDefault();
+    setShowWarning(false);
     console.log("request send", loginData);
 
     Axios({
