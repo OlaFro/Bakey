@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
 
   --border: 2px;
-  --border-radius: 6px;
+  --border-radius: 12px;
 
   --space-xs: 0.5em;
   --space-s: 1em;
