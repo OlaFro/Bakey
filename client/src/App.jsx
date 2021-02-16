@@ -24,10 +24,11 @@ function App() {
       }}
     >
       <GlobalStyle />
+
       <DashboardUser />
-      {/* <RegistrationUser /> */}
-      {/* <RegistrationCafe /> */}
-      {/* <Login /> */}
+      <RegistrationUser />
+      <Login />
+      <RegistrationCafe />
     </bakeyContext.Provider>
   );
 }
