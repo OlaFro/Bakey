@@ -187,8 +187,13 @@ export default function RegistrationUser(props) {
         ) : null}
         {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
-      <p>If you have already registered, please <Link to="/login">login</Link>.</p>
-      <p>If you want to register as a café owner, please click <Link to="/">here</Link>.</p>
+      <p>
+        If you have already registered, please <Link to="/login">login</Link>.
+      </p>
+      <p>
+        If you want to register as a café owner, please click{" "}
+        <Link to="/registration/cafe">here</Link>.
+      </p>
     </section>
   );
 }
