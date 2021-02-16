@@ -96,7 +96,7 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeName">Café Name</StyledLabel>
-          {msg.cafeName ? <small>Cafe name had to be filled</small> : null}
+          <div>{msg.cafeName ? <small>Required</small> : null}</div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -109,8 +109,9 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="email">Email</StyledLabel>
-
-          {msg.email ? <small>Please use proper email format</small> : null}
+          <div>
+            {msg.email ? <small>Please use proper email format</small> : null}
+          </div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -124,7 +125,9 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeStreet">Address / Street</StyledLabel>
-          {msg.cafeStreet ? <small>Please use only letters</small> : null}
+          <div>
+            {msg.cafeStreet ? <small> Please use only letters </small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -137,9 +140,11 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr</StyledLabel>
-          {msg.cafeStreetNr ? (
-            <small>Please use only letters and numbers.</small>
-          ) : null}
+          <div>
+            {msg.cafeStreetNr ? (
+              <small>Please use only letters and numbers.</small>
+            ) : null}
+          </div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -153,7 +158,9 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeZip">Address / ZIP code</StyledLabel>
-          {msg.cafeZip ? <small>Please use only numbers</small> : null}
+          <div>
+            {msg.cafeZip ? <small>Please use only numbers</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -166,7 +173,7 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="city">Address / City</StyledLabel>
-          {msg.city ? <small>Please use only letters</small> : null}
+          <div>{msg.city ? <small>Please use only letters</small> : null}</div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -180,7 +187,9 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="firstName">Owner First Name</StyledLabel>
-          {msg.firstName ? <small>Please use only letters</small> : null}
+          <div>
+            {msg.firstName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -193,7 +202,9 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="lastName">Owner Last Name</StyledLabel>
-          {msg.lastName ? <small>Please use only letters</small> : null}
+          <div>
+            {msg.lastName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -212,10 +223,9 @@ export default function RegistrationCafe() {
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
-
-          {msg.password ? (
-            <small>Your password should be at least 8 characters long</small>
-          ) : null}
+          <div>
+            {msg.password ? <small>Please use min. 8 characters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -233,10 +243,11 @@ export default function RegistrationCafe() {
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
-
-          {msg.passwordConfirm ? (
-            <small>Your passwords are not the same</small>
-          ) : null}
+          <div>
+            {msg.passwordConfirm ? (
+              <small>Passwords are not the same</small>
+            ) : null}
+          </div>
         </StyledInputContainer>
 
         <StyledButton cafe cafeRegister>

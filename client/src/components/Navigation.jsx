@@ -8,7 +8,7 @@ import {
   StyledNavContainer,
   StyledNavBtnsContainer,
   StyledLogoContainer,
-  StyledNavBtn
+  StyledNavBtn,
 } from "../styledComponents/StyledNavigation";
 import StyledLogo from "../styledComponents/StyledLogo";
 

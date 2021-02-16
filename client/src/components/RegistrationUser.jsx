@@ -12,6 +12,7 @@ import {
   StyledEye,
   StyledSelect,
   StyledArrow,
+  StyledWarning,
 } from "../styledComponents/StyledForm";
 import StyledButton from "../styledComponents/StyledButton";
 import StyledCentered from "../styledComponents/StyledCentered";
@@ -108,6 +109,7 @@ export default function RegistrationUser(props) {
             required={true}
           />
           <StyledLabel htmlFor="lastName">Last Name</StyledLabel>
+
           {msg.lastName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
@@ -189,9 +191,8 @@ export default function RegistrationUser(props) {
         {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
       <p>
-        If you have already registered, please <Link to="/login">login</Link>.
-      </p>
-      <p>
+        If you have already registered, please <Link to="/login">log in</Link>.{" "}
+        <br></br>
         If you want to register as a café owner, please click{" "}
         <Link to="/registration/cafe">here</Link>.
       </p>

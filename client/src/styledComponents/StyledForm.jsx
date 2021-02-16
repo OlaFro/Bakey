@@ -30,13 +30,11 @@ export const StyledForm = styled.form`
       left: var(--space-l);
     }
   }
-
   > small {
     padding: var(--space-xs);
     color: ${colors.warning};
     text-align: center;
   }
-
   .warning {
     color: ${colors.warning};
   }
@@ -70,17 +68,19 @@ export const StyledInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: var(--space-s) 0;
+  grid-area: "input";
 
-  & small {
-    padding: var(--space-xs);
-    color: ${colors.warning};
-    text-align: center;
+  > div {
+    height: 16px;
+    > small {
+      padding: var(--space-xs);
+      color: ${colors.warning};
+    }
   }
 
   @media ${device.tabletPortrait} {
     width: 320px;
   }
-  grid-area: "input";
 `;
 
 export const StyledLabel = styled.label`
