@@ -47,10 +47,18 @@ function App() {
             <RegistrationCafe />
           </Route>
           <Route path="/client/dashboard">
-            <DashboardUser />
+            {isLogged && role === "client" ? (
+              <DashboardUser />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/cafe/dashboard">
-            <DashboardCafe />
+            {isLogged && role === "cafe" ? (
+              <DashboardCafe />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/login">
             <Login />
