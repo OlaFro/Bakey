@@ -18,6 +18,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
   > Header {
     background-color: white;
     padding: var(--space-xs) var(--space-s);
@@ -36,11 +37,12 @@ export const StyledForm = styled.form`
     padding: var(--space-xs);
     color: ${colors.warning};
     text-align: center;
+  }
 
   .warning {
     color: ${colors.warning};
-
   }
+
   @media ${device.mobile} {
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
       calc(var(--space-m) * 2);
@@ -57,7 +59,7 @@ export const StyledForm = styled.form`
         grid-template-columns: auto auto;
         grid-column-gap: var(--space-m);
         grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register";
-  
+      } ;
     `};
 `;
 
