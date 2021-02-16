@@ -4,7 +4,7 @@ import Warning from "./components/Warning";
 import Login from "./components/Login";
 import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
-import StyledButton from "./styledComponents/StyledButton";
+import DashboardUser from "./components/DashboardUser";
 import { bakeyContext } from "./Context";
 
 function App() {
@@ -24,8 +24,9 @@ function App() {
       }}
     >
       <GlobalStyle />
-      <RegistrationUser />
 
+      <DashboardUser />
+      <RegistrationUser />
       <Login />
       <RegistrationCafe />
     </bakeyContext.Provider>
