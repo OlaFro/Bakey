@@ -82,7 +82,7 @@ export default function RegistrationCafe() {
     <section>
       <StyledForm onSubmit={submit} cafe>
         <header>
-          <h2>Registration</h2>
+          <h2>Café Registration</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField
