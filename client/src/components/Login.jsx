@@ -99,10 +99,10 @@ export default function Login(props) {
             <StyledEyeClose onClick={showPassword} />
           )}
         </StyledInputContainer>
-        {warning ? <small>Your email or password are incorrect.</small> : null}
         <StyledButton>Log in</StyledButton>
+        {warning ? <small>Your email or password are incorrect.</small> : null}
+        {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
-      {showWarning ? <Warning msg="service is out of order" /> : null}
     </section>
   );
 }
