@@ -21,10 +21,10 @@ export const StyledForm = styled.form`
     background-color: white;
     padding: var(--space-xs) var(--space-s);
     position: absolute;
-    top: 24px;
+    top: -22px;
     left: var(--space-s);
     font-size: 0.5rem;
-    @media ${device.mobile} {
+    @media ${device.tabletPortrait} {
       font-size: 1rem;
       top: -44.8px;
       left: var(--space-l);
