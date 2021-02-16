@@ -65,7 +65,7 @@ export const StyledNavBtn = styled.div`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: var(--ls);
-    transition: all 1000ms;
+    transition: all 200ms;
      a {
        padding-right: 0;
      }

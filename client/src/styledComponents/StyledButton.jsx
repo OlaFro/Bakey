@@ -63,17 +63,21 @@ export const StyledSmallButton = styled.button `
    text-transform: uppercase;
    letter-spacing: var(--ls0);
    font-weight: 700;
-   transition: all 1000ms;
+   transition: all 200ms;
    background-color: ${colors.accent2};
       border: var(--border) solid ${colors.accent2};
       :hover {
         cursor: pointer;
         background-color: ${darken(0.1, colors.accent2)};
+        border: ${darken(0.1, colors.accent2)} var(--border) solid;
       }
       :active {
         background-color: white;
         border: var(--border) solid ${darken(0.1, colors.accent2)};
         color: var(--black);
+      }
+      a {
+        padding-right: 0;
       }
  }
 `;
