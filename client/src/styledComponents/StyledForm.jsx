@@ -38,6 +38,9 @@ export const StyledForm = styled.form`
   .warning {
     color: ${colors.warning};
   }
+  .oops-warning {
+    grid-area: warning;
+  }
   > button {
     margin-top: var(--space-s);
   }
@@ -57,7 +60,7 @@ export const StyledForm = styled.form`
         display: grid;
         grid-template-columns: auto auto;
         grid-column-gap: var(--space-m);
-        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register";
+        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
       } ;
     `};
 `;

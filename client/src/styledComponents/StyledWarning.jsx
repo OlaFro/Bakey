@@ -4,7 +4,7 @@ import colors from "./colors";
 const StyledWarning = styled.div`
   border: var(--border) solid ${colors.warning};
   border-radius: var(--border-radius);
-  margin: var(--space-l) auto;
+  margin: var(--space-m) auto;
   width: 320px;
   height: auto;
   display: flex;
