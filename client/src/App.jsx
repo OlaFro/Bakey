@@ -1,5 +1,6 @@
 import GlobalStyle from "./styledComponents/GlobalStyle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,6 +20,28 @@ function App() {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState();
   const [role, setRole] = useState("");
+
+  // useEffect(() => {
+  //   Axios({
+  //     method: "GET",
+  //     url: `users/auth`,
+  //   })
+  //     .then((res) => {
+  //       if (res.data.authorized) {
+  //         console.log(res.data);
+  //         setIsLogged(true);
+  //         setUserName(res.data.firstName);
+  //         setProfilePic(res.data.profilePic);
+  //         setRole(() => res.data.userType);
+  //       } else {
+  //         setIsLogged(false);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setIsLogged(false);
+  //     });
+  // }, []);
 
   return (
     <bakeyContext.Provider

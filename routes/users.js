@@ -15,6 +15,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/auth", authenticateToken, (req, res, next) => {
+  console.log("authentication request");
   const user = req.user;
   let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: "3d",
@@ -23,6 +24,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
     httpOnly: true,
     sameSite: "strict",
   });
+  console.log(token);
   UserModel.findById(user.id)
     .then((result) => {
       console.log(result);
