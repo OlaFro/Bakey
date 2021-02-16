@@ -12,7 +12,7 @@ import {
   StyledEye,
 } from "../styledComponents/StyledForm";
 
-import StyledButton from "../styledComponents/StyledButton";
+import {StyledButton}from "../styledComponents/StyledButton";
 
 export default function RegistrationCafe() {
   const history = useHistory();

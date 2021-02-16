@@ -11,6 +11,7 @@ import {
   StyledNavBtn
 } from "../styledComponents/StyledNavigation";
 import StyledLogo from "../styledComponents/StyledLogo";
+import {StyledSmallButton} from "../styledComponents/StyledButton"
 
 export default function Navigation(props) {
   const [open, setOpen] = useState(0);
@@ -42,6 +43,9 @@ export default function Navigation(props) {
         <StyledNavBtn registration>
           <Link to="/registration/user">register</Link>
         </StyledNavBtn>
+        <StyledSmallButton>
+          <Link to="/login">Log out</Link>
+        </StyledSmallButton>
       </StyledNavBtnsContainer>
     </StyledNavigation>
   );
