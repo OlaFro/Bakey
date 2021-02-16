@@ -69,7 +69,7 @@ export default function RegistrationCafe() {
         ) {
           setWarningValidation(true);
         } else {
-          // history.push("/login");
+          history.push("/login");
         }
       })
       .catch((err) => {
@@ -237,7 +237,7 @@ export default function RegistrationCafe() {
             <small>Your passwords are not the same</small>
           ) : null}
         </StyledInputContainer>
-        
+
         <StyledButton cafe cafeRegister>
           Register
         </StyledButton>
