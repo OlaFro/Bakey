@@ -66,6 +66,9 @@ export const StyledNavBtn = styled.div`
     text-transform: uppercase;
     letter-spacing: var(--ls);
     transition: all 1000ms;
+     a {
+       padding-right: 0;
+     }
   }
 
 ${(props) =>
