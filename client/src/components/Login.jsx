@@ -106,7 +106,7 @@ export default function Login(props) {
         </StyledInputContainer>
         <StyledButton>Log in</StyledButton>
         {warning ? <small>Your email or password are incorrect.</small> : null}
-        {showWarning ? <Warning msg="service is out of order" /> : null}
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
       <p>
         If you have no account yet, please{" "}

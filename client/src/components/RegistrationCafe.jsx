@@ -263,7 +263,7 @@ export default function RegistrationCafe() {
         {warningValidation ? (
           <p className="warning">Please fill all fields!</p>
         ) : null}
-        {showWarning ? <Warning msg="service is out of order" /> : null}
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
       <p>
         If you have already registered, please <Link to="/login">log in</Link>.
