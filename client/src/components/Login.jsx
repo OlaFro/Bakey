@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 
+import Warning from "./Warning";
 import {
   StyledForm,
   StyledLabel,
@@ -18,6 +19,7 @@ export default function Login(props) {
   const [warning, setWarning] = useState(true);
   const { setIsLogged, setUserName, setProfilePic } = useContext(bakeyContext);
   const [visible, setVisible] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   let history = useHistory();
 
@@ -59,7 +61,7 @@ export default function Login(props) {
       })
       .catch((err) => {
         console.log(err);
-        //display out of order component
+        setShowWarning(true);
       });
   };
 
@@ -100,6 +102,7 @@ export default function Login(props) {
         {warning ? <small>Your email or password are incorrect.</small> : null}
         <StyledButton>Log in</StyledButton>
       </StyledForm>
+      {showWarning ? <Warning msg="service is out of order" /> : null}
     </section>
   );
 }
