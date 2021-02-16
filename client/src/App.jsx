@@ -1,19 +1,24 @@
 import GlobalStyle from "./styledComponents/GlobalStyle";
 import { useState } from "react";
-import Warning from "./components/Warning";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { bakeyContext } from "./Context";
 import Login from "./components/Login";
 import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
 import DashboardUser from "./components/DashboardUser";
 import DashboardCafe from "./components/DashboardCafe";
-import { bakeyContext } from "./Context";
 import Navigation from "./components/Navigation";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState();
+  const [role, setRole] = useState("");
 
   return (
     <bakeyContext.Provider
@@ -24,22 +29,43 @@ function App() {
         setUserName,
         profilePic,
         setProfilePic,
+        role,
+        setRole,
       }}
     >
       <Router>
-        <Navigation />
         <GlobalStyle />
-        <DashboardUser />
-        <DashboardCafe />
+        <Navigation />
         <Switch>
+          <Route path="/" exact>
+            <h1>Welcome to bakey</h1>
+          </Route>
           <Route path="/registration/user">
             <RegistrationUser />
           </Route>
           <Route path="/registration/cafe">
             <RegistrationCafe />
           </Route>
+          <Route path="/client/dashboard">
+            {isLogged && role === "client" ? (
+              <DashboardUser />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/cafe/dashboard">
+            {isLogged && role === "cafe" ? (
+              <DashboardCafe />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="*">
+            {" "}
+            <Redirect to="/" />{" "}
           </Route>
         </Switch>
       </Router>
