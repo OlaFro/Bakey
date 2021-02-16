@@ -16,7 +16,7 @@ import StyledButton from "../styledComponents/StyledButton";
 
 export default function Login(props) {
   const [loginData, setData] = useState({});
-  const [warning, setWarning] = useState(true);
+  const [warning, setWarning] = useState(false);
   const { setIsLogged, setUserName, setProfilePic } = useContext(bakeyContext);
   const [visible, setVisible] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
@@ -99,10 +99,10 @@ export default function Login(props) {
             <StyledEyeClose onClick={showPassword} />
           )}
         </StyledInputContainer>
-        {warning ? <small>Your email or password are incorrect.</small> : null}
         <StyledButton>Log in</StyledButton>
+        {warning ? <small>Your email or password are incorrect.</small> : null}
+        {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
-      {showWarning ? <Warning msg="service is out of order" /> : null}
     </section>
   );
 }
