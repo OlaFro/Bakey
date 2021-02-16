@@ -31,12 +31,14 @@ function App() {
     >
       <Router>
       <Navigation />
-      <RegistrationCafe />
       <GlobalStyle />
       <Switch>
         <Route path="/registration/user">
       <RegistrationUser />
       </Route>
+       <Route path="/registration/cafe">
+         <RegistrationCafe />
+       </Route> 
       {/* <Route path="/login">
       <Login /> 
       </Route>*/}
