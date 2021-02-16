@@ -40,7 +40,7 @@ export default function Navigation(props) {
           <Link to="/login">log in</Link>{" "}
         </StyledButton>
         <StyledButton registration small>
-          <Link to="/registrationuser">register</Link>
+          <Link to="/registration/user">register</Link>
         </StyledButton>
       </StyledNavBtnsContainer>
     </StyledNavigation>
