@@ -11,11 +11,11 @@ allowedAccess.authenticateToken = (req, res, next) => {
   if (!token) {
     res.send({ errorSource: "JWT" });
   } else {
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
       if (err) {
         res.send({ errorSource: "JWT" });
       } else {
-        req.user = user;
+        req.user = payload;
         next();
       }
     });
