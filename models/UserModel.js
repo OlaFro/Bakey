@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
 
-connectionString = process.env.DB_URL;
-
-const Schema = mongoose.Schema;
-
-const UsersSchema = new Schema({
+const UsersSchema = new mongoose.Schema({
   id: {
     type: String,
     unique: true,

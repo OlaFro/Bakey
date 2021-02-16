@@ -1,10 +1,6 @@
-require("dotenv").config();
+const mongoose = require("mongoose");
 
-connectionString = process.env.DB_URL;
-
-const Schema = mongoose.Schema;
-
-const ListingsSchema = new Schema({
+const ListingsSchema = new mongoose.Schema({
   id: {
     type: String,
     unique: true,
