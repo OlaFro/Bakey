@@ -5,9 +5,7 @@ const GlobalStyle = createGlobalStyle`
   --logo: 'Montserrat Alternates', sans-serif;
   --headings: 'Montserrat', sans-serif;
   --text: 'Raleway', sans-serif;
-
-
-
+  
   --border: 2px;
   --border-radius: 12px;
 

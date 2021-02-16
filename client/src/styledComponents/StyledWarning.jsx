@@ -3,7 +3,9 @@ import colors from "./colors";
 import { lighten } from "polished";
 
 const StyledWarning = styled.div`
-  border: var(--border) solid ${lighten(0.2, colors.warning)};
+  border: var(--border) solid ${colors.warning};
+  border-radius: var(--border-radius);
+  margin: var(--space-l) auto;
   width: 320px;
   height: auto;
   display: flex;

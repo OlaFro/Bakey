@@ -40,6 +40,9 @@ export const StyledForm = styled.form`
   .warning {
     color: ${colors.warning};
   }
+  > button {
+    margin-top: var(--space-s);
+  }
 
   @media ${device.mobile} {
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
@@ -66,7 +69,7 @@ export const StyledInputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: var(--space-xs) 0;
+  margin: var(--space-s) 0;
 
   & small {
     padding: var(--space-xs);
