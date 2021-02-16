@@ -69,7 +69,7 @@ export default function RegistrationCafe() {
         ) {
           setWarningValidation(true);
         } else {
-          history.push("/login");
+          // history.push("/login");
         }
       })
       .catch((err) => {
@@ -95,7 +95,7 @@ export default function RegistrationCafe() {
             required={true}
           />
           <StyledLabel htmlFor="cafeName">Café Name</StyledLabel>
-          {msg.cafeName ? <small>Please use only letters</small> : null}
+          {msg.cafeName ? <small>Cafe name had to be filled</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -213,43 +213,47 @@ export default function RegistrationCafe() {
           )}
 
           {msg.password ? (
-            <small>Your password does not meet the password criteria</small>
+            <small>Your password should be at least 8 characters long</small>
           ) : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
             cafe
             type={visible ? "text" : "password"}
-            name="confirmPassword"
-            id="confirmPassword"
+            name="passwordConfirm"
+            id="passwordConfirm"
             placeholder=" "
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="confirmPassword">Repeat password</StyledLabel>
+          <StyledLabel htmlFor="passwordConfirm">Repeat password</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
 
-          {msg.confirmPassword ? (
+          {msg.passwordConfirm ? (
             <small>Your passwords are not the same</small>
           ) : null}
         </StyledInputContainer>
-
+        
         <StyledButton cafe cafeRegister>
           Register
         </StyledButton>
+        {warning ? (
+          <div>
+            <p className="warning">
+              User with this {warningContent} already exists, please log-in
+            </p>
+          </div>
+        ) : null}
+        {warningValidation ? (
+          <p className="warning">Please fill all fields!</p>
+        ) : null}
+        {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
       <p>If you have already registered, please login.</p>
-      {warning ? (
-        <div>
-          <p>User with this {warningContent} already exists, please log-in</p>
-        </div>
-      ) : null}
-      {warningValidation ? <p>Please fill all fields!</p> : null}
-      {showWarning ? <Warning msg="service is out of order" /> : null}
     </section>
   );
 }
