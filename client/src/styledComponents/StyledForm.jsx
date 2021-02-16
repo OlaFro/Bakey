@@ -8,8 +8,8 @@ export const StyledForm = styled.form`
   /* margin-top only for preview purposes */
   margin-top: 3rem;
 
-  width: 35%;
-  min-width: 40rem;
+  width: 90%;
+  max-width: 448px;
   border: var(--border) solid ${colors.accent1};
   padding: var(--space-s);
   border-radius: var(--border-radius);
@@ -17,21 +17,29 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   > Header {
     background-color: white;
     padding: var(--space-xs) var(--space-s);
     position: absolute;
-    top: -1.5rem;
-    left: var(--space-l);
+    top: 24px;
+    left: var(--space-s);
     font-size: 0.5rem;
     @media ${device.mobile} {
       font-size: 1rem;
-      top: -2.8rem;
+      top: -44.8px;
       left: var(--space-l);
     }
   }
+
+  > small {
+    padding: var(--space-xs);
+    color: ${colors.warning};
+    text-align: center;
+
   .warning {
     color: ${colors.warning};
+
   }
   @media ${device.mobile} {
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
@@ -41,20 +49,20 @@ export const StyledForm = styled.form`
   ${(props) =>
     props.cafe &&
     css`
-      width: 45%;
-      min-width: 55rem;
+      width: 90%;
+      max-width: 800px;
       border: var(--border) solid ${colors.accent2};
-      display: grid;
-      grid-template-columns: auto;
       @media ${device.tabletLandscape} {
+        display: grid;
         grid-template-columns: auto auto;
         grid-column-gap: var(--space-m);
-      }
+        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register";
+  
     `};
 `;
 
 export const StyledInputContainer = styled.div`
-  width: 15rem;
+  width: 240px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -63,11 +71,13 @@ export const StyledInputContainer = styled.div`
   & small {
     padding: var(--space-xs);
     color: ${colors.warning};
+    text-align: center;
   }
 
-  @media ${device.tabletLandscape} {
-    width: 25rem;
+  @media ${device.tabletPortrait} {
+    width: 320px;
   }
+  grid-area: "input";
 `;
 
 export const StyledLabel = styled.label`
@@ -101,7 +111,7 @@ export const StyledInputField = styled.input`
   :focus + label,
   :not(:placeholder-shown) + label {
     font-size: 0.8rem;
-    top: -0.5rem;
+    top: -8px;
     left: 13px;
     background: white;
     padding: 0 calc(0.2 * var(--space-s));
@@ -163,27 +173,28 @@ export const StyledSelect = styled.select`
 `;
 
 export const StyledEyeClose = styled(EyeClose)`
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
   position: absolute;
   right: 12px;
-  top: 1.2rem;
+  top: 19.2px;
   cursor: pointer;
 `;
 
 export const StyledEye = styled(Eye)`
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
   position: absolute;
   right: 12px;
-  top: 1.2rem;
+  top: 19.2px;
   cursor: pointer;
 `;
 
 export const StyledArrow = styled(ArrowDown)`
-  width: 1rem;
+  width: 16px;
+  height: 16px;
   position: absolute;
   right: 12px;
-  top: 1.2rem;
+  top: 19.2px;
   pointer-events: none;
 `;

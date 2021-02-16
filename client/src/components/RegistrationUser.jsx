@@ -94,11 +94,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="firstName">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.firstName ? "Error" : "First Name"} */}
-            First Name
-          </StyledLabel>
+          <StyledLabel htmlFor="firstName">First Name</StyledLabel>
           {msg.firstName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
@@ -110,11 +106,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="lastName">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.firstName ? "Error" : "First Name"} */}
-            Last Name
-          </StyledLabel>
+          <StyledLabel htmlFor="lastName">Last Name</StyledLabel>
           {msg.lastName ? <small>Please use only letters</small> : null}
         </StyledInputContainer>
         <StyledInputContainer>
@@ -126,11 +118,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="email">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.email ? "Error" : "Email"} */}
-            Email
-          </StyledLabel>
+          <StyledLabel htmlFor="email">Email</StyledLabel>
 
           {msg.email ? <small>Please use proper email format</small> : null}
         </StyledInputContainer>
@@ -143,11 +131,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="password">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.pqssword ? "Error" : "Password"} */}
-            Password
-          </StyledLabel>
+          <StyledLabel htmlFor="password">Password</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -167,11 +151,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="passwordConfirm">
-            {/* Functionality to try out when form is connected */}
-            {/* {msg.passwordConfirm ? "Error" : "Repeat Password"} */}
-            Repeat password
-          </StyledLabel>
+          <StyledLabel htmlFor="confirmPassword">Repeat password</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (

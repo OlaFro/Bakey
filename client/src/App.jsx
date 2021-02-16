@@ -25,11 +25,10 @@ function App() {
     >
       <GlobalStyle />
       <RegistrationUser />
+
+      <Login />
       <RegistrationCafe />
-      {/* <Login /> */}
-
     </bakeyContext.Provider>
-
   );
 }
 
