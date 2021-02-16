@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const ListingModel = require("../models/ListingModel");
 
-router.post("/newListing", (req, res, next) => {
+router.post("/newlisting", (req, res, next) => {
   const newListing = req.body;
   ListingModel.estimatedDocumentCount({}, (err, result) => {
     if (err) {
