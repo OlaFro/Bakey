@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
 import DashboardUser from "./components/DashboardUser";
+import DashboardCafe from "./components/DashboardCafe";
 import { bakeyContext } from "./Context";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <GlobalStyle />
 
       <DashboardUser />
+      <DashboardCafe />
       <RegistrationUser />
       <Login />
       <RegistrationCafe />
