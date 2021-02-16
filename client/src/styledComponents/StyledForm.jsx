@@ -186,9 +186,10 @@ export const StyledEye = styled(Eye)`
 `;
 
 export const StyledArrow = styled(ArrowDown)`
-  width: 16rem;
+  width: 16px;
+  height: 16px;
   position: absolute;
   right: 12px;
-  top: 19.2rem;
+  top: 19.2px;
   pointer-events: none;
 `;
