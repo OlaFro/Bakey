@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import colors from "./colors";
-import { lighten } from "polished";
 
 const StyledWarning = styled.div`
   border: var(--border) solid ${colors.warning};

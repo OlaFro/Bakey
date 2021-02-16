@@ -11,6 +11,7 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledForm";
+import StyledCentered from "../styledComponents/StyledCentered";
 
 import StyledButton from "../styledComponents/StyledButton";
 
@@ -79,7 +80,7 @@ export default function RegistrationCafe() {
   };
 
   return (
-    <section>
+    <StyledCentered>
       <StyledForm onSubmit={submit} cafe>
         <header>
           <h2>Café Registration</h2>
@@ -254,8 +255,8 @@ export default function RegistrationCafe() {
         {showWarning ? <Warning msg="service is out of order" /> : null}
       </StyledForm>
       <p>
-        If you have already registered, please <Link to="/login">login</Link>.
+        If you have already registered, please <Link to="/login">log in</Link>.
       </p>
-    </section>
+    </StyledCentered>
   );
 }

@@ -14,6 +14,7 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import StyledButton from "../styledComponents/StyledButton";
+import StyledCentered from "../styledComponents/StyledCentered";
 
 export default function RegistrationUser(props) {
   const history = useHistory();
@@ -80,7 +81,7 @@ export default function RegistrationUser(props) {
   };
 
   return (
-    <section>
+    <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
           <h2>Registration</h2>
@@ -194,6 +195,6 @@ export default function RegistrationUser(props) {
         If you want to register as a café owner, please click{" "}
         <Link to="/registration/cafe">here</Link>.
       </p>
-    </section>
+    </StyledCentered>
   );
 }

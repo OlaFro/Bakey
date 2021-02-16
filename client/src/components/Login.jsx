@@ -13,6 +13,7 @@ import {
   StyledEye,
 } from "../styledComponents/StyledForm";
 import StyledButton from "../styledComponents/StyledButton";
+import StyledCentered from "../styledComponents/StyledCentered";
 
 export default function Login(props) {
   const [loginData, setData] = useState({});
@@ -70,7 +71,7 @@ export default function Login(props) {
   };
 
   return (
-    <section>
+    <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
           <h2>Login</h2>
@@ -111,6 +112,6 @@ export default function Login(props) {
         If you have no account yet, please{" "}
         <Link to="/registration/user">register</Link>.
       </p>
-    </section>
+    </StyledCentered>
   );
 }
