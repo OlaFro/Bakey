@@ -26,14 +26,14 @@ export default function Navigation(props) {
     setOpen(0);
   };
 
-  const context = useContext(bakeyContext);
+  const {isLogged, setIsLogged} = useContext(bakeyContext);
 
   const logout = () => {
     axios({
       method:"GET",
       url: "/users/logout"
     }).then((res)=>{
-      context.setIsLogged(res.data.logged);
+      setIsLogged(res.data.logged);
     }).catch((err) => console.log(err))
   }
 
@@ -51,7 +51,7 @@ export default function Navigation(props) {
           <Link to="/">about us</Link>
         </StyledNavContainer>
         <StyledNavBtnsContainer display={open}>
-          {context.isLogged ? (
+          {isLogged ? (
             <StyledSmallButton onClick={logout}>
               <Link to="/login">Log out</Link>
             </StyledSmallButton>
@@ -60,7 +60,7 @@ export default function Navigation(props) {
               <Link to="/login">log in</Link>
             </StyledNavBtn>
           )}
-          {context.isLogged ? null : (
+          {isLogged ? null : (
             <StyledNavBtn registration>
               <Link to="/registration/user">register</Link>
             </StyledNavBtn>
