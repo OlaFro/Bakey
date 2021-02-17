@@ -14,7 +14,6 @@ const ListingSchema = new mongoose.Schema({
       type: String,
       required: true,
   },
-
   listingName: {
       type: String,
       required: true,
@@ -44,6 +43,9 @@ const ListingSchema = new mongoose.Schema({
  pickUpDate: {
      type: Date,
      required: true
+ },
+ listingStatus: {
+    type: String, enum: ["active", "inactive", "sold"], required: true 
  }
 });
 
