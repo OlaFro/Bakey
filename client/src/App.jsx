@@ -14,6 +14,7 @@ import RegistrationCafe from "./components/RegistrationCafe";
 import DashboardUser from "./components/DashboardUser";
 import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
+import ListingForm from "./components/ListingForm";
 
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
@@ -59,7 +60,9 @@ function App() {
         <Navigation />
         <Switch>
           <Route path="/" exact>
-            <h1>Welcome to bakey</h1>
+            {/* <h1>Welcome to bakey</h1> */}
+            {/* listingForm for preview, will be deleted later */}
+            <ListingForm />
           </Route>
           <Route path="/registration/user" exact>
             <RegistrationUser />
