@@ -13,14 +13,12 @@ import {
   StyledEye,
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
-import {StyledButton} from "../styledComponents/StyledButton";
-
-
+import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function Login(props) {
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-  const { setIsLogged, setUserName, setProfilePic, setRole } = useContext(
+  const { setIsLogged, setUserName, setProfilePic, setCafeName } = useContext(
     bakeyContext
   );
   const [visible, setVisible] = useState(false);
@@ -67,7 +65,7 @@ export default function Login(props) {
           setIsLogged({ state: true, role: res.data.userType });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
-          // setRole(() => res.data.userType);
+          setCafeName(res.data.cafeName);
           setData({});
           history.push(`/${res.data.userType}-dashboard`);
         } else {

@@ -33,6 +33,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
         firstName: result.firstName,
         profilePic: result.profilePic,
         userType: result.userType,
+        cafeName: user.cafeName,
       });
     })
     .catch((err) => {
@@ -114,6 +115,7 @@ router.post(
       firstName: user.firstName,
       profilePic: user.profilePic,
       userType: user.userType,
+      cafeName: user.cafeName,
     });
   }
 );
