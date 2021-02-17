@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import Warning from "./Warning";
@@ -12,7 +12,7 @@ import {
   StyledEye,
 } from "../styledComponents/StyledForm";
 
-import {StyledButton}from "../styledComponents/StyledButton";
+import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function RegistrationCafe() {
   const history = useHistory();
@@ -24,6 +24,13 @@ export default function RegistrationCafe() {
   const [warningValidation, setWarningValidation] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    return function () {
+      console.log("component is unmounting");
+      setData({});
+    };
+  }, []);
 
   const showPassword = () => {
     setVisible(true);

@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 
@@ -24,6 +24,13 @@ export default function Login(props) {
   const [showWarning, setShowWarning] = useState(false);
 
   let history = useHistory();
+
+  useEffect(() => {
+    return function () {
+      console.log("component is unmounting");
+      setData({});
+    };
+  }, []);
 
   const showPassword = () => {
     setVisible(true);

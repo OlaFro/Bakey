@@ -83,7 +83,7 @@ function App() {
             )}
           </Route>
           <Route path="/login" exact>
-            <Login />
+            {isLogged.state ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="*">
             {" "}
