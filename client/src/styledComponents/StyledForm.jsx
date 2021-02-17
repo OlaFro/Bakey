@@ -178,6 +178,45 @@ export const StyledSelect = styled.select`
     `};
 `;
 
+export const StyledCheckboxContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  border: var(--border) solid ${colors.accent1};
+  border-radius: var(--border-radius);
+  width: 320px;
+  margin: var(--space-s) 0;
+  padding: var(--space-s);
+  position: relative;
+  ${(props) =>
+    props.cafe &&
+    css`
+      border: var(--border) solid ${colors.accent2};
+      :hover {
+        cursor: text;
+        border: var(--border) solid ${darken(0.2, colors.gray)};
+      }
+      :focus {
+        outline: none;
+        border: var(--border) solid ${darken(0.2, colors.gray)};
+      }
+    `};
+  > div {
+    padding: calc(var(--space-xs) / 2) var(--space-xs);
+  }
+  > header {
+    position: absolute;
+    font-family: var(--heading);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    top: -9px;
+    left: 13px;
+    background: white;
+    padding: 0 calc(0.2 * var(--space-s));
+    letter-spacing: calc(0.66 * var(--ls));
+  }
+`;
+
 export const StyledEyeClose = styled(EyeClose)`
   width: 16px;
   height: 16px;

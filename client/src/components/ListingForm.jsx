@@ -5,8 +5,9 @@ import {
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
-  StyledSelect,
+  StyledCheckboxContainer,
 } from "../styledComponents/StyledForm";
+import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function ListingForm() {
   const [data, setData] = useState({});
@@ -27,10 +28,10 @@ export default function ListingForm() {
       </header>
 
       <StyledForm cafe>
+        <header>
+          <h2>Fill out:</h2>
+        </header>
         <StyledCentered>
-          <header>
-            <h2>Fill out:</h2>
-          </header>
           <StyledInputContainer>
             <StyledInputField
               cafe
@@ -47,38 +48,68 @@ export default function ListingForm() {
             </div>
           </StyledInputContainer>
 
-          <div>
-            <input type="checkbox" id="cereal" name="cereal" />
-            <label htmlFor="cereal">cereal</label>
-            <input type="checkbox" id="eggs" name="eggs" />
-            <label htmlFor="eggs">eggs</label>
-            <input type="checkbox" id="peanut" name="peanut" />
-            <label htmlFor="peanut">peanut</label>
-            <input type="checkbox" id="soja" name="soja" />
-            <label htmlFor="soja">soja</label>
-            <input type="checkbox" id="dairy" name="dairy" />
-            <label htmlFor="dairy">dairy</label>
-            <input type="checkbox" id="celery" name="celery" />
-            <label htmlFor="celery">celery</label>
-            <input type="checkbox" id="mustard" name="mustard" />
-            <label htmlFor="mustard">mustard</label>
-            <input type="checkbox" id="lupins" name="lupins" />
-            <label htmlFor="lupins">lupins</label>
-          </div>
-          <div>
-            <input type="checkbox" id="vegan" name="vegan" />
-            <label htmlFor="vegan">vegan</label>
-            <input type="checkbox" id="organic" name="organic" />
-            <label htmlFor="organic">organic</label>
-            <input type="checkbox" id="glutenFree" name="glutenFree" />
-            <label htmlFor="glutenFree">gluten-free</label>
-            <input type="checkbox" id="lactoseFree" name="lactoseFree" />
-            <label htmlFor="lactoseFree">lactose-free</label>
-            <input type="checkbox" id="sugarFree" name="sugarFree" />
-            <label htmlFor="sugarFree">sugar-free</label>
-            <input type="checkbox" id="wheatFree" name="wheatFree" />
-            <label htmlFor="wheatFree">wheat-free</label>
-          </div>
+          <StyledCheckboxContainer cafe>
+            <header>Allergenes</header>
+            <div>
+              <input type="checkbox" id="cereal" name="cereal" />
+              <label htmlFor="cereal">cereal</label>
+            </div>
+            <div>
+              <input type="checkbox" id="eggs" name="eggs" />
+              <label htmlFor="eggs">eggs</label>
+            </div>
+            <div>
+              <input type="checkbox" id="peanut" name="peanut" />
+              <label htmlFor="peanut">peanut</label>
+            </div>
+            <div>
+              <input type="checkbox" id="soja" name="soja" />
+              <label htmlFor="soja">soja</label>
+            </div>
+            <div>
+              <input type="checkbox" id="dairy" name="dairy" />
+              <label htmlFor="dairy">dairy</label>
+            </div>
+            <div>
+              <input type="checkbox" id="celery" name="celery" />
+              <label htmlFor="celery">celery</label>
+            </div>
+            <div>
+              <input type="checkbox" id="mustard" name="mustard" />
+              <label htmlFor="mustard">mustard</label>
+            </div>
+            <div>
+              <input type="checkbox" id="lupins" name="lupins" />
+              <label htmlFor="lupins">lupins</label>
+            </div>
+          </StyledCheckboxContainer>
+          <StyledCheckboxContainer cafe>
+            <header>Tags</header>
+            <div>
+              <input type="checkbox" id="vegan" name="vegan" />
+              <label htmlFor="vegan">vegan</label>
+            </div>
+            <div>
+              <input type="checkbox" id="organic" name="organic" />
+              <label htmlFor="organic">organic</label>
+            </div>
+            <div>
+              <input type="checkbox" id="glutenFree" name="glutenFree" />
+              <label htmlFor="glutenFree">gluten-free</label>
+            </div>
+            <div>
+              <input type="checkbox" id="lactoseFree" name="lactoseFree" />
+              <label htmlFor="lactoseFree">lactose-free</label>
+            </div>
+            <div>
+              <input type="checkbox" id="sugarFree" name="sugarFree" />
+              <label htmlFor="sugarFree">sugar-free</label>
+            </div>
+            <div>
+              <input type="checkbox" id="wheatFree" name="wheatFree" />
+              <label htmlFor="wheatFree">wheat-free</label>
+            </div>
+          </StyledCheckboxContainer>
           <StyledInputContainer>
             <StyledInputField
               cafe
@@ -91,11 +122,15 @@ export default function ListingForm() {
               onInput={getValue}
               required={true}
             />
-            <StyledLabel htmlFor="piecePrice">Price for a piece*</StyledLabel>
+            <StyledLabel htmlFor="piecePrice">
+              Price for a piece (€)*
+            </StyledLabel>
           </StyledInputContainer>
           <StyledInputContainer>
             <StyledInputField
               cafe
+              min="1"
+              max="20"
               type="number"
               name="availablePieces"
               id="availablePieces"
@@ -111,14 +146,15 @@ export default function ListingForm() {
             <StyledInputField
               cafe
               type="date"
-              name="availablePieces"
-              id="availablePieces"
+              name="pickUpDate"
+              id="pickUpDate"
               placeholder=" "
               onInput={getValue}
               required={true}
             />
-            <StyledLabel htmlFor="availablePieces">Pick-up date*</StyledLabel>
+            <StyledLabel htmlFor="pickUpDate">Pick-up date*</StyledLabel>
           </StyledInputContainer>
+          <StyledButton cafe>Save</StyledButton>
         </StyledCentered>
       </StyledForm>
     </StyledCentered>
