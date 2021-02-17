@@ -12,8 +12,9 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledForm";
-import StyledButton from "../styledComponents/StyledButton";
 import StyledCentered from "../styledComponents/StyledCentered";
+import {StyledButton} from "../styledComponents/StyledButton";
+
 
 export default function Login(props) {
   const [loginData, setData] = useState({});

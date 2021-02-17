@@ -13,7 +13,7 @@ import {
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 
-import StyledButton from "../styledComponents/StyledButton";
+import {StyledButton}from "../styledComponents/StyledButton";
 
 export default function RegistrationCafe() {
   const history = useHistory();
