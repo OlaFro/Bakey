@@ -55,4 +55,16 @@ validateData.register = (req, res, next) => {
   }
 };
 
+validateData.newListing = (req, res, next) => {
+  req.check("cafeName", "cafeName").isLength({ min: 1 });
+
+  let errors = req.validationErrors();
+
+  if (!errors) {
+    next();
+  } else {
+    res.send({ msg: errors });
+  }
+};
+
 module.exports = validateData;
