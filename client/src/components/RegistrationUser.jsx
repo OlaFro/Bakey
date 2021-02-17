@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import Warning from "./Warning";
@@ -28,6 +28,13 @@ export default function RegistrationUser(props) {
   const [showWarning, setShowWarning] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  useEffect(() => {
+    return function () {
+      console.log("component is unmounting");
+      setData({});
+    };
+  }, []);
+
   const showPassword = () => {
     setVisible(true);
   };
@@ -44,6 +51,8 @@ export default function RegistrationUser(props) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    setShowWarning(false);
 
     setMsg({});
 

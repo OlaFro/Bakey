@@ -15,6 +15,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/auth", authenticateToken, (req, res, next) => {
+  console.log("authentication request");
   const user = req.user;
   let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: "3d",
@@ -23,6 +24,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
     httpOnly: true,
     sameSite: "strict",
   });
+  console.log(token);
   UserModel.findById(user.id)
     .then((result) => {
       console.log(result);
@@ -38,52 +40,57 @@ router.get("/auth", authenticateToken, (req, res, next) => {
     });
 });
 
-router.post("/register", validateData.register, (req, res, next) => {
-  console.log(req.body);
-  let newUser = req.body;
+router.post(
+  "/register",
+  validateData.sanitize,
+  validateData.register,
+  (req, res, next) => {
+    console.log(req.body);
+    let newUser = req.body;
 
-  UserModel.estimatedDocumentCount({}, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      newUser.id = result + 1;
-      console.log(newUser);
+    UserModel.estimatedDocumentCount({}, (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        newUser.id = result + 1;
+        console.log(newUser);
 
-      let addedUser = new UserModel({
-        id: newUser.id,
-        email: newUser.email,
-        password: newUser.password,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        city: newUser.city,
-        userType: newUser.userType,
-      });
+        let addedUser = new UserModel({
+          id: newUser.id,
+          email: newUser.email,
+          password: newUser.password,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          city: newUser.city,
+          userType: newUser.userType,
+        });
 
-      if (newUser.userType === "cafe") {
-        addedUser.cafeName = newUser.cafeName;
-        addedUser.cafeStreet = newUser.cafeStreet;
-        addedUser.cafeStreetNr = newUser.cafeStreetNr;
-        addedUser.cafeZip = newUser.cafeZip;
-      }
-
-      bcrypt.hash(newUser.password, 10, (err, hashedPassword) => {
-        if (!err) {
-          addedUser.password = hashedPassword;
-          addedUser
-            .save()
-            .then(() => {
-              res.send({ registered: true });
-            })
-            .catch((err) => {
-              res.send(err);
-            });
-        } else {
-          res.send({ errorSource: "BCRYPT" });
+        if (newUser.userType === "cafe") {
+          addedUser.cafeName = newUser.cafeName;
+          addedUser.cafeStreet = newUser.cafeStreet;
+          addedUser.cafeStreetNr = newUser.cafeStreetNr;
+          addedUser.cafeZip = newUser.cafeZip;
         }
-      });
-    }
-  });
-});
+
+        bcrypt.hash(newUser.password, 10, (err, hashedPassword) => {
+          if (!err) {
+            addedUser.password = hashedPassword;
+            addedUser
+              .save()
+              .then(() => {
+                res.send({ registered: true });
+              })
+              .catch((err) => {
+                res.send(err);
+              });
+          } else {
+            res.send({ errorSource: "BCRYPT" });
+          }
+        });
+      }
+    });
+  }
+);
 
 router.post(
   "/login",

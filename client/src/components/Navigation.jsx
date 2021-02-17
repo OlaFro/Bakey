@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -26,46 +26,50 @@ export default function Navigation(props) {
     setOpen(0);
   };
 
-  const {isLogged, setIsLogged} = useContext(bakeyContext);
+  const { isLogged, setIsLogged } = useContext(bakeyContext);
 
   const logout = () => {
     axios({
-      method:"GET",
-      url: "/users/logout"
-    }).then((res)=>{
-      setIsLogged(res.data.logged);
-    }).catch((err) => console.log(err))
-  }
+      method: "GET",
+      url: "/users/logout",
+    })
+      .then((res) => {
+        setIsLogged(res.data.logged);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
-   <StyledNavigation>
-        <StyledLogoContainer>
-          <StyledLogo>
-            <Link to="/">bakey</Link>
-          </StyledLogo>
-          <StyledExit onClick={handleClose} display={open} />
-          <StyledMenu onClick={handleOpen} display={open} />
-        </StyledLogoContainer>
-        <StyledNavContainer display={open}>
-          <Link to="/">cafés</Link>
-          <Link to="/">about us</Link>
-        </StyledNavContainer>
-        <StyledNavBtnsContainer display={open}>
-          {isLogged ? (
-            <StyledSmallButton onClick={logout}>
-              <Link to="/login">Log out</Link>
-            </StyledSmallButton>
-          ) : (
-            <StyledNavBtn login>
-              <Link to="/login">log in</Link>
-            </StyledNavBtn>
-          )}
-          {isLogged ? null : (
-            <StyledNavBtn registration>
-              <Link to="/registration/user">register</Link>
-            </StyledNavBtn>
-          )}
-        </StyledNavBtnsContainer>
-      </StyledNavigation>
+    <StyledNavigation>
+      <StyledLogoContainer>
+        <StyledLogo>
+          <Link to="/">bakey</Link>
+        </StyledLogo>
+        <StyledExit onClick={handleClose} display={open} />
+        <StyledMenu onClick={handleOpen} display={open} />
+      </StyledLogoContainer>
+      <StyledNavContainer display={open}>
+        <Link to="/">cafés</Link>
+        <Link to="/">about us</Link>
+      </StyledNavContainer>
+      <StyledNavBtnsContainer display={open}>
+        {isLogged.state ? (
+          <Link to={`/${isLogged.role}-dashboard`}>Profile</Link>
+        ) : (
+          <StyledNavBtn login>
+            <Link to="/login">log in</Link>
+          </StyledNavBtn>
+        )}
+        {isLogged.state ? (
+          <StyledSmallButton onClick={logout}>
+            <Link to="/login">Log out</Link>
+          </StyledSmallButton>
+        ) : (
+          <StyledNavBtn registration>
+            <Link to="/registration/user">register</Link>
+          </StyledNavBtn>
+        )}
+      </StyledNavBtnsContainer>
+    </StyledNavigation>
   );
 }
