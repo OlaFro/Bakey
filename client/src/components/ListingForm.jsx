@@ -79,8 +79,34 @@ export default function ListingForm() {
             <input type="checkbox" id="wheatFree" name="wheatFree" />
             <label htmlFor="wheatFree">wheat-free</label>
           </div>
-          {/* TAGS - checkboxes, ALLERGENES - checkboxes, PRICES - number, QTY OF
-        PORTIONS - number, PICK UP - date */}
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              min="1"
+              max="20"
+              type="number"
+              name="piecePrice"
+              id="piecePrice"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="piecePrice">Price for a piece*</StyledLabel>
+          </StyledInputContainer>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              min="1"
+              max="20"
+              type="number"
+              name="piecePrice"
+              id="piecePrice"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="piecePrice">Pieces in the cake*</StyledLabel>
+          </StyledInputContainer>
         </StyledCentered>
       </StyledForm>
     </StyledCentered>
