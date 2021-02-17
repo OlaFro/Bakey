@@ -18,8 +18,8 @@ import Navigation from "./components/Navigation";
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
   const [userName, setUserName] = useState("");
-  const [profilePic, setProfilePic] = useState();
-  // const [role, setRole] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  const [cafeName, setCafeName] = useState("");
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -33,6 +33,7 @@ function App() {
           setIsLogged({ state: true, role: res.data.userType });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
+          setCafeName(res.data.cafeName);
         } else {
           setIsLogged({ state: false, role: "" });
         }
@@ -52,6 +53,8 @@ function App() {
         setUserName,
         profilePic,
         setProfilePic,
+        cafeName,
+        setCafeName,
       }}
     >
       <Router>
@@ -68,7 +71,6 @@ function App() {
             <RegistrationCafe />
           </Route>
           <Route path="/client-dashboard" exact>
-            {console.log(isLogged.state && isLogged.role === "client")}
             {isLogged.state && isLogged.role === "client" ? (
               <DashboardUser />
             ) : (
