@@ -12,8 +12,10 @@ import {
   StyledEye,
   StyledSelect,
   StyledArrow,
+  StyledWarning,
 } from "../styledComponents/StyledForm";
-import { StyledButton } from "../styledComponents/StyledButton";
+import StyledCentered from "../styledComponents/StyledCentered";
+import {StyledButton}from "../styledComponents/StyledButton";
 
 export default function RegistrationUser(props) {
   const history = useHistory();
@@ -89,7 +91,7 @@ export default function RegistrationUser(props) {
   };
 
   return (
-    <section>
+    <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
           <h2>Registration</h2>
@@ -103,8 +105,10 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="firstName">First Name</StyledLabel>
-          {msg.firstName ? <small>Please use only letters</small> : null}
+          <StyledLabel htmlFor="firstName">First Name*</StyledLabel>
+          <div>
+            {msg.firstName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -115,8 +119,10 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="lastName">Last Name</StyledLabel>
-          {msg.lastName ? <small>Please use only letters</small> : null}
+          <StyledLabel htmlFor="lastName">Last Name*</StyledLabel>
+          <div>
+            {msg.lastName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -127,9 +133,10 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
-
-          {msg.email ? <small>Please use proper email format</small> : null}
+          <StyledLabel htmlFor="email">Email*</StyledLabel>
+          <div>
+            {msg.email ? <small>Please use proper email format</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -140,16 +147,15 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
-
-          {msg.password ? (
-            <small>Your password should be at least 8 characters long</small>
-          ) : null}
+          <div>
+            {msg.password ? <small>Please use min. 8 characters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -160,16 +166,17 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="confirmPassword">Repeat password</StyledLabel>
+          <StyledLabel htmlFor="confirmPassword">Repeat password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
-
-          {msg.passwordConfirm ? (
-            <small>Your passwords are not the same</small>
-          ) : null}
+          <div>
+            {msg.passwordConfirm ? (
+              <small>Your passwords are not the same</small>
+            ) : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledSelect id="city" name="city" onInput={getValue}>
@@ -194,15 +201,14 @@ export default function RegistrationUser(props) {
         {warningValidation ? (
           <p className="warning">Please fill all fields!</p>
         ) : null}
-        {showWarning ? <Warning msg="service is out of order" /> : null}
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
       <p>
-        If you have already registered, please <Link to="/login">login</Link>.
-      </p>
-      <p>
+        If you have already registered, please <Link to="/login">log in</Link>.{" "}
+        <br></br>
         If you want to register as a café owner, please click{" "}
         <Link to="/registration/cafe">here</Link>.
       </p>
-    </section>
+    </StyledCentered>
   );
 }

@@ -71,23 +71,23 @@ export const StyledNavBtn = styled.div`
      }
   }
 
-${(props) =>
-  props.registration &&
-  css`
-    @media ${device.desktop} {
-      background-color: ${colors.accent2};
-      border: var(--border) solid ${colors.accent2};
-      :hover {
-        cursor: pointer;
-        background-color: ${darken(0.1, colors.accent2)};
+  ${(props) =>
+    props.registration &&
+    css`
+      @media ${device.desktop} {
+        background-color: ${colors.accent2};
+        border: var(--border) solid ${colors.accent2};
+        :hover {
+          cursor: pointer;
+          background-color: ${darken(0.1, colors.accent2)};
+        }
+        :active {
+          background-color: white;
+          border: var(--border) solid ${darken(0.1, colors.accent2)};
+          color: var(--black);
+        }
       }
-      :active {
-        background-color: white;
-        border: var(--border) solid ${darken(0.1, colors.accent2)};
-        color: var(--black);
-      }
-    }
-  `};
+    `};
   ${(props) =>
     props.login &&
     css`
@@ -109,7 +109,7 @@ ${(props) =>
         }
       }
     `};
-  `;
+`;
 
 export const StyledMenu = styled(Menu)`
   height: 30px;

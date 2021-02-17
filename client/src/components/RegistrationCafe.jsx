@@ -11,6 +11,7 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledForm";
+import StyledCentered from "../styledComponents/StyledCentered";
 
 import { StyledButton } from "../styledComponents/StyledButton";
 
@@ -88,10 +89,10 @@ export default function RegistrationCafe() {
   };
 
   return (
-    <section>
+    <StyledCentered>
       <StyledForm onSubmit={submit} cafe>
         <header>
-          <h2>Registration</h2>
+          <h2>Café Registration</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField
@@ -103,8 +104,8 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeName">Café Name</StyledLabel>
-          {msg.cafeName ? <small>Cafe name had to be filled</small> : null}
+          <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
+          <div>{msg.cafeName ? <small>Required</small> : null}</div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -116,9 +117,10 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
-
-          {msg.email ? <small>Please use proper email format</small> : null}
+          <StyledLabel htmlFor="email">Email*</StyledLabel>
+          <div>
+            {msg.email ? <small>Please use proper email format</small> : null}
+          </div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -131,8 +133,10 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeStreet">Address / Street</StyledLabel>
-          {msg.cafeStreet ? <small>Please use only letters</small> : null}
+          <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
+          <div>
+            {msg.cafeStreet ? <small> Please use only letters </small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -144,10 +148,12 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr</StyledLabel>
-          {msg.cafeStreetNr ? (
-            <small>Please use only letters and numbers.</small>
-          ) : null}
+          <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr*</StyledLabel>
+          <div>
+            {msg.cafeStreetNr ? (
+              <small>Please use only letters and numbers.</small>
+            ) : null}
+          </div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -160,8 +166,10 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeZip">Address / ZIP code</StyledLabel>
-          {msg.cafeZip ? <small>Please use only numbers</small> : null}
+          <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
+          <div>
+            {msg.cafeZip ? <small>Please use only numbers</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -173,8 +181,8 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="city">Address / City</StyledLabel>
-          {msg.city ? <small>Please use only letters</small> : null}
+          <StyledLabel htmlFor="city">Address / City*</StyledLabel>
+          <div>{msg.city ? <small>Please use only letters</small> : null}</div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -187,8 +195,10 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="firstName">Owner First Name</StyledLabel>
-          {msg.firstName ? <small>Please use only letters</small> : null}
+          <StyledLabel htmlFor="firstName">Owner First Name*</StyledLabel>
+          <div>
+            {msg.firstName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -200,8 +210,10 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="lastName">Owner Last Name</StyledLabel>
-          {msg.lastName ? <small>Please use only letters</small> : null}
+          <StyledLabel htmlFor="lastName">Owner Last Name*</StyledLabel>
+          <div>
+            {msg.lastName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -214,16 +226,15 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
-
-          {msg.password ? (
-            <small>Your password should be at least 8 characters long</small>
-          ) : null}
+          <div>
+            {msg.password ? <small>Please use min. 8 characters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
@@ -235,16 +246,17 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="passwordConfirm">Repeat password</StyledLabel>
+          <StyledLabel htmlFor="passwordConfirm">Repeat password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
             <StyledEyeClose onClick={showPassword} />
           )}
-
-          {msg.passwordConfirm ? (
-            <small>Your passwords are not the same</small>
-          ) : null}
+          <div>
+            {msg.passwordConfirm ? (
+              <small>Passwords are not the same</small>
+            ) : null}
+          </div>
         </StyledInputContainer>
 
         <StyledButton cafe cafeRegister>
@@ -260,11 +272,14 @@ export default function RegistrationCafe() {
         {warningValidation ? (
           <p className="warning">Please fill all fields!</p>
         ) : null}
-        {showWarning ? <Warning msg="service is out of order" /> : null}
+        <div className="oops-warning">
+          {showWarning ? <Warning msg="the service is out of order" /> : null}
+        </div>
       </StyledForm>
+
       <p>
-        If you have already registered, please <Link to="/login">login</Link>.
+        If you have already registered, please <Link to="/login">log in</Link>.
       </p>
-    </section>
+    </StyledCentered>
   );
 }

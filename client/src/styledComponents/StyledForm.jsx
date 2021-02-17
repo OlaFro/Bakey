@@ -5,9 +5,7 @@ import device from "./device";
 import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
-  /* margin-top only for preview purposes */
-  margin-top: 3rem;
-
+  margin-top: var(--space-l);
   width: 90%;
   max-width: 448px;
   border: var(--border) solid ${colors.accent1};
@@ -23,24 +21,28 @@ export const StyledForm = styled.form`
     background-color: white;
     padding: var(--space-xs) var(--space-s);
     position: absolute;
-    top: 24px;
+    top: -22px;
     left: var(--space-s);
     font-size: 0.5rem;
-    @media ${device.mobile} {
+    @media ${device.tabletPortrait} {
       font-size: 1rem;
       top: -44.8px;
       left: var(--space-l);
     }
   }
-
   > small {
     padding: var(--space-xs);
     color: ${colors.warning};
     text-align: center;
   }
-
   .warning {
     color: ${colors.warning};
+  }
+  .oops-warning {
+    grid-area: warning;
+  }
+  > button {
+    margin-top: var(--space-s);
   }
 
   @media ${device.mobile} {
@@ -58,7 +60,7 @@ export const StyledForm = styled.form`
         display: grid;
         grid-template-columns: auto auto;
         grid-column-gap: var(--space-m);
-        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register";
+        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
       } ;
     `};
 `;
@@ -68,18 +70,20 @@ export const StyledInputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: var(--space-xs) 0;
+  margin: var(--space-s) 0;
+  grid-area: "input";
 
-  & small {
-    padding: var(--space-xs);
-    color: ${colors.warning};
-    text-align: center;
+  > div {
+    height: 16px;
+    > small {
+      padding: var(--space-xs);
+      color: ${colors.warning};
+    }
   }
 
   @media ${device.tabletPortrait} {
     width: 320px;
   }
-  grid-area: "input";
 `;
 
 export const StyledLabel = styled.label`

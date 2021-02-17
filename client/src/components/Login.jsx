@@ -12,7 +12,10 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledForm";
-import { StyledButton } from "../styledComponents/StyledButton";
+import StyledCentered from "../styledComponents/StyledCentered";
+import {StyledButton} from "../styledComponents/StyledButton";
+
+
 
 export default function Login(props) {
   const [loginData, setData] = useState({});
@@ -78,7 +81,7 @@ export default function Login(props) {
   };
 
   return (
-    <section>
+    <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
           <h2>Login</h2>
@@ -92,7 +95,7 @@ export default function Login(props) {
             onInput={getData}
             required={true}
           />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
+          <StyledLabel htmlFor="email">Email*</StyledLabel>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -104,7 +107,7 @@ export default function Login(props) {
             onInput={getData}
             required={true}
           />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -113,12 +116,12 @@ export default function Login(props) {
         </StyledInputContainer>
         <StyledButton>Log in</StyledButton>
         {warning ? <small>Your email or password are incorrect.</small> : null}
-        {showWarning ? <Warning msg="service is out of order" /> : null}
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
       <p>
         If you have no account yet, please{" "}
         <Link to="/registration/user">register</Link>.
       </p>
-    </section>
+    </StyledCentered>
   );
 }
