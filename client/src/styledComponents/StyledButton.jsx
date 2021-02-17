@@ -76,8 +76,5 @@ export const StyledSmallButton = styled.button `
         border: var(--border) solid ${darken(0.1, colors.accent2)};
         color: var(--black);
       }
-      a {
-        padding-right: 0;
-      }
  }
 `;

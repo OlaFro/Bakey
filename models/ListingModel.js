@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ListingsSchema = new mongoose.Schema({
+const ListingSchema = new mongoose.Schema({
   id: {
     type: String,
     unique: true,
@@ -14,7 +14,6 @@ const ListingsSchema = new mongoose.Schema({
       type: String,
       required: true,
   },
-
   listingName: {
       type: String,
       required: true,
@@ -39,7 +38,15 @@ const ListingsSchema = new mongoose.Schema({
   },
  listingPicture: {
      type: String,
+     required: true
  },
+ pickUpDate: {
+     type: Date,
+     required: true
+ },
+ listingStatus: {
+    type: String, enum: ["active", "inactive", "sold"], required: true 
+ }
 });
 
-module.exports = mongoose.model("Listing", UsersSchema);
+module.exports = mongoose.model("Listing", ListingSchema);
