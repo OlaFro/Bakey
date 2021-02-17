@@ -63,6 +63,18 @@ export const StyledForm = styled.form`
         grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
       } ;
     `};
+  ${(props) =>
+    props.listing &&
+    css`
+      border: var(--border) solid ${colors.accent2};
+      width: 90%;
+      max-width: 800px;
+      display: grid;
+
+      > input[type="text"] {
+        width: 100%;
+      }
+    `}
 `;
 
 export const StyledInputContainer = styled.div`
@@ -136,6 +148,11 @@ export const StyledInputField = styled.input`
         border: var(--border) solid ${darken(0.2, colors.gray)};
       }
     `};
+  ${(props) =>
+    props.long &&
+    css`
+      width: 100%;
+    `}
 `;
 
 export const StyledSelect = styled.select`
