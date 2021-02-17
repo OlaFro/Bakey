@@ -44,6 +44,7 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 - add alt to the images (at least something generic, it can be also name of the cake etc....)
 - use labels for inputs, not just place holders (or at least use aria-label in that case!)
 - do not disable focus
+- use anchor tag when redirecting to another page or button when click event - not both at once :)
 
 ## Styling
 
@@ -54,6 +55,10 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
   - avoid definition of height, use paddings instead of
   - use [combination of width and max-width](https://blog.prototypr.io/what-even-is-the-difference-between-width-and-max-width-8f37b282c7f1) if something should be not too big on bigger screens (width in %, max-width in px)
   - use flex with wrapping for example for lists items etc.
+- units best praxis:
+  - `rem` for font size (can then be changed just in root)
+  - variables defined in `em` for padding/margins/spacings - proportional everytime to font size
+  - px for widths/heights/positions that should be absolute, not changable
 
 ## Axios
 
