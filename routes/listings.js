@@ -1,36 +1,49 @@
 var express = require("express");
 var router = express.Router();
 const ListingModel = require("../models/ListingModel");
+let multer = require("multer");
+const {v4: uuidv4} =  require("uuid")
 
-router.post("/newlisting", (req, res, next) => {
-  const newListing = req.body;
+let storage = multer.diskStorage({
+  destination: "uploads/images",
+  filename: function(req, file, cb) {
+    cb(null, uuidv4() + "." + file.mimetype.split("/")[1]);
+  }
+})
+
+let uploads = multer({storage: storage, limits: {fileSize: 1000000}})
+
+
+router.post("/addlisting", uploads.single("file"), (req, res, next) => {
+  const addListing = req.body;
   ListingModel.estimatedDocumentCount({}, (err, result) => {
     if (err) {
       res.send(err);
     } else {
-      newListing.id = result + 1;
+      addListing.id = result + 1;
 
       let addedListing = new ListingModel({
-        id: newListing.id,
+        id: addListing.id,
         //from the authentication:
-        cafeId: newListing.cafeId,
-        cafeName: newListing.cafeName,
+        cafeId: addListing.cafeId,
+        cafeName: addListing.cafeName,
         //from the form:
-        listingName: newListing.listingName,
-        listingTags: newListing.listingTags,
-        listingAllergenes: newListing.listingAllergenes,
-        totalPieces: newListing.totalPieces,
+        listingName: addListing.listingName,
+        listingTags: addListing.listingTags,
+        listingAllergenes: addListing.listingAllergenes,
+        totalPieces: addListing.totalPieces,
         //at the beginning same as totalPieces
-        availablePieces: newListing.totalPieces,
-        piecePrice: newListing.piecePrice,
-        listingPicture: newListing.listingPicture,
+        availablePieces: addListing.totalPieces,
+        piecePrice: addListing.piecePrice,
+        //there should be a condition to send the path from a placeholder image if the file is empty.
+        listingPicture: req.file.path,
+        pickUpDate: addListing.pickUpDate
       });
     }
   });
 });
-
+/* 
 router.put("/update", (req, res, next) => {
-  //not sure about where to get the id of the listing... see line 57 too
   const ListingId = req.body.id;
   const updatedListing = req.body;
   ListingModel.findByIdAndUpdate(ListingId, {
@@ -38,10 +51,8 @@ router.put("/update", (req, res, next) => {
     listingTags: updatedListing.listingTags,
     listingAllergenes: updatedListing.listingAllergenes,
     totalPieces: updatedListing.totalPieces,
-    //guess we can calculate how many pieces are left and also use this to just update the available pieces?
     availablePieces: updatedListing.availablePieces,
     piecePrice: updatedListing.piecePrice,
-    //will leave the updating the photo for another put method
   })
     .then((update) => {
       console.log(update);
@@ -52,10 +63,8 @@ router.put("/update", (req, res, next) => {
     });
 });
 
-//for the listing pictures
 
 router.put("/updatepic", (req, res, next) => {
-  //not sure about where to get the id of the listing
   const ListingId = req.body.id;
   ListingModel.findByIdAndUpdate(
     ListingId,
@@ -82,6 +91,6 @@ router.delete("/delete", (req, res, next) => {
       console.log(err)
   });
 });
-
+ */
 
 module.exports = router;

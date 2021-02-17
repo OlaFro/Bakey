@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   StyledMenu,
   StyledExit,
@@ -17,6 +17,7 @@ import axios from "axios";
 
 export default function Navigation(props) {
   const [open, setOpen] = useState(0);
+  const history = useHistory();
 
   const handleOpen = () => {
     setOpen(1);
@@ -34,6 +35,7 @@ export default function Navigation(props) {
       url: "/users/logout"
     }).then((res)=>{
       setIsLogged(res.data.logged);
+      history.push("/login");
     }).catch((err) => console.log(err))
   }
 
@@ -53,7 +55,7 @@ export default function Navigation(props) {
         <StyledNavBtnsContainer display={open}>
           {isLogged ? (
             <StyledSmallButton onClick={logout}>
-              <Link to="/login">Log out</Link>
+              Log out
             </StyledSmallButton>
           ) : (
             <StyledNavBtn login>
