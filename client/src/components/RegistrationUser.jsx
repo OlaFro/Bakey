@@ -96,7 +96,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="firstName">First Name</StyledLabel>
+          <StyledLabel htmlFor="firstName">First Name*</StyledLabel>
           <div>
             {msg.firstName ? <small>Please use only letters</small> : null}
           </div>
@@ -110,7 +110,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="lastName">Last Name</StyledLabel>
+          <StyledLabel htmlFor="lastName">Last Name*</StyledLabel>
           <div>
             {msg.lastName ? <small>Please use only letters</small> : null}
           </div>
@@ -124,7 +124,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
+          <StyledLabel htmlFor="email">Email*</StyledLabel>
           <div>
             {msg.email ? <small>Please use proper email format</small> : null}
           </div>
@@ -138,7 +138,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -157,7 +157,7 @@ export default function RegistrationUser(props) {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="confirmPassword">Repeat password</StyledLabel>
+          <StyledLabel htmlFor="confirmPassword">Repeat password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
