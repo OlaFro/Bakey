@@ -24,9 +24,7 @@ validateData.register = (req, res, next) => {
 
   if (req.body.userType === "cafe") {
     req.check("cafeName", "cafeName").isLength({ min: 1 });
-    req.check("cafeStreet", "street").custom((value) => {
-      return value.match(/^[A-Za-z ]+$/);
-    });
+    req.check("cafeStreet", "street").isLength({ min: 2 });
     req.check("cafeStreetNr", "number").isAlphanumeric();
     req.check("cafeZip", "zip").isNumeric();
   }

@@ -1,5 +1,6 @@
 import GlobalStyle from "./styledComponents/GlobalStyle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,10 +16,33 @@ import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState({ state: false, role: "" });
   const [userName, setUserName] = useState("");
-  const [profilePic, setProfilePic] = useState();
-  const [role, setRole] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  const [cafeName, setCafeName] = useState("");
+
+  useEffect(() => {
+    console.log("authentication  request sent");
+    Axios({
+      method: "GET",
+      url: `users/auth`,
+    })
+      .then((res) => {
+        if (res.data.authenticated) {
+          console.log(res.data);
+          setIsLogged({ state: true, role: res.data.userType });
+          setUserName(res.data.firstName);
+          setProfilePic(res.data.profilePic);
+          setCafeName(res.data.cafeName);
+        } else {
+          setIsLogged({ state: false, role: "" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLogged({ state: false, role: "" });
+      });
+  }, []);
 
   return (
     <bakeyContext.Provider
@@ -29,8 +53,8 @@ function App() {
         setUserName,
         profilePic,
         setProfilePic,
-        role,
-        setRole,
+        cafeName,
+        setCafeName,
       }}
     >
       <Router>
@@ -40,28 +64,28 @@ function App() {
           <Route path="/" exact>
             <h1>Welcome to bakey</h1>
           </Route>
-          <Route path="/registration/user">
+          <Route path="/registration/user" exact>
             <RegistrationUser />
           </Route>
-          <Route path="/registration/cafe">
+          <Route path="/registration/cafe" exact>
             <RegistrationCafe />
           </Route>
-          <Route path="/client/dashboard">
-            {isLogged && role === "client" ? (
+          <Route path="/client-dashboard" exact>
+            {isLogged.state && isLogged.role === "client" ? (
               <DashboardUser />
             ) : (
-              <Redirect to="/login" />
+              <Redirect to="/" />
             )}
           </Route>
-          <Route path="/cafe/dashboard">
-            {isLogged && role === "cafe" ? (
+          <Route path="/cafe-dashboard" exact>
+            {isLogged.state && isLogged.role === "cafe" ? (
               <DashboardCafe />
             ) : (
-              <Redirect to="/login" />
+              <Redirect to="/" />
             )}
           </Route>
-          <Route path="/login">
-            <Login />
+          <Route path="/login" exact>
+            {isLogged.state ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="*">
             {" "}

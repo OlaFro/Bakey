@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 
@@ -12,18 +12,26 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledForm";
-import {StyledButton} from "../styledComponents/StyledButton";
+import StyledCentered from "../styledComponents/StyledCentered";
+import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function Login(props) {
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-  const { setIsLogged, setUserName, setProfilePic, setRole } = useContext(
+  const { setIsLogged, setUserName, setProfilePic, setCafeName } = useContext(
     bakeyContext
   );
   const [visible, setVisible] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
 
   let history = useHistory();
+
+  useEffect(() => {
+    return function () {
+      console.log("component is unmounting");
+      setData({});
+    };
+  }, []);
 
   const showPassword = () => {
     setVisible(true);
@@ -40,6 +48,7 @@ export default function Login(props) {
 
   const submit = (e) => {
     e.preventDefault();
+    setShowWarning(false);
     console.log("request send", loginData);
 
     Axios({
@@ -53,12 +62,12 @@ export default function Login(props) {
       .then((res) => {
         if (res.data.logged) {
           console.log(res.data);
-          setIsLogged(true);
+          setIsLogged({ state: true, role: res.data.userType });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
-          setRole(() => res.data.userType);
+          setCafeName(res.data.cafeName);
           setData({});
-          history.push(`/${res.data.userType}/dashboard`);
+          history.push(`/${res.data.userType}-dashboard`);
         } else {
           setWarning(true);
         }
@@ -70,7 +79,7 @@ export default function Login(props) {
   };
 
   return (
-    <section>
+    <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
           <h2>Login</h2>
@@ -84,7 +93,7 @@ export default function Login(props) {
             onInput={getData}
             required={true}
           />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
+          <StyledLabel htmlFor="email">Email*</StyledLabel>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -96,7 +105,7 @@ export default function Login(props) {
             onInput={getData}
             required={true}
           />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -105,12 +114,12 @@ export default function Login(props) {
         </StyledInputContainer>
         <StyledButton>Log in</StyledButton>
         {warning ? <small>Your email or password are incorrect.</small> : null}
-        {showWarning ? <Warning msg="service is out of order" /> : null}
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
       <p>
         If you have no account yet, please{" "}
         <Link to="/registration/user">register</Link>.
       </p>
-    </section>
+    </StyledCentered>
   );
 }
