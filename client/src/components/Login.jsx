@@ -85,7 +85,7 @@ export default function Login(props) {
             onInput={getData}
             required={true}
           />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
+          <StyledLabel htmlFor="email">Email*</StyledLabel>
         </StyledInputContainer>
 
         <StyledInputContainer>
@@ -97,7 +97,7 @@ export default function Login(props) {
             onInput={getData}
             required={true}
           />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
