@@ -96,16 +96,28 @@ export default function ListingForm() {
           <StyledInputContainer>
             <StyledInputField
               cafe
-              min="1"
-              max="20"
               type="number"
-              name="piecePrice"
-              id="piecePrice"
+              name="availablePieces"
+              id="availablePieces"
               placeholder=" "
               onInput={getValue}
               required={true}
             />
-            <StyledLabel htmlFor="piecePrice">Pieces in the cake*</StyledLabel>
+            <StyledLabel htmlFor="availablePieces">
+              Pieces in the cake*
+            </StyledLabel>
+          </StyledInputContainer>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              type="date"
+              name="availablePieces"
+              id="availablePieces"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="availablePieces">Pick-up date*</StyledLabel>
           </StyledInputContainer>
         </StyledCentered>
       </StyledForm>
