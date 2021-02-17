@@ -95,7 +95,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeName">Café Name</StyledLabel>
+          <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
           <div>{msg.cafeName ? <small>Required</small> : null}</div>
         </StyledInputContainer>
         <StyledInputContainer>
@@ -108,7 +108,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="email">Email</StyledLabel>
+          <StyledLabel htmlFor="email">Email*</StyledLabel>
           <div>
             {msg.email ? <small>Please use proper email format</small> : null}
           </div>
@@ -124,7 +124,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeStreet">Address / Street</StyledLabel>
+          <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
           <div>
             {msg.cafeStreet ? <small> Please use only letters </small> : null}
           </div>
@@ -139,7 +139,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr</StyledLabel>
+          <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr*</StyledLabel>
           <div>
             {msg.cafeStreetNr ? (
               <small>Please use only letters and numbers.</small>
@@ -157,7 +157,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeZip">Address / ZIP code</StyledLabel>
+          <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
           <div>
             {msg.cafeZip ? <small>Please use only numbers</small> : null}
           </div>
@@ -172,7 +172,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="city">Address / City</StyledLabel>
+          <StyledLabel htmlFor="city">Address / City*</StyledLabel>
           <div>{msg.city ? <small>Please use only letters</small> : null}</div>
         </StyledInputContainer>
 
@@ -186,7 +186,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="firstName">Owner First Name</StyledLabel>
+          <StyledLabel htmlFor="firstName">Owner First Name*</StyledLabel>
           <div>
             {msg.firstName ? <small>Please use only letters</small> : null}
           </div>
@@ -201,7 +201,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="lastName">Owner Last Name</StyledLabel>
+          <StyledLabel htmlFor="lastName">Owner Last Name*</StyledLabel>
           <div>
             {msg.lastName ? <small>Please use only letters</small> : null}
           </div>
@@ -217,7 +217,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -237,7 +237,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="passwordConfirm">Repeat password</StyledLabel>
+          <StyledLabel htmlFor="passwordConfirm">Repeat password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
