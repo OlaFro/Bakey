@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { bakeyContext } from "../Context";
 import { Link } from "react-router-dom";
-import { StyledButton } from "../styledComponents/StyledButton";
+import StyledLink from "../styledComponents/StyledLink";
 
 export default function DashboardUser() {
   const { userName } = useContext(bakeyContext);
@@ -12,9 +12,9 @@ export default function DashboardUser() {
       </header>
       <main>
         <p>You successfully logged in as a cafe and this is your dashboard. </p>
-        <StyledButton>
+        <StyledLink>
           <Link to="/listingform">Add Listing</Link>
-        </StyledButton>
+        </StyledLink>
       </main>
     </div>
   );
