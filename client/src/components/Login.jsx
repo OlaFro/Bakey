@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 
@@ -12,7 +12,7 @@ import {
   StyledEyeClose,
   StyledEye,
 } from "../styledComponents/StyledForm";
-import {StyledButton} from "../styledComponents/StyledButton";
+import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function Login(props) {
   const [loginData, setData] = useState({});
@@ -24,6 +24,13 @@ export default function Login(props) {
   const [showWarning, setShowWarning] = useState(false);
 
   let history = useHistory();
+
+  useEffect(() => {
+    return function () {
+      console.log("component is unmounting");
+      setData({});
+    };
+  }, []);
 
   const showPassword = () => {
     setVisible(true);
@@ -40,6 +47,7 @@ export default function Login(props) {
 
   const submit = (e) => {
     e.preventDefault();
+    setShowWarning(false);
     console.log("request send", loginData);
 
     Axios({
@@ -53,12 +61,12 @@ export default function Login(props) {
       .then((res) => {
         if (res.data.logged) {
           console.log(res.data);
-          setIsLogged(true);
+          setIsLogged({ state: true, role: res.data.userType });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
-          setRole(() => res.data.userType);
+          // setRole(() => res.data.userType);
           setData({});
-          history.push(`/${res.data.userType}/dashboard`);
+          history.push(`/${res.data.userType}-dashboard`);
         } else {
           setWarning(true);
         }
