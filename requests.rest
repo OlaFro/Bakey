@@ -40,5 +40,5 @@ Content-Type: application/json
 "listingAllergenes": "[dairy]",
 "totalPieces": 10,
 "piecePrice": 2,
-"pickUpDate": "20.02.2021"
+"pickUpDate": "2021-02-21"
 }
