@@ -72,10 +72,9 @@ export default function ListingForm() {
             />
           </StyledPhotoUpload>
         </StyledOtherInputsContainer>
-        <StyledInputContainer>
+        <StyledInputContainer long>
           <StyledInputField
             cafe
-            long
             type="text"
             name="listingName"
             id="listingName"

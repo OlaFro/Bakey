@@ -17,6 +17,33 @@ export const StyledForm = styled.form`
   justify-content: space-around;
   align-items: center;
 
+  ${(props) =>
+    props.cafe &&
+    css`
+      width: 90%;
+      max-width: 800px;
+      border: var(--border) solid ${colors.accent2};
+      @media ${device.tabletLandscape} {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-column-gap: var(--space-m);
+        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
+      } ;
+    `};
+  ${(props) =>
+    props.listing &&
+    css`
+      border: var(--border) solid ${colors.accent2};
+      width: 90%;
+      max-width: 800px;
+      display: grid;
+      /* grid-template-columns: auto auto; */
+
+      > div {
+        /* border: 1px solid red; */
+      }
+    `}
+
   > Header {
     background-color: white;
     padding: var(--space-xs) var(--space-s);
@@ -49,32 +76,6 @@ export const StyledForm = styled.form`
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
       calc(var(--space-m) * 2);
   }
-
-  ${(props) =>
-    props.cafe &&
-    css`
-      width: 90%;
-      max-width: 800px;
-      border: var(--border) solid ${colors.accent2};
-      @media ${device.tabletLandscape} {
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-column-gap: var(--space-m);
-        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
-      } ;
-    `};
-  ${(props) =>
-    props.listing &&
-    css`
-      border: var(--border) solid ${colors.accent2};
-      width: 90%;
-      max-width: 800px;
-      display: grid;
-
-      > input[type="text"] {
-        width: 100%;
-      }
-    `}
 `;
 
 export const StyledPhotoUpload = styled.div`
@@ -130,6 +131,13 @@ export const StyledInputContainer = styled.div`
   @media ${device.tabletPortrait} {
     width: 320px;
   }
+
+  ${(props) =>
+    props.long &&
+    css`
+      width: 800px;
+      border: 1px solid blue;
+    `}
 `;
 
 export const StyledLabel = styled.label`
@@ -182,11 +190,7 @@ export const StyledInputField = styled.input`
         border: var(--border) solid ${darken(0.2, colors.gray)};
       }
     `};
-  ${(props) =>
-    props.long &&
-    css`
-      width: 100%;
-    `}
+ */
 `;
 
 export const StyledSelect = styled.select`
@@ -229,6 +233,7 @@ export const StyledSelect = styled.select`
     `};
 `;
 
+// container for the untypical inputs type file or checkbox
 export const StyledOtherInputsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
