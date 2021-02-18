@@ -63,9 +63,7 @@ function App() {
         <Navigation />
         <Switch>
           <Route path="/" exact>
-            {/* <h1>Welcome to bakey</h1>
-            listingForm for preview, will be deleted later */}
-            <ListingForm />
+            <h1>Welcome to bakey</h1>
           </Route>
           <Route path="/registration/user" exact>
             <RegistrationUser />
@@ -93,7 +91,9 @@ function App() {
           <Route path="/listingform" exact>
             {isLogged.state && isLogged.role === "cafe" ? (
               <ListingForm />
-            ) : (<Redirect to="/" />)}
+            ) : (
+              <Redirect to="/" />
+            )}
           </Route>
           <Route path="*">
             {" "}
