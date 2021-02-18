@@ -63,7 +63,9 @@ function App() {
         <Navigation />
         <Switch>
           <Route path="/" exact>
-            <h1>Welcome to bakey</h1>
+            {/* <h1>Welcome to bakey</h1>
+            listingForm for preview, will be deleted later */}
+            <ListingForm />
           </Route>
           <Route path="/registration/user" exact>
             <RegistrationUser />
