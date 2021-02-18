@@ -209,7 +209,7 @@ export const StyledCheckboxContainer = styled.div`
     css`
       border: var(--border) solid ${colors.accent2};
       :hover {
-        cursor: text;
+        cursor: pointer;
         border: var(--border) solid ${darken(0.2, colors.gray)};
       }
       :focus {

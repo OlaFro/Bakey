@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Avatar } from "./UploadPic";
 import StyledCentered from "../styledComponents/StyledCentered";
 import {
   StyledForm,
@@ -32,8 +31,6 @@ export default function ListingForm() {
         <header>
           <h2>Fill out:</h2>
         </header>
-
-        <Avatar />
 
         <StyledInputContainer>
           <StyledInputField
