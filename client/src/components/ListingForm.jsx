@@ -59,9 +59,9 @@ export default function ListingForm() {
                 <StyledPhoto />
               )}
 
-              <div>
-                <small>Please use JPG or PNG in square format</small>
-              </div>
+              <small>
+                Please use JPG or PNG in square format (max. size 2MB).
+              </small>
             </label>
 
             <input
@@ -201,7 +201,7 @@ export default function ListingForm() {
           <StyledInputContainer>
             <StyledInputField
               cafe
-              type="time"
+              type="datetime-local"
               name="pickUpTime"
               id="pickUpTime"
               placeholder=" "

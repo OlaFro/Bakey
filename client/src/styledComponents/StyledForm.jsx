@@ -26,7 +26,7 @@ export const StyledForm = styled.form`
       @media ${device.tabletLandscape} {
         display: grid;
         grid-template-columns: auto auto;
-        grid-column-gap: var(--space-m);
+        column-gap: var(--space-m);
         grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
       } ;
     `};
@@ -89,8 +89,15 @@ export const StyledPhotoUpload = styled.div`
   > label {
     cursor: pointer;
     display: grid;
-    grid-template-columns: 125px 1fr;
-    align-items: center;
+    grid-template-rows: 125px 1fr;
+    row-gap: var(--space-xs);
+    text-align: left;
+
+    @media ${device.tabletLandscape} {
+      grid-template-columns: 125px 1fr;
+      column-gap: var(--space-s);
+      align-items: center;
+    }
 
     > .picContainer {
       margin: 0;
@@ -278,8 +285,8 @@ export const StyledOtherInputsContainer = styled.div`
   ${(props) =>
     props.long &&
     css`
-      @media ${device.tabletPortrait} {
-        width: 700px;
+      @media ${device.tabletLandscape} {
+        max-width: 700px;
       }
     `}
 `;
