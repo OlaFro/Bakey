@@ -189,18 +189,7 @@ export default function ListingForm() {
           <StyledInputContainer>
             <StyledInputField
               cafe
-              type="date"
-              name="pickUpDate"
-              id="pickUpDate"
-              placeholder=" "
-              onInput={getValue}
-              required={true}
-            />
-            <StyledLabel htmlFor="pickUpDate">Pick-up date*</StyledLabel>
-          </StyledInputContainer>
-          <StyledInputContainer>
-            <StyledInputField
-              cafe
+              long
               type="datetime-local"
               name="pickUpTime"
               id="pickUpTime"
