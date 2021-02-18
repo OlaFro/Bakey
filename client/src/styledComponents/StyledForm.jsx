@@ -40,7 +40,8 @@ export const StyledForm = styled.form`
       /* grid-template-columns: auto auto; */
 
       > div {
-        /* border: 1px solid red; */
+        display: flex;
+        justify-content: space-between;
       }
     `}
 
@@ -83,7 +84,7 @@ export const StyledPhotoUpload = styled.div`
   > label {
     cursor: pointer;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 125px 1fr;
     align-items: center;
 
     > .picContainer {
@@ -135,8 +136,9 @@ export const StyledInputContainer = styled.div`
   ${(props) =>
     props.long &&
     css`
-      width: 800px;
-      border: 1px solid blue;
+      @media ${device.tabletPortrait} {
+        width: 700px;
+      }
     `}
 `;
 
@@ -271,6 +273,14 @@ export const StyledOtherInputsContainer = styled.div`
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
   }
+
+  ${(props) =>
+    props.long &&
+    css`
+      @media ${device.tabletPortrait} {
+        width: 700px;
+      }
+    `}
 `;
 
 export const StyledEyeClose = styled(EyeClose)`

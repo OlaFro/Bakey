@@ -47,7 +47,7 @@ export default function ListingForm() {
         <header>
           <h2>Fill out:</h2>
         </header>
-        <StyledOtherInputsContainer cafe>
+        <StyledOtherInputsContainer cafe long>
           <header>Upload photo</header>
           <StyledPhotoUpload cafe>
             <label htmlFor="upload-button">
@@ -88,7 +88,7 @@ export default function ListingForm() {
           </div>
         </StyledInputContainer>
 
-        <StyledOtherInputsContainer cafe>
+        <StyledOtherInputsContainer cafe long>
           <header>Allergenes</header>
           <div>
             <input type="checkbox" id="cereal" name="cereal" />
@@ -123,7 +123,7 @@ export default function ListingForm() {
             <label htmlFor="lupins">lupins</label>
           </div>
         </StyledOtherInputsContainer>
-        <StyledOtherInputsContainer cafe>
+        <StyledOtherInputsContainer cafe long>
           <header>Tags</header>
           <div>
             <input type="checkbox" id="vegan" name="vegan" />
@@ -150,48 +150,66 @@ export default function ListingForm() {
             <label htmlFor="wheatFree">wheat-free</label>
           </div>
         </StyledOtherInputsContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            min="1"
-            max="20"
-            type="number"
-            name="piecePrice"
-            id="piecePrice"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="piecePrice">Price for a piece (€)*</StyledLabel>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            min="1"
-            max="20"
-            type="number"
-            name="availablePieces"
-            id="availablePieces"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="availablePieces">
-            Pieces in the cake*
-          </StyledLabel>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="date"
-            name="pickUpDate"
-            id="pickUpDate"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="pickUpDate">Pick-up date*</StyledLabel>
-        </StyledInputContainer>
+        <div>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              min="1"
+              max="20"
+              type="number"
+              name="piecePrice"
+              id="piecePrice"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="piecePrice">
+              Price for a piece (€)*
+            </StyledLabel>
+          </StyledInputContainer>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              min="1"
+              max="20"
+              type="number"
+              name="availablePieces"
+              id="availablePieces"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="availablePieces">
+              Pieces in the cake*
+            </StyledLabel>
+          </StyledInputContainer>
+        </div>
+        <div>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              type="date"
+              name="pickUpDate"
+              id="pickUpDate"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="pickUpDate">Pick-up date*</StyledLabel>
+          </StyledInputContainer>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              type="time"
+              name="pickUpTime"
+              id="pickUpTime"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
+          </StyledInputContainer>
+        </div>
         <StyledButton cafe>Save</StyledButton>
       </StyledForm>
     </StyledCentered>
