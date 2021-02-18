@@ -31,13 +31,13 @@ GET http://localhost:5000/users/auth
 ###
 
 POST http://localhost:5000/listings/addlisting
+Content-Type: application/json
 
 {
-"id": "1",
 "cafeName": "jane doe",
 "listingName": "strawberry cheescake",
-"listingTags": {"vegetarian"},
-"listingAllergenes": {"dairy"},
+"listingTags": "[vegetarian]",
+"listingAllergenes": "[dairy]",
 "totalPieces": 10,
 "piecePrice": 2,
 "pickUpDate": "20.02.2021"

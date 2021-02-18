@@ -28,6 +28,8 @@ router.post(
   (req, res, next) => {
     const addListing = req.body;
     const user = req.user;
+    console.log(user);
+    console.log(addListing);
     ListingModel.estimatedDocumentCount({}, (err, result) => {
       if (err) {
         res.send(err);
@@ -47,11 +49,12 @@ router.post(
           availablePieces: addListing.totalPieces,
           piecePrice: addListing.piecePrice,
           //there should be a condition to send the path from a placeholder image if the file is empty.
-          listingPicture: req.file.path
+          listingPicture: req.file
             ? req.file.path
             : "../uploads/images/listingplaceholder.png",
           pickUpDate: addListing.pickUpDate,
         });
+        res.send(addedListing);
       }
     });
   }
