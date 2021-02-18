@@ -48,28 +48,31 @@ export default function ListingForm() {
         <header>
           <h2>Fill out:</h2>
         </header>
-        <StyledPhotoUpload>
-          <label htmlFor="upload-button">
-            {image.preview ? (
-              <div className="picContainer">
-                <img src={image.preview} alt="Listing" />
-              </div>
-            ) : (
-              <StyledPhoto />
-            )}
-            <div>
-              <span>Upload photo</span>
-              <small>square format</small>
-            </div>
-          </label>
+        <StyledCheckboxContainer cafe>
+          <header>Upload photo</header>
+          <StyledPhotoUpload cafe>
+            <label htmlFor="upload-button">
+              {image.preview ? (
+                <div className="picContainer">
+                  <img src={image.preview} alt="Listing" />
+                </div>
+              ) : (
+                <StyledPhoto />
+              )}
 
-          <input
-            type="file"
-            name="userImg"
-            id="upload-button"
-            onChange={getPhoto}
-          />
-        </StyledPhotoUpload>
+              <div>
+                <small>Please use JPG or PNG in square format</small>
+              </div>
+            </label>
+
+            <input
+              type="file"
+              name="userImg"
+              id="upload-button"
+              onChange={getPhoto}
+            />
+          </StyledPhotoUpload>
+        </StyledCheckboxContainer>
         <StyledInputContainer>
           <StyledInputField
             cafe

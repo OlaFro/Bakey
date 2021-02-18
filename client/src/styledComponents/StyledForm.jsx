@@ -78,6 +78,40 @@ export const StyledForm = styled.form`
     `}
 `;
 
+export const StyledPhotoUpload = styled.div`
+  padding: var(--space-xs);
+  > label {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+
+    > .picContainer {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      width: 125px;
+      height: 125px;
+      border-radius: var(--border-radius);
+      > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 125px;
+      }
+    }
+
+    > div {
+      margin: 0 var(--space-s);
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  /* hiding input type file */
+  > input {
+    display: none;
+  }
+`;
 export const StyledInputContainer = styled.div`
   width: 240px;
   position: relative;
@@ -232,35 +266,6 @@ export const StyledCheckboxContainer = styled.div`
     background: white;
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
-  }
-`;
-
-export const StyledPhotoUpload = styled.div`
-  > label {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-
-    > .picContainer {
-      position: relative;
-      overflow: hidden;
-      width: 125px;
-      height: 125px;
-      > img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 125px;
-      }
-    }
-
-    > div {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-  > input {
-    display: none;
   }
 `;
 
