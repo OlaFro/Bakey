@@ -91,7 +91,9 @@ function App() {
           <Route path="/listingform" exact>
             {isLogged.state && isLogged.role === "cafe" ? (
               <ListingForm />
-            ) : (<Redirect to="/" />)}
+            ) : (
+              <Redirect to="/" />
+            )}
           </Route>
           <Route path="*">
             {" "}

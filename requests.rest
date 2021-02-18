@@ -27,3 +27,19 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/users/auth
+
+###
+
+POST http://localhost:5000/listings/addlisting
+Content-Type: application/json
+
+{
+"cafeName": "jane doe",
+"listingName": "strawberry cheescake",
+"listingTags": "[vegetarian]",
+"listingAllergenes": "[dairy]",
+"totalPieces": 10,
+"piecePrice": 2,
+"pickUpDate": "2021-02-21",
+"listingStatus":"active"
+}
