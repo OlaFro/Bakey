@@ -3,6 +3,7 @@ import { darken } from "polished";
 import colors from "./colors";
 import device from "./device";
 import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
+import { Photograph } from "styled-icons/heroicons-outline";
 
 export const StyledForm = styled.form`
   margin-top: var(--space-l);
@@ -234,6 +235,35 @@ export const StyledCheckboxContainer = styled.div`
   }
 `;
 
+export const StyledPhotoUpload = styled.div`
+  > label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    > .picContainer {
+      position: relative;
+      overflow: hidden;
+      width: 125px;
+      height: 125px;
+      > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 125px;
+      }
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  > input {
+    display: none;
+  }
+`;
+
 export const StyledEyeClose = styled(EyeClose)`
   width: 16px;
   height: 16px;
@@ -259,4 +289,9 @@ export const StyledArrow = styled(ArrowDown)`
   right: 12px;
   top: 19.2px;
   pointer-events: none;
+`;
+
+export const StyledPhoto = styled(Photograph)`
+  width: 48px;
+  height: 48px;
 `;

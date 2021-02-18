@@ -6,19 +6,36 @@ import {
   StyledInputContainer,
   StyledInputField,
   StyledCheckboxContainer,
+  StyledPhoto,
+  StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
+// import { FaUserCircle } from "react-icons/fa";
 
 export default function ListingForm() {
   const [data, setData] = useState({});
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
+  const [photoSuccess, setPhotoSuccess] = useState(false);
+  const [photoWarning, setPhotoWarning] = useState(false);
+  const [image, setImage] = useState({ preview: "", raw: "" });
 
   const getValue = (e) => {
     setWarning(false);
     setWarningValidation(false);
     setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const getPhoto = (e) => {
+    setPhotoSuccess(false);
+    setPhotoWarning(false);
+    if (e.target.files.length) {
+      setImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
   };
 
   return (
@@ -31,7 +48,28 @@ export default function ListingForm() {
         <header>
           <h2>Fill out:</h2>
         </header>
+        <StyledPhotoUpload>
+          <label htmlFor="upload-button">
+            {image.preview ? (
+              <div className="picContainer">
+                <img src={image.preview} alt="Listing" />
+              </div>
+            ) : (
+              <StyledPhoto />
+            )}
+            <div>
+              <span>Upload photo</span>
+              <small>square format</small>
+            </div>
+          </label>
 
+          <input
+            type="file"
+            name="userImg"
+            id="upload-button"
+            onChange={getPhoto}
+          />
+        </StyledPhotoUpload>
         <StyledInputContainer>
           <StyledInputField
             cafe
@@ -45,7 +83,7 @@ export default function ListingForm() {
           />
           <StyledLabel htmlFor="listingName">Title*</StyledLabel>
           <div>
-            {/* {msg.firstName ? <small>Please use only letters</small> : null} */}
+            {/* {msg.firstName ? <small>at least 1 char</small> : null} */}
           </div>
         </StyledInputContainer>
 
