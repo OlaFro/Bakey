@@ -10,13 +10,15 @@ import {
   StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
+import Warning from "./Warning";
 
 export default function ListingForm() {
   const [data, setData] = useState({});
   const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
-  const [warningContent, setWarningContent] = useState("");
+
   const [warningValidation, setWarningValidation] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
   const [photoSuccess, setPhotoSuccess] = useState(false);
   const [photoWarning, setPhotoWarning] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -201,6 +203,10 @@ export default function ListingForm() {
           </StyledInputContainer>
         </div>
         <StyledButton cafe>Save</StyledButton>
+        {warningValidation ? (
+          <p className="warning">Please fill all fields!</p>
+        ) : null}
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
     </StyledCentered>
   );
