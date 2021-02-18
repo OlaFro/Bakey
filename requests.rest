@@ -31,6 +31,7 @@ GET http://localhost:5000/users/auth
 ###
 
 POST http://localhost:5000/listings/addlisting
+Content-Type: application/json
 
 {
 "id": "1",
