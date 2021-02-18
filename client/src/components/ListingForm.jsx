@@ -47,7 +47,7 @@ export default function ListingForm() {
         <header>
           <h2>Fill out:</h2>
         </header>
-        <StyledOtherInputsContainer cafe long>
+        <StyledOtherInputsContainer cafe>
           <header>Upload photo</header>
           <StyledPhotoUpload cafe>
             <label htmlFor="upload-button">
@@ -75,6 +75,7 @@ export default function ListingForm() {
         <StyledInputContainer long>
           <StyledInputField
             cafe
+            long
             type="text"
             name="listingName"
             id="listingName"

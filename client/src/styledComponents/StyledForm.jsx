@@ -37,11 +37,16 @@ export const StyledForm = styled.form`
       width: 90%;
       max-width: 800px;
       display: grid;
-      /* grid-template-columns: auto auto; */
+      justify-items: center;
 
       > div {
+        width: 100%;
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        @media ${device.tabletLandscape} {
+          flex-direction: row;
+          justify-content: space-between;
+        }
       }
     `}
 
@@ -132,14 +137,6 @@ export const StyledInputContainer = styled.div`
   @media ${device.tabletPortrait} {
     width: 320px;
   }
-
-  ${(props) =>
-    props.long &&
-    css`
-      @media ${device.tabletPortrait} {
-        width: 700px;
-      }
-    `}
 `;
 
 export const StyledLabel = styled.label`
@@ -192,7 +189,11 @@ export const StyledInputField = styled.input`
         border: var(--border) solid ${darken(0.2, colors.gray)};
       }
     `};
- */
+  ${(props) =>
+    props.long &&
+    css`
+      width: 100%;
+    `}
 `;
 
 export const StyledSelect = styled.select`
@@ -235,7 +236,7 @@ export const StyledSelect = styled.select`
     `};
 `;
 
-// container for the untypical inputs type file or checkbox
+// container for the untypical inputs type file or type checkbox
 export const StyledOtherInputsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -283,6 +284,7 @@ export const StyledOtherInputsContainer = styled.div`
     `}
 `;
 
+// icons used in form:
 export const StyledEyeClose = styled(EyeClose)`
   width: 16px;
   height: 16px;
