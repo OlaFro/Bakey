@@ -56,7 +56,27 @@ validateData.register = (req, res, next) => {
 };
 
 validateData.newListing = (req, res, next) => {
-  req.check("cafeName", "cafeName").isLength({ min: 1 });
+  req.check("listingName", "listingName").isLength({ min: 1 });
+  req
+    .check("totalPieces", "totalPieces")
+    .isNumeric()
+    .custom((value) => {
+      if (value > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  req
+    .check("piecePrice", "piecePrice")
+    .isNumeric()
+    .custom((value) => {
+      if (value > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
 
   let errors = req.validationErrors();
 
