@@ -17,9 +17,7 @@ export default function DashboardUser() {
       <main>
         <p>You successfully logged in as a cafe and this is your dashboard. </p>
         <StyledPlusLink>
-          <StyledPlusIcon>
-            <Link to="/listingform"></Link>
-          </StyledPlusIcon>
+            <Link to="/listingform"><StyledPlusIcon></StyledPlusIcon></Link>
           <StyledPlusLinkInfo>create a new offer</StyledPlusLinkInfo>
         </StyledPlusLink>
       </main>
