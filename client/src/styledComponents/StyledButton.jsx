@@ -26,6 +26,11 @@ export const StyledButton = styled.button`
         color: var(--black);
       }
 
+    a {
+        text-decoration: none;
+        color: inherit;
+      }
+
   ${(props) =>
     props.cafe &&
     css`

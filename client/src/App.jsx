@@ -14,6 +14,7 @@ import RegistrationCafe from "./components/RegistrationCafe";
 import DashboardUser from "./components/DashboardUser";
 import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
+import ListingForm from "./components/ListingForm";
 
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
@@ -86,6 +87,11 @@ function App() {
           </Route>
           <Route path="/login" exact>
             {isLogged.state ? <Redirect to="/" /> : <Login />}
+          </Route>
+          <Route path="/listingform" exact>
+            {isLogged.state && isLogged.role === "cafe" ? (
+              <ListingForm />
+            ) : (<Redirect to="/" />)}
           </Route>
           <Route path="*">
             {" "}
