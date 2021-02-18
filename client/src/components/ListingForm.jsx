@@ -13,6 +13,7 @@ import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function ListingForm() {
   const [data, setData] = useState({});
+  const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
   const [warningValidation, setWarningValidation] = useState(false);
@@ -84,9 +85,7 @@ export default function ListingForm() {
             required={true}
           />
           <StyledLabel htmlFor="listingName">Title*</StyledLabel>
-          <div>
-            {/* {msg.firstName ? <small>at least 1 char</small> : null} */}
-          </div>
+          <div>{msg.listingName ? <small>Please add title</small> : null}</div>
         </StyledInputContainer>
 
         <StyledOtherInputsContainer cafe long>
@@ -157,6 +156,7 @@ export default function ListingForm() {
               cafe
               min="1"
               max="20"
+              step="0.01"
               type="number"
               name="piecePrice"
               id="piecePrice"
