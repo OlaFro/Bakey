@@ -2,8 +2,7 @@ import styled, { css } from "styled-components";
 import { darken } from "polished";
 import colors from "./colors";
 import device from "./device";
-import { EyeClose, Eye, ArrowDown } from "styled-icons/remix-line";
-import { Photograph } from "styled-icons/heroicons-outline";
+import { EyeClose, Eye, ArrowDown, ImageAdd } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
   margin-top: var(--space-l);
@@ -230,7 +229,7 @@ export const StyledSelect = styled.select`
     `};
 `;
 
-export const StyledCheckboxContainer = styled.div`
+export const StyledOtherInputsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   border: var(--border) solid ${colors.accent1};
@@ -296,7 +295,7 @@ export const StyledArrow = styled(ArrowDown)`
   pointer-events: none;
 `;
 
-export const StyledPhoto = styled(Photograph)`
+export const StyledPhoto = styled(ImageAdd)`
   width: 48px;
   height: 48px;
 `;

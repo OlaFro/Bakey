@@ -5,12 +5,11 @@ import {
   StyledLabel,
   StyledInputContainer,
   StyledInputField,
-  StyledCheckboxContainer,
+  StyledOtherInputsContainer,
   StyledPhoto,
   StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
-// import { FaUserCircle } from "react-icons/fa";
 
 export default function ListingForm() {
   const [data, setData] = useState({});
@@ -48,7 +47,7 @@ export default function ListingForm() {
         <header>
           <h2>Fill out:</h2>
         </header>
-        <StyledCheckboxContainer cafe>
+        <StyledOtherInputsContainer cafe>
           <header>Upload photo</header>
           <StyledPhotoUpload cafe>
             <label htmlFor="upload-button">
@@ -72,7 +71,7 @@ export default function ListingForm() {
               onChange={getPhoto}
             />
           </StyledPhotoUpload>
-        </StyledCheckboxContainer>
+        </StyledOtherInputsContainer>
         <StyledInputContainer>
           <StyledInputField
             cafe
@@ -90,7 +89,7 @@ export default function ListingForm() {
           </div>
         </StyledInputContainer>
 
-        <StyledCheckboxContainer cafe>
+        <StyledOtherInputsContainer cafe>
           <header>Allergenes</header>
           <div>
             <input type="checkbox" id="cereal" name="cereal" />
@@ -124,8 +123,8 @@ export default function ListingForm() {
             <input type="checkbox" id="lupins" name="lupins" />
             <label htmlFor="lupins">lupins</label>
           </div>
-        </StyledCheckboxContainer>
-        <StyledCheckboxContainer cafe>
+        </StyledOtherInputsContainer>
+        <StyledOtherInputsContainer cafe>
           <header>Tags</header>
           <div>
             <input type="checkbox" id="vegan" name="vegan" />
@@ -151,7 +150,7 @@ export default function ListingForm() {
             <input type="checkbox" id="wheatFree" name="wheatFree" />
             <label htmlFor="wheatFree">wheat-free</label>
           </div>
-        </StyledCheckboxContainer>
+        </StyledOtherInputsContainer>
         <StyledInputContainer>
           <StyledInputField
             cafe
