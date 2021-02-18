@@ -12,10 +12,9 @@ import {
   StyledEye,
   StyledSelect,
   StyledArrow,
-  StyledWarning,
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
-import {StyledButton}from "../styledComponents/StyledButton";
+import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function RegistrationUser(props) {
   const history = useHistory();

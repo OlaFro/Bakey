@@ -26,6 +26,11 @@ export const StyledButton = styled.button`
         color: var(--black);
       }
 
+    a {
+        text-decoration: none;
+        color: inherit;
+      }
+
   ${(props) =>
     props.cafe &&
     css`
@@ -75,9 +80,6 @@ export const StyledSmallButton = styled.button `
         background-color: white;
         border: var(--border) solid ${darken(0.1, colors.accent2)};
         color: var(--black);
-      }
-      a {
-        padding-right: 0;
       }
  }
 `;
