@@ -77,6 +77,7 @@ validateData.newListing = (req, res, next) => {
         return false;
       }
     });
+  req.check("pickUpDate", "pickUpDate").isAfter();
 
   let errors = req.validationErrors();
 
