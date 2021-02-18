@@ -2,20 +2,39 @@ var express = require("express");
 var router = express.Router();
 const ListingModel = require("../models/ListingModel");
 let multer = require("multer");
-const {v4: uuidv4} =  require("uuid")
+const { v4: uuidv4 } = require("uuid");
+const { authenticateToken } = require("../controllers/authControllers");
+const { sanitize } = require("../controllers/validControllers");
+/* 
+
+*/
 
 let storage = multer.diskStorage({
-  destination: "uploads/images",
-  filename: function(req, file, cb) {
+  destination: "../uploads/images",
+  filename: function (req, file, cb) {
     cb(null, uuidv4() + "." + file.mimetype.split("/")[1]);
-  }
-})
+  },
+});
 
-let uploads = multer({storage: storage, limits: {fileSize: 1000000}})
+//max file size should be 2MB
+let uploads = multer({
+  storage: storage,
+  limits: { fileSize: 1 * 1024 * 1024 },
+}).single("file");
 
+//registering, authenticating & validating newListing
 
-router.post("/addlisting", uploads.single("file"), (req, res, next) => {
+router.post("/addlisting", authenticateToken, sanitize, (req, res, next) => {
+  //this should handle the error if files are bigger than 2 MB
+  uploads(req, res, (err) => {
+    if (err) {
+      return res.json({ error: err });
+    }
+  });
   const addListing = req.body;
+  const user = req.user;
+  console.log(user);
+  console.log(addListing);
   ListingModel.estimatedDocumentCount({}, (err, result) => {
     if (err) {
       res.send(err);
@@ -25,20 +44,28 @@ router.post("/addlisting", uploads.single("file"), (req, res, next) => {
       let addedListing = new ListingModel({
         id: addListing.id,
         //from the authentication:
-        cafeId: addListing.cafeId,
+        cafeId: user.id,
+        //cafename should come from FE as it is stored in context
         cafeName: addListing.cafeName,
-        //from the form:
         listingName: addListing.listingName,
         listingTags: addListing.listingTags,
         listingAllergenes: addListing.listingAllergenes,
         totalPieces: addListing.totalPieces,
-        //at the beginning same as totalPieces
         availablePieces: addListing.totalPieces,
         piecePrice: addListing.piecePrice,
         //there should be a condition to send the path from a placeholder image if the file is empty.
-        listingPicture: req.file.path,
-        pickUpDate: addListing.pickUpDate
+        listingPicture: req.file
+          ? req.file.path
+          : "../uploads/images/listingplaceholder.png",
+        pickUpDate: addListing.pickUpDate,
+        listingStatus: addListing.listingStatus,
       });
+      addedListing
+        .save()
+        .then((result) => res.send("added listing"))
+        .catch((err) => {
+          res.send(err);
+        });
     }
   });
 });
