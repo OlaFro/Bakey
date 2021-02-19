@@ -56,6 +56,7 @@ validateData.register = (req, res, next) => {
 };
 
 validateData.newListing = (req, res, next) => {
+  console.log(req.body);
   req.check("listingName", "listingName").isLength({ min: 1 });
   req
     .check("totalPieces", "totalPieces")
