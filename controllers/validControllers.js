@@ -55,4 +55,37 @@ validateData.register = (req, res, next) => {
   }
 };
 
+validateData.newListing = (req, res, next) => {
+  req.check("listingName", "listingName").isLength({ min: 1 });
+  req
+    .check("totalPieces", "totalPieces")
+    .isNumeric()
+    .custom((value) => {
+      if (value > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  req
+    .check("piecePrice", "piecePrice")
+    .isNumeric()
+    .custom((value) => {
+      if (value > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  req.check("pickUpDate", "pickUpDate").isAfter();
+
+  let errors = req.validationErrors();
+
+  if (!errors) {
+    next();
+  } else {
+    res.send({ msg: errors });
+  }
+};
+
 module.exports = validateData;

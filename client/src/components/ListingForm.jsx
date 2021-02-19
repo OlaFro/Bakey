@@ -10,7 +10,11 @@ import {
   StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
+
 import Warning from "./Warning";
+
+import Axios from "axios";
+
 
 export default function ListingForm() {
   const [data, setData] = useState({});
@@ -39,6 +43,14 @@ export default function ListingForm() {
       });
     }
   };
+
+Axios({
+  method: "POST",
+  url: "/listings/addlisting",
+  data: {data, image}
+}).then((res)=>{
+  console.log(res)
+}).catch((err)=>{console.log(err)})
 
   return (
     <StyledCentered>

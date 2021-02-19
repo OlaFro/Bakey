@@ -1,74 +1,80 @@
 var express = require("express");
 var router = express.Router();
 const ListingModel = require("../models/ListingModel");
-let multer = require("multer");
-const { v4: uuidv4 } = require("uuid");
+const UserModel = require("../models/UserModel");
+const uploads = require("../controllers/multerController");
 const { authenticateToken } = require("../controllers/authControllers");
-const { sanitize } = require("../controllers/validControllers");
+const { sanitize, newListing } = require("../controllers/validControllers");
 /* 
 
 */
 
-let storage = multer.diskStorage({
-  destination: "../uploads/images",
-  filename: function (req, file, cb) {
-    cb(null, uuidv4() + "." + file.mimetype.split("/")[1]);
-  },
-});
-
-//max file size should be 2MB
-let uploads = multer({
-  storage: storage,
-  limits: { fileSize: 1 * 1024 * 1024 },
-}).single("file");
 
 //registering, authenticating & validating newListing
 
-router.post("/addlisting", authenticateToken, sanitize, (req, res, next) => {
-  //this should handle the error if files are bigger than 2 MB
-  uploads(req, res, (err) => {
-    if (err) {
-      return res.json({ error: err });
-    }
-  });
-  const addListing = req.body;
-  const user = req.user;
-  console.log(user);
-  console.log(addListing);
-  ListingModel.estimatedDocumentCount({}, (err, result) => {
-    if (err) {
-      res.send(err);
+router.post(
+  "/addlisting",
+  authenticateToken,
+  sanitize,
+  newListing,
+  (req, res, next) => {
+    //this should handle the error if files are bigger than 2 MB
+    uploads(req, res, (err) => {
+      if (err) {
+        return res.json({ error: err });
+      }
+    });
+    const addListing = req.body;
+    const user = req.user;
+    console.log(user);
+    console.log(addListing);
+    ListingModel.estimatedDocumentCount({}, (err, result) => {
+      if (err) {
+        res.send(err);
+      } else if (err && err.code === "LIMIT_FILE_SIZE") {
+      res.send("image is to big");
     } else {
-      addListing.id = result + 1;
+        addListing.id = result + 1;
 
-      let addedListing = new ListingModel({
-        id: addListing.id,
-        //from the authentication:
-        cafeId: user.id,
-        //cafename should come from FE as it is stored in context
-        cafeName: addListing.cafeName,
-        listingName: addListing.listingName,
-        listingTags: addListing.listingTags,
-        listingAllergenes: addListing.listingAllergenes,
-        totalPieces: addListing.totalPieces,
-        availablePieces: addListing.totalPieces,
-        piecePrice: addListing.piecePrice,
-        //there should be a condition to send the path from a placeholder image if the file is empty.
-        listingPicture: req.file
-          ? req.file.path
-          : "../uploads/images/listingplaceholder.png",
-        pickUpDate: addListing.pickUpDate,
-        listingStatus: addListing.listingStatus,
-      });
-      addedListing
-        .save()
-        .then((result) => res.send("added listing"))
-        .catch((err) => {
-          res.send(err);
-        });
-    }
-  });
-});
+        UserModel.findById(user.id)
+          .then((cafe) => {
+            if (cafe.userType === "cafe") {
+              let addedListing = new ListingModel({
+                id: addListing.id,
+                cafeId: user.id,
+                cafeName: cafe.cafeName,
+                listingName: addListing.listingName,
+                listingTags: addListing.listingTags,
+                listingAllergenes: addListing.listingAllergenes,
+                totalPieces: addListing.totalPieces,
+                availablePieces: addListing.totalPieces,
+                piecePrice: addListing.piecePrice,
+                listingPicture: req.file
+                  ? req.file.path
+                  : "../uploads/images/listingplaceholder.png",
+                pickUpDate: addListing.pickUpDate,
+                listingStatus: "active",
+              });
+              addedListing
+                .save()
+                .then((result) => {
+                  res.send("added listing");
+                })
+                .catch((err) => {
+                  res.send(err);
+                });
+            } else {
+              res.send("listings can be created just by users with role cafe");
+            }
+          })
+          .catch((err) => {
+            res.send(err);
+          });
+      }
+    });
+  }
+);
+
 /* 
 router.put("/update", (req, res, next) => {
   const ListingId = req.body.id;
