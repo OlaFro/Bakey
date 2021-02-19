@@ -9,11 +9,10 @@ const { sanitize, newListing } = require("../controllers/validControllers");
 
 */
 
-
 //registering, authenticating & validating newListing
 
 router.post(
-  "/addlisting",
+  "/add-listing",
   authenticateToken,
   sanitize,
   newListing,
@@ -22,54 +21,57 @@ router.post(
     uploads(req, res, (err) => {
       if (err) {
         return res.json({ error: err });
-      }
-    });
-    const addListing = req.body;
-    const user = req.user;
-    console.log(user);
-    console.log(addListing);
-    ListingModel.estimatedDocumentCount({}, (err, result) => {
-      if (err) {
-        res.send(err);
       } else if (err && err.code === "LIMIT_FILE_SIZE") {
-      res.send("image is to big");
-    } else {
-        addListing.id = result + 1;
-
-        UserModel.findById(user.id)
-          .then((cafe) => {
-            if (cafe.userType === "cafe") {
-              let addedListing = new ListingModel({
-                id: addListing.id,
-                cafeId: user.id,
-                cafeName: cafe.cafeName,
-                listingName: addListing.listingName,
-                listingTags: addListing.listingTags,
-                listingAllergenes: addListing.listingAllergenes,
-                totalPieces: addListing.totalPieces,
-                availablePieces: addListing.totalPieces,
-                piecePrice: addListing.piecePrice,
-                listingPicture: req.file
-                  ? req.file.path
-                  : "../uploads/images/listingplaceholder.png",
-                pickUpDate: addListing.pickUpDate,
-                listingStatus: "active",
-              });
-              addedListing
-                .save()
-                .then((result) => {
-                  res.send("added listing");
-                })
-                .catch((err) => {
-                  res.send(err);
-                });
-            } else {
-              res.send("listings can be created just by users with role cafe");
-            }
-          })
-          .catch((err) => {
+        res.send("image is to big");
+      } else {
+        const addListing = req.body;
+        const user = req.user;
+        console.log(user);
+        console.log(addListing);
+        ListingModel.estimatedDocumentCount({}, (err, result) => {
+          if (err) {
             res.send(err);
-          });
+          } else {
+            addListing.id = result + 1;
+
+            UserModel.findById(user.id)
+              .then((cafe) => {
+                if (cafe.userType === "cafe") {
+                  let addedListing = new ListingModel({
+                    id: addListing.id,
+                    cafeId: user.id,
+                    cafeName: cafe.cafeName,
+                    listingName: addListing.listingName,
+                    listingTags: addListing.listingTags,
+                    listingAllergenes: addListing.listingAllergenes,
+                    totalPieces: addListing.totalPieces,
+                    availablePieces: addListing.totalPieces,
+                    piecePrice: addListing.piecePrice,
+                    listingPicture: req.file
+                      ? req.file.path
+                      : "../uploads/images/listingplaceholder.png",
+                    pickUpDate: addListing.pickUpDate,
+                    listingStatus: "active",
+                  });
+                  addedListing
+                    .save()
+                    .then((result) => {
+                      res.send("added listing");
+                    })
+                    .catch((err) => {
+                      res.send(err);
+                    });
+                } else {
+                  res.send(
+                    "listings can be created just by users with role cafe"
+                  );
+                }
+              })
+              .catch((err) => {
+                res.send(err);
+              });
+          }
+        });
       }
     });
   }

@@ -15,7 +15,6 @@ import Warning from "./Warning";
 
 import Axios from "axios";
 
-
 export default function ListingForm() {
   const [data, setData] = useState({});
   const [msg, setMsg] = useState({});
@@ -47,10 +46,23 @@ export default function ListingForm() {
   const formSubmit = (e) => {
     e.preventDefault();
 
+    console.log("submiting form");
+
+    let formData = new FormData();
+    formData.append("file", image.raw);
+    // formData.append("listingName", data.listingName);
+    // formData.append("listingTags", data.listingTags);
+    // formData.append("listingAllergenes", data.listingAllergenes);
+    // formData.append("totalPieces", data.totalPieces);
+    // formData.append("piecePrice", data.piecePrice);
+    // formData.append("pickUpDate", data.pickUpDate);
+
+    console.log({ ...data, formData });
+
     Axios({
       method: "POST",
-      url: "/listings/addlisting",
-      data: { data, image },
+      url: "/listings/add-listing",
+      data: { ...data, formData },
     })
       .then((res) => {
         console.log(res);
@@ -66,7 +78,7 @@ export default function ListingForm() {
         <h2>Add a new listing</h2>
       </header>
 
-      <StyledForm listing>
+      <StyledForm onSubmit={formSubmit}>
         <header>
           <h2>Fill out:</h2>
         </header>
@@ -196,8 +208,8 @@ export default function ListingForm() {
               min="1"
               max="20"
               type="number"
-              name="availablePieces"
-              id="availablePieces"
+              name="totalPieces"
+              id="totalPieces"
               placeholder=" "
               onInput={getValue}
               required={true}
@@ -213,8 +225,8 @@ export default function ListingForm() {
               cafe
               long
               type="datetime-local"
-              name="pickUpTime"
-              id="pickUpTime"
+              name="pickUpDate"
+              id="pickUpDate"
               placeholder=" "
               onInput={getValue}
               required={true}

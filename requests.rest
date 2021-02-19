@@ -35,11 +35,9 @@ Content-Type: application/json
 
 {
 "cafeName": "jane doe",
-"listingName": "Carrot Cake",
-"listingTags": "[vegetarian]",
-"listingAllergenes": "[dairy]",
-"totalPieces": 10,
-"piecePrice": 1,
-"pickUpDate": "2021-02-21"
+"listingName": "Coffee",
+"totalPieces": "10",
+"piecePrice": "2",
+"pickUpDate": "2021-02-24T06:32",
 "listingStatus":"active"
 }
