@@ -196,7 +196,7 @@ export default function ListingForm() {
           <StyledInputContainer>
             <StyledInputField
               cafe
-              min="1"
+              min="0.01"
               max="20"
               step="0.01"
               type="number"
