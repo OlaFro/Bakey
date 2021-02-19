@@ -20,20 +20,18 @@ export const StyledPhotoContainer = styled.div`
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: flex-end;
 `;
 
 export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-end;
   /* margin: var(--space-xs) ; */
 
   width: 90%;
   max-width: 800px;
-
-  background-color: ${lighten(0.28, colors.gray)};
 `;
 
 export const StyledAllergenesContainer = styled.div`
@@ -42,9 +40,6 @@ export const StyledAllergenesContainer = styled.div`
   padding: var(--space-xs) var(--space-s);
   font-size: 0.8rem;
   font-weight: 700;
-
-  width: 90%;
-  max-width: 800px;
 `;
 
 export const StyledTag = styled.span`
