@@ -29,7 +29,9 @@ const uploadFile = (req, res, next) => {
   }).single("file");
 
   uploads(req, res, (err) => {
-    if (err) {
+    if (err && err.code === "LIMIT_FILE_SIZE") {
+      res.send({ errorSource: "image upload", msg: "image is to big" });
+    } else if (err) {
       res.send({ errorSource: "image upload" });
     } else {
       next();
