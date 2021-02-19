@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const ListingModel = require("../models/ListingModel");
 const UserModel = require("../models/UserModel");
-const uploads = require("../controllers/multerController");
+const uploadFile = require("../controllers/multerController");
 const { authenticateToken } = require("../controllers/authControllers");
 const { sanitize, newListing } = require("../controllers/validControllers");
 /* 
@@ -16,13 +16,15 @@ router.post(
   authenticateToken,
   sanitize,
   newListing,
+  uploadFile,
   (req, res, next) => {
-    //this should handle the error if files are bigger than 2 MB
-    uploads(req, res, (err) => {
+    const addListing = req.body;
+    const user = req.user;
+    console.log(user);
+    console.log(addListing);
+    ListingModel.estimatedDocumentCount({}, (err, result) => {
       if (err) {
-        return res.json({ error: err });
-      } else if (err && err.code === "LIMIT_FILE_SIZE") {
-        res.send("image is to big");
+        res.send(err);
       } else {
         const addListing = req.body;
         const user = req.user;
