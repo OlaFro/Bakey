@@ -11,7 +11,7 @@ export const StyledListingContainer = styled.div`
   grid-template-columns: 50% 50%;
 
   /* just temporal */
-  margin: 10rem 0 25rem 0;
+  /* margin: 10rem 0 25rem 0; */
 `;
 
 export const StyledPhotoContainer = styled.div`
@@ -20,15 +20,20 @@ export const StyledPhotoContainer = styled.div`
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
 `;
 
 export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  margin: var(--space-xs);
+  justify-content: flex-start;
+  /* margin: var(--space-xs) ; */
+
+  width: 90%;
+  max-width: 800px;
+
+  background-color: ${lighten(0.28, colors.gray)};
 `;
 
 export const StyledAllergenesContainer = styled.div`
@@ -37,6 +42,9 @@ export const StyledAllergenesContainer = styled.div`
   padding: var(--space-xs) var(--space-s);
   font-size: 0.8rem;
   font-weight: 700;
+
+  width: 90%;
+  max-width: 800px;
 `;
 
 export const StyledTag = styled.span`
