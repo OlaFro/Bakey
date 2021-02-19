@@ -26,7 +26,7 @@ export const StyledForm = styled.form`
       @media ${device.tabletLandscape} {
         display: grid;
         grid-template-columns: auto auto;
-        grid-column-gap: var(--space-m);
+        column-gap: var(--space-m);
         grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
       } ;
     `};
@@ -37,10 +37,16 @@ export const StyledForm = styled.form`
       width: 90%;
       max-width: 800px;
       display: grid;
-      /* grid-template-columns: auto auto; */
+      justify-items: center;
 
       > div {
-        /* border: 1px solid red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        @media ${device.tabletLandscape} {
+          flex-direction: row;
+          justify-content: space-between;
+        }
       }
     `}
 
@@ -83,8 +89,15 @@ export const StyledPhotoUpload = styled.div`
   > label {
     cursor: pointer;
     display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: center;
+    grid-template-rows: 125px 1fr;
+    row-gap: var(--space-xs);
+    text-align: left;
+
+    @media ${device.tabletLandscape} {
+      grid-template-columns: 125px 1fr;
+      column-gap: var(--space-s);
+      align-items: center;
+    }
 
     > .picContainer {
       margin: 0;
@@ -131,13 +144,6 @@ export const StyledInputContainer = styled.div`
   @media ${device.tabletPortrait} {
     width: 320px;
   }
-
-  ${(props) =>
-    props.long &&
-    css`
-      width: 800px;
-      border: 1px solid blue;
-    `}
 `;
 
 export const StyledLabel = styled.label`
@@ -190,7 +196,11 @@ export const StyledInputField = styled.input`
         border: var(--border) solid ${darken(0.2, colors.gray)};
       }
     `};
- */
+  ${(props) =>
+    props.long &&
+    css`
+      width: 100%;
+    `}
 `;
 
 export const StyledSelect = styled.select`
@@ -233,7 +243,7 @@ export const StyledSelect = styled.select`
     `};
 `;
 
-// container for the untypical inputs type file or checkbox
+// container for the untypical inputs type file or type checkbox
 export const StyledOtherInputsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -271,8 +281,17 @@ export const StyledOtherInputsContainer = styled.div`
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
   }
+
+  ${(props) =>
+    props.long &&
+    css`
+      @media ${device.tabletLandscape} {
+        max-width: 700px;
+      }
+    `}
 `;
 
+// icons used in form:
 export const StyledEyeClose = styled(EyeClose)`
   width: 16px;
   height: 16px;

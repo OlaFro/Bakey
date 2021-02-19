@@ -10,13 +10,19 @@ import {
   StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
+
+import Warning from "./Warning";
+
 import Axios from "axios";
+
 
 export default function ListingForm() {
   const [data, setData] = useState({});
+  const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
-  const [warningContent, setWarningContent] = useState("");
+
   const [warningValidation, setWarningValidation] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
   const [photoSuccess, setPhotoSuccess] = useState(false);
   const [photoWarning, setPhotoWarning] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -68,9 +74,9 @@ Axios({
                 <StyledPhoto />
               )}
 
-              <div>
-                <small>Please use JPG or PNG in square format</small>
-              </div>
+              <small>
+                Please use JPG or PNG in square format (max. size 2MB).
+              </small>
             </label>
 
             <input
@@ -84,6 +90,7 @@ Axios({
         <StyledInputContainer long>
           <StyledInputField
             cafe
+            long
             type="text"
             name="listingName"
             id="listingName"
@@ -92,12 +99,10 @@ Axios({
             required={true}
           />
           <StyledLabel htmlFor="listingName">Title*</StyledLabel>
-          <div>
-            {/* {msg.firstName ? <small>at least 1 char</small> : null} */}
-          </div>
+          <div>{msg.listingName ? <small>Please add title</small> : null}</div>
         </StyledInputContainer>
 
-        <StyledOtherInputsContainer cafe>
+        <StyledOtherInputsContainer cafe long>
           <header>Allergenes</header>
           <div>
             <input type="checkbox" id="cereal" name="cereal" />
@@ -132,7 +137,7 @@ Axios({
             <label htmlFor="lupins">lupins</label>
           </div>
         </StyledOtherInputsContainer>
-        <StyledOtherInputsContainer cafe>
+        <StyledOtherInputsContainer cafe long>
           <header>Tags</header>
           <div>
             <input type="checkbox" id="vegan" name="vegan" />
@@ -159,49 +164,61 @@ Axios({
             <label htmlFor="wheatFree">wheat-free</label>
           </div>
         </StyledOtherInputsContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            min="1"
-            max="20"
-            type="number"
-            name="piecePrice"
-            id="piecePrice"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="piecePrice">Price for a piece (€)*</StyledLabel>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            min="1"
-            max="20"
-            type="number"
-            name="availablePieces"
-            id="availablePieces"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="availablePieces">
-            Pieces in the cake*
-          </StyledLabel>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="date"
-            name="pickUpDate"
-            id="pickUpDate"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="pickUpDate">Pick-up date*</StyledLabel>
-        </StyledInputContainer>
+        <div>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              min="1"
+              max="20"
+              step="0.01"
+              type="number"
+              name="piecePrice"
+              id="piecePrice"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="piecePrice">
+              Price for a piece (€)*
+            </StyledLabel>
+          </StyledInputContainer>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              min="1"
+              max="20"
+              type="number"
+              name="availablePieces"
+              id="availablePieces"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="availablePieces">
+              Pieces in the cake*
+            </StyledLabel>
+          </StyledInputContainer>
+        </div>
+        <div>
+          <StyledInputContainer>
+            <StyledInputField
+              cafe
+              long
+              type="datetime-local"
+              name="pickUpTime"
+              id="pickUpTime"
+              placeholder=" "
+              onInput={getValue}
+              required={true}
+            />
+            <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
+          </StyledInputContainer>
+        </div>
         <StyledButton cafe>Save</StyledButton>
+        {warningValidation ? (
+          <p className="warning">Please fill all fields!</p>
+        ) : null}
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
     </StyledCentered>
   );
