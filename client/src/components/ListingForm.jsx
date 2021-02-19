@@ -86,7 +86,7 @@ export default function ListingForm() {
         <h2>Add a new listing</h2>
       </header>
 
-      <StyledForm onSubmit={formSubmit}>
+      <StyledForm onSubmit={formSubmit} listing>
         <header>
           <h2>Fill out:</h2>
         </header>

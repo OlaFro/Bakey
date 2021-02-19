@@ -16,7 +16,6 @@ export const StyledForm = styled.form`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
   ${(props) =>
     props.cafe &&
     css`
@@ -38,7 +37,6 @@ export const StyledForm = styled.form`
       max-width: 800px;
       display: grid;
       justify-items: center;
-
       > div {
         width: 100%;
         display: flex;
@@ -49,7 +47,6 @@ export const StyledForm = styled.form`
         }
       }
     `}
-
   > Header {
     background-color: white;
     padding: var(--space-xs) var(--space-s);
@@ -77,7 +74,6 @@ export const StyledForm = styled.form`
   > button {
     margin-top: var(--space-s);
   }
-
   @media ${device.mobile} {
     padding: var(--space-m) calc(var(--space-m) * 2) var(--space-l)
       calc(var(--space-m) * 2);
@@ -92,13 +88,11 @@ export const StyledPhotoUpload = styled.div`
     grid-template-rows: 125px 1fr;
     row-gap: var(--space-xs);
     text-align: left;
-
     @media ${device.tabletLandscape} {
       grid-template-columns: 125px 1fr;
       column-gap: var(--space-s);
       align-items: center;
     }
-
     > .picContainer {
       margin: 0;
       position: relative;
@@ -113,7 +107,6 @@ export const StyledPhotoUpload = styled.div`
         height: 125px;
       }
     }
-
     > div {
       margin: 0 var(--space-s);
       display: flex;
@@ -132,7 +125,6 @@ export const StyledInputContainer = styled.div`
   flex-direction: column;
   margin: var(--space-s) 0;
   grid-area: "input";
-
   > div {
     height: 16px;
     > small {
@@ -140,7 +132,6 @@ export const StyledInputContainer = styled.div`
       color: ${colors.warning};
     }
   }
-
   @media ${device.tabletPortrait} {
     width: 320px;
   }
@@ -164,7 +155,6 @@ export const StyledInputField = styled.input`
   font-family: var(--heading);
   border: var(--border) solid ${colors.accent1};
   border-radius: var(--border-radius);
-
   :hover {
     cursor: text;
     border: var(--border) solid ${darken(0.2, colors.gray)};
@@ -173,7 +163,6 @@ export const StyledInputField = styled.input`
     outline: none;
     border: var(--border) solid ${darken(0.2, colors.gray)};
   }
-
   :focus + label,
   :not(:placeholder-shown) + label {
     font-size: 0.8rem;
@@ -215,7 +204,6 @@ export const StyledSelect = styled.select`
   font-family: var(--heading);
   border: var(--border) solid ${colors.accent1};
   border-radius: var(--border-radius);
-
   :hover {
     cursor: pointer;
     border: var(--border) solid ${darken(0.2, colors.gray)};
@@ -225,7 +213,6 @@ export const StyledSelect = styled.select`
     border: var(--border) solid ${darken(0.2, colors.gray)};
     font-family: var(--heading);
   }
-
   :focus + label,
   :not(:placeholder-shown) + label {
     font-size: 0.8rem;
@@ -235,7 +222,6 @@ export const StyledSelect = styled.select`
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
   }
-
   ${(props) =>
     props.cafe &&
     css`
@@ -281,7 +267,6 @@ export const StyledOtherInputsContainer = styled.div`
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
   }
-
   ${(props) =>
     props.long &&
     css`
