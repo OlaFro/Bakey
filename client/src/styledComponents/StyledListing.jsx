@@ -26,11 +26,56 @@ export const StyledPhotoContainer = styled.div`
   grid-area: photo;
 `;
 
+export const StyledDescContainer = styled.div`
+  height: 100%;
+  background-color: ${lighten(0.28, colors.gray)};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-s);
+  grid-area: desc;
+
+  > header {
+    text-align: center;
+    margin: 0;
+    > h3 {
+      margin: 0 0 var(--space-xs) 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: var(--ls);
+    }
+  }
+
+  > div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  > span {
+    font-size: 0.9rem;
+  }
+`;
+
+export const StyledTimers = styled.div`
+  display: grid;
+  column-gap: calc(2 * var(--space-l));
+  > section > span,
+  > section > strong {
+    font-size: 0.9rem;
+  }
+`;
+
+export const StyledInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  margin: var(--space-xs);
+  justify-content: flex-start;
 `;
 
 export const StyledAllergenesContainer = styled.div`
@@ -39,7 +84,10 @@ export const StyledAllergenesContainer = styled.div`
   padding: var(--space-xs);
   font-size: 0.8rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
+  > p {
+    margin: 0;
+  }
 `;
 
 export const StyledTag = styled.span`
@@ -83,52 +131,13 @@ export const StyledTag = styled.span`
       background-color: ${colors.wheat};
     `};
 `;
-export const StyledDescContainer = styled.div`
-  height: 100%;
-  background-color: ${lighten(0.28, colors.gray)};
-  /* border-top: var(--border) solid ${colors.accent1};
-  border-bottom: var(--border) solid ${colors.accent1};
-  border-right: var(--border) solid ${colors.accent1}; */
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-s);
-  grid-area: desc;
-
-  > header {
-    text-align: center;
-    margin: 0;
-    > h3 {
-      margin: 0 0 var(--space-xs) 0;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: var(--ls);
-    }
-  }
-
-  > div {
-    display: flex;
-    width: 80%;
-    justify-content: space-around;
-    align-items: center;
-  }
-`;
-
-export const StyledText = styled.p`
-  margin: var(--space-xs);
-  :nth-child(1) {
-    margin-bottom: 0;
-  }
-`;
-
-export const StyledTimeLeft = styled.div``;
 
 export const StyledBtnContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   grid-area: btn;
-  border: var(--border) solid ${colors.accent1};
+  border-left: var(--border) solid ${lighten(0.18, colors.gray)};
+  border-bottom: var(--border) solid ${lighten(0.18, colors.gray)};
+  border-right: var(--border) solid ${lighten(0.18, colors.gray)};
 `;

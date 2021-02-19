@@ -8,6 +8,8 @@ import {
   StyledTagContainer,
   StyledAllergenesContainer,
   StyledBtnContainer,
+  StyledInfoContainer,
+  StyledTimers,
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
@@ -45,7 +47,7 @@ export default function Listing() {
               strokeLinecap: "round",
 
               // Text size
-              textSize: "0.8rem",
+              textSize: "0.9rem",
 
               // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
@@ -61,38 +63,45 @@ export default function Listing() {
             })}
           />
         </div>
-
-        <StyledCentered>
-          <div>{maxValue - value} pieces of cake left to buy.</div>
-          <span>Probable pick-up:</span>
-          <span>
-            <strong>Tuesday, 23.03 at 12:00</strong>
-          </span>
-        </StyledCentered>
-        <StyledTagContainer>
-          <StyledTag lactose>
-            <span>lactose free</span>
-          </StyledTag>
-          <StyledTag gluten>
-            <span>gluten free</span>
-          </StyledTag>
-          <StyledTag wheat>
-            <span>wheat free</span>
-          </StyledTag>
-          <StyledTag sugar>
-            <span>sugar free</span>
-          </StyledTag>
-          <StyledTag vegan>vegan</StyledTag>
-          <StyledTag organic>
-            <span>organic</span>
-          </StyledTag>
-        </StyledTagContainer>
-        <StyledAllergenesContainer>
-          <p>
-            Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
-            soya
-          </p>
-        </StyledAllergenesContainer>
+        <span>{maxValue - value} pieces of cake left to buy.</span>
+        <StyledTimers>
+          <StyledCentered>
+            <span>Time left:</span>
+            <span>
+              <strong>10h 10min</strong>
+            </span>
+          </StyledCentered>
+          <StyledCentered>
+            <span>Probable pick-up:</span>
+            <strong>Tuesday 23.03 at 12:00</strong>
+          </StyledCentered>
+        </StyledTimers>
+        <StyledInfoContainer>
+          <StyledTagContainer>
+            <StyledTag lactose>
+              <span>lactose free</span>
+            </StyledTag>
+            <StyledTag gluten>
+              <span>gluten free</span>
+            </StyledTag>
+            <StyledTag wheat>
+              <span>wheat free</span>
+            </StyledTag>
+            <StyledTag sugar>
+              <span>sugar free</span>
+            </StyledTag>
+            <StyledTag vegan>vegan</StyledTag>
+            <StyledTag organic>
+              <span>organic</span>
+            </StyledTag>
+          </StyledTagContainer>
+          <StyledAllergenesContainer>
+            <p>
+              Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
+              soya
+            </p>
+          </StyledAllergenesContainer>
+        </StyledInfoContainer>
       </StyledDescContainer>
       <StyledBtnContainer>
         <StyledButton buy>Buy a piece for 6€</StyledButton>
