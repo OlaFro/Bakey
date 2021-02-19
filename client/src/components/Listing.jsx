@@ -55,12 +55,12 @@ export default function Listing() {
           <StyledCounter />
           <StyledCentered>
             <span>Time to end:</span>
-            <time>09h 45min 00sec </time>
+            <time>09h 45min</time>
           </StyledCentered>
         </div>
-        <div>
-          <StyledButton>Buy a piece for 10€</StyledButton>
-          <StyledButton>Buy whole for 40€</StyledButton>
+        <div className="BtnContainer">
+          <StyledButton buy>Buy a piece for 10€</StyledButton>
+          <StyledButton buy>Buy whole for 40€</StyledButton>
         </div>
       </StyledDescContainer>
     </StyledListingContainer>

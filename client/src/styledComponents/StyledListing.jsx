@@ -103,6 +103,8 @@ export const StyledDescContainer = styled.div`
     justify-content: space-around;
     align-items: center;
   }
+  > .BtnContainer {
+  }
 `;
 
 export const StyledCounter = styled.div`
