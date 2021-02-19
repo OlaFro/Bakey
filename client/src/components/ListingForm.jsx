@@ -14,27 +14,23 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import Warning from "./Warning";
 
 import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function ListingForm() {
-  const [data, setData] = useState({});
+  const history = useHistory();
+  const [data, setData] = useState({ listingName: "" });
   const [msg, setMsg] = useState({});
-  const [warning, setWarning] = useState(false);
-
-  const [warningValidation, setWarningValidation] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
-  const [photoSuccess, setPhotoSuccess] = useState(false);
-  const [photoWarning, setPhotoWarning] = useState(false);
+  const [imageWarning, setImageWarning] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
 
   const getValue = (e) => {
-    setWarning(false);
-    setWarningValidation(false);
+    setShowWarning(false);
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const getPhoto = (e) => {
-    setPhotoSuccess(false);
-    setPhotoWarning(false);
+    setImageWarning(false);
     if (e.target.files.length) {
       setImage({
         preview: URL.createObjectURL(e.target.files[0]),
@@ -45,6 +41,8 @@ export default function ListingForm() {
 
   const formSubmit = (e) => {
     e.preventDefault();
+
+    setShowWarning(false);
 
     console.log("submiting form");
 
@@ -64,9 +62,21 @@ export default function ListingForm() {
     })
       .then((res) => {
         console.log(res);
+        if (res.data.msg) {
+          let msgChanged = res.data.msg.reduce((acc, item) => {
+            acc[item.param] = true;
+            return acc;
+          }, {});
+          setMsg(msgChanged);
+        } else if (res.data.errorSource === "image upload") {
+          setImageWarning(true);
+        } else {
+          history.push("/cafe-dashboard");
+        }
       })
       .catch((err) => {
         console.log(err);
+        setShowWarning(true);
       });
   };
 
@@ -92,7 +102,7 @@ export default function ListingForm() {
                 <StyledPhoto />
               )}
 
-              <small>
+              <small className={imageWarning ? "warning" : null}>
                 Please use JPG or PNG in square format (max. size 2MB).
               </small>
             </label>
@@ -199,6 +209,9 @@ export default function ListingForm() {
             <StyledLabel htmlFor="piecePrice">
               Price for a piece (€)*
             </StyledLabel>
+            <div>
+              {msg.piecePrice ? <small>Price shall be number</small> : null}
+            </div>
           </StyledInputContainer>
           <StyledInputContainer>
             <StyledInputField
@@ -215,6 +228,9 @@ export default function ListingForm() {
             <StyledLabel htmlFor="availablePieces">
               Pieces in the cake*
             </StyledLabel>
+            <div>
+              {msg.totalPieces ? <small>Pieces shall be number</small> : null}
+            </div>
           </StyledInputContainer>
         </div>
         <div>
@@ -230,12 +246,14 @@ export default function ListingForm() {
               required={true}
             />
             <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
+            <div>
+              {msg.pickUpDate ? (
+                <small>Pick up time have to be in future</small>
+              ) : null}
+            </div>
           </StyledInputContainer>
         </div>
         <StyledButton cafe>Save</StyledButton>
-        {warningValidation ? (
-          <p className="warning">Please fill all fields!</p>
-        ) : null}
         {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
     </StyledCentered>

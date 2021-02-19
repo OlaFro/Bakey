@@ -35,7 +35,7 @@ Content-Type: application/json
 
 {
 "cafeName": "jane doe",
-"listingName": "Coffee",
+"listingName": "undefined",
 "totalPieces": "10",
 "piecePrice": "2",
 "pickUpDate": "2021-02-24T06:32",

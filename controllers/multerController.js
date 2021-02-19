@@ -30,12 +30,12 @@ const uploadFile = (req, res, next) => {
 
   uploads(req, res, (err) => {
     if (err && err.code === "LIMIT_FILE_SIZE") {
-      res.send({ errorSource: "image upload", msg: "image is to big" });
+      res.send({ errorSource: "image upload", detail: "image is to big" });
     } else if (
       err &&
       err.message === "Only .png, .jpg and .jpeg format allowed!"
     ) {
-      res.send({ errorSource: "image upload", msg: "wrong image format" });
+      res.send({ errorSource: "image upload", detail: "wrong image format" });
     } else if (err) {
       res.send(err);
     } else {
