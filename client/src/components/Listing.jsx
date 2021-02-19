@@ -7,7 +7,7 @@ import {
   StyledTag,
   StyledTagContainer,
   StyledAllergenesContainer,
-  StyledCounter,
+  StyledText,
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
@@ -22,10 +22,6 @@ export default function Listing() {
     <StyledListingContainer>
       <StyledPhotoContainer>
         <StyledTagContainer>
-          <StyledTag vegan>vegan</StyledTag>
-          <StyledTag organic>
-            <span>organic</span>
-          </StyledTag>
           <StyledTag lactose>
             <span>lactose free</span>
           </StyledTag>
@@ -38,6 +34,10 @@ export default function Listing() {
           <StyledTag sugar>
             <span>sugar free</span>
           </StyledTag>
+          <StyledTag vegan>vegan</StyledTag>
+          <StyledTag organic>
+            <span>organic</span>
+          </StyledTag>
         </StyledTagContainer>
         <StyledAllergenesContainer>
           <p>
@@ -48,19 +48,18 @@ export default function Listing() {
       </StyledPhotoContainer>
       <StyledDescContainer>
         <header>
-          <h3>
-            Very long cheescake title two lines long - this is ca. 60 chars
-          </h3>
+          <h3>Very long cheesecake title two lines long - ca. 50 chars</h3>
           {/* <span>{cafeName}</span>
         context cafeName not visible */}
-          <span>Café Ocka</span>
+          <StyledText>Café Ocka</StyledText>
         </header>
 
-        <div style={{ width: "150px" }}>
+        <div style={{ width: "130px" }}>
           <CircularProgressbar
             value={value}
             maxValue={4}
             text="3/4"
+            strokeWidth="16"
             styles={buildStyles({
               // Rotation of path and trail, in number of turns (0-1)
               rotation: 0,
@@ -69,7 +68,7 @@ export default function Listing() {
               strokeLinecap: "round",
 
               // Text size
-              textSize: "16px",
+              textSize: "0.8rem",
 
               // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
@@ -78,17 +77,19 @@ export default function Listing() {
               // pathTransition: 'none',
 
               // Colors
-              pathColor: `${colors.accent2}`,
+              pathColor: `${colors.accent1}`,
               textColor: `${colors.black}`,
-              trailColor: `${colors.accent1}`,
+              trailColor: "#d6d6d6",
               backgroundColor: "transparent",
             })}
           />
         </div>
 
         <StyledCentered>
-          <span>Possible pick-up:</span>
-          <strong>Tuesday(23.03.21 12:00)</strong>
+          <StyledText>Possible pick-up:</StyledText>
+          <StyledText>
+            <strong>Tuesday (23.03.21 12:00)</strong>
+          </StyledText>
         </StyledCentered>
         {/* <StyledCentered>
             <span>Time to end:</span>

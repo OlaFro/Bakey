@@ -33,7 +33,7 @@ export const StyledTagContainer = styled.div`
 
 export const StyledAllergenesContainer = styled.div`
   width: 100%;
-  background-color: ${lighten(0.25, colors.gray)};
+  background-color: ${lighten(0.28, colors.gray)};
   padding: var(--space-xs) var(--space-s);
   font-size: 0.8rem;
   font-weight: 700;
@@ -44,7 +44,7 @@ export const StyledTag = styled.span`
   padding: calc(0.4 * var(--space-s)) calc(0.4 * var(--space-s));
   margin: calc(0.3 * var(--space-s));
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: calc(0.5 * var(--ls));
   font-weight: 700;
@@ -82,19 +82,24 @@ export const StyledTag = styled.span`
 `;
 export const StyledDescContainer = styled.div`
   height: 100%;
-  background-color: ${lighten(0.25, colors.gray)};
+  /* background-color: ${lighten(0.28, colors.gray)}; */
+  border-top: var(--border) solid ${colors.accent1};
+  border-bottom: var(--border) solid ${colors.accent1};
+  border-right: var(--border) solid ${colors.accent1};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  padding: calc(0.4 * var(--space-s));
+  padding: var(--space-s);
 
   > header {
     text-align: center;
     margin: 0;
     > h3 {
       margin: 0 0 var(--space-xs) 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: var(--ls);
     }
   }
 
@@ -106,6 +111,13 @@ export const StyledDescContainer = styled.div`
   }
   > .BtnContainer {
     width: 100%;
+  }
+`;
+
+export const StyledText = styled.p`
+  margin: var(--space-xs);
+  :nth-child(1) {
+    margin-bottom: 0;
   }
 `;
 
