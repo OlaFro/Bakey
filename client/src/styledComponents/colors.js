@@ -9,12 +9,12 @@ const colors = {
   shade3: "#9AA63D",
   warning: "red",
 
-  vegan: "#367a11",
-  organic: "#069bd6",
-  lactose: "#4e4e4e",
-  gluten: "#1da772",
-  sugar: "#691180",
-  wheat: "#f58300",
+  vegan: "#9C9359",
+  organic: "#b0946a",
+  lactose: "#A57283",
+  gluten: "#8C7386",
+  sugar: "#DC828F",
+  wheat: "#C6AC85",
 };
 
 export default colors;

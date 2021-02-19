@@ -5,46 +5,41 @@ import { lighten } from "polished";
 export const StyledListingContainer = styled.div`
   width: 90%;
   max-width: 800px;
-  height: 400px;
+  height: 500px;
 
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-template-areas: "photo desc" "btn btn";
 
   /* just temporal */
-  /* margin: 10rem 0 25rem 0; */
+  margin: 10rem 0 25rem 0;
 `;
 
 export const StyledPhotoContainer = styled.div`
   height: 100%;
-  background-image: url("https://images.unsplash.com/photo-1604184811623-129a299b1322?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80");
+  background-image: url("https://images.unsplash.com/photo-1578775887804-699de7086ff9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=675&q=80");
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: flex-end;
+  grid-area: photo;
 `;
 
 export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  /* margin: var(--space-xs) ; */
-
-  width: 90%;
-  max-width: 800px;
-
-  background-color: ${lighten(0.28, colors.gray)};
+  justify-content: flex-end;
+  margin: var(--space-xs);
 `;
 
 export const StyledAllergenesContainer = styled.div`
   width: 100%;
   background-color: ${lighten(0.28, colors.gray)};
-  padding: var(--space-xs) var(--space-s);
+  padding: var(--space-xs);
   font-size: 0.8rem;
   font-weight: 700;
-
-  width: 90%;
-  max-width: 800px;
+  text-align: center;
 `;
 
 export const StyledTag = styled.span`
@@ -90,15 +85,17 @@ export const StyledTag = styled.span`
 `;
 export const StyledDescContainer = styled.div`
   height: 100%;
-  /* background-color: ${lighten(0.28, colors.gray)}; */
-  border-top: var(--border) solid ${colors.accent1};
+  background-color: ${lighten(0.28, colors.gray)};
+  /* border-top: var(--border) solid ${colors.accent1};
   border-bottom: var(--border) solid ${colors.accent1};
-  border-right: var(--border) solid ${colors.accent1};
+  border-right: var(--border) solid ${colors.accent1}; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-s);
+  grid-area: desc;
 
   > header {
     text-align: center;
@@ -117,9 +114,6 @@ export const StyledDescContainer = styled.div`
     justify-content: space-around;
     align-items: center;
   }
-  > .BtnContainer {
-    width: 100%;
-  }
 `;
 
 export const StyledText = styled.p`
@@ -129,8 +123,12 @@ export const StyledText = styled.p`
   }
 `;
 
-export const StyledCounter = styled.div`
-  width: 100px;
-`;
-
 export const StyledTimeLeft = styled.div``;
+
+export const StyledBtnContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: btn;
+  border: var(--border) solid ${colors.accent1};
+`;
