@@ -50,19 +50,17 @@ export default function ListingForm() {
 
     let formData = new FormData();
     formData.append("file", image.raw);
-    // formData.append("listingName", data.listingName);
-    // formData.append("listingTags", data.listingTags);
-    // formData.append("listingAllergenes", data.listingAllergenes);
-    // formData.append("totalPieces", data.totalPieces);
-    // formData.append("piecePrice", data.piecePrice);
-    // formData.append("pickUpDate", data.pickUpDate);
-
-    console.log({ ...data, formData });
+    formData.append("listingName", data.listingName);
+    formData.append("listingTags", data.listingTags);
+    formData.append("listingAllergenes", data.listingAllergenes);
+    formData.append("totalPieces", data.totalPieces);
+    formData.append("piecePrice", data.piecePrice);
+    formData.append("pickUpDate", data.pickUpDate);
 
     Axios({
       method: "POST",
       url: "/listings/add-listing",
-      data: data,
+      data: formData,
     })
       .then((res) => {
         console.log(res);

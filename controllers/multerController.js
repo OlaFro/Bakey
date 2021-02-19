@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const uploadFile = (req, res, next) => {
   let storage = multer.diskStorage({
-    destination: "../uploads/images",
+    destination: "./uploads/images",
     filename: function (req, file, cb) {
       cb(null, uuidv4() + "." + file.mimetype.split("/")[1]);
     },
@@ -31,8 +31,13 @@ const uploadFile = (req, res, next) => {
   uploads(req, res, (err) => {
     if (err && err.code === "LIMIT_FILE_SIZE") {
       res.send({ errorSource: "image upload", msg: "image is to big" });
+    } else if (
+      err &&
+      err.message === "Only .png, .jpg and .jpeg format allowed!"
+    ) {
+      res.send({ errorSource: "image upload", msg: "wrong image format" });
     } else if (err) {
-      res.send({ errorSource: "image upload" });
+      res.send(err);
     } else {
       next();
     }

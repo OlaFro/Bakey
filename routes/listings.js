@@ -14,9 +14,9 @@ const { sanitize, newListing } = require("../controllers/validControllers");
 router.post(
   "/add-listing",
   authenticateToken,
+  uploadFile,
   sanitize,
   newListing,
-  uploadFile,
   (req, res, next) => {
     const addListing = req.body;
     const user = req.user;
@@ -30,6 +30,7 @@ router.post(
         const user = req.user;
         console.log(user);
         console.log(addListing);
+        console.log(req.file);
         ListingModel.estimatedDocumentCount({}, (err, result) => {
           if (err) {
             res.send(err);
