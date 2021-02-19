@@ -6,6 +6,7 @@ import {
   StyledDescContainer,
   StyledTag,
   StyledTagContainer,
+  StyledAllergenesContainer,
 } from "../styledComponents/StyledListing";
 import { StyledButton } from "../styledComponents/StyledButton";
 
@@ -13,10 +14,7 @@ export default function Listing() {
   const { cafeName } = useContext(bakeyContext);
   return (
     <StyledListingContainer>
-      <StyledPhotoContainer></StyledPhotoContainer>
-      <StyledDescContainer>
-        <h2>Apple pie</h2>
-        <span>cafeName</span>
+      <StyledPhotoContainer>
         <StyledTagContainer>
           <StyledTag vegan>vegan</StyledTag>
           <StyledTag organic>
@@ -35,12 +33,18 @@ export default function Listing() {
             <span>no sugar</span>
           </StyledTag>
         </StyledTagContainer>
-        <div>
-          <i>Allergenes: eggs, dairy, cereal</i>
-        </div>
-        <div>
-          <i>Possible pick-up: 23/03/21 12:00</i>
-        </div>
+        <StyledAllergenesContainer>
+          <i>Allergenes: </i>
+          <i>eggs, dairy, cereal, peanut, celery, mustard, lupins, soja</i>
+        </StyledAllergenesContainer>
+      </StyledPhotoContainer>
+      <StyledDescContainer>
+        <header>
+          <h2>Apple pie</h2>
+        </header>
+
+        <span>cafeName</span>
+        <span>Possible pick-up: Tuesday(23.03.21 12:00)</span>
         <div>Counter</div>
         <div>Time Left</div>
         <div>
