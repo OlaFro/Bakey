@@ -7,7 +7,9 @@ import {
   StyledTag,
   StyledTagContainer,
   StyledAllergenesContainer,
+  StyledCounter,
 } from "../styledComponents/StyledListing";
+import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function Listing() {
@@ -21,16 +23,16 @@ export default function Listing() {
             <span>organic</span>
           </StyledTag>
           <StyledTag lactose>
-            <span>no lactose</span>
+            <span>lactose free</span>
           </StyledTag>
           <StyledTag gluten>
-            <span>no gluten</span>
+            <span>gluten free</span>
           </StyledTag>
           <StyledTag wheat>
-            <span>no wheat</span>
+            <span>wheat free</span>
           </StyledTag>
           <StyledTag sugar>
-            <span>no sugar</span>
+            <span>sugar free</span>
           </StyledTag>
         </StyledTagContainer>
         <StyledAllergenesContainer>
@@ -40,13 +42,22 @@ export default function Listing() {
       </StyledPhotoContainer>
       <StyledDescContainer>
         <header>
-          <h2>Apple pie</h2>
+          <h3>Very long cheescake title two lines long -this is 58 chars</h3>
+          {/* <span>{cafeName}</span>
+        context cafeName not visible */}
+          <span>Café Ocka</span>
         </header>
-
-        <span>cafeName</span>
-        <span>Possible pick-up: Tuesday(23.03.21 12:00)</span>
-        <div>Counter</div>
-        <div>Time Left</div>
+        <StyledCentered>
+          <small>Possible pick-up:</small>
+          <strong>Tuesday(23.03.21 12:00)</strong>
+        </StyledCentered>
+        <div>
+          <StyledCounter />
+          <StyledCentered>
+            <span>Time to end:</span>
+            <time>09h 45min 00sec </time>
+          </StyledCentered>
+        </div>
         <div>
           <StyledButton>Buy a piece for 10€</StyledButton>
           <StyledButton>Buy whole for 40€</StyledButton>

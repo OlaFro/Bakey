@@ -28,6 +28,7 @@ export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  margin: var(--space-xs);
 `;
 
 export const StyledAllergenesContainer = styled.div`
@@ -39,48 +40,43 @@ export const StyledAllergenesContainer = styled.div`
 
 export const StyledTag = styled.span`
   border-radius: calc(var(--border-radius) / 4);
-  padding: calc(0.2 * var(--space-s)) calc(0.4 * var(--space-s));
-  margin: 0.3rem;
-
+  padding: calc(0.4 * var(--space-s)) calc(0.4 * var(--space-s));
+  margin: calc(0.3 * var(--space-s));
   color: white;
   font-size: 0.7rem;
-  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  letter-spacing: calc(0.5 * var(--ls));
   font-weight: 700;
 
   ${(props) =>
     props.vegan &&
     css`
-      background-color: #74a857;
+      background-color: ${colors.vegan};
     `};
   ${(props) =>
     props.organic &&
     css`
-      background-color: #8282e4;
+      background-color: ${colors.organic};
     `};
   ${(props) =>
     props.lactose &&
     css`
-      background-color: #7aac9f;
+      background-color: ${colors.lactose};
     `};
   ${(props) =>
     props.gluten &&
     css`
-      background-color: #e2c472;
-    `};
-  ${(props) =>
-    props.gluten &&
-    css`
-      background-color: #e2c472;
+      background-color: ${colors.gluten};
     `};
   ${(props) =>
     props.sugar &&
     css`
-      background-color: #e272c6;
+      background-color: ${colors.sugar};
     `};
   ${(props) =>
     props.wheat &&
     css`
-      background-color: #c5ac76;
+      background-color: ${colors.wheat};
     `};
 `;
 export const StyledDescContainer = styled.div`
@@ -88,17 +84,32 @@ export const StyledDescContainer = styled.div`
   background-color: ${lighten(0.25, colors.gray)};
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: space-around;
-  padding-left: var(--space-s);
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(0.4 * var(--space-s));
+
   > header {
-    > h2 {
-      margin: 0;
+    text-align: center;
+    margin: 0;
+    > h3 {
+      text-transform: uppercase;
+      margin: 0 0 var(--space-xs) 0;
     }
-    display: flex;
-    flex-direction: row;
   }
+
   > div {
     display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
   }
 `;
+
+export const StyledCounter = styled.div`
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  border: 30px solid ${colors.accent1};
+`;
+
+export const StyledTimeLeft = styled.div``;
