@@ -137,7 +137,7 @@ export const StyledBtnContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   grid-area: btn;
-  border-left: var(--border) solid ${lighten(0.18, colors.gray)};
+  /* border-left: var(--border) solid ${lighten(0.18, colors.gray)};
   border-bottom: var(--border) solid ${lighten(0.18, colors.gray)};
-  border-right: var(--border) solid ${lighten(0.18, colors.gray)};
+  border-right: var(--border) solid ${lighten(0.18, colors.gray)}; */
 `;
