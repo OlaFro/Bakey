@@ -62,7 +62,7 @@ export default function ListingForm() {
     Axios({
       method: "POST",
       url: "/listings/add-listing",
-      data: { ...data, formData },
+      data: data,
     })
       .then((res) => {
         console.log(res);
