@@ -9,6 +9,7 @@ const { sanitize, newListing } = require("../controllers/validControllers");
 
 */
 
+
 //registering, authenticating & validating newListing
 
 router.post(
@@ -30,7 +31,9 @@ router.post(
     ListingModel.estimatedDocumentCount({}, (err, result) => {
       if (err) {
         res.send(err);
-      } else {
+      } else if (err && err.code === "LIMIT_FILE_SIZE") {
+      res.send("image is to big");
+    } else {
         addListing.id = result + 1;
 
         UserModel.findById(user.id)
@@ -71,6 +74,7 @@ router.post(
     });
   }
 );
+
 /* 
 router.put("/update", (req, res, next) => {
   const ListingId = req.body.id;

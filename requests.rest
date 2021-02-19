@@ -41,4 +41,5 @@ Content-Type: application/json
 "totalPieces": 10,
 "piecePrice": 1,
 "pickUpDate": "2021-02-21"
+"listingStatus":"active"
 }
