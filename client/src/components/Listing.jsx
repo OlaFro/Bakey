@@ -4,6 +4,8 @@ import {
   StyledListingContainer,
   StyledPhotoContainer,
   StyledDescContainer,
+  StyledTag,
+  StyledTagContainer,
 } from "../styledComponents/StyledListing";
 import { StyledButton } from "../styledComponents/StyledButton";
 
@@ -13,12 +15,26 @@ export default function Listing() {
     <StyledListingContainer>
       <StyledPhotoContainer></StyledPhotoContainer>
       <StyledDescContainer>
-        <h2>Kati's pie</h2>
-        <span>{cafeName}</span>
-        <div>
-          <span>vegan</span>
-          <span>organic</span>
-        </div>
+        <h2>Apple pie</h2>
+        <span>cafeName</span>
+        <StyledTagContainer>
+          <StyledTag vegan>vegan</StyledTag>
+          <StyledTag organic>
+            <span>organic</span>
+          </StyledTag>
+          <StyledTag lactose>
+            <span>no lactose</span>
+          </StyledTag>
+          <StyledTag gluten>
+            <span>no gluten</span>
+          </StyledTag>
+          <StyledTag wheat>
+            <span>no wheat</span>
+          </StyledTag>
+          <StyledTag sugar>
+            <span>no sugar</span>
+          </StyledTag>
+        </StyledTagContainer>
         <div>
           <i>Allergenes: eggs, dairy, cereal</i>
         </div>
