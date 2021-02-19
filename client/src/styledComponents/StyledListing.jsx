@@ -33,9 +33,10 @@ export const StyledTagContainer = styled.div`
 
 export const StyledAllergenesContainer = styled.div`
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: ${lighten(0.25, colors.gray)};
   padding: var(--space-xs) var(--space-s);
   font-size: 0.8rem;
+  font-weight: 700;
 `;
 
 export const StyledTag = styled.span`
@@ -86,32 +87,30 @@ export const StyledDescContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
   padding: calc(0.4 * var(--space-s));
 
   > header {
     text-align: center;
     margin: 0;
     > h3 {
-      text-transform: uppercase;
       margin: 0 0 var(--space-xs) 0;
     }
   }
 
   > div {
     display: flex;
-    width: 100%;
+    width: 80%;
     justify-content: space-around;
     align-items: center;
   }
   > .BtnContainer {
+    width: 100%;
   }
 `;
 
 export const StyledCounter = styled.div`
-  height: 7rem;
-  width: 7rem;
-  border-radius: 50%;
-  border: 30px solid ${colors.accent1};
+  width: 100px;
 `;
 
 export const StyledTimeLeft = styled.div``;

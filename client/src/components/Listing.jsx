@@ -11,9 +11,13 @@ import {
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import colors from "../styledComponents/colors";
 
 export default function Listing() {
   const { cafeName } = useContext(bakeyContext);
+  const value = 3;
   return (
     <StyledListingContainer>
       <StyledPhotoContainer>
@@ -36,28 +40,60 @@ export default function Listing() {
           </StyledTag>
         </StyledTagContainer>
         <StyledAllergenesContainer>
-          <i>Allergenes: </i>
-          <i>eggs, dairy, cereal, peanut, celery, mustard, lupins, soja</i>
+          <p>
+            Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
+            soja
+          </p>
         </StyledAllergenesContainer>
       </StyledPhotoContainer>
       <StyledDescContainer>
         <header>
-          <h3>Very long cheescake title two lines long -this is 58 chars</h3>
+          <h3>
+            Very long cheescake title two lines long - this is ca. 60 chars
+          </h3>
           {/* <span>{cafeName}</span>
         context cafeName not visible */}
           <span>Café Ocka</span>
         </header>
+
+        <div style={{ width: "150px" }}>
+          <CircularProgressbar
+            value={value}
+            maxValue={4}
+            text="3/4"
+            styles={buildStyles({
+              // Rotation of path and trail, in number of turns (0-1)
+              rotation: 0,
+
+              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+              strokeLinecap: "round",
+
+              // Text size
+              textSize: "16px",
+
+              // How long animation takes to go from one percentage to another, in seconds
+              pathTransitionDuration: 0.5,
+
+              // Can specify path transition in more detail, or remove it entirely
+              // pathTransition: 'none',
+
+              // Colors
+              pathColor: `${colors.accent2}`,
+              textColor: `${colors.black}`,
+              trailColor: `${colors.accent1}`,
+              backgroundColor: "transparent",
+            })}
+          />
+        </div>
+
         <StyledCentered>
-          <small>Possible pick-up:</small>
+          <span>Possible pick-up:</span>
           <strong>Tuesday(23.03.21 12:00)</strong>
         </StyledCentered>
-        <div>
-          <StyledCounter />
-          <StyledCentered>
+        {/* <StyledCentered>
             <span>Time to end:</span>
             <time>09h 45min</time>
-          </StyledCentered>
-        </div>
+          </StyledCentered> */}
         <div className="BtnContainer">
           <StyledButton buy>Buy a piece for 10€</StyledButton>
           <StyledButton buy>Buy whole for 40€</StyledButton>
