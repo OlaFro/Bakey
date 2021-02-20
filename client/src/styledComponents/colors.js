@@ -12,9 +12,8 @@ const colors = {
   vegan: "#9C9359",
   organic: "#b0946a",
   lactose: "#A57283",
-  gluten: "#8C7386",
+  gluten: "#C6AC85",
   sugar: "#DC828F",
-  wheat: "#C6AC85",
 };
 
 export default colors;

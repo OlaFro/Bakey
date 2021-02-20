@@ -84,9 +84,6 @@ export default function Listing() {
             <StyledTag gluten>
               <span>gluten free</span>
             </StyledTag>
-            <StyledTag wheat>
-              <span>wheat free</span>
-            </StyledTag>
             <StyledTag sugar>
               <span>sugar free</span>
             </StyledTag>

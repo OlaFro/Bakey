@@ -1,17 +1,24 @@
 import styled, { css } from "styled-components";
 import colors from "../styledComponents/colors";
+import device from "./device";
 import { lighten } from "polished";
 
 export const StyledListingContainer = styled.div`
   width: 90%;
-  max-width: 800px;
-  height: 500px;
+  max-width: 400px;
 
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "photo desc" "btn btn";
+  grid-template-rows: 400px auto auto;
+  grid-template-areas: "photo" "desc" "btn";
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   overflow: hidden;
+
+  @media ${device.tabletLandscape} {
+    max-width: 800px;
+    height: 475px;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "photo desc" "btn btn";
+  }
 
   /* just temporal */
   margin: 10rem 0 25rem 0;
@@ -29,7 +36,6 @@ export const StyledPhotoContainer = styled.div`
 `;
 
 export const StyledDescContainer = styled.div`
-  height: 100%;
   background-color: ${lighten(0.28, colors.gray)};
   display: flex;
   flex-direction: column;
@@ -141,4 +147,5 @@ export const StyledBtnContainer = styled.div`
   grid-area: btn;
   background-color: ${lighten(0.24, colors.gray)};
   border-radius: 0 0 var(--border-radius) var(--border-radius);
+  height: 75px;
 `;
