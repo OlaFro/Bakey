@@ -118,11 +118,11 @@ export default function Listing() {
             <strong>Tuesday, 23.03 12:00</strong>
           </StyledCentered>
         </StyledTimers>
+        <StyledBtnContainer>
+          <StyledButton buy>Buy a piece for 6€</StyledButton>
+          <StyledButton buy>Buy whole for 36€</StyledButton>
+        </StyledBtnContainer>
       </StyledDescContainer>
-      <StyledBtnContainer>
-        <StyledButton buy>Buy a piece for 6€</StyledButton>
-        <StyledButton buy>Buy whole for 36€</StyledButton>
-      </StyledBtnContainer>
     </StyledListingContainer>
   );
 }

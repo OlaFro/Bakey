@@ -45,7 +45,7 @@ export const StyledDescContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-s);
+  padding: var(--space-s) 0 0 0;
   grid-area: desc;
 
   > header {
@@ -99,15 +99,6 @@ export const StyledAllergenesContainer = styled.div`
   display: ${(props) => (props.display ? "block" : "none")};
 `;
 
-export const StyledTimers = styled.div`
-  display: grid;
-  column-gap: calc(2 * var(--space-l));
-  > section > span,
-  > section > strong {
-    font-size: 0.9rem;
-  }
-`;
-
 export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -122,9 +113,16 @@ export const StyledBtnContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   grid-area: btn;
-  background-color: ${lighten(0.24, colors.gray)};
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
   height: 75px;
+`;
+
+export const StyledTimers = styled.div`
+  display: grid;
+  column-gap: calc(2 * var(--space-l));
+  > section > span,
+  > section > strong {
+    font-size: 0.9rem;
+  }
 `;
 
 export const StyledTag = styled.span`
@@ -147,8 +145,8 @@ export const StyledTag = styled.span`
   ::after {
     content: "";
     height: 2rem;
-    width: 1px;
-    background-color: white;
+    width: 2px;
+    background-color: #fff3f3;
     position: absolute;
     top: -5px;
     transform: rotate(45deg);`}

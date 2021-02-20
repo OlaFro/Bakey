@@ -60,7 +60,7 @@ export const StyledButton = styled.button`
       border-radius: calc(var(--border-radius) * 2);
       background-color: white;
       font-size: 0.9rem;
-      margin: var(--space-xs);
+      margin: var(--space-s);
       :hover {
         cursor: pointer;
         border: var(--border) solid ${darken(0.1, colors.accent1)};
