@@ -17,6 +17,7 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
+import TimeLeftTimer from "./TimeLeftTimer";
 
 export default function Listing() {
   const { cafeName } = useContext(bakeyContext);
@@ -89,7 +90,7 @@ export default function Listing() {
               strokeLinecap: "round",
 
               // Text size
-              textSize: "0.8rem",
+              textSize: "0.7rem",
 
               // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
@@ -110,7 +111,9 @@ export default function Listing() {
           <StyledCentered>
             <span>Time left:</span>
             <span>
-              <strong>10h:10min</strong>
+              <strong>
+                <TimeLeftTimer />
+              </strong>
             </span>
           </StyledCentered>
           <StyledCentered>

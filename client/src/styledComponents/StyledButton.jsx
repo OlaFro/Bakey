@@ -55,11 +55,11 @@ export const StyledButton = styled.button`
   ${(props) =>
     props.buy &&
     css`
-      padding: var(--space-xs) var(--space-s);
+      padding: var(--space-xs) var(--space-m);
       border: var(--border) solid ${colors.accent1};
       border-radius: calc(var(--border-radius) * 2);
       background-color: ${colors.accent1};
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       margin: 0 0 var(--space-s) 0;
       :hover {
         cursor: pointer;
