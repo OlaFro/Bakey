@@ -26,8 +26,9 @@
 - Express.js - use of app.js from express generator (generate with generator and then make changes for our structure - create server.js, put out hbs etc.)
 - basic file structure for deploying on heroku
 - all secrets (db url, JWT secret) from beginning in .env file (add .env will be on .gitignore!)
-- routes for users, listings, messages/notifications?
-- use middlewares for data validation, authentication of token (viz. Alice's fullstack register) - make code more readable and cleaner
+- routes for users, listings, cafes, messages/notifications?
+- every request that is done by loged user is necessary to verify token (authentication middleware)
+- use middlewares for data validation, authentication of token (viz. Alice's fullstack register), uploading of the image - make code more readable and cleaner
 
 **Packages:**
 
