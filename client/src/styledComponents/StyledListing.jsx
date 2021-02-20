@@ -83,7 +83,9 @@ export const StyledInfoContainer = styled.div`
 export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
+
+  width: 45%;
 `;
 
 export const StyledAllergenesContainer = styled.div`
@@ -99,14 +101,31 @@ export const StyledAllergenesContainer = styled.div`
 `;
 
 export const StyledTag = styled.span`
-  border-radius: calc(var(--border-radius) / 4);
-  padding: calc(0.4 * var(--space-s)) calc(0.4 * var(--space-s));
-  margin: calc(0.3 * var(--space-s));
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 100%;
   color: white;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: calc(0.5 * var(--ls));
+  display: flex;
+  justify-content: center;
+  align-content: center;
   font-weight: 700;
+  padding: calc(var(--space-xs) / 3);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  ${(props) =>
+    props.no &&
+    css`
+  ::after {
+    content: "";
+    height: 2rem;
+    width: 1.5px;
+    background-color: white;
+    position: absolute;
+    top: -5px;
+    transform: rotate(45deg);`}
+}
 
   ${(props) =>
     props.vegan &&

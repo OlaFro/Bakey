@@ -78,18 +78,20 @@ export default function Listing() {
         </StyledTimers>
         <StyledInfoContainer>
           <StyledTagContainer>
-            <StyledTag lactose>
-              <span>lactose free</span>
+            <StyledTag no lactose title="lactose free">
+              L
             </StyledTag>
-            <StyledTag gluten>
-              <span>gluten free</span>
+            <StyledTag no gluten title="gluten free">
+              G
             </StyledTag>
-            <StyledTag sugar>
-              <span>sugar free</span>
+            <StyledTag no sugar title="sugar free">
+              S
             </StyledTag>
-            <StyledTag vegan>vegan</StyledTag>
-            <StyledTag organic>
-              <span>organic</span>
+            <StyledTag vegan title="vegan">
+              V
+            </StyledTag>
+            <StyledTag organic title="organic">
+              O
             </StyledTag>
           </StyledTagContainer>
           <StyledAllergenesContainer>
