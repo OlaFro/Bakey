@@ -13,7 +13,6 @@ export const StyledListingContainer = styled.div`
 
   display: grid;
   grid-template-rows: 400px auto;
-  grid-template-areas: "photo" "desc" "btn";
   border-radius: var(--border-radius);
   overflow: hidden;
 
@@ -21,7 +20,6 @@ export const StyledListingContainer = styled.div`
     max-width: 800px;
     height: 400px;
     grid-template-columns: 50% 50%;
-    grid-template-areas: "photo desc" "btn btn";
   }
 
   /* just temporal */
@@ -36,7 +34,6 @@ export const StyledPhotoContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-  grid-area: photo;
 `;
 
 export const StyledDescContainer = styled.div`
@@ -45,8 +42,7 @@ export const StyledDescContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-s) 0 0 0;
-  grid-area: desc;
+  padding: var(--space-xs) var(--space-xs);
 
   > header {
     text-align: center;
@@ -54,32 +50,33 @@ export const StyledDescContainer = styled.div`
 
     > h3 {
       margin: 0;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: var(--ls);
-      position: relative;
     }
+    /* cafe name */
     > span {
       padding: var(--space-xs) 0;
       font-size: 0.9rem;
     }
   }
 
+  /* container with timers and btn container */
   > div {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
   }
+  /* amount of pieces left */
   > span {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 `;
+
 export const StyledMore = styled(KeyboardArrowDown)`
   width: 1.5rem;
   cursor: pointer;
   display: ${(props) => props.display};
 `;
+
 export const StyledLess = styled(KeyboardArrowUp)`
   width: 1.5rem;
   cursor: pointer;
@@ -87,50 +84,22 @@ export const StyledLess = styled(KeyboardArrowUp)`
 `;
 
 export const StyledAllergenesContainer = styled.div`
-  width: 100%;
-  background-color: ${lighten(0.28, colors.gray)};
   padding: var(--space-xs);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-align: center;
-
+  display: ${(props) => (props.display ? "block" : "none")};
   > p {
     margin: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-align: center;
   }
-  display: ${(props) => (props.display ? "block" : "none")};
 `;
 
 export const StyledTagContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: auto;
-  width: 60%;
-  padding: var(--space-xs) 0;
-`;
-
-export const StyledBtnContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  grid-area: btn;
-  margin-top: var(--space-s);
-
-  @media ${device.tabletLandscape} {
-    margin-top: 0;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-export const StyledTimers = styled.div`
-  display: grid;
-  column-gap: calc(2 * var(--space-l));
-  > section > span,
-  > section > strong {
-    font-size: 0.8rem;
-  }
+  margin: auto;
+  width: 55%;
+  padding: var(--space-xs) 0;
 `;
 
 export const StyledTag = styled.span`
@@ -143,6 +112,7 @@ export const StyledTag = styled.span`
   align-content: center;
   font-weight: 700;
   padding: calc(var(--space-xs) / 3);
+  margin-right: var(--space-xs);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -150,15 +120,16 @@ export const StyledTag = styled.span`
   ${(props) =>
     props.no &&
     css`
-  ::after {
-    content: "";
-    height: 2rem;
-    width: 2px;
-    background-color: rgba(255,255,255,0.7);
-    position: absolute;
-    top: -5px;
-    transform: rotate(45deg);`}
-    }
+      ::after {
+        content: "";
+        height: 2rem;
+        width: 2px;
+        background-color: rgba(255, 255, 255, 0.7);
+        position: absolute;
+        top: -5px;
+        transform: rotate(45deg);
+      }
+    `}
 
   ${(props) =>
     props.vegan &&
@@ -190,4 +161,28 @@ export const StyledTag = styled.span`
     css`
       background-color: ${colors.wheat};
     `}
+`;
+
+export const StyledTimers = styled.div`
+  display: grid;
+  column-gap: calc(2 * var(--space-l));
+  > section > span,
+  > section > strong {
+    font-size: 0.8rem;
+  }
+`;
+
+export const StyledBtnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  grid-area: btn;
+  margin-top: var(--space-s);
+
+  @media ${device.tabletLandscape} {
+    margin-top: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;

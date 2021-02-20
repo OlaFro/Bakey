@@ -61,6 +61,7 @@ export const StyledButton = styled.button`
       background-color: ${colors.accent1};
       font-size: 0.8rem;
       margin: 0 0 var(--space-s) 0;
+      /* box-shadow: 0 7px 6px -6px ${colors.black}; */
       :hover {
         cursor: pointer;
         border: var(--border) solid ${darken(0.1, colors.accent1)};

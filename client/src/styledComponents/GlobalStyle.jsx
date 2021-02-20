@@ -40,6 +40,12 @@ h2 {
   font-weight: 700;
 }
 
+h3{
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls);
+}
+
 p {
   font-family: var(--text);
 }

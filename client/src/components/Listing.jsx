@@ -50,7 +50,7 @@ export default function Listing() {
             />
           </h3>
 
-          <StyledAllergenesContainer display={open ? true : false}>
+          <StyledAllergenesContainer display={open ? 1 : 0}>
             <p>
               Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
               soya

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function Timer() {
+  // test version of the code, need to consult it with Fahim
   const finish = new Date();
   finish.setHours(24, 0, 0, 0);
   const now = new Date();
