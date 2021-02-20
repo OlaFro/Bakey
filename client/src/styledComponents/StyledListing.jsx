@@ -2,6 +2,10 @@ import styled, { css } from "styled-components";
 import colors from "../styledComponents/colors";
 import device from "./device";
 import { lighten } from "polished";
+import {
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+} from "styled-icons/material-sharp";
 
 export const StyledListingContainer = styled.div`
   width: 90%;
@@ -11,7 +15,7 @@ export const StyledListingContainer = styled.div`
   grid-template-rows: 400px auto auto;
   grid-template-areas: "photo" "desc" "btn";
   border-radius: var(--border-radius) var(--border-radius) 0 0;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   @media ${device.tabletLandscape} {
     max-width: 800px;
@@ -47,11 +51,16 @@ export const StyledDescContainer = styled.div`
   > header {
     text-align: center;
     margin: 0;
+
     > h3 {
-      margin: 0 0 var(--space-xs) 0;
+      margin: 0;
       font-size: 1rem;
       text-transform: uppercase;
       letter-spacing: var(--ls);
+      position: relative;
+    }
+    > span {
+      padding: var(--space-xs) 0;
     }
   }
 
@@ -65,6 +74,30 @@ export const StyledDescContainer = styled.div`
     font-size: 0.9rem;
   }
 `;
+export const StyledMore = styled(KeyboardArrowDown)`
+  width: 1.5rem;
+  cursor: pointer;
+  display: ${(props) => props.display};
+`;
+export const StyledLess = styled(KeyboardArrowUp)`
+  width: 1.5rem;
+  cursor: pointer;
+  display: ${(props) => props.display};
+`;
+
+export const StyledAllergenesContainer = styled.div`
+  width: 100%;
+  background-color: ${lighten(0.28, colors.gray)};
+  padding: var(--space-xs);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+
+  > p {
+    margin: 0;
+  }
+  display: ${(props) => (props.display ? "block" : "none")};
+`;
 
 export const StyledTimers = styled.div`
   display: grid;
@@ -75,29 +108,23 @@ export const StyledTimers = styled.div`
   }
 `;
 
-export const StyledInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
 export const StyledTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-
-  width: 45%;
+  margin: auto;
+  width: 60%;
+  padding: var(--space-xs) 0;
 `;
 
-export const StyledAllergenesContainer = styled.div`
-  width: 100%;
-  background-color: ${lighten(0.28, colors.gray)};
-  padding: var(--space-xs);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-align: left;
-  > p {
-    margin: 0;
-  }
+export const StyledBtnContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: btn;
+  background-color: ${lighten(0.24, colors.gray)};
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  height: 75px;
 `;
 
 export const StyledTag = styled.span`
@@ -120,12 +147,12 @@ export const StyledTag = styled.span`
   ::after {
     content: "";
     height: 2rem;
-    width: 1.5px;
+    width: 1px;
     background-color: white;
     position: absolute;
     top: -5px;
     transform: rotate(45deg);`}
-}
+    }
 
   ${(props) =>
     props.vegan &&
@@ -156,15 +183,5 @@ export const StyledTag = styled.span`
     props.wheat &&
     css`
       background-color: ${colors.wheat};
-    `};
-`;
-
-export const StyledBtnContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  grid-area: btn;
-  background-color: ${lighten(0.24, colors.gray)};
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
-  height: 75px;
+    `}
 `;

@@ -8,7 +8,8 @@ import {
   StyledTagContainer,
   StyledAllergenesContainer,
   StyledBtnContainer,
-  StyledInfoContainer,
+  StyledMore,
+  StyledLess,
   StyledTimers,
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
@@ -19,17 +20,58 @@ import colors from "../styledComponents/colors";
 
 export default function Listing() {
   const { cafeName } = useContext(bakeyContext);
+
+  const [open, setOpen] = useState(false);
   const value = 4;
   const maxValue = 6;
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <StyledListingContainer>
       <StyledPhotoContainer></StyledPhotoContainer>
       <StyledDescContainer>
         <header>
-          <h3>Kati's great apple pie</h3>
-          {/* <h3>Very long cheesecake title two lines long - ca. 50 chars</h3> */}
-          {/* <span>{cafeName}</span>
-        context cafeName not visible */}
+          <h3>
+            Kati's great apple pie apple pie apple pie
+            <StyledMore
+              onClick={handleOpen}
+              display={open ? "none" : "inline"}
+            />
+            <StyledLess
+              onClick={handleClose}
+              display={open ? "inline" : "none"}
+            />
+          </h3>
+
+          <StyledAllergenesContainer display={open ? true : false}>
+            <p>
+              Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
+              soya
+            </p>
+          </StyledAllergenesContainer>
+          <StyledTagContainer>
+            <StyledTag no lactose title="lactose free">
+              L
+            </StyledTag>
+            <StyledTag no gluten title="gluten free">
+              G
+            </StyledTag>
+            <StyledTag no sugar title="sugar free">
+              S
+            </StyledTag>
+            <StyledTag vegan title="vegan">
+              V
+            </StyledTag>
+            <StyledTag organic title="organic">
+              O
+            </StyledTag>
+          </StyledTagContainer>
           <span>Café Ocka</span>
         </header>
 
@@ -63,44 +105,19 @@ export default function Listing() {
             })}
           />
         </div>
-        <span>{maxValue - value} pieces of cake left to buy.</span>
+        <span>{maxValue - value} pieces left</span>
         <StyledTimers>
           <StyledCentered>
             <span>Time left:</span>
             <span>
-              <strong>10h 10min</strong>
+              <strong>10h:10min</strong>
             </span>
           </StyledCentered>
           <StyledCentered>
             <span>Probable pick-up:</span>
-            <strong>Tuesday 23.03 at 12:00</strong>
+            <strong>Tuesday, 23.03 12:00</strong>
           </StyledCentered>
         </StyledTimers>
-        <StyledInfoContainer>
-          <StyledTagContainer>
-            <StyledTag no lactose title="lactose free">
-              L
-            </StyledTag>
-            <StyledTag no gluten title="gluten free">
-              G
-            </StyledTag>
-            <StyledTag no sugar title="sugar free">
-              S
-            </StyledTag>
-            <StyledTag vegan title="vegan">
-              V
-            </StyledTag>
-            <StyledTag organic title="organic">
-              O
-            </StyledTag>
-          </StyledTagContainer>
-          <StyledAllergenesContainer>
-            <p>
-              Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
-              soya
-            </p>
-          </StyledAllergenesContainer>
-        </StyledInfoContainer>
       </StyledDescContainer>
       <StyledBtnContainer>
         <StyledButton buy>Buy a piece for 6€</StyledButton>
