@@ -12,14 +12,14 @@ export const StyledListingContainer = styled.div`
   max-width: 400px;
 
   display: grid;
-  grid-template-rows: 400px auto auto;
+  grid-template-rows: 400px auto;
   grid-template-areas: "photo" "desc" "btn";
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-  /* overflow: hidden; */
+  border-radius: var(--border-radius);
+  overflow: hidden;
 
   @media ${device.tabletLandscape} {
     max-width: 800px;
-    height: 475px;
+    height: 400px;
     grid-template-columns: 50% 50%;
     grid-template-areas: "photo desc" "btn btn";
   }

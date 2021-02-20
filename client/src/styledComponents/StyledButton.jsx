@@ -58,12 +58,13 @@ export const StyledButton = styled.button`
       padding: var(--space-xs) var(--space-s);
       border: var(--border) solid ${colors.accent1};
       border-radius: calc(var(--border-radius) * 2);
-      background-color: white;
+      background-color: ${colors.accent1};
       font-size: 0.9rem;
       margin: var(--space-s);
       :hover {
         cursor: pointer;
         border: var(--border) solid ${darken(0.1, colors.accent1)};
+        background-color: transparent;
       }
     `}
 `;
