@@ -58,7 +58,7 @@ export const StyledButton = styled.button`
       padding: var(--space-xs) var(--space-s);
       border: var(--border) solid ${colors.accent1};
       border-radius: calc(var(--border-radius) * 2);
-      background-color: transparent;
+      background-color: white;
       font-size: 0.9rem;
       margin: var(--space-xs);
       :hover {

@@ -10,6 +10,8 @@ export const StyledListingContainer = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-areas: "photo desc" "btn btn";
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  overflow: hidden;
 
   /* just temporal */
   margin: 10rem 0 25rem 0;
@@ -137,7 +139,6 @@ export const StyledBtnContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   grid-area: btn;
-  /* border-left: var(--border) solid ${lighten(0.18, colors.gray)};
-  border-bottom: var(--border) solid ${lighten(0.18, colors.gray)};
-  border-right: var(--border) solid ${lighten(0.18, colors.gray)}; */
+  background-color: ${lighten(0.24, colors.gray)};
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
 `;
