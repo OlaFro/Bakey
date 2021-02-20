@@ -38,7 +38,7 @@ export default function Listing() {
       <StyledDescContainer>
         <header>
           <h3>
-            Kati's great apple pie apple pie apple pie
+            Kati's great apple pie apple
             <StyledMore
               onClick={handleOpen}
               display={open ? "none" : "inline"}
@@ -89,7 +89,7 @@ export default function Listing() {
               strokeLinecap: "round",
 
               // Text size
-              textSize: "0.9rem",
+              textSize: "0.8rem",
 
               // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
@@ -114,8 +114,8 @@ export default function Listing() {
             </span>
           </StyledCentered>
           <StyledCentered>
-            <span>Probable pick-up:</span>
-            <strong>Tuesday, 23.03 12:00</strong>
+            <span>Pick-up:</span>
+            <strong>Tuesday 12:00</strong>
           </StyledCentered>
         </StyledTimers>
         <StyledBtnContainer>

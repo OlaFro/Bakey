@@ -54,13 +54,14 @@ export const StyledDescContainer = styled.div`
 
     > h3 {
       margin: 0;
-      font-size: 1rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: var(--ls);
       position: relative;
     }
     > span {
       padding: var(--space-xs) 0;
+      font-size: 0.9rem;
     }
   }
 
@@ -71,7 +72,7 @@ export const StyledDescContainer = styled.div`
     align-items: center;
   }
   > span {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 `;
 export const StyledMore = styled(KeyboardArrowDown)`
@@ -121,7 +122,7 @@ export const StyledTimers = styled.div`
   column-gap: calc(2 * var(--space-l));
   > section > span,
   > section > strong {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -146,7 +147,7 @@ export const StyledTag = styled.span`
     content: "";
     height: 2rem;
     width: 2px;
-    background-color: #fff3f3;
+    background-color: rgba(255,255,255,0.7);
     position: absolute;
     top: -5px;
     transform: rotate(45deg);`}
