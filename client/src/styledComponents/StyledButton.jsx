@@ -60,11 +60,14 @@ export const StyledButton = styled.button`
       border-radius: calc(var(--border-radius) * 2);
       background-color: ${colors.accent1};
       font-size: 0.9rem;
-      margin: var(--space-s);
+      margin: 0 0 var(--space-s) 0;
       :hover {
         cursor: pointer;
         border: var(--border) solid ${darken(0.1, colors.accent1)};
         background-color: transparent;
+      }
+      @media ${device.tabletLandscape} {
+        margin: var(--space-s);
       }
     `}
 `;

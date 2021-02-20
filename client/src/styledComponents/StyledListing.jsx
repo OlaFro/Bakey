@@ -111,10 +111,17 @@ export const StyledTagContainer = styled.div`
 
 export const StyledBtnContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   grid-area: btn;
-  height: 75px;
+  margin-top: var(--space-s);
+
+  @media ${device.tabletLandscape} {
+    margin-top: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 export const StyledTimers = styled.div`
