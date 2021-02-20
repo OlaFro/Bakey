@@ -54,11 +54,11 @@ export default function ListingForm() {
   };
 
   const getAllergenes = (e) => {
-    if (data.Allergenes.includes(e.target.name)) {
+    if (data.listingAllergenes.includes(e.target.name)) {
       setData((prevData) => {
         return {
           ...prevData,
-          listingTags: prevData.Allergenes.filter(
+          listingAllergenes: prevData.listingAllergenes.filter(
             (tag) => tag !== e.target.name
           ),
         };
@@ -67,7 +67,7 @@ export default function ListingForm() {
       setData((prevData) => {
         return {
           ...prevData,
-          listingTags: [...prevData.Allergenes, e.target.name],
+          listingAllergenes: [...prevData.listingAllergenes, e.target.name],
         };
       });
     }
