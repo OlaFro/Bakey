@@ -47,6 +47,14 @@ export const StyledContentContainer = styled.main`
   > h4 {
     margin: var(--space-xs) 0;
   }
+  /* we can move a to global but than we need to adjust the links in the navbar */
+  a {
+  color: #4A4A4A;
+  text-decoration: none;
+  border-bottom: 3px solid  #ED8DB2;
+  :hover{
+    border-bottom: 3px solid transparent;
+  }
 `;
 
 export const StyledBtnContainer = styled.div`
@@ -69,6 +77,14 @@ export const StyledBtnContainer = styled.div`
   }
 `;
 
-export const StyledAbout = styled.div``;
+export const StyledAbout = styled.div`
+  display: ${(props) => props.display};
+`;
 
-export const StyledAddress = styled.div``;
+export const StyledAddress = styled.div`
+  display: ${(props) => props.display};
+  width: 50%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: var(--space-s) 0;
+`;

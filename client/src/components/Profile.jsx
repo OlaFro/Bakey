@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledHr from "../styledComponents/StyledHr";
@@ -12,6 +12,16 @@ import {
 } from "../styledComponents/StyledProfile";
 
 export default function Profile() {
+  const [showAddress, setShowAddress] = useState(false);
+
+  const handleShow = () => {
+    setShowAddress(false);
+  };
+
+  const handleHide = () => {
+    setShowAddress(true);
+  };
+
   return (
     <StyledCentered>
       <StyledBackgroundPic />
@@ -23,10 +33,14 @@ export default function Profile() {
 
         <StyledHr cafe />
         <StyledBtnContainer>
-          <StyledButton cafe>About</StyledButton>
-          <StyledButton cafe>Address</StyledButton>
+          <StyledButton onClick={handleShow} cafe>
+            About
+          </StyledButton>
+          <StyledButton onClick={handleHide} cafe>
+            Address
+          </StyledButton>
         </StyledBtnContainer>
-        {/* <StyledAbout>
+        <StyledAbout display={showAddress ? "none" : "block"}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -36,19 +50,21 @@ export default function Profile() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.{" "}
           </p>
-        </StyledAbout> */}
-        <StyledAddress>
+        </StyledAbout>
+        <StyledAddress display={showAddress ? "flex" : "none"}>
           <span>
             <strong>Café Ocka</strong>
           </span>
 
-          <span>Merseburger Str. 88 04177 Leipzig</span>
+          <span>Merseburger Str. 88</span>
+          <span> 04177 Leipzig</span>
 
           <a href="http://www.cafeocka.de">www.cafeocka.de</a>
 
           <span> ocka@ocka.ocka</span>
 
           <span>0341 - 12345678</span>
+          {/* place for the map in the future */}
         </StyledAddress>
 
         <StyledHr cafe />

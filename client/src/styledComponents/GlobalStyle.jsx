@@ -51,13 +51,7 @@ p {
   font-family: var(--text);
 }
 
-a {
-  color: #4A4A4A;
-  text-decoration: none;
-  border-bottom: 3px solid  #ED8DB2;
-  :hover{
-    border-bottom: none;
-  }
+
 }
 `;
 
