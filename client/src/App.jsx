@@ -16,6 +16,8 @@ import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
 import ListingForm from "./components/ListingForm";
 
+import Profile from "./components/Profile";
+
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
   const [userName, setUserName] = useState("");
@@ -61,6 +63,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <Navigation />
+        <Profile />
         <Switch>
           <Route path="/" exact>
             <h1>Welcome to bakey</h1>
