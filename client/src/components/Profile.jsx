@@ -32,7 +32,12 @@ export default function Profile() {
             alt="our cafe"
           ></img>
         </StyledBackgroundPic>
-        <StyledLogo />
+        <StyledLogo>
+          <img
+            src="https://i.pinimg.com/originals/1f/c3/ff/1fc3ff4791f292d4ec65893a2087825c.png"
+            alt="our logo"
+          ></img>
+        </StyledLogo>
       </StyledHeader>
       <StyledContentContainer>
         {/* place for review stars in the future */}

@@ -23,12 +23,10 @@ export const StyledBackgroundPic = styled.figure`
   }
 `;
 
-export const StyledLogo = styled.img`
+export const StyledLogo = styled.figure`
+  margin: 0;
   width: 150px;
   height: 150px;
-  background-image: url("https://i.pinimg.com/originals/1f/c3/ff/1fc3ff4791f292d4ec65893a2087825c.png");
-  background-size: cover;
-  background-position: center;
   border-radius: 100%;
   border: 5px solid white;
   position: absolute;
@@ -36,11 +34,19 @@ export const StyledLogo = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0px 10px 14px -2px #b9b9b9;
+  z-index: 5;
+  overflow: hidden;
   @media ${device.tabletPortrait} {
     width: 200px;
     height: 200px;
     border: 15px solid white;
     box-shadow: 0px 10px 24px -2px #b9b9b9;
+  }
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
 `;
 
@@ -52,13 +58,14 @@ export const StyledContentContainer = styled.main`
   > h4 {
     margin: var(--space-xs) 0;
   }
-  /* we can move a to global but than we need to adjust the links in the navbar */
+  /* we can move <a> to global but than we need to adjust the links in the navbar */
   a {
-  color: #4A4A4A;
-  text-decoration: none;
-  border-bottom: 3px solid  #ED8DB2;
-  :hover{
-    border-bottom: 3px solid transparent;
+    color: #4a4a4a;
+    text-decoration: none;
+    border-bottom: 3px solid #ed8db2;
+    :hover {
+      border-bottom: 3px solid transparent;
+    }
   }
 `;
 
