@@ -3,6 +3,7 @@ import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledHr from "../styledComponents/StyledHr";
 import {
+  StyledHeader,
   StyledBackgroundPic,
   StyledLogo,
   StyledContentContainer,
@@ -24,8 +25,15 @@ export default function Profile() {
 
   return (
     <StyledCentered>
-      <StyledBackgroundPic />
-      <StyledLogo />
+      <StyledHeader>
+        <StyledBackgroundPic>
+          <img
+            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1330&q=80"
+            alt="our cafe"
+          ></img>
+        </StyledBackgroundPic>
+        <StyledLogo />
+      </StyledHeader>
       <StyledContentContainer>
         {/* place for review stars in the future */}
         <h2>Café ocka</h2>

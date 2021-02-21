@@ -1,17 +1,18 @@
 import styled, { css } from "styled-components";
 import device from "./device";
 
-export const StyledBackgroundPic = styled.img`
+export const StyledHeader = styled.header`
+  position: relative;
+`;
+export const StyledBackgroundPic = styled.figure`
   width: 90%;
   max-width: 1200px;
   height: 200px;
-  background-image: url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1330&q=80");
-  background-repeat: no-repeat;
-  position: relative;
-
-  /* for preview only can be deleted later*/
-  background-position: 100% 30%;
-
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   @media ${device.tabletPortrait} {
     height: 400px;
   }
@@ -33,7 +34,7 @@ export const StyledLogo = styled.img`
     height: 200px;
     border: 15px solid white;
     left: 50%;
-    top: 48%;
+    top: 100%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 10px 24px -2px #b9b9b9;
   }
