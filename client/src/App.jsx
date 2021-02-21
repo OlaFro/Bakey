@@ -17,6 +17,8 @@ import Navigation from "./components/Navigation";
 import ListingForm from "./components/ListingForm";
 
 import Profile from "./components/Profile";
+import ListView from "./components/ListView";
+import Settings from "./components/Settings";
 
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
@@ -96,6 +98,9 @@ function App() {
             ) : (
               <Redirect to="/" />
             )}
+          </Route>
+          <Route to="cafes" exact>
+            <ListView />
           </Route>
           <Route to="cafe:id" exact>
             <Profile />
