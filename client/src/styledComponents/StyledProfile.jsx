@@ -33,16 +33,17 @@ export const StyledLogo = styled.img`
     height: 200px;
     border: 15px solid white;
     left: 50%;
-    top: 53%;
+    top: 48%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 10px 24px -2px #b9b9b9;
   }
 `;
 
-export const StyledNameContainer = styled.div`
+export const StyledContentContainer = styled.div`
+  width: 800px;
   margin-top: calc(var(--space-l) * 3);
   text-align: center;
   > h4 {
-    margin: var(space-s) 0;
+    margin: var(--space-xs) 0;
   }
 `;
