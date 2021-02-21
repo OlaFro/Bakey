@@ -4,6 +4,7 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import {
   StyledBackgroundPic,
   StyledLogo,
+  StyledNameContainer,
 } from "../styledComponents/StyledProfile";
 
 export default function Profile() {
@@ -11,18 +12,19 @@ export default function Profile() {
     <StyledCentered>
       <StyledBackgroundPic />
       <StyledLogo />
-
-      {/* <StyledCentered>
+      <StyledNameContainer>
+        {/* place for review stars in the future */}
         <h2>Café ocka</h2>
-        <span>Baker: Kati</span>
-        <hr />
-        <div>
-          <StyledButton cafe>About</StyledButton>
-          <StyledButton cafe>Address</StyledButton>
-        </div>
-        <p>Description</p>
-        <hr />
-      </StyledCentered> */}
+        <h4>Baker: Kati</h4>
+      </StyledNameContainer>
+
+      {/* <hr />
+      <div>
+        <StyledButton cafe>About</StyledButton>
+        <StyledButton cafe>Address</StyledButton>
+      </div>
+      <p>Description</p>
+      <hr /> */}
     </StyledCentered>
   );
 }
