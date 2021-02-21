@@ -63,7 +63,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <Navigation />
-        <Profile />
+        {/* <Profile /> */}
         <Switch>
           <Route path="/" exact>
             {/* <h1>Welcome to bakey</h1> */}
@@ -97,6 +97,9 @@ function App() {
             ) : (
               <Redirect to="/" />
             )}
+          </Route>
+          <Route to="cafe:id" exact>
+            <Profile />
           </Route>
           <Route path="*">
             {" "}
