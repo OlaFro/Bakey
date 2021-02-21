@@ -21,8 +21,12 @@ export const StyledButton = styled.button`
     background-color: ${darken(0.1, colors.accent1)};
   }
   :active {
-    background-color: white;
-    border: var(--border) solid ${colors.accent1};
+    border: var(--border) solid ${darken(0.1, colors.accent1)};
+    color: var(--black);
+  }
+  :focus {
+    outline: none;
+    border: var(--border) solid ${colors.black};
     color: var(--black);
   }
 
@@ -35,16 +39,61 @@ export const StyledButton = styled.button`
     props.cafe &&
     css`
       background-color: ${colors.accent2};
+      color: white;
       :hover {
         cursor: pointer;
         background-color: ${darken(0.1, colors.accent2)};
       }
       :active {
-        background-color: white;
-        border: var(--border) solid ${colors.accent2};
+        border: var(--border) solid ${darken(0.1, colors.accent2)};
+        color: var(--black);
+      }
+      :focus {
+        outline: none;
+        border: var(--border) solid ${colors.black};
         color: var(--black);
       }
     `};
+
+  ${(props) =>
+    props.second &&
+    css`
+      background-color: white;
+      border: var(--border) solid ${colors.accent1};
+      :hover {
+        border: var(--border) solid ${darken(0.1, colors.accent1)};
+      }
+      :active {
+        border: var(--border) solid ${darken(0.1, colors.accent2)};
+        color: var(--black);
+      }
+      :focus {
+        outline: none;
+        border: var(--border) solid ${colors.black};
+        color: var(--black);
+      }
+    `}
+
+  ${(props) =>
+    props.secondCafe &&
+    css`
+      background-color: white;
+      color: ${colors.accent2};
+      border: var(--border) solid ${colors.accent2};
+      :hover {
+        border: var(--border) solid ${darken(0.1, colors.accent2)};
+        color: white;
+      }
+      :active {
+        border: var(--border) solid ${darken(0.1, colors.accent2)};
+        color: var(--black);
+      }
+      :focus {
+        outline: none;
+        border: var(--border) solid ${colors.black};
+        color: var(--black);
+      }
+    `}
 
   ${(props) =>
     props.cafeRegister &&

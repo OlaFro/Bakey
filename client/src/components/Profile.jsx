@@ -41,10 +41,18 @@ export default function Profile() {
 
         <StyledHr cafe />
         <StyledBtnContainer>
-          <StyledButton onClick={handleShow} cafe>
+          <StyledButton
+            onClick={handleShow}
+            cafe
+            secondCafe={showAddress ? false : true}
+          >
             About
           </StyledButton>
-          <StyledButton onClick={handleHide} cafe>
+          <StyledButton
+            onClick={handleHide}
+            cafe
+            secondCafe={showAddress ? true : false}
+          >
             Address
           </StyledButton>
         </StyledBtnContainer>
