@@ -7,6 +7,8 @@ import {
   StyledLogo,
   StyledContentContainer,
   StyledBtnContainer,
+  StyledAbout,
+  StyledAddress,
 } from "../styledComponents/StyledProfile";
 
 export default function Profile() {
@@ -24,7 +26,7 @@ export default function Profile() {
           <StyledButton cafe>About</StyledButton>
           <StyledButton cafe>Address</StyledButton>
         </StyledBtnContainer>
-        <div>
+        {/* <StyledAbout>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -34,10 +36,20 @@ export default function Profile() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.{" "}
           </p>
-        </div>
-        <div>
-          <p></p>
-        </div>
+        </StyledAbout> */}
+        <StyledAddress>
+          <span>
+            <strong>Café Ocka</strong>
+          </span>
+
+          <span>Merseburger Str. 88 04177 Leipzig</span>
+
+          <a href="http://www.cafeocka.de">www.cafeocka.de</a>
+
+          <span> ocka@ocka.ocka</span>
+
+          <span>0341 - 12345678</span>
+        </StyledAddress>
 
         <StyledHr cafe />
       </StyledContentContainer>

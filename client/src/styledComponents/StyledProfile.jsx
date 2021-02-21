@@ -42,7 +42,7 @@ export const StyledLogo = styled.img`
 export const StyledContentContainer = styled.main`
   width: 80%;
   max-width: 800px;
-  margin-top: calc(var(--space-m) * 3);
+  margin-top: calc(var(--space-l) * 3);
   text-align: center;
   > h4 {
     margin: var(--space-xs) 0;
@@ -68,3 +68,7 @@ export const StyledBtnContainer = styled.div`
     }
   }
 `;
+
+export const StyledAbout = styled.div``;
+
+export const StyledAddress = styled.div``;
