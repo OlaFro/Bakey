@@ -39,11 +39,32 @@ export const StyledLogo = styled.img`
   }
 `;
 
-export const StyledContentContainer = styled.div`
-  width: 800px;
-  margin-top: calc(var(--space-l) * 3);
+export const StyledContentContainer = styled.main`
+  width: 80%;
+  max-width: 800px;
+  margin-top: calc(var(--space-m) * 3);
   text-align: center;
   > h4 {
     margin: var(--space-xs) 0;
+  }
+`;
+
+export const StyledBtnContainer = styled.div`
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  > button {
+    margin: var(--space-xs) 0;
+    padding: var(--space-xs);
+  }
+  @media ${device.tabletPortrait} {
+    width: 60%;
+    flex-direction: row;
+    justify-content: space-around;
+    > button {
+      padding: var(--space-s) var(--space-m);
+      margin: 0 var(--space-s);
+    }
   }
 `;
