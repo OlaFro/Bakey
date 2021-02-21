@@ -99,10 +99,13 @@ function App() {
               <Redirect to="/" />
             )}
           </Route>
-          <Route to="cafes" exact>
+          <Route path="/cafes-list" exact>
             <ListView />
           </Route>
-          <Route to="cafe:id" exact>
+          <Route path="/settings" exact>
+            <Settings />
+          </Route>
+          <Route path="/cafe:id" exact>
             <Profile />
           </Route>
           <Route path="*">

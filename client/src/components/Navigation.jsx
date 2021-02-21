@@ -51,7 +51,7 @@ export default function Navigation(props) {
         <StyledMenu onClick={handleOpen} display={open} />
       </StyledLogoContainer>
       <StyledNavContainer display={open}>
-        <Link to="/cafes">cafés</Link>
+        <Link to="/cafes-list">cafés</Link>
         <Link to="/">about us</Link>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
