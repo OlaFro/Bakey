@@ -10,6 +10,7 @@ import {
   StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
+import Listing from "./Listing";
 
 import Warning from "./Warning";
 
@@ -126,6 +127,7 @@ export default function ListingForm() {
 
   return (
     <StyledCentered>
+      <Listing />
       <header>
         <h2>Add a new listing</h2>
       </header>
