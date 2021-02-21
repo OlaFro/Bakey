@@ -2,12 +2,17 @@ import styled, { css } from "styled-components";
 import device from "./device";
 
 export const StyledHeader = styled.header`
+  width: 90%;
+  max-width: 1200px;
+
   position: relative;
 `;
 export const StyledBackgroundPic = styled.figure`
+  margin: auto;
   width: 90%;
   max-width: 1200px;
   height: 200px;
+
   > img {
     width: 100%;
     height: 100%;
@@ -27,15 +32,14 @@ export const StyledLogo = styled.img`
   border-radius: 100%;
   border: 5px solid white;
   position: absolute;
-  top: 20%;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-shadow: 0px 10px 14px -2px #b9b9b9;
   @media ${device.tabletPortrait} {
     width: 200px;
     height: 200px;
     border: 15px solid white;
-    left: 50%;
-    top: 100%;
-    transform: translate(-50%, -50%);
     box-shadow: 0px 10px 24px -2px #b9b9b9;
   }
 `;
@@ -43,7 +47,7 @@ export const StyledLogo = styled.img`
 export const StyledContentContainer = styled.main`
   width: 80%;
   max-width: 800px;
-  margin-top: calc(var(--space-l) * 3);
+  margin-top: calc(var(--space-l) * 2);
   text-align: center;
   > h4 {
     margin: var(--space-xs) 0;
