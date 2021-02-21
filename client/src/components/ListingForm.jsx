@@ -18,7 +18,11 @@ import { useHistory } from "react-router-dom";
 
 export default function ListingForm() {
   const history = useHistory();
-  const [data, setData] = useState({ listingName: "" });
+  const [data, setData] = useState({
+    listingName: "",
+    listingTags: [],
+    listingAllergenes: [],
+  });
   const [msg, setMsg] = useState({});
   const [showWarning, setShowWarning] = useState(false);
   const [imageWarning, setImageWarning] = useState(false);
@@ -27,6 +31,46 @@ export default function ListingForm() {
   const getValue = (e) => {
     setShowWarning(false);
     setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const getTags = (e) => {
+    if (data.listingTags.includes(e.target.name)) {
+      setData((prevData) => {
+        return {
+          ...prevData,
+          listingTags: prevData.listingTags.filter(
+            (tag) => tag !== e.target.name
+          ),
+        };
+      });
+    } else {
+      setData((prevData) => {
+        return {
+          ...prevData,
+          listingTags: [...prevData.listingTags, e.target.name],
+        };
+      });
+    }
+  };
+
+  const getAllergenes = (e) => {
+    if (data.listingAllergenes.includes(e.target.name)) {
+      setData((prevData) => {
+        return {
+          ...prevData,
+          listingAllergenes: prevData.listingAllergenes.filter(
+            (tag) => tag !== e.target.name
+          ),
+        };
+      });
+    } else {
+      setData((prevData) => {
+        return {
+          ...prevData,
+          listingAllergenes: [...prevData.listingAllergenes, e.target.name],
+        };
+      });
+    }
   };
 
   const getPhoto = (e) => {
@@ -133,62 +177,127 @@ export default function ListingForm() {
         <StyledOtherInputsContainer cafe long>
           <header>Allergenes</header>
           <div>
-            <input type="checkbox" id="cereal" name="cereal" />
+            <input
+              type="checkbox"
+              id="cereal"
+              name="cereal"
+              onChange={getAllergenes}
+            />
             <label htmlFor="cereal">cereal</label>
           </div>
           <div>
-            <input type="checkbox" id="eggs" name="eggs" />
+            <input
+              type="checkbox"
+              id="eggs"
+              name="eggs"
+              onChange={getAllergenes}
+            />
             <label htmlFor="eggs">eggs</label>
           </div>
           <div>
-            <input type="checkbox" id="peanut" name="peanut" />
+            <input
+              type="checkbox"
+              id="peanut"
+              name="peanut"
+              onChange={getAllergenes}
+            />
             <label htmlFor="peanut">peanut</label>
           </div>
           <div>
-            <input type="checkbox" id="soja" name="soja" />
+            <input
+              type="checkbox"
+              id="soja"
+              name="soja"
+              onChange={getAllergenes}
+            />
             <label htmlFor="soja">soja</label>
           </div>
           <div>
-            <input type="checkbox" id="dairy" name="dairy" />
+            <input
+              type="checkbox"
+              id="dairy"
+              name="dairy"
+              onChange={getAllergenes}
+            />
             <label htmlFor="dairy">dairy</label>
           </div>
           <div>
-            <input type="checkbox" id="celery" name="celery" />
+            <input
+              type="checkbox"
+              id="celery"
+              name="celery"
+              onChange={getAllergenes}
+            />
             <label htmlFor="celery">celery</label>
           </div>
           <div>
-            <input type="checkbox" id="mustard" name="mustard" />
+            <input
+              type="checkbox"
+              id="mustard"
+              name="mustard"
+              onChange={getAllergenes}
+            />
             <label htmlFor="mustard">mustard</label>
           </div>
           <div>
-            <input type="checkbox" id="lupins" name="lupins" />
+            <input
+              type="checkbox"
+              id="lupins"
+              name="lupins"
+              onChange={getAllergenes}
+            />
             <label htmlFor="lupins">lupins</label>
           </div>
         </StyledOtherInputsContainer>
         <StyledOtherInputsContainer cafe long>
           <header>Tags</header>
           <div>
-            <input type="checkbox" id="vegan" name="vegan" />
+            <input type="checkbox" id="vegan" name="vegan" onChange={getTags} />
             <label htmlFor="vegan">vegan</label>
           </div>
           <div>
-            <input type="checkbox" id="organic" name="organic" />
+            <input
+              type="checkbox"
+              id="organic"
+              name="organic"
+              onChange={getTags}
+            />
             <label htmlFor="organic">organic</label>
           </div>
           <div>
-            <input type="checkbox" id="glutenFree" name="glutenFree" />
+            <input
+              type="checkbox"
+              id="glutenFree"
+              name="glutenFree"
+              onChange={getTags}
+            />
             <label htmlFor="glutenFree">gluten-free</label>
           </div>
           <div>
-            <input type="checkbox" id="lactoseFree" name="lactoseFree" />
+            <input
+              type="checkbox"
+              id="lactoseFree"
+              name="lactoseFree"
+              onChange={getTags}
+            />
             <label htmlFor="lactoseFree">lactose-free</label>
           </div>
           <div>
-            <input type="checkbox" id="sugarFree" name="sugarFree" />
+            <input
+              type="checkbox"
+              id="sugarFree"
+              name="sugarFree"
+              onChange={getTags}
+            />
             <label htmlFor="sugarFree">sugar-free</label>
           </div>
           <div>
-            <input type="checkbox" id="wheatFree" name="wheatFree" />
+            <input
+              type="checkbox"
+              id="wheatFree"
+              name="wheatFree"
+              onChange={getTags}
+            />
             <label htmlFor="wheatFree">wheat-free</label>
           </div>
         </StyledOtherInputsContainer>
