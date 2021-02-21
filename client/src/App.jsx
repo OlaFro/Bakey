@@ -66,7 +66,7 @@ function App() {
         <Profile />
         <Switch>
           <Route path="/" exact>
-            <h1>Welcome to bakey</h1>
+            {/* <h1>Welcome to bakey</h1> */}
           </Route>
           <Route path="/registration/user" exact>
             <RegistrationUser />
