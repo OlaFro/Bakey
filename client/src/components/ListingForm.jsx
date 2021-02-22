@@ -115,8 +115,10 @@ export default function ListingForm() {
           setMsg(msgChanged);
         } else if (res.data.errorSource === "image upload") {
           setImageWarning(true);
-        } else {
+        } else if (res.data === "added listing") {
           history.push("/cafe-dashboard");
+        } else {
+          setShowWarning(true);
         }
       })
       .catch((err) => {
