@@ -8,6 +8,12 @@ const colors = {
   shade2: "#CF7A9A",
   shade3: "#9AA63D",
   warning: "red",
+
+  vegan: "#9C9359",
+  organic: "#b0946a",
+  lactose: "#A57283",
+  gluten: "#C6AC85",
+  sugar: "#DC828F",
 };
 
 export default colors;
