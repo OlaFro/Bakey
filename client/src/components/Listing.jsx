@@ -35,7 +35,12 @@ export default function Listing() {
   };
   return (
     <StyledListingContainer>
-      <StyledPhotoContainer></StyledPhotoContainer>
+      <StyledPhotoContainer>
+        <img
+          src="https://images.unsplash.com/photo-1578775887804-699de7086ff9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=675&q=80"
+          alt="my offer"
+        ></img>
+      </StyledPhotoContainer>
       <StyledDescContainer>
         <header>
           <h3>

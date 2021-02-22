@@ -7,12 +7,9 @@ import {
   KeyboardArrowUp,
 } from "styled-icons/material-sharp";
 
-export const StyledListingSteps = styled.div``;
-
 export const StyledListingContainer = styled.div`
   width: 90%;
   max-width: 400px;
-
   display: grid;
   grid-template-rows: 400px auto;
   border-radius: var(--border-radius);
@@ -27,8 +24,12 @@ export const StyledListingContainer = styled.div`
 
 export const StyledPhotoContainer = styled.div`
   height: 100%;
-  background-image: url("https://images.unsplash.com/photo-1578775887804-699de7086ff9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=675&q=80");
-  background-size: cover;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -42,6 +43,11 @@ export const StyledDescContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: var(--space-xs) var(--space-xs);
+  height: 500px;
+
+  @media ${device.tabletLandscape} {
+    height: 400px;
+  }
 
   > header {
     text-align: center;
@@ -63,6 +69,18 @@ export const StyledDescContainer = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
+    margin: var(--space-s);
+    > section > span,
+    > section > strong {
+      font-size: 0.9rem;
+    }
+    @media ${device.tabletLandscape} {
+      margin: 0;
+      > section > span,
+      > section > strong {
+        font-size: 0.8rem;
+      }
+    }
   }
   /* amount of pieces left */
   > span {
@@ -165,10 +183,6 @@ export const StyledTag = styled.span`
 export const StyledTimers = styled.div`
   display: grid;
   column-gap: calc(2 * var(--space-l));
-  > section > span,
-  > section > strong {
-    font-size: 0.8rem;
-  }
 `;
 
 export const StyledBtnContainer = styled.div`

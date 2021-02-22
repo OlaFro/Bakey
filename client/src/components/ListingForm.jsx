@@ -132,10 +132,11 @@ export default function ListingForm() {
         <h2>Add a new listing</h2>
       </header>
       <StyledListingSteps>
+        <h2> 1. Fill out: </h2>
         <StyledForm onSubmit={formSubmit} listing>
-          <header>
+          {/* <header>
             <h2>Fill out:</h2>
-          </header>
+          </header> */}
           <StyledOtherInputsContainer cafe>
             <header>Upload photo</header>
             <StyledPhotoUpload cafe>
@@ -374,6 +375,7 @@ export default function ListingForm() {
           <StyledButton cafe>Save</StyledButton>
           {showWarning ? <Warning msg="the service is out of order" /> : null}
         </StyledForm>
+        <h2> 2. Preview: </h2>
         <Listing />
       </StyledListingSteps>
     </StyledCentered>
