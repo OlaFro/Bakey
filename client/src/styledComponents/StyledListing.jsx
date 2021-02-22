@@ -97,13 +97,18 @@ export const StyledAllergenesContainer = styled.div`
 export const StyledTagContainer = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin: auto;
   width: 55%;
   padding: var(--space-xs) 0;
 
-   p {
+   div > p {
      margin-top: 0;
      padding-right: var(--space-xs);
+   }
+   div {
+     display: flex;
+     flex-direction: row;
    }
 `;
 

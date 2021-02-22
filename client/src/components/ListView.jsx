@@ -13,11 +13,13 @@ import {
   StyledTag,
   StyledTagContainer,
 } from "../styledComponents/StyledListing";
+import Warning from "./Warning";
 
 export default function ListView() {
   const [registeredCafes, setRegisteredCafes] = useState([]);
   const [city, setCity] = useState({city: "Leipzig"});
   const {setCafes} = useContext(bakeyContext);
+  const [dataCheck, setDataCheck] = useState(false);
 
    return (
     <div>
@@ -31,14 +33,19 @@ export default function ListView() {
       data: {city: e.target.value},
     })
       .then((res) => {
-        setRegisteredCafes(res.data);
-        setCafes(res.data);
+        if (res.data.length === 0) {
+          setDataCheck(true);
+        } else 
+       { setDataCheck(false);
+         setRegisteredCafes(res.data);
+        setCafes(res.data);}
+
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
+        setDataCheck(true);
       });
   }}>
-            <option>Select city</option>
             <option value="Leipzig">Leipzig</option>
             <option value="Hamburg">Hamburg</option>
             <option value="Düsseldorf">Düsseldorf</option>
@@ -50,32 +57,35 @@ export default function ListView() {
         <div>
           <h3>Cafes in {city.city} with active campaigns:</h3>
           <p>Show only cafes that offer something:</p>
-          <StyledTagContainer>
+          <StyledTagContainer> 
+            <div>
             <StyledTag no lactose title="lactose free">
               L
             </StyledTag>
             <p>Lupine free</p>
+            </div><div>
             <StyledTag no gluten title="gluten free">
               G
             </StyledTag>
-            <p>Gluten Free</p>
+            <p>Gluten Free</p></div><div>
             <StyledTag no sugar title="sugar free">
               S
             </StyledTag>
-            <p>Sesam Free</p>
+            <p>Sesam Free</p></div><div>
             <StyledTag vegan title="vegan">
               V
             </StyledTag>
-            <p>Vegan</p>
+            <p>Vegan</p></div><div>
             <StyledTag organic title="organic">
               O
             </StyledTag>
-            <p>Organic</p>
+            <p>Organic</p></div>
           </StyledTagContainer>
         </div>
-        {registeredCafes.map((i) => {
+        {dataCheck === true ? <Warning /> : null}
+        {dataCheck === false ? registeredCafes.map((i) => {
           return <ListViewCafe props={i} />;
-        })}
+        }) : null }
       </StyledListView>
     </div>
   );
