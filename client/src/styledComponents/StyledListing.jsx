@@ -114,9 +114,9 @@ export const StyledAllergenesContainer = styled.div`
 export const StyledTagContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: auto;
-  width: 60%;
-  padding: var(--space-xs) 0;
+  width: 192px;
+  height: 2rem;
+  margin: var(--space-xs) auto;
 `;
 
 export const StyledTag = styled.span`

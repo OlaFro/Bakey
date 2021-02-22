@@ -372,11 +372,17 @@ export default function ListingForm() {
               </div>
             </StyledInputContainer>
           </div>
-          <StyledButton cafe>Save</StyledButton>
-          {showWarning ? <Warning msg="the service is out of order" /> : null}
         </StyledForm>
         <h2> 2. Preview: </h2>
-        <Listing />
+        <Listing
+          title={data.listingName}
+          totalPieces={data.totalPieces}
+          pickUpDate={data.pickUpDate}
+          piecePrice={data.piecePrice}
+        />
+        <h2> 3. Save: </h2>
+        <StyledButton cafe>Save</StyledButton>
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledListingSteps>
     </StyledCentered>
   );

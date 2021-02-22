@@ -18,13 +18,15 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
+import { Portrait } from "styled-icons/material-sharp";
 
-export default function Listing() {
+export default function Listing(props) {
   const { cafeName } = useContext(bakeyContext);
 
   const [open, setOpen] = useState(false);
-  const value = 4;
-  const maxValue = 6;
+  // value should come from DB
+  const value = 2;
+  const maxValue = props.totalPieces;
 
   const handleOpen = () => {
     setOpen(true);
@@ -44,7 +46,7 @@ export default function Listing() {
       <StyledDescContainer>
         <header>
           <h3>
-            Kati's great apple pie apple
+            {props.title ? props.title : "Title"}
             <StyledMore
               onClick={handleOpen}
               display={open ? "none" : "inline"}
@@ -65,7 +67,7 @@ export default function Listing() {
             <StyledTag no lactose title="lactose free">
               L
             </StyledTag>
-            <StyledTag no gluten title="gluten free">
+            {/* <StyledTag no gluten title="gluten free">
               G
             </StyledTag>
             <StyledTag no sugar title="sugar free">
@@ -79,16 +81,16 @@ export default function Listing() {
             </StyledTag>
             <StyledTag organic title="organic">
               O
-            </StyledTag>
+            </StyledTag> */}
           </StyledTagContainer>
-          <span>Café Ocka</span>
+          <span>{cafeName === undefined ? "Café Name" : cafeName}</span>
         </header>
 
         <div style={{ width: "130px" }}>
           <CircularProgressbar
             value={value}
             maxValue={maxValue}
-            text={`${value}/${maxValue} sold`}
+            text={`${value}/${maxValue === "" ? 0 : maxValue} sold`}
             strokeWidth="14"
             styles={buildStyles({
               // Rotation of path and trail, in number of turns (0-1)
@@ -126,12 +128,22 @@ export default function Listing() {
           </StyledCentered>
           <StyledCentered>
             <span>Pick-up:</span>
-            <strong>Tuesday 12:00</strong>
+            <strong>
+              {props.pickUpDate ? props.pickUpDate : "Day and hour"}
+            </strong>
           </StyledCentered>
         </StyledTimers>
         <StyledBtnContainer>
-          <StyledButton buy>Buy a piece for 6€</StyledButton>
-          <StyledButton buy>Buy whole for 36€</StyledButton>
+          <StyledButton buy>
+            Buy a piece for {props.piecePrice ? props.piecePrice : ""} €
+          </StyledButton>
+          <StyledButton buy>
+            Buy whole for{" "}
+            {props.piecePrice && props.totalPieces
+              ? (props.piecePrice * props.totalPieces).toFixed(2)
+              : ""}
+            €
+          </StyledButton>
         </StyledBtnContainer>
       </StyledDescContainer>
     </StyledListingContainer>

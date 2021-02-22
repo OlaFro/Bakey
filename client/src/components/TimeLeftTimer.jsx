@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 export default function Timer() {
-  // time information should come from the server
-
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
     minutes: 0,
@@ -10,6 +8,8 @@ export default function Timer() {
   });
 
   const countDown = () => {
+    // time information should come from the server
+
     const finish = new Date();
     finish.setHours(24, 0, 0, 0);
     //next midnight
@@ -38,7 +38,7 @@ export default function Timer() {
   return (
     <div>
       {" "}
-      {`${timeLeft.hours}`}h {`${timeLeft.minutes}`}min sec
+      {`${timeLeft.hours}`}h {`${timeLeft.minutes}`}min
     </div>
   );
 }
