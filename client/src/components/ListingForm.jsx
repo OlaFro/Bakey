@@ -380,6 +380,7 @@ export default function ListingForm() {
           pickUpDate={data.pickUpDate}
           piecePrice={data.piecePrice}
           listingAllergenes={data.listingAllergenes}
+          listingTags={data.listingTags}
           image={image.preview}
         />
         <h2> 3. Save: </h2>

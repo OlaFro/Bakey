@@ -4,7 +4,6 @@ import {
   StyledListingContainer,
   StyledPhotoContainer,
   StyledDescContainer,
-  StyledTag,
   StyledTagContainer,
   StyledAllergenesContainer,
   StyledBtnContainer,
@@ -19,6 +18,7 @@ import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
+import Tag from "./Tag";
 
 export default function Listing(props) {
   const { cafeName } = useContext(bakeyContext);
@@ -41,20 +41,21 @@ export default function Listing(props) {
     if (props.listingAllergenes) {
       var list = props.listingAllergenes;
       return list.map((elem) => {
-        console.log("test");
         return <p>{elem}, </p>;
       });
+    }
+  };
+
+  const tags = () => {
+    if (props.listingTags) {
+      return <Tag data={props.listingTags} />;
     }
   };
 
   return (
     <StyledListingContainer>
       <StyledPhotoContainer>
-        <img
-          src={placeholder}
-          src={props.image ? props.image : placeholder}
-          alt="my offer"
-        ></img>
+        <img src={props.image ? props.image : placeholder} alt="my offer"></img>
       </StyledPhotoContainer>
       <StyledDescContainer>
         <header>
@@ -74,7 +75,8 @@ export default function Listing(props) {
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
           <StyledTagContainer>
-            <StyledTag no lactose title="lactose free">
+            {tags()}
+            {/* <StyledTag no lactose title="lactose free">
               L
             </StyledTag>
             <StyledTag no gluten title="gluten free">
@@ -91,7 +93,7 @@ export default function Listing(props) {
             </StyledTag>
             <StyledTag organic title="organic">
               O
-            </StyledTag>
+            </StyledTag> */}
           </StyledTagContainer>
           <span>{cafeName === undefined ? "Café Name" : cafeName}</span>
         </header>
