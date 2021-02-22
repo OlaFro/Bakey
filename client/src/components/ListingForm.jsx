@@ -359,7 +359,7 @@ export default function ListingForm() {
             <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
             <div>
               {msg.pickUpDate ? (
-                <small>Pick up time have to be in future</small>
+                <small>Pick up time has to be in the future</small>
               ) : null}
             </div>
           </StyledInputContainer>
