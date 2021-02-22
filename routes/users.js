@@ -33,7 +33,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
         firstName: result.firstName,
         profilePic: result.profilePic,
         userType: result.userType,
-        cafeName: user.cafeName,
+        cafeName: result.cafeName,
       });
     })
     .catch((err) => {
