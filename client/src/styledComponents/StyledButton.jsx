@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   color: var(--black);
   font-size: 1rem;
   padding: var(--space-s) var(--space-m);
-  border-radius: calc(2 * var(--border-radius));
+  border-radius: var(--border-radius);
   text-transform: uppercase;
   letter-spacing: var(--ls);
   font-weight: 700;
@@ -21,12 +21,8 @@ export const StyledButton = styled.button`
     background-color: ${darken(0.1, colors.accent1)};
   }
   :active {
-    border: var(--border) solid ${darken(0.1, colors.accent1)};
-    color: var(--black);
-  }
-  :focus {
-    outline: none;
-    border: var(--border) solid ${colors.black};
+    background-color: white;
+    border: var(--border) solid ${colors.accent1};
     color: var(--black);
   }
 
@@ -74,6 +70,7 @@ export const StyledButton = styled.button`
       }
     `}
 
+
   ${(props) =>
     props.secondCafe &&
     css`
@@ -100,6 +97,26 @@ export const StyledButton = styled.button`
     css`
       grid-area: register;
       justify-self: center;
+`}
+
+  ${(props) =>
+    props.buy &&
+    css`
+      padding: var(--space-xs) var(--space-m);
+      border: var(--border) solid ${colors.accent1};
+      border-radius: calc(var(--border-radius) * 2);
+      background-color: ${colors.accent1};
+      font-size: 0.8rem;
+      margin: 0 0 var(--space-s) 0;
+      /* box-shadow: 0 7px 6px -6px ${colors.black}; */
+      :hover {
+        cursor: pointer;
+        border: var(--border) solid ${darken(0.1, colors.accent1)};
+        background-color: transparent;
+      }
+      @media ${device.tabletLandscape} {
+        margin: var(--space-s);
+      }
     `}
 `;
 

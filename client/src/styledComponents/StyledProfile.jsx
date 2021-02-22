@@ -100,3 +100,10 @@ export const StyledAddress = styled.div`
   align-items: flex-start;
   margin: var(--space-s) 0;
 `;
+
+export const StyledListingContainer = styled.div`
+  > div {
+    margin: var(--space-l) 0;
+  }
+  margin-bottom: calc(5 * var(--space-l));
+`;
