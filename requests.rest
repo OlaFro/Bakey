@@ -41,3 +41,12 @@ Content-Type: application/json
 "pickUpDate": "2021-02-24T06:32",
 "listingStatus":"active"
 }
+
+###
+
+POST http://localhost:5000/cafes/
+Content-Type: application/json
+
+{
+"city":"Leipzig"
+}

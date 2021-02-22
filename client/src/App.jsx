@@ -16,6 +16,12 @@ import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
 import ListingForm from "./components/ListingForm";
 
+
+import Profile from "./components/Profile";
+import ListView from "./components/ListView";
+import Settings from "./components/Settings";
+
+
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
   const [userName, setUserName] = useState("");
@@ -61,7 +67,6 @@ function App() {
       <Router>
         <GlobalStyle />
         <Navigation />
-
         <Switch>
           <Route path="/" exact>
             <h1>Welcome to bakey</h1>
@@ -95,6 +100,15 @@ function App() {
             ) : (
               <Redirect to="/" />
             )}
+          </Route>
+          <Route path="/cafes-list" exact>
+            <ListView />
+          </Route>
+          <Route path="/settings" exact>
+            <Settings />
+          </Route>
+          <Route path="/cafe:id" exact>
+            <Profile />
           </Route>
           <Route path="*">
             {" "}
