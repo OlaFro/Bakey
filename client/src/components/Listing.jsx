@@ -25,7 +25,8 @@ export default function Listing(props) {
 
   const [open, setOpen] = useState(false);
   // value should come from DB
-  const value = 2;
+  // const value = props.totalPieces - value from the response
+  const value = 0;
   const maxValue = props.totalPieces;
 
   const handleOpen = () => {
@@ -35,6 +36,17 @@ export default function Listing(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const allergenes = () => {
+    if (props.listingAllergenes) {
+      var list = props.listingAllergenes;
+      return list.map((elem) => {
+        console.log("test");
+        return <p>{elem}, </p>;
+      });
+    }
+  };
+
   return (
     <StyledListingContainer>
       <StyledPhotoContainer>
@@ -58,16 +70,13 @@ export default function Listing(props) {
           </h3>
 
           <StyledAllergenesContainer display={open ? 1 : 0}>
-            <p>
-              Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
-              soya
-            </p>
+            <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
           <StyledTagContainer>
             <StyledTag no lactose title="lactose free">
               L
             </StyledTag>
-            {/* <StyledTag no gluten title="gluten free">
+            <StyledTag no gluten title="gluten free">
               G
             </StyledTag>
             <StyledTag no sugar title="sugar free">
@@ -81,7 +90,7 @@ export default function Listing(props) {
             </StyledTag>
             <StyledTag organic title="organic">
               O
-            </StyledTag> */}
+            </StyledTag>
           </StyledTagContainer>
           <span>{cafeName === undefined ? "Café Name" : cafeName}</span>
         </header>
@@ -90,7 +99,9 @@ export default function Listing(props) {
           <CircularProgressbar
             value={value}
             maxValue={maxValue}
-            text={`${value}/${maxValue === "" ? 0 : maxValue} sold`}
+            text={
+              maxValue ? `${value}/${maxValue === "" ? 0 : maxValue} sold` : ""
+            }
             strokeWidth="14"
             styles={buildStyles({
               // Rotation of path and trail, in number of turns (0-1)
@@ -116,7 +127,9 @@ export default function Listing(props) {
             })}
           />
         </div>
-        <span>{maxValue - value} pieces left</span>
+        <span>
+          {maxValue ? `${maxValue - value} pieces left` : "0 pieces left"}
+        </span>
         <StyledTimers>
           <StyledCentered>
             <span>Time left:</span>
@@ -135,7 +148,7 @@ export default function Listing(props) {
         </StyledTimers>
         <StyledBtnContainer>
           <StyledButton buy>
-            Buy a piece for {props.piecePrice ? props.piecePrice : ""} €
+            Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
           </StyledButton>
           <StyledButton buy>
             Buy whole for{" "}

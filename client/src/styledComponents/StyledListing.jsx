@@ -108,6 +108,7 @@ export const StyledAllergenesContainer = styled.div`
     font-size: 0.7rem;
     font-weight: 700;
     text-align: center;
+    display: inline;
   }
 `;
 

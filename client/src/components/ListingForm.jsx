@@ -379,6 +379,7 @@ export default function ListingForm() {
           totalPieces={data.totalPieces}
           pickUpDate={data.pickUpDate}
           piecePrice={data.piecePrice}
+          listingAllergenes={data.listingAllergenes}
         />
         <h2> 3. Save: </h2>
         <StyledButton cafe>Save</StyledButton>
