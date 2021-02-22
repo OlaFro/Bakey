@@ -1,4 +1,5 @@
 const { createGlobalStyle } = require("styled-components");
+
 const GlobalStyle = createGlobalStyle`
 
 :root {
@@ -40,6 +41,12 @@ h2 {
   font-weight: 700;
 }
 
+
+h4{
+  font-size: 1.5rem;
+  font-weight: 300;
+
+
 h3{
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -48,6 +55,9 @@ h3{
 
 p {
   font-family: var(--text);
+}
+
+
 }
 `;
 

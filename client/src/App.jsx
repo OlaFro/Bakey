@@ -61,6 +61,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <Navigation />
+
         <Switch>
           <Route path="/" exact>
             <h1>Welcome to bakey</h1>
