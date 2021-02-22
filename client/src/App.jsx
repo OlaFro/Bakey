@@ -27,6 +27,7 @@ function App() {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const [cafeName, setCafeName] = useState("");
+  const [cafes, setCafes] = useState([]);
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -62,6 +63,8 @@ function App() {
         setProfilePic,
         cafeName,
         setCafeName,
+        cafes,
+        setCafes
       }}
     >
       <Router>
