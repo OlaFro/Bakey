@@ -18,7 +18,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
-import { Portrait } from "styled-icons/material-sharp";
+import placeholder from "../assets/placeholder_400px.jpg";
 
 export default function Listing(props) {
   const { cafeName } = useContext(bakeyContext);
@@ -51,7 +51,8 @@ export default function Listing(props) {
     <StyledListingContainer>
       <StyledPhotoContainer>
         <img
-          src="https://images.unsplash.com/photo-1578775887804-699de7086ff9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=675&q=80"
+          src={placeholder}
+          src={props.image ? props.image : placeholder}
           alt="my offer"
         ></img>
       </StyledPhotoContainer>
