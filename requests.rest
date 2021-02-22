@@ -48,5 +48,5 @@ POST http://localhost:5000/cafes/
 Content-Type: application/json
 
 {
-"city":"Düsseldorf"
+"city":"Leipzig"
 }

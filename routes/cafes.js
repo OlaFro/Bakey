@@ -10,7 +10,14 @@ router.post("/", (req, res, next) => {
       path: "cafeListings",
       select: ["listingName", "listingTags", "totalPieces", "availablePieces"],
     })
-    .select(["cafeName"])
+    .select([
+      "cafeName",
+      "profilePic",
+      "cafeStreet",
+      "cafeStreetNr",
+      "cafeZip",
+      "city",
+    ])
     .then((result) => {
       res.send(result);
     })
