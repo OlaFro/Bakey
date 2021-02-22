@@ -52,6 +52,13 @@ export default function Listing(props) {
     }
   };
 
+  const handleDate = () => {
+    if (props.pickUpDate) {
+      let niceDate = props.pickUpDate.substring(5).replace("T", " ");
+      return niceDate;
+    }
+  };
+
   return (
     <StyledListingContainer>
       <StyledPhotoContainer>
@@ -144,9 +151,7 @@ export default function Listing(props) {
           </StyledCentered>
           <StyledCentered>
             <span>Pick-up:</span>
-            <strong>
-              {props.pickUpDate ? props.pickUpDate : "Day and hour"}
-            </strong>
+            <strong>{props.pickUpDate ? handleDate() : "Day and hour"}</strong>
           </StyledCentered>
         </StyledTimers>
         <StyledBtnContainer>
