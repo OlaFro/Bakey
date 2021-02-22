@@ -7,6 +7,8 @@ import {
   KeyboardArrowUp,
 } from "styled-icons/material-sharp";
 
+export const StyledListingSteps = styled.div``;
+
 export const StyledListingContainer = styled.div`
   width: 90%;
   max-width: 400px;
@@ -21,9 +23,6 @@ export const StyledListingContainer = styled.div`
     height: 400px;
     grid-template-columns: 50% 50%;
   }
-
-  /* just temporal */
-  margin: 10rem 0 25rem 0;
 `;
 
 export const StyledPhotoContainer = styled.div`
