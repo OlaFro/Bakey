@@ -36,17 +36,18 @@ router.post(
                 cafeId: user.id,
                 cafeName: cafe.cafeName,
                 listingName: addListing.listingName,
-                listingTags: addListing.listingTags,
-                listingAllergenes: addListing.listingAllergenes,
-                totalPieces: addListing.totalPieces,
-                availablePieces: addListing.totalPieces,
-                piecePrice: addListing.piecePrice,
+                listingTags: addListing.listingTags.split(","),
+                listingAllergenes: addListing.listingAllergenes.split(","),
+                totalPieces: +addListing.totalPieces,
+                availablePieces: +addListing.totalPieces,
+                piecePrice: +addListing.piecePrice,
                 listingPicture: req.file
                   ? req.file.path
                   : "../uploads/images/listingplaceholder.png",
                 pickUpDate: addListing.pickUpDate,
                 listingStatus: "active",
               });
+              console.log(addedListing);
               addedListing
                 .save()
                 .then((result) => {
