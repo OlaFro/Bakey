@@ -6,7 +6,18 @@ router.post("/", (req, res, next) => {
   //no need to check connection bc we connect in the app.js
   const city = req.body.city;
   User.find({ city: city, userType: "cafe" })
-    .select(["-password", "-email"])
+    .populate({
+      path: "cafeListings",
+      select: ["listingName", "listingTags", "totalPieces", "availablePieces"],
+    })
+    .select([
+      "cafeName",
+      "profilePic",
+      "cafeStreet",
+      "cafeStreetNr",
+      "cafeZip",
+      "city",
+    ])
     .then((result) => {
       res.send(result);
     })

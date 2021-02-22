@@ -51,7 +51,18 @@ router.post(
               addedListing
                 .save()
                 .then((result) => {
-                  res.send("added listing");
+                  console.log("result", result);
+                  console.log(cafe);
+                  UserModel.findByIdAndUpdate(user.id, {
+                    $push: { cafeListings: result._id },
+                  })
+                    .then((foundUser) => {
+                      console.log(foundUser);
+                      res.send("added listing");
+                    })
+                    .catch((err) => {
+                      res.send(err);
+                    });
                 })
                 .catch((err) => {
                   res.send(err);
