@@ -10,6 +10,7 @@ import {
   StyledBtnContainer,
   StyledAbout,
   StyledAddress,
+  StyledListingContainer,
 } from "../styledComponents/StyledProfile";
 
 export default function Profile() {
@@ -90,6 +91,9 @@ export default function Profile() {
 
         <StyledHr cafe />
       </StyledContentContainer>
+      <StyledListingContainer>
+        {/* put Listings here: */}
+      </StyledListingContainer>
     </StyledCentered>
   );
 }
