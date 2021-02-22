@@ -57,6 +57,9 @@ export default function Navigation(props) {
       <StyledNavBtnsContainer display={open}>
         {isLogged.state ? (
           <Link to={`/${isLogged.role}-dashboard`}>Profile</Link>
+        ) : null}
+        {isLogged.state ? (
+          <Link to={`/settings`}>Settings</Link>
         ) : (
           <StyledNavBtn login>
             <Link to="/login">log in</Link>

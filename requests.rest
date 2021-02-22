@@ -48,5 +48,13 @@ POST http://localhost:5000/cafes/
 Content-Type: application/json
 
 {
-"city":"Leipzig"
+"city":"Düsseldorf"
+}
+
+###
+POST http://localhost:5000/cafes/info
+Content-Type: application/json
+
+{
+"id":"60338921fe5e3c44ccee674b"
 }
