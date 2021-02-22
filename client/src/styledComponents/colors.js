@@ -14,6 +14,7 @@ const colors = {
   lactose: "#A57283",
   gluten: "#C6AC85",
   sugar: "#DC828F",
+  wheat: "#A9790A",
 };
 
 export default colors;

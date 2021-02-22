@@ -115,7 +115,7 @@ export const StyledTagContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: auto;
-  width: 55%;
+  width: 60%;
   padding: var(--space-xs) 0;
 `;
 
@@ -128,7 +128,8 @@ export const StyledTag = styled.span`
   justify-content: center;
   align-content: center;
   font-weight: 700;
-  padding: calc(var(--space-xs) / 3);
+  padding: calc(var(--space-xs) / 2.5);
+
   margin-right: var(--space-xs);
   position: relative;
   overflow: hidden;

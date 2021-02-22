@@ -71,6 +71,9 @@ export default function Listing() {
             <StyledTag no sugar title="sugar free">
               S
             </StyledTag>
+            <StyledTag no wheat title="wheat free">
+              W
+            </StyledTag>
             <StyledTag vegan title="vegan">
               V
             </StyledTag>
