@@ -55,6 +55,25 @@ validateData.register = (req, res, next) => {
   }
 };
 
+validateData.updateProfile = (req, res, next) => {
+  req.check("firstName", "firstName").isAlpha();
+
+  req.check("lastName", "lastName").isAlpha();
+
+  if (req.body.userType === "cafe") {
+    req.check("cafeName", "cafeName").isLength({ min: 1 });
+    req.check("cafeStreet", "street").isLength({ min: 2 });
+    req.check("cafeStreetNr", "number").isAlphanumeric();
+    req.check("cafeZip", "zip").isNumeric();
+  }
+
+  if (!errors) {
+    next();
+  } else {
+    res.send({ msg: errors });
+  }
+};
+
 validateData.newListing = (req, res, next) => {
   console.log(req.body);
   req.check("listingName", "listingName").isLength({ min: 1 });
