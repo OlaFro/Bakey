@@ -117,6 +117,53 @@ export const StyledPhotoUpload = styled.div`
   > input {
     display: none;
   }
+  ${(props) =>
+    props.logo &&
+    css`
+      > label {
+        > .picContainer {
+          border-radius: 100%;
+        }
+      }
+    `}
+`;
+export const StyledCoverUpload = styled.div`
+  padding: var(--space-xs);
+  > label {
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: 125px 1fr;
+    row-gap: var(--space-xs);
+    text-align: left;
+    @media ${device.tabletLandscape} {
+      grid-template-columns: 125px 1fr;
+      column-gap: var(--space-s);
+      align-items: center;
+    }
+    > .picContainer {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      width: 125px;
+      height: 125px;
+      border-radius: var(--border-radius);
+      > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 125px;
+      }
+    }
+    > div {
+      margin: 0 var(--space-s);
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  /* hiding input type file */
+  > input {
+    display: none;
+  }
 `;
 export const StyledInputContainer = styled.div`
   width: 240px;
@@ -308,3 +355,30 @@ export const StyledPhoto = styled(ImageAdd)`
   width: 48px;
   height: 48px;
 `;
+
+export const StyledTextArea = styled.input.attrs({ type: 'textarea' })`
+padding: var(--space-s);
+width: 100%;
+background-color: white;
+font-size: 1rem;
+font-family: var(--heading);
+border: var(--border) solid ${colors.accent2};
+border-radius: var(--border-radius);
+:hover {
+  cursor: text;
+  border: var(--border) solid ${darken(0.2, colors.gray)};
+}
+:focus {
+  outline: none;
+  border: var(--border) solid ${darken(0.2, colors.gray)};
+}
+:focus + label,
+:not(:placeholder-shown) + label {
+  font-size: 0.8rem;
+  top: -8px;
+  left: 13px;
+  background: white;
+  padding: 0 calc(0.2 * var(--space-s));
+  letter-spacing: calc(0.66 * var(--ls));
+}
+`
