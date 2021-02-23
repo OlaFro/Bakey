@@ -26,7 +26,7 @@ const uploadFile = (req, res, next) => {
         return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
       }
     },
-  }).single("file");
+  }).array("file");
 
   uploads(req, res, (err) => {
     if (err && err.code === "LIMIT_FILE_SIZE") {

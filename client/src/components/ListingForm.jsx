@@ -93,6 +93,7 @@ export default function ListingForm() {
 
     let formData = new FormData();
     formData.append("file", image.raw);
+    // formData.append("file", image.raw);
     formData.append("listingName", data.listingName);
     formData.append("listingTags", data.listingTags);
     formData.append("listingAllergenes", data.listingAllergenes);
