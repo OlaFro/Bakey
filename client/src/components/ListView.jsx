@@ -19,7 +19,8 @@ export default function ListView() {
   const [registeredCafes, setRegisteredCafes] = useState([]);
   const [city, setCity] = useState({city: "Leipzig"});
   const {setCafes} = useContext(bakeyContext);
-  const [dataCheck, setDataCheck] = useState(false);
+  const [dbError, setDbError] = useState(false);
+  const [emptyWarning, setEmptyWarning] = useState(false)
 
    return (
     <div>
@@ -34,22 +35,21 @@ export default function ListView() {
     })
       .then((res) => {
         if (res.data.length === 0) {
-          setDataCheck(true);
+          setEmptyWarning(true);
         } else 
-       { setDataCheck(false);
+       { setEmptyWarning(false);
          setRegisteredCafes(res.data);
         setCafes(res.data);}
 
       })
       .catch((err) => {
         console.log(err)
-        setDataCheck(true);
+        setDbError(true);
       });
   }}>
             <option value="Leipzig">Leipzig</option>
             <option value="Hamburg">Hamburg</option>
             <option value="Düsseldorf">Düsseldorf</option>
-            {/* we can later add a map function with dynamic city names */}
           </StyledSelect>
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
@@ -62,7 +62,7 @@ export default function ListView() {
             <StyledTag no lactose title="lactose free">
               L
             </StyledTag>
-            <p>Lupine free</p>
+            <p>Lactose free</p>
             </div><div>
             <StyledTag no gluten title="gluten free">
               G
@@ -71,7 +71,7 @@ export default function ListView() {
             <StyledTag no sugar title="sugar free">
               S
             </StyledTag>
-            <p>Sesam Free</p></div><div>
+            <p>Sugar Free</p></div><div>
             <StyledTag vegan title="vegan">
               V
             </StyledTag>
@@ -82,8 +82,9 @@ export default function ListView() {
             <p>Organic</p></div>
           </StyledTagContainer>
         </div>
-        {dataCheck === true ? <Warning /> : null}
-        {dataCheck === false ? registeredCafes.map((i) => {
+        {dbError === true ? <Warning msg="the server is out of service"/> : null}
+        {emptyWarning === true ? <Warning msg="there are no offers available for this city"/> : null}
+        {emptyWarning === false ? registeredCafes.map((i) => {
           return <ListViewCafe props={i} />;
         }) : null }
       </StyledListView>
