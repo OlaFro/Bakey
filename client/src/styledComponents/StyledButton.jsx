@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import colors from "./colors";
-import { darken } from "polished";
+import { darken, lighten } from "polished";
 import device from "./device";
 
 export const StyledButton = styled.button`
@@ -21,11 +21,6 @@ export const StyledButton = styled.button`
     cursor: pointer;
     background-color: ${darken(0.1, colors.accent1)};
   }
-  :active {
-    background-color: white;
-    border: var(--border) solid ${colors.accent1};
-    color: var(--black);
-  }
 
   a {
     text-decoration: none;
@@ -33,18 +28,32 @@ export const StyledButton = styled.button`
   }
 
   /* basic style for pink buttons */
+
   ${(props) =>
     props.cafe &&
     css`
       background-color: ${colors.accent2};
+      color: white;
       :hover {
         cursor: pointer;
         background-color: ${darken(0.1, colors.accent2)};
+        color: white;
+        /* border: calc(2 * var(--border)) solid ${colors.accent2}; */
       }
-      :active {
-        background-color: white;
-        border: var(--border) solid ${colors.accent2};
-        color: var(--black);
+    `};
+
+  /* secondary style for pink buttons - white background */
+  ${(props) =>
+    props.cafeSecondary &&
+    css`
+      background-color: white;
+      color: ${colors.accent2};
+      border: calc(2 * var(--border)) solid ${colors.accent2};
+      :hover {
+        cursor: pointer;
+        background-color: ${lighten(0.1, colors.accent2)};
+        border: calc(2 * var(--border)) solid ${lighten(0.1, colors.accent2)};
+        color: white;
       }
     `};
 

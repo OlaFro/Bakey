@@ -25,7 +25,7 @@ export default function Listing(props) {
 
   const [open, setOpen] = useState(false);
   // soldPieces should come from DB
-  const soldPieces = 5;
+  const soldPieces = 0;
   const availablePieces = props.totalPieces - soldPieces;
   console.log(availablePieces);
   const maxValue = props.totalPieces;

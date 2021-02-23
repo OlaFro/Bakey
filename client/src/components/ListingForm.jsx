@@ -393,7 +393,7 @@ export default function ListingForm() {
               Click "cancel" to go back to Your dashboard. <p></p>Your changes
               won't be saved.
             </p>
-            <StyledButton cafe>Cancel</StyledButton>
+            <StyledButton cafeSecondary>Cancel</StyledButton>
           </div>
           <div>
             <p>
