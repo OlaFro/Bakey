@@ -106,7 +106,45 @@ export const StyledPhotoUpload = styled.div`
         left: 0;
         height: 125px;
       }
+          }
+    > div {
+      margin: 0 var(--space-s);
+      display: flex;
+      flex-direction: column;
     }
+  }
+  /* hiding input type file */
+  > input {
+    display: none;
+  }
+`;
+export const StyledCoverUpload = styled.div`
+  padding: var(--space-xs);
+  > label {
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: 125px 1fr;
+    row-gap: var(--space-xs);
+    text-align: left;
+    @media ${device.tabletLandscape} {
+      grid-template-columns: 125px 1fr;
+      column-gap: var(--space-s);
+      align-items: center;
+    }
+    > .picContainer {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      width: 125px;
+      height: 125px;
+      border-radius: var(--border-radius);
+      > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 125px;
+      }
+          }
     > div {
       margin: 0 var(--space-s);
       display: flex;
@@ -307,4 +345,4 @@ export const StyledArrow = styled(ArrowDown)`
 export const StyledPhoto = styled(ImageAdd)`
   width: 48px;
   height: 48px;
-`;
+  `;
