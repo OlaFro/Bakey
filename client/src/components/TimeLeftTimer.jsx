@@ -1,33 +1,44 @@
 import React, { useEffect, useState } from "react";
 
 export default function Timer() {
-  // test version of the code, need to consult it with Fahim
-  const finish = new Date();
-  finish.setHours(24, 0, 0, 0);
-  const now = new Date();
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
-  const diff = finish - now;
-  const seconds = Math.floor(diff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hoursLeft = Math.floor(minutes / 60);
-  const minutesLeft = minutes % 60;
-  const secondsLeft = seconds % 60;
+  const countDown = () => {
+    // time information should come from the server
 
-  const [newSeconds, setNewSeconds] = useState(0);
+    const finish = new Date();
+    finish.setHours(24, 0, 0, 0);
+    //next midnight
+    const now = new Date();
+
+    const diff = finish - now;
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hoursLeft = Math.floor(minutes / 60);
+    const minutesLeft = minutes % 60;
+    const secondsLeft = seconds % 60;
+    setTimeLeft({
+      hours: hoursLeft,
+      minutes: minutesLeft,
+      seconds: secondsLeft,
+    });
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setNewSeconds((seconds) => seconds + 1);
+      countDown();
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <>
-      <div>
-        {" "}
-        {`${hoursLeft}`}h {`${minutesLeft}`}min
-      </div>
-    </>
+    <div>
+      {" "}
+      {`${timeLeft.hours}`}h {`${timeLeft.minutes}`}min
+    </div>
   );
 }
