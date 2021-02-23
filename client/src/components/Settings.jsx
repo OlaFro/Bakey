@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 import Warning from "./Warning";
 import {
   StyledForm,
@@ -56,6 +57,7 @@ export default function Settings() {
     formData.append("cafeStreetNr", data.cafeStreetNr);
     formData.append("cafeZip", data.cafeZip);
     formData.append("city", data.city);
+    formData.append("cafeUrl", data.cafeUrl);
     formData.append("userType", "cafe");
 
     Axios({
@@ -98,7 +100,7 @@ export default function Settings() {
           <StyledCoverUpload cafe>
             <label htmlFor="cafeCover">
               {cover.preview ? (
-                <div className="coverContainer">
+                <div className="picContainer">
                   <img src={cover.preview} alt="cafe cover" />
                 </div>
               ) : (
@@ -106,7 +108,7 @@ export default function Settings() {
               )}
 
               <small className={imageWarning ? "warning" : null}>
-                Please use JPG or PNG in square format (max. size 2MB).
+                Please use JPG or PNG (max. size 2MB).
               </small>
             </label>
 
@@ -123,7 +125,7 @@ export default function Settings() {
           <StyledPhotoUpload cafe>
             <label htmlFor="profilePic">
               {logo.preview ? (
-                <div className="picContainer">
+                <div className="logoContainer">
                   <img src={logo.preview} alt="Listing" />
                 </div>
               ) : (
@@ -169,6 +171,21 @@ export default function Settings() {
           />
           <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
           <div>{msg.cafeName ? <small>Required</small> : null}</div>
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField long
+            cafe
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="firstName">Owner First Name*</StyledLabel>
+          <div>
+            {msg.firstName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField long
@@ -258,7 +275,30 @@ export default function Settings() {
           <StyledLabel htmlFor="city">Address / City*</StyledLabel>
           <div>{msg.city ? <small>Please use only letters</small> : null}</div>
         </StyledInputContainer>
-        <StyledButton cafe>Save</StyledButton>
+        <StyledInputContainer>
+          <StyledInputField long
+            cafe
+            type="text"
+            name="cafeUrl"
+            id="cafeUrl"
+            placeholder=" "
+            onInput={getValue}
+          />
+          <StyledLabel htmlFor="cafeUrl">Webpage*</StyledLabel>
+          <div>
+            {msg.firstName ? <small>Please use only letters</small> : null}
+          </div>
+        </StyledInputContainer>
+        <div className="communication">
+          <div>
+            <StyledButton cafeSecondary><Link to="/cafe-dashboard">Cancel</Link></StyledButton>
+          </div>
+          <div>
+            <StyledButton type="submit" form="listing-form" cafe>
+              Save
+            </StyledButton>
+          </div>
+        </div>
         {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
     </StyledCentered>
