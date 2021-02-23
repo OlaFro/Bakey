@@ -22,6 +22,18 @@ export const StyledButton = styled.button`
     background-color: ${darken(0.1, colors.accent1)};
   }
 
+  ${(props) =>
+    props.userSecondary &&
+    css`
+      background-color: white;
+
+      border: calc(2 * var(--border)) solid ${colors.accent1};
+      :hover {
+        cursor: pointer;
+        background-color: ${lighten(0.1, colors.accent1)};
+        border: calc(2 * var(--border)) solid ${lighten(0.1, colors.accent1)};
+      }
+    `};
   a {
     text-decoration: none;
     color: inherit;
@@ -38,7 +50,6 @@ export const StyledButton = styled.button`
         cursor: pointer;
         background-color: ${darken(0.1, colors.accent2)};
         color: white;
-        /* border: calc(2 * var(--border)) solid ${colors.accent2}; */
       }
     `};
 
@@ -77,7 +88,7 @@ export const StyledButton = styled.button`
       }
     `}
 
-  /* prop to proper display the button in the grid for cafe registration */
+  /* prop to right display the button in the grid for cafe registration */
   ${(props) =>
     props.cafeRegister &&
     css`
