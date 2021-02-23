@@ -29,7 +29,7 @@ export const StyledCafeCard = styled.div`
       border-radius: 100%;
       border: calc(2 * var(--border)) solid ${lighten(0.3, colors.black)};
       overflow: hidden;
-      margin: var(--space-s) auto;
+      margin: var(--space-xs) auto;
       position: relative;
       @media ${device.tabletPortrait} {
         margin: var(--space-xs);
@@ -49,7 +49,7 @@ export const StyledCafeCard = styled.div`
       }
     }
     > div {
-      margin: var(--space-m);
+      margin: var(--space-xs);
       width: auto;
       display: flex;
       flex-direction: column;
@@ -92,7 +92,7 @@ export const StyledListing = styled.div`
   justify-content: space-between;
   flex-direction: column;
   padding: 0;
-  margin: var(--space-m) 0;
+  margin: var(--space-s) 0;
 
   @media ${device.tabletPortrait} {
     flex-direction: row;
@@ -102,6 +102,7 @@ export const StyledListing = styled.div`
 
   > .name-tags {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin: var(--space-xs) 0;
 
@@ -114,6 +115,6 @@ export const StyledListing = styled.div`
     }
   }
   > .progressBar {
-    width: 200px;
+    width: 180px;
   }
 `;
