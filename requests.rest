@@ -40,14 +40,14 @@ GET http://localhost:5000/users/auth
 
 ###
 
-POST http://localhost:5000/listings/addlisting
+POST http://localhost:5000/listings/add-listing
 Content-Type: application/json
 
 {
 "cafeName": "jane doe",
 "listingName": "undefined",
 "totalPieces": "10",
-"piecePrice": "2",
+"piecePrice": "",
 "pickUpDate": "2021-02-24T06:32",
 "listingStatus":"active"
 }
@@ -58,7 +58,7 @@ POST http://localhost:5000/cafes/
 Content-Type: application/json
 
 {
-"city":"Leipzig"
+"city":"Düsseldorf"
 }
 
 ###
@@ -75,12 +75,10 @@ Content-Type: application/json
 
 {
 "userType":"cafe",
-"cafeName":"Paradise new",
-"cafeURL": "www.someaddress.com",
-"firstName": "Jane",
-"lastName": "Doe",
-"city": "Düsseldorf",
-"cafeStreet": "Königsallee",
-"cafeStreetNr": "92",
-"cafeZip": "40212"
+"cafeName":"Paradise",
+"firstName": "Jane"
 }
+
+###
+
+GET http://localhost:5000/users/profile-info
