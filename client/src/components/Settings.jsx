@@ -1,4 +1,6 @@
+
 import React, { useState, useContext } from "react";
+
 import { Link, useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
@@ -49,7 +51,6 @@ export default function Settings() {
   const [logo, setLogo] = useState({ preview: "", raw: "" });
 
   const formSubmit = (e) => {
-    console.log("submiting form");
     e.preventDefault();
     setShowWarning(false);
     setMsg({});
@@ -93,7 +94,7 @@ export default function Settings() {
           setImageWarning(true);
         } else if (res.data === "info updated") {
           history.push("/cafe-dashboard");
-        } else {
+        }  else {
           setShowWarning(true);
         }
       })
