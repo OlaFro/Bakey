@@ -1,85 +1,68 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   StyledCafeCard,
   StyledListing,
 } from "../styledComponents/StyledCafeCard";
-import { StyledTag } from "../styledComponents/StyledListing";
 
 import colors from "../styledComponents/colors";
 import ProgressBar from "@ramonak/react-progress-bar";
+import Tag from "./Tag";
 
 export default function ListViewCafe(props) {
+  const { cafe } = props;
+
+  let history = useHistory();
+
+  const tags = (listing) => {
+    if (listing.listingTags) {
+      return <Tag key={listing.listingTags} data={listing.listingTags} />;
+    }
+  };
   return (
-    <StyledCafeCard>
+    <StyledCafeCard
+      onClick={() => {
+        history.push(`/cafe:${cafe._id}`);
+      }}
+    >
       <header>
         <figure>
-          <img
-            src="https://i.pinimg.com/originals/1f/c3/ff/1fc3ff4791f292d4ec65893a2087825c.png"
-            alt="our logo"
-          ></img>
+          {cafe.profilePic ? (
+            <img src={cafe.profilePic} alt={`logo of the ${cafe.cafeName}`} />
+          ) : (
+            "logo"
+          )}
         </figure>
         <div>
-          <h3>Cafe Ocka</h3>
-          <span>Merseburgerstr. 88, 04177 Leipzig</span>
+          <h3>{cafe.cafeName}</h3>
+          <span>
+            {cafe.cafeStreet} {cafe.cafeStreetNr}, {cafe.cafeZip} {cafe.city}
+          </span>
         </div>
       </header>
       <main>
         <h3>Running campaignes:</h3>
-        <StyledListing>
-          <span>Cheesecake</span>
-          <div className="tag-container">
-            <StyledTag no lactose title="lactose free">
-              L
-            </StyledTag>
-            <StyledTag no gluten title="gluten free">
-              G
-            </StyledTag>
-            <StyledTag no sugar title="sugar free">
-              S
-            </StyledTag>
-            <StyledTag vegan title="vegan">
-              V
-            </StyledTag>
-            <StyledTag organic title="organic">
-              O
-            </StyledTag>
-            <StyledTag no lactose title="lactose free">
-              L
-            </StyledTag>
-          </div>
+        {cafe.cafeListings.map((listing, index) => {
+          return (
+            <StyledListing key={`listing-${index}`}>
+              <span>{listing.listingName}</span>
+              <div className="tag-container">{tags(listing)}</div>
 
-          <div className="progressBar">
-            {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
-            <ProgressBar
-              completed={60}
-              bgcolor={colors.accent1}
-              isLabelVisible={false}
-            />
-          </div>
-        </StyledListing>
-        <StyledListing>
-          <span>Cheesecake with a long title </span>
-          <div className="tag-container">
-            <StyledTag no lactose title="lactose free">
-              L
-            </StyledTag>
-            <StyledTag no gluten title="gluten free">
-              G
-            </StyledTag>
-            <StyledTag no sugar title="sugar free">
-              S
-            </StyledTag>
-          </div>
-
-          <div className="progressBar">
-            {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
-            <ProgressBar
-              completed={20}
-              bgcolor={colors.accent1}
-              isLabelVisible={false}
-            />
-          </div>
-        </StyledListing>
+              <div className="progressBar">
+                {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
+                <ProgressBar
+                  completed={
+                    ((listing.totalPieces - listing.availablePieces) /
+                      listing.totalPieces) *
+                    100
+                  }
+                  bgcolor={colors.accent1}
+                  isLabelVisible={false}
+                />
+              </div>
+            </StyledListing>
+          );
+        })}
       </main>
     </StyledCafeCard>
   );

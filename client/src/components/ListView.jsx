@@ -115,7 +115,7 @@ export default function ListView() {
         ) : null}
         {emptyWarning === false
           ? cafes.map((cafe, index) => {
-              return <CafeCard key={index} />;
+              return <CafeCard key={index} cafe={cafe} />;
             })
           : null}
       </StyledListView>
