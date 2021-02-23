@@ -1,4 +1,4 @@
-import React, {useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
@@ -10,15 +10,15 @@ import {
   StyledPhoto,
   StyledPhotoUpload,
   StyledCoverUpload,
-  StyledTextArea
+  StyledTextArea,
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import Axios from "axios";
 import { StyledButton } from "../styledComponents/StyledButton";
-import {bakeyContext} from "../Context";
+import { bakeyContext } from "../Context";
 
 export default function Settings() {
-  const {isLogged} = useContext(bakeyContext);
+  const { isLogged } = useContext(bakeyContext);
   const history = useHistory();
   const [data, setData] = useState();
   const getValue = (e) => {
@@ -49,6 +49,7 @@ export default function Settings() {
   const [logo, setLogo] = useState({ preview: "", raw: "" });
 
   const formSubmit = (e) => {
+    console.log("submiting form");
     e.preventDefault();
     setShowWarning(false);
     setMsg({});
@@ -83,7 +84,7 @@ export default function Settings() {
           setImageWarning(true);
         } else if (res.data === "info updated") {
           history.push("/cafe-dashboard");
-        }  else {
+        } else {
           setShowWarning(true);
         }
       })
@@ -99,7 +100,7 @@ export default function Settings() {
         <h2>Change your settings</h2>
       </header>
 
-      <StyledForm onSubmit={formSubmit} listing>
+      <StyledForm id="settings-form" onSubmit={formSubmit} listing>
         <header>
           <h2>Fill out:</h2>
         </header>
@@ -313,7 +314,7 @@ export default function Settings() {
             </StyledButton>
           </div>
           <div>
-            <StyledButton type="submit" form="listing-form" cafe>
+            <StyledButton type="submit" form="settings-form" cafe>
               Save
             </StyledButton>
           </div>
