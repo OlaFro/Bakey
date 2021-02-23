@@ -115,6 +115,9 @@ export const StyledListing = styled.div`
     }
   }
   > .progressBar {
-    width: 180px;
+    width: 120px;
+    @media ${device.mobile} {
+      width: 180px;
+    }
   }
 `;

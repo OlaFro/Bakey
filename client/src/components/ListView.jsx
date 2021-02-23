@@ -66,7 +66,8 @@ export default function ListView() {
           <StyledArrow />
         </StyledInputContainer>
 
-        <h2>Cafes in {city.city} with active campaigns:</h2>
+        {/* Ola: I changed {city.city} to {city} because the first one was displaying nothing */}
+        <h2>Cafes in {city} with active campaigns:</h2>
         <div className="filtering">
           <p>Show only cafes that offer something:</p>
           <div className="tag-container">
@@ -113,6 +114,7 @@ export default function ListView() {
       {emptyWarning === true ? (
         <Warning msg="there are no offers available for this city" />
       ) : null}
+
       {emptyWarning === false
         ? cafes.map((cafe, index) => {
             return <CafeCard key={index} cafe={cafe} />;
