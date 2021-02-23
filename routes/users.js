@@ -5,6 +5,7 @@ const {
   verifyPassword,
   authenticateToken,
 } = require("../controllers/authControllers");
+const uploadFile = require("../controllers/multerController");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var router = express.Router();
@@ -126,8 +127,20 @@ router.get("/logout", (req, res, next) => {
   res.send({ logged: false });
 });
 
-router.put("/update", (req, res, next) => {
-  res.send("settings");
-});
+router.put(
+  "/update",
+  authenticateToken,
+  uploadFile,
+  validateData.sanitize,
+  (req, res, next) => {
+    UserModel.findByIdAndUpdate(user.id)
+      .then((result) => {
+        res.send("info updated");
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
+);
 
 module.exports = router;
