@@ -10,7 +10,10 @@ import {
   StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
-import { StyledListingSteps } from "../styledComponents/StyledListingForm";
+import {
+  StyledListingSteps,
+  StyledCommunication,
+} from "../styledComponents/StyledListingForm";
 import Listing from "./Listing";
 
 import Warning from "./Warning";
@@ -132,7 +135,7 @@ export default function ListingForm() {
         <h2>Add a new listing</h2>
       </header>
       <StyledListingSteps>
-        <h2> 1. Fill out: </h2>
+        <h3> 1. Fill out: </h3>
         <StyledForm onSubmit={formSubmit} listing>
           {/* <header>
             <h2>Fill out:</h2>
@@ -373,7 +376,7 @@ export default function ListingForm() {
             </StyledInputContainer>
           </div>
         </StyledForm>
-        <h2> 2. Preview: </h2>
+        <h3> 2. Preview: </h3>
         <Listing
           title={data.listingName}
           totalPieces={data.totalPieces}
@@ -383,8 +386,23 @@ export default function ListingForm() {
           listingTags={data.listingTags}
           image={image.preview}
         />
-        <h2> 3. Save: </h2>
-        <StyledButton cafe>Save</StyledButton>
+        <h3> 3. Save: </h3>
+        <div className="communication">
+          <div>
+            <p>
+              Click "cancel" to go back to Your dashboard. <p></p>Your changes
+              won't be saved.
+            </p>
+            <StyledButton cafe>Cancel</StyledButton>
+          </div>
+          <div>
+            <p>
+              Click "save" to activate your listing. <p></p>Once it's active,
+              you won't be able to change it.
+            </p>
+            <StyledButton cafe>Save</StyledButton>
+          </div>
+        </div>
         {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledListingSteps>
     </StyledCentered>

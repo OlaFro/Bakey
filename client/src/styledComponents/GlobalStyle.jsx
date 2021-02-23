@@ -41,7 +41,7 @@ h2 {
 }
 
 h3{
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: var(--ls);
 }
