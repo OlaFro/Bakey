@@ -3,10 +3,11 @@ import { useHistory } from "react-router-dom";
 import {
   StyledCafeCard,
   StyledListing,
+  StyledIcon,
 } from "../styledComponents/StyledCafeCard";
 import colors from "../styledComponents/colors";
 import ProgressBar from "@ramonak/react-progress-bar";
-import { Cake3 } from "@styled-icons/remix-line/Cake3";
+
 import Tag from "./Tag";
 
 export default function ListViewCafe(props) {
@@ -30,11 +31,11 @@ export default function ListViewCafe(props) {
           {cafe.profilePic ? (
             <img src={cafe.profilePic} alt={`logo of the ${cafe.cafeName}`} />
           ) : (
-            <Cake3 />
+            <StyledIcon />
           )}
         </figure>
         <div>
-          <h3>{cafe.cafeName}</h3>
+          <h2>{cafe.cafeName}</h2>
           <span>
             {cafe.cafeStreet} {cafe.cafeStreetNr}, {cafe.cafeZip} {cafe.city}
           </span>

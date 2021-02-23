@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { lighten, darken } from "polished";
 import colors from "./colors";
 import device from "./device";
+import { Cake3 } from "styled-icons/remix-line/";
+
+export const StyledIcon = styled(Cake3)``;
 
 export const StyledCafeCard = styled.div`
   width: 90%;
@@ -24,8 +27,10 @@ export const StyledCafeCard = styled.div`
       width: 100px;
       height: 100px;
       border-radius: 100%;
+      border: calc(2 * var(--border)) solid ${lighten(0.3, colors.black)};
       overflow: hidden;
       margin: var(--space-s) auto;
+      position: relative;
       @media ${device.tabletPortrait} {
         margin: var(--space-xs);
       }
@@ -33,6 +38,14 @@ export const StyledCafeCard = styled.div`
         width: 100px;
         height: 100px;
         object-fit: cover;
+      }
+      > ${StyledIcon} {
+        position: absolute;
+        width: 3.5rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: ${lighten(0.3, colors.black)};
       }
     }
     > div {
