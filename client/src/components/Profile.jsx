@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledHr from "../styledComponents/StyledHr";
@@ -12,6 +12,7 @@ import {
   StyledAddress,
   StyledListingContainer,
 } from "../styledComponents/StyledProfile";
+import Axios from "axios";
 
 export default function Profile() {
   const [showAddress, setShowAddress] = useState(false);
@@ -23,6 +24,14 @@ export default function Profile() {
   const handleHide = () => {
     setShowAddress(true);
   };
+
+  useEffect(()=>{
+    Axios({
+      method: "POST",
+      url: ``
+    })
+  })
+
 
   return (
     <StyledCentered>
