@@ -106,7 +106,7 @@ export const StyledPhotoUpload = styled.div`
         left: 0;
         height: 125px;
       }
-          }
+    }
     > div {
       margin: 0 var(--space-s);
       display: flex;
@@ -117,6 +117,15 @@ export const StyledPhotoUpload = styled.div`
   > input {
     display: none;
   }
+  ${(props) =>
+    props.logo &&
+    css`
+      > label {
+        > .picContainer {
+          border-radius: 100%;
+        }
+      }
+    `}
 `;
 export const StyledCoverUpload = styled.div`
   padding: var(--space-xs);
@@ -144,7 +153,7 @@ export const StyledCoverUpload = styled.div`
         left: 0;
         height: 125px;
       }
-          }
+    }
     > div {
       margin: 0 var(--space-s);
       display: flex;
@@ -345,4 +354,31 @@ export const StyledArrow = styled(ArrowDown)`
 export const StyledPhoto = styled(ImageAdd)`
   width: 48px;
   height: 48px;
-  `;
+`;
+
+export const StyledTextArea = styled.input.attrs({ type: 'textarea' })`
+padding: var(--space-s);
+width: 100%;
+background-color: white;
+font-size: 1rem;
+font-family: var(--heading);
+border: var(--border) solid ${colors.accent2};
+border-radius: var(--border-radius);
+:hover {
+  cursor: text;
+  border: var(--border) solid ${darken(0.2, colors.gray)};
+}
+:focus {
+  outline: none;
+  border: var(--border) solid ${darken(0.2, colors.gray)};
+}
+:focus + label,
+:not(:placeholder-shown) + label {
+  font-size: 0.8rem;
+  top: -8px;
+  left: 13px;
+  background: white;
+  padding: 0 calc(0.2 * var(--space-s));
+  letter-spacing: calc(0.66 * var(--ls));
+}
+`

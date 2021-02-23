@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
+import React, {useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
   StyledForm,
@@ -10,12 +10,16 @@ import {
   StyledPhoto,
   StyledPhotoUpload,
   StyledCoverUpload,
+  StyledTextArea
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import Axios from "axios";
 import { StyledButton } from "../styledComponents/StyledButton";
+import {bakeyContext} from "../Context";
 
 export default function Settings() {
+  const {isLogged} = useContext(bakeyContext);
+  const history = useHistory();
   const [data, setData] = useState();
   const getValue = (e) => {
     setShowWarning(false);
@@ -43,22 +47,24 @@ export default function Settings() {
   const [imageWarning, setImageWarning] = useState(false);
   const [cover, setCover] = useState({ preview: "", raw: "" });
   const [logo, setLogo] = useState({ preview: "", raw: "" });
+
   const formSubmit = (e) => {
     e.preventDefault();
     setShowWarning(false);
+    setMsg({});
     let formData = new FormData();
     formData.append("file", cover.raw);
     formData.append("file", logo.raw);
     formData.append("cafeDescription", data.cafeDescription);
     formData.append("cafeName", data.cafeName);
     formData.append("firstName", data.firstName);
-    formData.append("lastName", data.firstName);
+    formData.append("lastName", data.lastName);
     formData.append("cafeStreet", data.cafeStreet);
     formData.append("cafeStreetNr", data.cafeStreetNr);
     formData.append("cafeZip", data.cafeZip);
     formData.append("city", data.city);
     formData.append("cafeUrl", data.cafeUrl);
-    formData.append("userType", "cafe");
+    formData.append("userType", isLogged.role);
 
     Axios({
       method: "PUT",
@@ -75,7 +81,9 @@ export default function Settings() {
           setMsg(msgChanged);
         } else if (res.data.errorSource === "image upload") {
           setImageWarning(true);
-        } else {
+        } else if (res.data === "info updated") {
+          history.push("/cafe-dashboard");
+        }  else {
           setShowWarning(true);
         }
       })
@@ -108,7 +116,8 @@ export default function Settings() {
               )}
 
               <small className={imageWarning ? "warning" : null}>
-                Please use JPG or PNG (max. size 2MB).
+                Please use JPG or PNG (recommended 1200 x 400px and max. size
+                2MB).
               </small>
             </label>
 
@@ -122,11 +131,11 @@ export default function Settings() {
         </StyledOtherInputsContainer>
         <StyledOtherInputsContainer cafe>
           <header>Upload logo</header>
-          <StyledPhotoUpload cafe>
+          <StyledPhotoUpload logo>
             <label htmlFor="profilePic">
               {logo.preview ? (
-                <div className="logoContainer">
-                  <img src={logo.preview} alt="Listing" />
+                <div className="picContainer">
+                  <img src={logo.preview} alt="logo" />
                 </div>
               ) : (
                 <StyledPhoto />
@@ -146,10 +155,9 @@ export default function Settings() {
           </StyledPhotoUpload>
         </StyledOtherInputsContainer>
         <StyledInputContainer>
-          <StyledInputField
+          <StyledTextArea
             cafe
             long
-            type="text"
             name="cafeDescription"
             id="cafeDescription"
             placeholder=" "
@@ -160,8 +168,9 @@ export default function Settings() {
             {msg.listingName ? <small>Please add description</small> : null}
           </div>
         </StyledInputContainer>
-        <StyledInputContainer >
-          <StyledInputField long
+        <StyledInputContainer>
+          <StyledInputField
+            long
             cafe
             type="text"
             name="cafeName"
@@ -173,7 +182,8 @@ export default function Settings() {
           <div>{msg.cafeName ? <small>Required</small> : null}</div>
         </StyledInputContainer>
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="firstName"
@@ -188,7 +198,8 @@ export default function Settings() {
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="firstName"
@@ -203,7 +214,8 @@ export default function Settings() {
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="lastName"
@@ -219,7 +231,8 @@ export default function Settings() {
         </StyledInputContainer>
 
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="cafeStreet"
@@ -233,7 +246,8 @@ export default function Settings() {
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="cafeStreetNr"
@@ -250,7 +264,8 @@ export default function Settings() {
         </StyledInputContainer>
 
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="cafeZip"
@@ -264,7 +279,8 @@ export default function Settings() {
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="city"
@@ -276,7 +292,8 @@ export default function Settings() {
           <div>{msg.city ? <small>Please use only letters</small> : null}</div>
         </StyledInputContainer>
         <StyledInputContainer>
-          <StyledInputField long
+          <StyledInputField
+            long
             cafe
             type="text"
             name="cafeUrl"
@@ -291,7 +308,9 @@ export default function Settings() {
         </StyledInputContainer>
         <div className="communication">
           <div>
-            <StyledButton cafeSecondary><Link to="/cafe-dashboard">Cancel</Link></StyledButton>
+            <StyledButton cafeSecondary>
+              <Link to="/cafe-dashboard">Cancel</Link>
+            </StyledButton>
           </div>
           <div>
             <StyledButton type="submit" form="listing-form" cafe>
