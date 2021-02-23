@@ -40,15 +40,15 @@ export default function Listing(props) {
   const allergenes = () => {
     if (props.listingAllergenes) {
       var list = props.listingAllergenes;
-      return list.map((elem) => {
-        return <p>{elem}, </p>;
+      return list.map((elem, index) => {
+        return <p key={`Allergene-${index}`}>{elem}, </p>;
       });
     }
   };
 
   const tags = () => {
     if (props.listingTags) {
-      return <Tag data={props.listingTags} />;
+      return <Tag key={props.listingTags} data={props.listingTags} />;
     }
   };
 
@@ -102,7 +102,7 @@ export default function Listing(props) {
               O
             </StyledTag> */}
           </StyledTagContainer>
-          <span>{cafeName === undefined ? "Café Name" : cafeName}</span>
+          <span>{cafeName}</span>
         </header>
 
         <div style={{ width: "130px" }}>
@@ -159,6 +159,7 @@ export default function Listing(props) {
             Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
           </StyledButton>
           <StyledButton buy>
+            {props.availablePieces < props.}
             Buy whole for{" "}
             {props.piecePrice && props.totalPieces
               ? (props.piecePrice * props.totalPieces).toFixed(2)

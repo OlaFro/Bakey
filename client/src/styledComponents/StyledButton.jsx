@@ -4,13 +4,14 @@ import { darken } from "polished";
 import device from "./device";
 
 export const StyledButton = styled.button`
+  /* basic button style for yellow buttons */
   font-family: var(--headings);
   background-color: ${colors.accent1};
   border: var(--border) solid transparent;
   color: var(--black);
   font-size: 1rem;
   padding: var(--space-s) var(--space-m);
-  border-radius: var(--border-radius);
+  border-radius: calc(2 * var(--border-radius));
   text-transform: uppercase;
   letter-spacing: var(--ls);
   font-weight: 700;
@@ -31,6 +32,7 @@ export const StyledButton = styled.button`
     color: inherit;
   }
 
+  /* basic style for pink buttons */
   ${(props) =>
     props.cafe &&
     css`
@@ -46,12 +48,7 @@ export const StyledButton = styled.button`
       }
     `};
 
-  ${(props) =>
-    props.cafeRegister &&
-    css`
-      grid-area: register;
-      justify-self: center;
-    `}
+  /* yellow buttons in the listing component */
   ${(props) =>
     props.buy &&
     css`
@@ -61,7 +58,6 @@ export const StyledButton = styled.button`
       background-color: ${colors.accent1};
       font-size: 0.8rem;
       margin: 0 0 var(--space-s) 0;
-      /* box-shadow: 0 7px 6px -6px ${colors.black}; */
       :hover {
         cursor: pointer;
         border: var(--border) solid ${darken(0.1, colors.accent1)};
@@ -70,6 +66,14 @@ export const StyledButton = styled.button`
       @media ${device.tabletLandscape} {
         margin: var(--space-s);
       }
+    `}
+
+  /* prop to proper display the button in the grid for cafe registration */
+  ${(props) =>
+    props.cafeRegister &&
+    css`
+      grid-area: register;
+      justify-self: center;
     `}
 `;
 

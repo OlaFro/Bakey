@@ -136,7 +136,7 @@ export default function ListingForm() {
       </header>
       <StyledListingSteps>
         <h3> 1. Fill out: </h3>
-        <StyledForm onSubmit={formSubmit} listing>
+        <StyledForm id="listing-form" onSubmit={formSubmit} listing>
           {/* <header>
             <h2>Fill out:</h2>
           </header> */}
@@ -400,7 +400,9 @@ export default function ListingForm() {
               Click "save" to activate your listing. <p></p>Once it's active,
               you won't be able to change it.
             </p>
-            <StyledButton cafe>Save</StyledButton>
+            <StyledButton type="submit" form="listing-form" cafe>
+              Save
+            </StyledButton>
           </div>
         </div>
         {showWarning ? <Warning msg="the service is out of order" /> : null}
