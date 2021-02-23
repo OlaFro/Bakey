@@ -20,6 +20,7 @@ const StyledWarning = styled.div`
   }
   & p {
     margin: var(--space-xs) 0 var(--space-s) 0;
+    padding: 0 var(--space-s);
     color: ${colors.warning};
   }
 `;
