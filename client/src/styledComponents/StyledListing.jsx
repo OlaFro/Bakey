@@ -118,6 +118,7 @@ export const StyledTagContainer = styled.div`
   width: 192px;
   height: 2rem;
   margin: var(--space-xs) auto;
+
 `;
 
 export const StyledTag = styled.span`
@@ -135,6 +136,8 @@ export const StyledTag = styled.span`
   position: relative;
   overflow: hidden;
   cursor: pointer;
+
+  
 
   ${(props) =>
     props.no &&

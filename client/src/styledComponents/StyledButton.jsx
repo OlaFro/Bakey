@@ -58,6 +58,7 @@ export const StyledButton = styled.button`
 
   /* secondary style for pink buttons - white background */
   ${(props) =>
+
     props.cafeSecondary &&
     css`
       background-color: white;
@@ -70,8 +71,6 @@ export const StyledButton = styled.button`
         color: white;
       }
     `};
-
-  /* yellow buttons in the listing component */
   ${(props) =>
     props.buy &&
     css`

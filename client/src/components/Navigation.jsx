@@ -51,21 +51,22 @@ export default function Navigation(props) {
         <StyledMenu onClick={handleOpen} display={open} />
       </StyledLogoContainer>
       <StyledNavContainer display={open}>
-        <Link to="/">cafés</Link>
+        <Link to="/cafes-list">cafés</Link>
         <Link to="/">about us</Link>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
         {isLogged.state ? (
           <Link to={`/${isLogged.role}-dashboard`}>Profile</Link>
+        ) : null}
+        {isLogged.state ? (
+          <Link to={`/settings`}>Settings</Link>
         ) : (
           <StyledNavBtn login>
             <Link to="/login">log in</Link>
           </StyledNavBtn>
         )}
         {isLogged.state ? (
-          <StyledSmallButton onClick={logout}>
-              Log out
-            </StyledSmallButton>
+          <StyledSmallButton onClick={logout}>Log out</StyledSmallButton>
         ) : (
           <StyledNavBtn registration>
             <Link to="/registration/user">register</Link>
@@ -73,6 +74,5 @@ export default function Navigation(props) {
         )}
       </StyledNavBtnsContainer>
     </StyledNavigation>
-
   );
 }
