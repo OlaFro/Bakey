@@ -28,8 +28,6 @@ router.post(
       } else {
         addListing.id = result + 1;
 
-        console.log(req.files);
-
         UserModel.findById(user.id)
           .then((cafe) => {
             if (cafe.userType === "cafe") {
