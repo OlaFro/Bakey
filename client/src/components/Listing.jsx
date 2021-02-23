@@ -4,7 +4,6 @@ import {
   StyledListingContainer,
   StyledPhotoContainer,
   StyledDescContainer,
-  StyledTag,
   StyledTagContainer,
   StyledAllergenesContainer,
   StyledBtnContainer,
@@ -18,13 +17,18 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
+import placeholder from "../assets/placeholder_400px.jpg";
+import Tag from "./Tag";
 
-export default function Listing() {
+export default function Listing(props) {
   const { cafeName } = useContext(bakeyContext);
 
   const [open, setOpen] = useState(false);
-  const value = 4;
-  const maxValue = 6;
+  // soldPieces should come from DB
+  const soldPieces = 0;
+  const availablePieces = props.totalPieces - soldPieces;
+  console.log(availablePieces);
+  const maxValue = props.totalPieces;
 
   const handleOpen = () => {
     setOpen(true);
@@ -33,13 +37,63 @@ export default function Listing() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const allergenes = () => {
+    if (props.listingAllergenes) {
+      var list = props.listingAllergenes;
+      return list.map((elem, index) => {
+        return <p key={`Allergene-${index}`}>{elem}, </p>;
+      });
+    }
+  };
+
+  const tags = () => {
+    if (props.listingTags) {
+      return <Tag key={props.listingTags} data={props.listingTags} />;
+    }
+  };
+
+  const handleDate = () => {
+    if (props.pickUpDate) {
+      let niceDate = props.pickUpDate.substring(5).replace("T", " ");
+      // 02-22 10:48
+
+      // 22-02 10:48
+      return (
+        niceDate.split(" ")[0].split("-").reverse().join("-") +
+        " " +
+        niceDate.split(" ")[1]
+      );
+    }
+  };
+  const buyWhole = () => {
+    return `Buy whole for 
+    ${
+      props.piecePrice && props.totalPieces
+        ? (props.piecePrice * props.totalPieces).toFixed(2)
+        : ""
+    }
+    €`;
+  };
+
+  const buyRest = () => {
+    return `Buy rest for 
+    ${
+      availablePieces && props.piecePrice
+        ? (availablePieces * props.piecePrice).toFixed(2)
+        : ""
+    }
+    €`;
+  };
   return (
     <StyledListingContainer>
-      <StyledPhotoContainer></StyledPhotoContainer>
+      <StyledPhotoContainer>
+        <img src={props.image ? props.image : placeholder} alt="my offer"></img>
+      </StyledPhotoContainer>
       <StyledDescContainer>
         <header>
           <h3>
-            Kati's great apple pie apple
+            {props.title ? props.title : "Title"}
             <StyledMore
               onClick={handleOpen}
               display={open ? "none" : "inline"}
@@ -51,36 +105,21 @@ export default function Listing() {
           </h3>
 
           <StyledAllergenesContainer display={open ? 1 : 0}>
-            <p>
-              Allergenes: eggs, dairy, cereal, peanut, celery, mustard, lupins,
-              soya
-            </p>
+            <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
-          <StyledTagContainer>
-            <StyledTag no lactose title="lactose free">
-              L
-            </StyledTag>
-            <StyledTag no gluten title="gluten free">
-              G
-            </StyledTag>
-            <StyledTag no sugar title="sugar free">
-              S
-            </StyledTag>
-            <StyledTag vegan title="vegan">
-              V
-            </StyledTag>
-            <StyledTag organic title="organic">
-              O
-            </StyledTag>
-          </StyledTagContainer>
-          <span>Café Ocka</span>
+          <StyledTagContainer>{tags()}</StyledTagContainer>
+          <span>{cafeName}</span>
         </header>
 
         <div style={{ width: "130px" }}>
           <CircularProgressbar
-            value={value}
+            value={soldPieces}
             maxValue={maxValue}
-            text={`${value}/${maxValue} sold`}
+            text={
+              maxValue
+                ? `${soldPieces}/${maxValue === "" ? 0 : maxValue} sold`
+                : ""
+            }
             strokeWidth="14"
             styles={buildStyles({
               // Rotation of path and trail, in number of turns (0-1)
@@ -106,7 +145,9 @@ export default function Listing() {
             })}
           />
         </div>
-        <span>{maxValue - value} pieces left</span>
+        <span>
+          {maxValue ? `${maxValue - soldPieces} pieces left` : "0 pieces left"}
+        </span>
         <StyledTimers>
           <StyledCentered>
             <span>Time left:</span>
@@ -118,12 +159,16 @@ export default function Listing() {
           </StyledCentered>
           <StyledCentered>
             <span>Pick-up:</span>
-            <strong>Tuesday 12:00</strong>
+            <strong>{props.pickUpDate ? handleDate() : "Day and hour"}</strong>
           </StyledCentered>
         </StyledTimers>
         <StyledBtnContainer>
-          <StyledButton buy>Buy a piece for 6€</StyledButton>
-          <StyledButton buy>Buy whole for 36€</StyledButton>
+          <StyledButton buy>
+            Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
+          </StyledButton>
+          <StyledButton buy>
+            {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
+          </StyledButton>
         </StyledBtnContainer>
       </StyledDescContainer>
     </StyledListingContainer>

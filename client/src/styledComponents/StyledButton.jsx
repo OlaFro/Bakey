@@ -1,35 +1,48 @@
 import styled, { css } from "styled-components";
 import colors from "./colors";
-import { darken } from "polished";
+import { darken, lighten } from "polished";
 import device from "./device";
 
 export const StyledButton = styled.button`
+  /* basic button style for yellow buttons */
   font-family: var(--headings);
   background-color: ${colors.accent1};
   border: var(--border) solid transparent;
   color: var(--black);
   font-size: 1rem;
   padding: var(--space-s) var(--space-m);
-  border-radius: var(--border-radius);
+  border-radius: calc(2 * var(--border-radius));
   text-transform: uppercase;
   letter-spacing: var(--ls);
   font-weight: 700;
   transition: background-color 200ms;
 
-  :hover {
-    cursor: pointer;
-    background-color: ${darken(0.1, colors.accent1)};
-  }
-  :active {
-    background-color: white;
-    border: var(--border) solid ${colors.accent1};
-    color: var(--black);
-  }
-
   a {
     text-decoration: none;
     color: inherit;
   }
+
+  :hover {
+    cursor: pointer;
+    background-color: ${darken(0.1, colors.accent1)};
+  }
+
+  /* secondary style for yellow buttons - white background  */
+
+  ${(props) =>
+    props.userSecondary &&
+    css`
+      background-color: white;
+
+      border: calc(2 * var(--border)) solid ${colors.accent1};
+      :hover {
+        cursor: pointer;
+        background-color: ${lighten(0.1, colors.accent1)};
+        border: calc(2 * var(--border)) solid ${lighten(0.1, colors.accent1)};
+      }
+    `};
+
+  /* basic style for pink buttons */
 
   ${(props) =>
     props.cafe &&
@@ -39,66 +52,25 @@ export const StyledButton = styled.button`
       :hover {
         cursor: pointer;
         background-color: ${darken(0.1, colors.accent2)};
-      }
-      :active {
-        border: var(--border) solid ${darken(0.1, colors.accent2)};
-        color: var(--black);
-      }
-      :focus {
-        outline: none;
-        border: var(--border) solid ${colors.black};
-        color: var(--black);
+        color: white;
       }
     `};
 
+  /* secondary style for pink buttons - white background */
   ${(props) =>
-    props.second &&
-    css`
-      background-color: white;
-      border: var(--border) solid ${colors.accent1};
-      :hover {
-        border: var(--border) solid ${darken(0.1, colors.accent1)};
-      }
-      :active {
-        border: var(--border) solid ${darken(0.1, colors.accent2)};
-        color: var(--black);
-      }
-      :focus {
-        outline: none;
-        border: var(--border) solid ${colors.black};
-        color: var(--black);
-      }
-    `}
 
-
-  ${(props) =>
-    props.secondCafe &&
+    props.cafeSecondary &&
     css`
       background-color: white;
       color: ${colors.accent2};
-      border: var(--border) solid ${colors.accent2};
+      border: calc(2 * var(--border)) solid ${colors.accent2};
       :hover {
-        border: var(--border) solid ${darken(0.1, colors.accent2)};
+        cursor: pointer;
+        background-color: ${lighten(0.1, colors.accent2)};
+        border: calc(2 * var(--border)) solid ${lighten(0.1, colors.accent2)};
         color: white;
       }
-      :active {
-        border: var(--border) solid ${darken(0.1, colors.accent2)};
-        color: var(--black);
-      }
-      :focus {
-        outline: none;
-        border: var(--border) solid ${colors.black};
-        color: var(--black);
-      }
-    `}
-
-  ${(props) =>
-    props.cafeRegister &&
-    css`
-      grid-area: register;
-      justify-self: center;
-`}
-
+    `};
   ${(props) =>
     props.buy &&
     css`
@@ -108,7 +80,6 @@ export const StyledButton = styled.button`
       background-color: ${colors.accent1};
       font-size: 0.8rem;
       margin: 0 0 var(--space-s) 0;
-      /* box-shadow: 0 7px 6px -6px ${colors.black}; */
       :hover {
         cursor: pointer;
         border: var(--border) solid ${darken(0.1, colors.accent1)};
@@ -117,6 +88,14 @@ export const StyledButton = styled.button`
       @media ${device.tabletLandscape} {
         margin: var(--space-s);
       }
+    `}
+
+  /* right display the button in the grid for cafe registration */
+  ${(props) =>
+    props.cafeRegister &&
+    css`
+      grid-area: register;
+      justify-self: center;
     `}
 `;
 
