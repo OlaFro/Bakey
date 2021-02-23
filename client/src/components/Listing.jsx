@@ -26,7 +26,7 @@ export default function Listing(props) {
   const [open, setOpen] = useState(false);
   // value should come from DB
   // const value = props.totalPieces - value from the response
-  const value = 0;
+  const value = 5;
   const maxValue = props.totalPieces;
 
   const handleOpen = () => {
@@ -55,10 +55,35 @@ export default function Listing(props) {
   const handleDate = () => {
     if (props.pickUpDate) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
-      return niceDate;
+      // 02-22 10:48
+
+      // 22-02 10:48
+      return (
+        niceDate.split(" ")[0].split("-").reverse().join("-") +
+        " " +
+        niceDate.split(" ")[1]
+      );
     }
   };
+  const buyWhole = () => {
+    return `Buy whole for 
+    ${
+      props.piecePrice && props.totalPieces
+        ? (props.piecePrice * props.totalPieces).toFixed(2)
+        : ""
+    }
+    €`;
+  };
 
+  const buyRest = () => {
+    return `Buy rest for{" "}
+    ${
+      props.availablePieces && props.piecePrice
+        ? (props.availablePieces * props.piecePrice).toFixed(2)
+        : ""
+    }
+    €`;
+  };
   return (
     <StyledListingContainer>
       <StyledPhotoContainer>
@@ -159,12 +184,7 @@ export default function Listing(props) {
             Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
           </StyledButton>
           <StyledButton buy>
-            {props.availablePieces < props.}
-            Buy whole for{" "}
-            {props.piecePrice && props.totalPieces
-              ? (props.piecePrice * props.totalPieces).toFixed(2)
-              : ""}
-            €
+            {props.availablePieces < props.totalPieces ? buyRest() : buyWhole()}
           </StyledButton>
         </StyledBtnContainer>
       </StyledDescContainer>
