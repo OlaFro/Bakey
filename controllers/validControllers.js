@@ -124,7 +124,7 @@ customRules.germanLetters = (value) => {
   if (!value) {
     return false;
   }
-  return value.match(/^[A-Za-zäöüß]+$/);
+  return value.match(/^[A-Za-zäöüß ]+$/);
 };
 
 customRules.minimalNumberValue = (value, minimum) => {
