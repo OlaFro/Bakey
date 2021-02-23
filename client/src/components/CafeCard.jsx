@@ -4,9 +4,10 @@ import {
   StyledCafeCard,
   StyledListing,
 } from "../styledComponents/StyledCafeCard";
-
+import styled from "styled-components";
 import colors from "../styledComponents/colors";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { Cake3 } from "@styled-icons/remix-line/Cake3";
 import Tag from "./Tag";
 
 export default function ListViewCafe(props) {
@@ -30,7 +31,7 @@ export default function ListViewCafe(props) {
           {cafe.profilePic ? (
             <img src={cafe.profilePic} alt={`logo of the ${cafe.cafeName}`} />
           ) : (
-            "logo"
+            <Cake3 />
           )}
         </figure>
         <div>
