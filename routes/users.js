@@ -165,25 +165,30 @@ router.put(
 
     let modification = {};
 
-    modification.profilePic =
-      req.files && req.files[0] ? req.files[0].path : "";
-    modification.city = data.city ? data.city : null;
+    if (req.files && req.files[0]) {
+      modification.profilePic = req.files[0].path;
+    }
+
+    modification.city = data.city;
 
     if (data.userType === "cafe") {
-      modification.cafeCover =
-        req.files && req.files[1] ? req.files[1].path : "";
-      modification.cafeURL = data.cafeURL ? data.cafeURL : undefined;
+      if (req.files && req.files[1]) {
+        modification.cafeCover = req.files[1].path;
+      }
+      if (data.cafeURL) {
+        modification.cafeURL = data.cafeURL;
+      }
+
       modification.cafeDescription = data.cafeDescription
         ? data.cafeDescription
         : "Oat cake tart toffee. Chocolate cake muffin lollipop. Bear claw gummies apple pie biscuit fruitcake cake sesame snaps tootsie roll candy. Cake icing macaroon chocolate cake pie apple pie pudding toffee dessert. Sweet roll danish candy cheesecake lemon drops. Pudding sweet roll dragée cupcake liquorice. Soufflé fruitcake marshmallow gingerbread caramels. Bear claw jelly beans cake sugar plum bonbon liquorice sugar plum tiramisu lemon drops. Pastry pudding marshmallow halvah liquorice soufflé tootsie roll cake.";
-      modification.cafeName = data.cafeName ? data.cafeName : undefined;
-      modification.firstName = data.firstName ? data.firstName : undefined;
-      modification.lastName = data.lastName ? data.lastName : undefined;
-      modification.cafeStreet = data.cafeStreet ? data.cafeStreet : undefined;
-      modification.cafeStreetNr = data.cafeStreetNr
-        ? data.cafeStreetNr
-        : undefined;
-      modification.cafeZip = data.cafeZip ? data.cafeZip : undefined;
+
+      modification.cafeName = data.cafeName;
+      modification.firstName = data.firstName;
+      modification.lastName = data.lastName;
+      modification.cafeStreet = data.cafeStreet;
+      modification.cafeStreetNr = data.cafeStreetNr;
+      modification.cafeZip = data.cafeZip;
     }
     UserModel.findByIdAndUpdate(user.id, { $set: modification }, { new: true })
       .then((result) => {

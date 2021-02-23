@@ -75,14 +75,13 @@ Content-Type: application/json
 
 {
 "userType":"cafe",
-"cafeName":"Paradise new",
+"cafeName":"Paradise",
 "firstName": "Jane",
 "lastName": "Doe",
 "city": "Düsseldorf",
 "cafeStreet": "Königsallee",
 "cafeStreetNr": "92",
-"cafeZip": "40212",
-"cafeURL":"blah"
+"cafeZip": "40212"
 }
 
 ###

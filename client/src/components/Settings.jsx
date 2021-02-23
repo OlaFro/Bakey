@@ -54,9 +54,6 @@ export default function Settings() {
     setShowWarning(false);
     setMsg({});
     let formData = new FormData();
-    formData.append("file", logo.raw);
-    formData.append("file", cover.raw);
-    formData.append("cafeDescription", data.cafeDescription);
     formData.append("cafeName", data.cafeName);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
@@ -64,8 +61,20 @@ export default function Settings() {
     formData.append("cafeStreetNr", data.cafeStreetNr);
     formData.append("cafeZip", data.cafeZip);
     formData.append("city", data.city);
-    formData.append("cafeURL", data.cafeURL);
     formData.append("userType", isLogged.role);
+    if (data.cafeDescription) {
+      formData.append("cafeDescription", data.cafeDescription);
+    }
+    if (data.cafeURL) {
+      formData.append("cafeURL", data.cafeURL);
+    }
+    if (logo.raw) {
+      formData.append("file", logo.raw);
+    }
+
+    if (cover.raw) {
+      formData.append("file", cover.raw);
+    }
 
     Axios({
       method: "PUT",
