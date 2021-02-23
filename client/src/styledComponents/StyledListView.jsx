@@ -8,7 +8,7 @@ export const StyledListView = styled.section`
   /* adjust-content: start; */
   padding: var(--space-s);
   div {
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     /* margin:0; */
   }
 `;

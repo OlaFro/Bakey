@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import {
   StyledCafeCard,
   StyledListing,
 } from "../styledComponents/StyledCafeCard";
-import styled from "styled-components";
 import colors from "../styledComponents/colors";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Cake3 } from "@styled-icons/remix-line/Cake3";
@@ -46,16 +45,19 @@ export default function ListViewCafe(props) {
         {cafe.cafeListings.map((listing, index) => {
           return (
             <StyledListing key={`listing-${index}`}>
-              <span>{listing.listingName}</span>
-              <div className="tag-container">{tags(listing)}</div>
+              <div className="name-tags">
+                <span>{listing.listingName}</span>
+                <div>{tags(listing)}</div>
+              </div>
 
               <div className="progressBar">
                 {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
                 <ProgressBar
                   completed={
-                    ((listing.totalPieces - listing.availablePieces) /
-                      listing.totalPieces) *
-                    100
+                    (
+                      (listing.totalPieces - listing.availablePieces) /
+                      listing.totalPieces
+                    ).toFixed(2) * 100
                   }
                   bgcolor={colors.accent1}
                   isLabelVisible={false}

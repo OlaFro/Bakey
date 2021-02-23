@@ -6,6 +6,7 @@ import device from "./device";
 export const StyledCafeCard = styled.div`
   width: 90%;
   max-width: 600px;
+  margin: var(--space-m) 0;
   cursor: pointer;
   background-color: ${lighten(0.28, colors.gray)};
   border-radius: var(--border-radius);
@@ -69,17 +70,30 @@ export const StyledCafeCard = styled.div`
 export const StyledListing = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  padding: var(--space-s) 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0;
+  margin: var(--space-m) 0;
 
-  @media ${device.tabletLandscape} {
-    padding: 0;
-    border: 1px solid red;
-    margin: var(--space-m);
+  @media ${device.tabletPortrait} {
+    flex-direction: row;
+    align-items: center;
+    margin: var(--space-xs) 0;
   }
 
-  > .tag-container {
+  > .name-tags {
     display: flex;
+    align-items: center;
+    margin: var(--space-xs) 0;
+
+    @media ${device.tabletPortrait} {
+      margin: 0;
+    }
+    > div {
+      display: flex;
+      margin-left: var(--space-xs);
+    }
   }
   > .progressBar {
     width: 200px;
