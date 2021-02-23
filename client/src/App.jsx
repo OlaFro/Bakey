@@ -16,11 +16,18 @@ import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
 import ListingForm from "./components/ListingForm";
 
+
+import Profile from "./components/Profile";
+import ListView from "./components/ListView";
+import Settings from "./components/Settings";
+
+
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const [cafeName, setCafeName] = useState("");
+  const [cafes, setCafes] = useState([]);
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -56,6 +63,8 @@ function App() {
         setProfilePic,
         cafeName,
         setCafeName,
+        cafes,
+        setCafes
       }}
     >
       <Router>
@@ -94,6 +103,15 @@ function App() {
             ) : (
               <Redirect to="/" />
             )}
+          </Route>
+          <Route path="/cafes-list" exact>
+            <ListView />
+          </Route>
+          <Route path="/settings" exact>
+            <Settings />
+          </Route>
+          <Route path="/cafe:id" exact>
+            <Profile />
           </Route>
           <Route path="*">
             {" "}
