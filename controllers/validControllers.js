@@ -67,6 +67,10 @@ validateData.updateProfile = (req, res, next) => {
     req.check("cafeZip", "zip").isNumeric();
   }
 
+  if (req.body.cafeURL) {
+    req.check("cafeURL", "cafeURL").isURL();
+  }
+
   if (!errors) {
     next();
   } else {
