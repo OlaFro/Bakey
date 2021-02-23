@@ -93,6 +93,12 @@ export default function ListView() {
               </StyledTag>
               <p>Organic</p>
             </div>
+            <div>
+              <StyledTag wheat title="wheat free">
+                W
+              </StyledTag>
+              <p>Wheat Free</p>
+            </div>
           </StyledTagContainer>
         </div>
         {dbError === true ? (
