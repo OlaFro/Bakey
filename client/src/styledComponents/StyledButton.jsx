@@ -17,10 +17,17 @@ export const StyledButton = styled.button`
   font-weight: 700;
   transition: background-color 200ms;
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   :hover {
     cursor: pointer;
     background-color: ${darken(0.1, colors.accent1)};
   }
+
+  /* secondary style for yellow buttons - white background  */
 
   ${(props) =>
     props.userSecondary &&
@@ -34,10 +41,6 @@ export const StyledButton = styled.button`
         border: calc(2 * var(--border)) solid ${lighten(0.1, colors.accent1)};
       }
     `};
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
 
   /* basic style for pink buttons */
 
@@ -88,7 +91,7 @@ export const StyledButton = styled.button`
       }
     `}
 
-  /* prop to right display the button in the grid for cafe registration */
+  /* right display the button in the grid for cafe registration */
   ${(props) =>
     props.cafeRegister &&
     css`
