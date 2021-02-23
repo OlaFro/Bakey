@@ -6,6 +6,7 @@ import device from "./device";
 export const StyledCafeCard = styled.div`
   width: 90%;
   max-width: 600px;
+  cursor: pointer;
   background-color: ${lighten(0.28, colors.gray)};
   border-radius: var(--border-radius);
   padding: var(--space-s);
