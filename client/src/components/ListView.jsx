@@ -14,6 +14,7 @@ import {
   StyledTagContainer,
 } from "../styledComponents/StyledListing";
 import Warning from "./Warning";
+import CafeCard from "./CafeCard";
 
 export default function ListView() {
   const [city, setCity] = useState({ city: "Leipzig" });
@@ -62,7 +63,7 @@ export default function ListView() {
         <div>
           <h3>Cafes in {city.city} with active campaigns:</h3>
           <p>Show only cafes that offer something:</p>
-          <StyledTagContainer>
+          <StyledTagContainer listview>
             <div>
               <StyledTag no lactose title="lactose free">
                 L
@@ -93,8 +94,15 @@ export default function ListView() {
               </StyledTag>
               <p>Organic</p>
             </div>
+            <div>
+              <StyledTag wheat title="wheat free">
+                W
+              </StyledTag>
+              <p>Wheat Free</p>
+            </div>
           </StyledTagContainer>
         </div>
+        <CafeCard />
         {dbError === true ? (
           <Warning msg="the server is out of service" />
         ) : null}

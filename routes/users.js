@@ -5,6 +5,7 @@ const {
   verifyPassword,
   authenticateToken,
 } = require("../controllers/authControllers");
+const uploadFile = require("../controllers/multerController");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var router = express.Router();
@@ -33,7 +34,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
         firstName: result.firstName,
         profilePic: result.profilePic,
         userType: result.userType,
-        cafeName: user.cafeName,
+        cafeName: result.cafeName,
       });
     })
     .catch((err) => {
@@ -126,8 +127,71 @@ router.get("/logout", (req, res, next) => {
   res.send({ logged: false });
 });
 
-router.put("/update", (req, res, next) => {
-  res.send("settings");
+router.get("/profile-info", authenticateToken, (req, res, next) => {
+  const user = req.user;
+
+  UserModel.findById(user.id)
+    .select([
+      "firstName",
+      "lastName",
+      "cafeName",
+      "profilePic",
+      "cafeCover",
+      "cafeDescription",
+      "cafeURL",
+      "city",
+      "cafeStreet",
+      "cafeStreetNr",
+      "cafeZip",
+      "email",
+    ])
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 });
+
+router.put(
+  "/update",
+  authenticateToken,
+  uploadFile,
+  validateData.sanitize,
+  validateData.updateProfile,
+  (req, res, next) => {
+    const data = req.body;
+    const user = req.user;
+
+    let modification = {};
+
+    modification.profilePic = req.files && eq.files[0] ? req.files[0].path : "";
+    modification.city = data.city ? data.city : null;
+
+    if (data.userType === "cafe") {
+      modification.cafeCover =
+        req.files && eq.files[1] ? req.files[1].path : "";
+      modification.cafeURL = data.cafeURL ? data.cafeURL : undefined;
+      modification.cafeDescription = data.cafeDescription
+        ? data.cafeDescription
+        : "Oat cake tart toffee. Chocolate cake muffin lollipop. Bear claw gummies apple pie biscuit fruitcake cake sesame snaps tootsie roll candy. Cake icing macaroon chocolate cake pie apple pie pudding toffee dessert. Sweet roll danish candy cheesecake lemon drops. Pudding sweet roll dragée cupcake liquorice. Soufflé fruitcake marshmallow gingerbread caramels. Bear claw jelly beans cake sugar plum bonbon liquorice sugar plum tiramisu lemon drops. Pastry pudding marshmallow halvah liquorice soufflé tootsie roll cake.";
+      modification.cafeName = data.cafeName ? data.cafeName : undefined;
+      modification.firstName = data.firstName ? data.firstName : undefined;
+      modification.lastName = data.lastName ? data.lastName : undefined;
+      modification.cafeStreet = data.cafeStreet ? data.cafeStreet : undefined;
+      modification.cafeStreetNr = data.cafeStreetNr
+        ? data.cafeStreetNr
+        : undefined;
+      modification.cafeZip = data.cafeZip ? data.cafeZip : undefined;
+    }
+    UserModel.findByIdAndUpdate(user.id, { $set: modification }, { new: true })
+      .then((result) => {
+        res.send("info updated");
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
+);
 
 module.exports = router;
