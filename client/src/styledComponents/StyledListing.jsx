@@ -118,6 +118,22 @@ export const StyledTagContainer = styled.div`
   width: 192px;
   height: 2rem;
   margin: var(--space-xs) auto;
+  
+  ${(props)=>(props.listview && css `
+  width: auto;
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  div{
+    display: flex;
+    align-items: center;
+  }
+
+  div>p{
+    padding-right: var(--space-xs)
+  }
+  `)}
 
 `;
 
@@ -131,7 +147,6 @@ export const StyledTag = styled.span`
   align-content: center;
   font-weight: 700;
   padding: calc(var(--space-xs) / 2.5);
-
   margin-right: var(--space-xs);
   position: relative;
   overflow: hidden;
