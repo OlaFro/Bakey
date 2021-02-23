@@ -81,7 +81,8 @@ Content-Type: application/json
 "city": "Düsseldorf",
 "cafeStreet": "Königsallee",
 "cafeStreetNr": "92",
-"cafeZip": "40212"
+"cafeZip": "40212",
+"cafeURL":"blah"
 }
 
 ###

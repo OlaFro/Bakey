@@ -165,12 +165,13 @@ router.put(
 
     let modification = {};
 
-    modification.profilePic = req.files && eq.files[0] ? req.files[0].path : "";
+    modification.profilePic =
+      req.files && req.files[0] ? req.files[0].path : "";
     modification.city = data.city ? data.city : null;
 
     if (data.userType === "cafe") {
       modification.cafeCover =
-        req.files && eq.files[1] ? req.files[1].path : "";
+        req.files && req.files[1] ? req.files[1].path : "";
       modification.cafeURL = data.cafeURL ? data.cafeURL : undefined;
       modification.cafeDescription = data.cafeDescription
         ? data.cafeDescription
