@@ -24,9 +24,10 @@ export default function Listing(props) {
   const { cafeName } = useContext(bakeyContext);
 
   const [open, setOpen] = useState(false);
-  // value should come from DB
-  // const value = props.totalPieces - value from the response
-  const value = 5;
+  // soldPieces should come from DB
+  const soldPieces = 5;
+  const availablePieces = props.totalPieces - soldPieces;
+  console.log(availablePieces);
   const maxValue = props.totalPieces;
 
   const handleOpen = () => {
@@ -76,10 +77,10 @@ export default function Listing(props) {
   };
 
   const buyRest = () => {
-    return `Buy rest for{" "}
+    return `Buy rest for 
     ${
-      props.availablePieces && props.piecePrice
-        ? (props.availablePieces * props.piecePrice).toFixed(2)
+      availablePieces && props.piecePrice
+        ? (availablePieces * props.piecePrice).toFixed(2)
         : ""
     }
     €`;
@@ -106,36 +107,18 @@ export default function Listing(props) {
           <StyledAllergenesContainer display={open ? 1 : 0}>
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
-          <StyledTagContainer>
-            {tags()}
-            {/* <StyledTag no lactose title="lactose free">
-              L
-            </StyledTag>
-            <StyledTag no gluten title="gluten free">
-              G
-            </StyledTag>
-            <StyledTag no sugar title="sugar free">
-              S
-            </StyledTag>
-            <StyledTag no wheat title="wheat free">
-              W
-            </StyledTag>
-            <StyledTag vegan title="vegan">
-              V
-            </StyledTag>
-            <StyledTag organic title="organic">
-              O
-            </StyledTag> */}
-          </StyledTagContainer>
+          <StyledTagContainer>{tags()}</StyledTagContainer>
           <span>{cafeName}</span>
         </header>
 
         <div style={{ width: "130px" }}>
           <CircularProgressbar
-            value={value}
+            value={soldPieces}
             maxValue={maxValue}
             text={
-              maxValue ? `${value}/${maxValue === "" ? 0 : maxValue} sold` : ""
+              maxValue
+                ? `${soldPieces}/${maxValue === "" ? 0 : maxValue} sold`
+                : ""
             }
             strokeWidth="14"
             styles={buildStyles({
@@ -163,7 +146,7 @@ export default function Listing(props) {
           />
         </div>
         <span>
-          {maxValue ? `${maxValue - value} pieces left` : "0 pieces left"}
+          {maxValue ? `${maxValue - soldPieces} pieces left` : "0 pieces left"}
         </span>
         <StyledTimers>
           <StyledCentered>
@@ -184,7 +167,7 @@ export default function Listing(props) {
             Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
           </StyledButton>
           <StyledButton buy>
-            {props.availablePieces < props.totalPieces ? buyRest() : buyWhole()}
+            {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
           </StyledButton>
         </StyledBtnContainer>
       </StyledDescContainer>
