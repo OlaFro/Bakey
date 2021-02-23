@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { bakeyContext } from "../Context";
 import { StyledListView } from "../styledComponents/StyledListView";
 import Axios from "axios";
-import ListViewCafe from "./CafeCard";
 import {
   StyledLabel,
   StyledInputContainer,
@@ -17,10 +16,35 @@ import Warning from "./Warning";
 import CafeCard from "./CafeCard";
 
 export default function ListView() {
-  const [city, setCity] = useState({ city: "Leipzig" });
+  const [city, setCity] = useState("Leipzig");
   const { cafes, setCafes } = useContext(bakeyContext);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
+
+  const getCities = (city) => {
+    setDbError(false);
+    setEmptyWarning(false);
+    Axios({
+      method: "POST",
+      url: "/cafes",
+      data: { city: city },
+    })
+      .then((res) => {
+        if (res.data.length === 0) {
+          setEmptyWarning(true);
+        } else {
+          setCafes(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setDbError(true);
+      });
+  };
+
+  useEffect(() => {
+    getCities(city);
+  }, []);
 
   return (
     <div>
@@ -30,27 +54,8 @@ export default function ListView() {
             id="city"
             name="city"
             onChange={(e) => {
-              setCity((prevData) => {
-                return { [e.target.name]: e.target.value };
-              });
-              setDbError(false);
-              setEmptyWarning(false);
-              Axios({
-                method: "POST",
-                url: "/cafes",
-                data: { city: e.target.value },
-              })
-                .then((res) => {
-                  if (res.data.length === 0) {
-                    setEmptyWarning(true);
-                  } else {
-                    setCafes(res.data);
-                  }
-                })
-                .catch((err) => {
-                  console.log(err);
-                  setDbError(true);
-                });
+              setCity(e.target.value);
+              getCities(e.target.value);
             }}
           >
             <option value="Leipzig">Leipzig</option>
@@ -102,7 +107,6 @@ export default function ListView() {
             </div>
           </StyledTagContainer>
         </div>
-        <CafeCard />
         {dbError === true ? (
           <Warning msg="the server is out of service" />
         ) : null}
@@ -110,8 +114,8 @@ export default function ListView() {
           <Warning msg="there are no offers available for this city" />
         ) : null}
         {emptyWarning === false
-          ? cafes.map((cafe) => {
-              return <ListViewCafe props={cafe} />;
+          ? cafes.map((cafe, index) => {
+              return <CafeCard key={index} />;
             })
           : null}
       </StyledListView>
