@@ -10,7 +10,6 @@ import {
 export const StyledListingContainer = styled.div`
   width: 90%;
   max-width: 400px;
-
   display: grid;
   grid-template-rows: 400px auto;
   border-radius: var(--border-radius);
@@ -21,15 +20,16 @@ export const StyledListingContainer = styled.div`
     height: 400px;
     grid-template-columns: 50% 50%;
   }
-
-  /* just temporal */
-  margin: 10rem 0 25rem 0;
 `;
 
 export const StyledPhotoContainer = styled.div`
   height: 100%;
-  background-image: url("https://images.unsplash.com/photo-1578775887804-699de7086ff9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=675&q=80");
-  background-size: cover;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,6 +43,11 @@ export const StyledDescContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: var(--space-xs) var(--space-xs);
+  height: 500px;
+
+  @media ${device.tabletLandscape} {
+    height: 400px;
+  }
 
   > header {
     text-align: center;
@@ -64,6 +69,18 @@ export const StyledDescContainer = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
+    margin: var(--space-s);
+    > section > span,
+    > section > strong {
+      font-size: 0.9rem;
+    }
+    @media ${device.tabletLandscape} {
+      margin: 0;
+      > section > span,
+      > section > strong {
+        font-size: 0.8rem;
+      }
+    }
   }
   /* amount of pieces left */
   > span {
@@ -91,25 +108,33 @@ export const StyledAllergenesContainer = styled.div`
     font-size: 0.7rem;
     font-weight: 700;
     text-align: center;
+    display: inline;
   }
 `;
 
 export const StyledTagContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 192px;
+  height: 2rem;
+  margin: var(--space-xs) auto;
+  
+  ${(props)=>(props.listview && css `
+  width: auto;
+  height: auto;
+  flex-direction: row;
   flex-wrap: wrap;
-  margin: auto;
-  width: 55%;
-  padding: var(--space-xs) 0;
+  align-items: center;
+  div{
+    display: flex;
+    align-items: center;
+  }
 
-   div > p {
-     margin-top: 0;
-     padding-right: var(--space-xs);
-   }
-   div {
-     display: flex;
-     flex-direction: row;
-   }
+  div>p{
+    padding-right: var(--space-xs)
+  }
+  `)}
+
 `;
 
 export const StyledTag = styled.span`
@@ -121,7 +146,7 @@ export const StyledTag = styled.span`
   justify-content: center;
   align-content: center;
   font-weight: 700;
-  padding: calc(var(--space-xs) / 3);
+  padding: calc(var(--space-xs) / 2.5);
   margin-right: var(--space-xs);
   position: relative;
   overflow: hidden;
@@ -178,10 +203,6 @@ export const StyledTag = styled.span`
 export const StyledTimers = styled.div`
   display: grid;
   column-gap: calc(2 * var(--space-l));
-  > section > span,
-  > section > strong {
-    font-size: 0.8rem;
-  }
 `;
 
 export const StyledBtnContainer = styled.div`

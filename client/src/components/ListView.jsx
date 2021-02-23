@@ -63,7 +63,7 @@ export default function ListView() {
         <div>
           <h3>Cafes in {city.city} with active campaigns:</h3>
           <p>Show only cafes that offer something:</p>
-          <StyledTagContainer>
+          <StyledTagContainer listview>
             <div>
               <StyledTag no lactose title="lactose free">
                 L
@@ -93,6 +93,12 @@ export default function ListView() {
                 O
               </StyledTag>
               <p>Organic</p>
+            </div>
+            <div>
+              <StyledTag wheat title="wheat free">
+                W
+              </StyledTag>
+              <p>Wheat Free</p>
             </div>
           </StyledTagContainer>
         </div>
