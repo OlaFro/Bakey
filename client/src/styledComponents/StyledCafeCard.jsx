@@ -74,11 +74,12 @@ export const StyledListing = styled.div`
 
   @media ${device.tabletLandscape} {
     padding: 0;
+    border: 1px solid red;
+    margin: var(--space-m);
   }
 
   > .tag-container {
     display: flex;
-    margin: var(--space-xs);
   }
   > .progressBar {
     width: 200px;
