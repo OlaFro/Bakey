@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { StyledCafeCard } from "../styledComponents/StyledCafeCard";
+import {
+  StyledCafeCard,
+  StyledListing,
+} from "../styledComponents/StyledCafeCard";
 import { StyledTag } from "../styledComponents/StyledListing";
 
 import colors from "../styledComponents/colors";
@@ -22,38 +25,61 @@ export default function ListViewCafe(props) {
       </header>
       <main>
         <h3>Running campaignes:</h3>
-        <div className="listing">
-          <div className="cake-info">
-            <span>Cheesecake</span>
-            <div className="tag-container">
-              <StyledTag no lactose title="lactose free">
-                L
-              </StyledTag>
-              <StyledTag no gluten title="gluten free">
-                G
-              </StyledTag>
-              <StyledTag no sugar title="sugar free">
-                S
-              </StyledTag>
-              <StyledTag vegan title="vegan">
-                V
-              </StyledTag>
-              <StyledTag organic title="organic">
-                O
-              </StyledTag>
-              <StyledTag no lactose title="lactose free">
-                L
-              </StyledTag>
-            </div>
+        <StyledListing>
+          <span>Cheesecake</span>
+          <div className="tag-container">
+            <StyledTag no lactose title="lactose free">
+              L
+            </StyledTag>
+            <StyledTag no gluten title="gluten free">
+              G
+            </StyledTag>
+            <StyledTag no sugar title="sugar free">
+              S
+            </StyledTag>
+            <StyledTag vegan title="vegan">
+              V
+            </StyledTag>
+            <StyledTag organic title="organic">
+              O
+            </StyledTag>
+            <StyledTag no lactose title="lactose free">
+              L
+            </StyledTag>
           </div>
+
           <div className="progressBar">
+            {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
             <ProgressBar
               completed={60}
               bgcolor={colors.accent1}
               isLabelVisible={false}
             />
           </div>
-        </div>
+        </StyledListing>
+        <StyledListing>
+          <span>Cheesecake with a long title </span>
+          <div className="tag-container">
+            <StyledTag no lactose title="lactose free">
+              L
+            </StyledTag>
+            <StyledTag no gluten title="gluten free">
+              G
+            </StyledTag>
+            <StyledTag no sugar title="sugar free">
+              S
+            </StyledTag>
+          </div>
+
+          <div className="progressBar">
+            {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
+            <ProgressBar
+              completed={20}
+              bgcolor={colors.accent1}
+              isLabelVisible={false}
+            />
+          </div>
+        </StyledListing>
       </main>
     </StyledCafeCard>
   );

@@ -58,40 +58,27 @@ export const StyledCafeCard = styled.div`
 
   main {
     margin: var(--space-xs);
-    
 
     > h3 {
       margin: var(--space-xs) 0;
     }
 
     > .listing {
-        display: flex;
-        border: 1px solid red;
-    
-    > .cake-info {
-      padding-left: var(--space-xs);
-      display: flex;
-      flex-direction: row;
-
-      border: 1px solid blue;
-
-      /* @media ${device.tabletPortrait} {
-        align-items: center;
-        margin: 0;
-      } */
-
-      > .tag-container {
-        display: flex;
-        margin: var(--space-xs) 0;
-        @media ${device.tabletPortrait} {
-          margin: 0 var(--space-xs);
-        }
-      }
-      > .progressBar {
-        border: 1px solid green;
-        width: 50px;
-    }
     }
   }
-    
+`;
+
+export const StyledListing = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: var(--space-s) 0;
+
+  > .tag-container {
+    display: flex;
+    margin: var(--space-xs);
+  }
+  > .progressBar {
+    width: 200px;
+  }
 `;
