@@ -148,7 +148,6 @@ export default function ListingForm() {
                 ) : (
                   <StyledPhoto />
                 )}
-
                 <small className={imageWarning ? "warning" : null}>
                   Please use JPG or PNG in square format (max. size 2MB).
                 </small>
@@ -175,7 +174,7 @@ export default function ListingForm() {
             />
             <StyledLabel htmlFor="listingName">Title*</StyledLabel>
             <div>
-              {msg.listingName ? <small>Please add title</small> : null}
+              {msg.listingName ? <small>PPlease add title no longer than 50 characters</small> : null}
             </div>
           </StyledInputContainer>
 

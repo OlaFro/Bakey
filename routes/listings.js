@@ -41,8 +41,8 @@ router.post(
                 totalPieces: +addListing.totalPieces,
                 availablePieces: +addListing.totalPieces,
                 piecePrice: +addListing.piecePrice,
-                listingPicture: req.file
-                  ? req.file.path
+                listingPicture: req.files[0]
+                  ? req.files[0].path
                   : "../uploads/images/listingplaceholder.png",
                 pickUpDate: addListing.pickUpDate,
                 listingStatus: "active",

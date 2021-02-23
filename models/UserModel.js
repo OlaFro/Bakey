@@ -49,6 +49,9 @@ const UsersSchema = new mongoose.Schema({
   cafeURL: {
     type: String,
   },
+  cafeDescription: {
+    type: String,
+  },
   cafeListings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
 });
 
