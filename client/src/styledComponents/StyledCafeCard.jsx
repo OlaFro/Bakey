@@ -62,9 +62,6 @@ export const StyledCafeCard = styled.div`
     > h3 {
       margin: var(--space-xs) 0;
     }
-
-    > .listing {
-    }
   }
 `;
 
@@ -73,6 +70,10 @@ export const StyledListing = styled.div`
   flex-wrap: wrap;
   align-items: center;
   padding: var(--space-s) 0;
+
+  @media ${device.tabletLandscape} {
+    padding: 0;
+  }
 
   > .tag-container {
     display: flex;
