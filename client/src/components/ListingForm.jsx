@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
+import Listing from "./Listing";
+import Warning from "./Warning";
 import StyledCentered from "../styledComponents/StyledCentered";
 import {
   StyledForm,
@@ -10,16 +14,7 @@ import {
   StyledPhotoUpload,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
-import {
-  StyledListingSteps,
-  StyledCommunication,
-} from "../styledComponents/StyledListingForm";
-import Listing from "./Listing";
-
-import Warning from "./Warning";
-
-import Axios from "axios";
-import { useHistory } from "react-router-dom";
+import { StyledListingSteps } from "../styledComponents/StyledListingForm";
 
 export default function ListingForm() {
   const history = useHistory();
