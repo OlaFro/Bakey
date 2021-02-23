@@ -14,6 +14,7 @@ import {
   StyledTagContainer,
 } from "../styledComponents/StyledListing";
 import Warning from "./Warning";
+import CafeCard from "./CafeCard";
 
 export default function ListView() {
   const [city, setCity] = useState({ city: "Leipzig" });
@@ -95,6 +96,7 @@ export default function ListView() {
             </div>
           </StyledTagContainer>
         </div>
+        <CafeCard />
         {dbError === true ? (
           <Warning msg="the server is out of service" />
         ) : null}
