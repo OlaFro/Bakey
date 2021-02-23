@@ -1,4 +1,6 @@
-import React, {useState, useContext } from "react";
+
+import React, { useState, useContext } from "react";
+
 import { Link, useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
@@ -10,15 +12,15 @@ import {
   StyledPhoto,
   StyledPhotoUpload,
   StyledCoverUpload,
-  StyledTextArea
+  StyledTextArea,
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import Axios from "axios";
 import { StyledButton } from "../styledComponents/StyledButton";
-import {bakeyContext} from "../Context";
+import { bakeyContext } from "../Context";
 
 export default function Settings() {
-  const {isLogged} = useContext(bakeyContext);
+  const { isLogged } = useContext(bakeyContext);
   const history = useHistory();
   const [data, setData] = useState();
   const getValue = (e) => {
@@ -53,9 +55,6 @@ export default function Settings() {
     setShowWarning(false);
     setMsg({});
     let formData = new FormData();
-    formData.append("file", cover.raw);
-    formData.append("file", logo.raw);
-    formData.append("cafeDescription", data.cafeDescription);
     formData.append("cafeName", data.cafeName);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
@@ -63,12 +62,24 @@ export default function Settings() {
     formData.append("cafeStreetNr", data.cafeStreetNr);
     formData.append("cafeZip", data.cafeZip);
     formData.append("city", data.city);
-    formData.append("cafeUrl", data.cafeUrl);
     formData.append("userType", isLogged.role);
+    if (data.cafeDescription) {
+      formData.append("cafeDescription", data.cafeDescription);
+    }
+    if (data.cafeURL) {
+      formData.append("cafeURL", data.cafeURL);
+    }
+    if (logo.raw) {
+      formData.append("file", logo.raw);
+    }
+
+    if (cover.raw) {
+      formData.append("file", cover.raw);
+    }
 
     Axios({
       method: "PUT",
-      url: "/users",
+      url: "/users/update",
       data: formData,
     })
       .then((res) => {
@@ -99,7 +110,7 @@ export default function Settings() {
         <h2>Change your settings</h2>
       </header>
 
-      <StyledForm onSubmit={formSubmit} listing>
+      <StyledForm id="settings-form" onSubmit={formSubmit} listing>
         <header>
           <h2>Fill out:</h2>
         </header>
@@ -296,14 +307,14 @@ export default function Settings() {
             long
             cafe
             type="text"
-            name="cafeUrl"
-            id="cafeUrl"
+            name="cafeURL"
+            id="cafeURL"
             placeholder=" "
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeUrl">Webpage*</StyledLabel>
           <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
+            {msg.cafeURL ? <small>Please use only letters</small> : null}
           </div>
         </StyledInputContainer>
         <div className="communication">
@@ -313,7 +324,7 @@ export default function Settings() {
             </StyledButton>
           </div>
           <div>
-            <StyledButton type="submit" form="listing-form" cafe>
+            <StyledButton type="submit" form="settings-form" cafe>
               Save
             </StyledButton>
           </div>
