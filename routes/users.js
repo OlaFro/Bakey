@@ -132,8 +132,31 @@ router.put(
   authenticateToken,
   uploadFile,
   validateData.sanitize,
+  validateData.updateProfile,
   (req, res, next) => {
-    UserModel.findByIdAndUpdate(user.id)
+    const data = req.body;
+    const user = req.user;
+
+    let modification = {};
+
+    modification.profilePic = req.files && eq.files[0] ? req.files[0].path : "";
+    // modification.city = data.city ? data.city : null;
+
+    if (data.userType === "cafe") {
+      modification.cafeCover =
+        req.files && eq.files[1] ? req.files[1].path : "";
+      modification.cafeURL = data.cafeURL ? data.cafeURL : null;
+      modification.cafeDescription = data.cafeDescription
+        ? data.cafeDescription
+        : "Oat cake tart toffee. Chocolate cake muffin lollipop. Bear claw gummies apple pie biscuit fruitcake cake sesame snaps tootsie roll candy. Cake icing macaroon chocolate cake pie apple pie pudding toffee dessert. Sweet roll danish candy cheesecake lemon drops. Pudding sweet roll dragée cupcake liquorice. Soufflé fruitcake marshmallow gingerbread caramels. Bear claw jelly beans cake sugar plum bonbon liquorice sugar plum tiramisu lemon drops. Pastry pudding marshmallow halvah liquorice soufflé tootsie roll cake.";
+      modification.cafeName = data.cafeName ? data.cafeName : null;
+      modification.firstName = data.firstName ? data.firstName : null;
+      modification.lastName = data.lastName ? data.lastName : null;
+      // modification.cafeStreet = data.cafeStreet ? data.cafeStreet : null;
+      // modification.cafeStreetNr = data.cafeStreetNr ? data.cafeStreetNr : null;
+      // modification.cafeZip = data.cafeZip ? data.cafeZip : null;
+    }
+    UserModel.findByIdAndUpdate(user.id, { $set: modification }, { new: true })
       .then((result) => {
         res.send("info updated");
       })
