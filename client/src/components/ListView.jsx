@@ -32,6 +32,7 @@ export default function ListView() {
               setCity((prevData) => {
                 return { [e.target.name]: e.target.value };
               });
+              setDbError(false);
               setEmptyWarning(false);
               Axios({
                 method: "POST",
