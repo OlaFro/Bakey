@@ -2,7 +2,7 @@ import React, { useContext, useState} from "react";
 import { bakeyContext } from "../Context";
 import { StyledListView } from "../styledComponents/StyledListView";
 import Axios from "axios";
-import ListViewCafe from "./ListViewCafe";
+import ListViewCafe from "./CafeCard";
 import {
   StyledLabel,
   StyledInputContainer,
