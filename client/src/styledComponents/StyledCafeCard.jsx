@@ -49,23 +49,28 @@ export const StyledCafeCard = styled.div`
       }
     }
     > div {
-      margin: var(--space-xs);
+      margin: var(--space-m);
       width: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       text-align: center;
-      > h3 {
-        margin: var(--space-xs);
+      > h2 {
+        margin: calc(var(--space-xs) / 2);
       }
       > span {
-        padding: 0 var(--space-xs);
+        margin: 0 var(--space-xs);
       }
       @media ${device.tabletPortrait} {
         text-align: left;
-        > h3 {
+        margin: var(--space-s);
+        > h2 {
+          margin: calc(var(--space-xs) / 2) 0;
+          padding: 0;
+        }
+        > span {
           margin: 0;
-          padding: 0 var(--space-xs);
+          padding: 0;
         }
       }
     }
