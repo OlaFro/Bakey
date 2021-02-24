@@ -5,9 +5,10 @@ const UserModel = require("../models/UserModel");
 router.post("/", (req, res, next) => {
   //no need to check connection bc we connect in the app.js
   const city = req.body.city;
-  UserModel.find({ city: city, userType: "cafe" })
+  UserModel.find({ city: city, userType: "cafe", cafeListings: { $ne: null } })
     .populate({
       path: "cafeListings",
+      match: { listingStatus: "active" },
       select: ["listingName", "listingTags", "totalPieces", "availablePieces"],
     })
     .select([
@@ -19,6 +20,7 @@ router.post("/", (req, res, next) => {
       "city",
     ])
     .then((result) => {
+      result = result.filter((cafe) => cafe.cafeListings.length);
       res.send(result);
     })
     .catch((err) => {
