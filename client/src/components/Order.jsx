@@ -7,12 +7,7 @@ import {
   StyledSummary,
   StyledAmount,
 } from "../styledComponents/StyledOrder";
-import {
-  StyledLabel,
-  StyledInputContainer,
-  StyledSelect,
-  StyledArrow,
-} from "../styledComponents/StyledForm";
+import { StyledLabel } from "../styledComponents/StyledForm";
 
 import StyledHr from "../styledComponents/StyledHr";
 import { StyledOrderButton } from "../styledComponents/StyledButton";
@@ -25,7 +20,9 @@ export default function Order(props) {
     setPcs(pcs + 1);
   };
   const decrement = () => {
-    setPcs(pcs - 1);
+    if (pcs > 1) {
+      setPcs(pcs - 1);
+    }
   };
 
   return (
@@ -48,6 +45,10 @@ export default function Order(props) {
         <StyledSummary>
           <h4>Order summary:</h4>
           <div>
+            <span>
+              Price pro piece: {props.piecePrice ? props.piecePrice : "4.50"} €
+            </span>
+
             <StyledAmount>
               <StyledOrderButton order onClick={decrement}>
                 {" "}
@@ -58,22 +59,6 @@ export default function Order(props) {
                 +
               </StyledOrderButton>
             </StyledAmount>
-
-            {/* <div>
-              <StyledInputContainer number>
-                <StyledSelect number id="order" name="city" onInput={getValue}>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </StyledSelect>
-
-                <StyledLabel number htmlFor="order">
-                  Pieces:
-                </StyledLabel>
-                <StyledArrow />
-              </StyledInputContainer>
-            </div>
-            <span>{props.piecePrice ? props.piecePrice * pcs : "0.00"}€</span> */}
           </div>
 
           <StyledHr />

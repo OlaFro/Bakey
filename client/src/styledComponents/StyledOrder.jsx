@@ -57,7 +57,7 @@ export const StyledLeftPart = styled.div`
 export const StyledRightPart = styled.div``;
 
 export const StyledAmount = styled.div`
-  width: 20%;
+  width: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,14 +67,20 @@ export const StyledAmount = styled.div`
 `;
 
 export const StyledSummary = styled.div`
-  /* > div {
+  > div {
+    position: relative;
     width: 60%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    > span {
+      font-weight: 500;
+    }
   }
 
   > hr {
     width: 60%;
-  } */
+    margin-top: var(--space-s);
+  }
 `;
