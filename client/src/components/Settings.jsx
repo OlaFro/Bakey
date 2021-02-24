@@ -18,7 +18,14 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import { bakeyContext } from "../Context";
 
 export default function Settings() {
-  const { isLogged } = useContext(bakeyContext);
+  const {
+    isLogged,
+    setIsLogged,
+    setUserName,
+    profilePic,
+    setProfilePic,
+    setCafeName,
+  } = useContext(bakeyContext);
   const history = useHistory();
   const [data, setData] = useState({});
   const getValue = (e) => {
@@ -102,6 +109,11 @@ export default function Settings() {
     })
       .then((res) => {
         console.log(res);
+        setUserName(data.firstName);
+        setCafeName(data.cafeName);
+        if (res.data.profilePic) {
+          setProfilePic({ ...profilePic, profilePic: data.profilePic });
+        };
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;
@@ -111,7 +123,7 @@ export default function Settings() {
         } else if (res.data.errorSource === "image upload") {
           setImageWarning(true);
         } else if (res.data === "info updated") {
-          history.push("/cafe-dashboard");
+          history.push(`/cafe:${isLogged.id}`);
         } else {
           setShowWarning(true);
         }
@@ -342,7 +354,7 @@ export default function Settings() {
           </div>
           <div>
             <StyledButton type="submit" form="settings-form" cafe>
-              <Link to ={`/cafe:${isLogged.id}`}>Save</Link> 
+              Save
             </StyledButton>
           </div>
         </div>
