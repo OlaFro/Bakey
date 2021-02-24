@@ -16,18 +16,47 @@ export const StyledOrderContainer = styled.div`
   background-color: ${lighten(0.28, colors.gray)};
   display: grid;
   grid-template-columns: 40% 60%;
+`;
 
-  > div {
+export const StyledPreview = styled.div`
+  height: 300px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+
+  > figure {
+    margin: 0;
     height: 200px;
     width: 200px;
+
     > img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: scale-down;
+    }
+  }
+  > div {
+    background-color: ${lighten(0.2, colors.gray)};
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    text-align: center;
+    > div {
+      margin-bottom: var(--space-m);
+      > p {
+        margin: calc(0.5 * var(--space-xs));
+      }
     }
   }
 `;
 
-export const StyledPreview = styled.div``;
+export const StyledLeftPart = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
+export const StyledRightPart = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const StyledSummary = styled.div``;
