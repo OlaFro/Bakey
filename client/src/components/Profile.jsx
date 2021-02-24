@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledHr from "../styledComponents/StyledHr";
@@ -15,6 +16,8 @@ import {
 import Axios from "axios";
 
 export default function Profile() {
+  const params = useParams();
+
   const [showAddress, setShowAddress] = useState(false);
 
   const handleShow = () => {
@@ -25,13 +28,20 @@ export default function Profile() {
     setShowAddress(true);
   };
 
-  // useEffect(()=>{
-  //   Axios({
-  //     method: "POST",
-  //     url: ``
-  //   })
-  // })
-
+  useEffect(() => {
+    console.log(params.id.split(":")[1]);
+    Axios({
+      method: "POST",
+      url: "/cafes/info",
+      data: { id: params.id.split(":")[1] },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <StyledCentered>
