@@ -13,7 +13,7 @@ export const StyledOrderContainer = styled.div`
   max-width: 900px;
   height: 500px;
   border-radius: var(--border-radius);
-  background-color: ${lighten(0.28, colors.gray)};
+
   display: grid;
   grid-template-columns: 40% 60%;
 `;
@@ -55,8 +55,8 @@ export const StyledLeftPart = styled.div`
 `;
 
 export const StyledRightPart = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 `;
 export const StyledSummary = styled.div``;

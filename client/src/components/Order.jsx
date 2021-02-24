@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledOrderContainer,
   StyledLeftPart,
@@ -6,10 +6,21 @@ import {
   StyledRightPart,
   StyledSummary,
 } from "../styledComponents/StyledOrder";
+import {
+  StyledLabel,
+  StyledInputContainer,
+  StyledSelect,
+  StyledArrow,
+} from "../styledComponents/StyledForm";
 
 import placeholder from "../assets/placeholder_400px.jpg";
 
 export default function Order(props) {
+  const [data, setData] = useState(1);
+  const getValue = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   return (
     <StyledOrderContainer>
       <StyledLeftPart>
@@ -27,7 +38,22 @@ export default function Order(props) {
         </StyledPreview>
       </StyledLeftPart>
       <StyledRightPart>
-        <StyledSummary>SUMMARY</StyledSummary>
+        <StyledSummary>
+          <h4>Order summary:</h4>
+
+          <StyledInputContainer number>
+            <StyledSelect number id="order" name="city" onInput={getValue}>
+              <option value="Leipzig">1</option>
+              <option value="Hamburg">2</option>
+              <option value="Düsseldorf">3</option>
+            </StyledSelect>
+
+            <StyledLabel number htmlFor="order">
+              Pieces:
+            </StyledLabel>
+            <StyledArrow />
+          </StyledInputContainer>
+        </StyledSummary>
       </StyledRightPart>
     </StyledOrderContainer>
   );
