@@ -13,7 +13,7 @@ export const StyledOrderContainer = styled.div`
   max-width: 900px;
   height: 500px;
   border-radius: var(--border-radius);
-
+  background-color: ${lighten(0.28, colors.gray)};
   display: grid;
   grid-template-columns: 40% 60%;
 `;
@@ -54,9 +54,27 @@ export const StyledLeftPart = styled.div`
   align-items: center;
 `;
 
-export const StyledRightPart = styled.div`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+export const StyledRightPart = styled.div``;
+
+export const StyledAmount = styled.div`
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  > span {
+    font-weight: 500;
+  }
 `;
-export const StyledSummary = styled.div``;
+
+export const StyledSummary = styled.div`
+  /* > div {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  > hr {
+    width: 60%;
+  } */
+`;

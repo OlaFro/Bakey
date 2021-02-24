@@ -5,6 +5,7 @@ import {
   StyledPreview,
   StyledRightPart,
   StyledSummary,
+  StyledAmount,
 } from "../styledComponents/StyledOrder";
 import {
   StyledLabel,
@@ -13,12 +14,18 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 
+import StyledHr from "../styledComponents/StyledHr";
+import { StyledOrderButton } from "../styledComponents/StyledButton";
+
 import placeholder from "../assets/placeholder_400px.jpg";
 
 export default function Order(props) {
-  const [data, setData] = useState(1);
-  const getValue = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const [pcs, setPcs] = useState(1);
+  const increment = () => {
+    setPcs(pcs + 1);
+  };
+  const decrement = () => {
+    setPcs(pcs - 1);
   };
 
   return (
@@ -40,19 +47,37 @@ export default function Order(props) {
       <StyledRightPart>
         <StyledSummary>
           <h4>Order summary:</h4>
+          <div>
+            <StyledAmount>
+              <StyledOrderButton order onClick={decrement}>
+                {" "}
+                –
+              </StyledOrderButton>
+              <span>{pcs}</span>
+              <StyledOrderButton order onClick={increment}>
+                +
+              </StyledOrderButton>
+            </StyledAmount>
 
-          <StyledInputContainer number>
-            <StyledSelect number id="order" name="city" onInput={getValue}>
-              <option value="Leipzig">1</option>
-              <option value="Hamburg">2</option>
-              <option value="Düsseldorf">3</option>
-            </StyledSelect>
+            {/* <div>
+              <StyledInputContainer number>
+                <StyledSelect number id="order" name="city" onInput={getValue}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </StyledSelect>
 
-            <StyledLabel number htmlFor="order">
-              Pieces:
-            </StyledLabel>
-            <StyledArrow />
-          </StyledInputContainer>
+                <StyledLabel number htmlFor="order">
+                  Pieces:
+                </StyledLabel>
+                <StyledArrow />
+              </StyledInputContainer>
+            </div>
+            <span>{props.piecePrice ? props.piecePrice * pcs : "0.00"}€</span> */}
+          </div>
+
+          <StyledHr />
+          <div></div>
         </StyledSummary>
       </StyledRightPart>
     </StyledOrderContainer>
