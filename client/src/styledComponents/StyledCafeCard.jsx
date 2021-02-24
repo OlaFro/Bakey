@@ -2,10 +2,14 @@ import styled from "styled-components";
 import { lighten, darken } from "polished";
 import colors from "./colors";
 import device from "./device";
+import { Cake3 } from "styled-icons/remix-line/";
+
+export const StyledIcon = styled(Cake3)``;
 
 export const StyledCafeCard = styled.div`
   width: 90%;
   max-width: 600px;
+  margin: var(--space-m) 0;
   cursor: pointer;
   background-color: ${lighten(0.28, colors.gray)};
   border-radius: var(--border-radius);
@@ -23,15 +27,25 @@ export const StyledCafeCard = styled.div`
       width: 100px;
       height: 100px;
       border-radius: 100%;
+      border: calc(2 * var(--border)) solid ${lighten(0.3, colors.black)};
       overflow: hidden;
-      margin: var(--space-s) auto;
+      margin: var(--space-xs) auto;
+      position: relative;
       @media ${device.tabletPortrait} {
         margin: var(--space-xs);
       }
       > img {
         width: 100px;
         height: 100px;
-        object-fit: cover;
+        object-fit: scale-down;
+      }
+      > ${StyledIcon} {
+        position: absolute;
+        width: 3.5rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: ${lighten(0.3, colors.black)};
       }
     }
     > div {
@@ -41,17 +55,22 @@ export const StyledCafeCard = styled.div`
       flex-direction: column;
       justify-content: center;
       text-align: center;
-      > h3 {
-        margin: var(--space-xs);
+      > h2 {
+        margin: calc(var(--space-xs) / 2);
       }
       > span {
-        padding: 0 var(--space-xs);
+        margin: 0 var(--space-xs);
       }
       @media ${device.tabletPortrait} {
         text-align: left;
-        > h3 {
+        margin: var(--space-s);
+        > h2 {
+          margin: calc(var(--space-xs) / 2) 0;
+          padding: 0;
+        }
+        > span {
           margin: 0;
-          padding: 0 var(--space-xs);
+          padding: 0;
         }
       }
     }
@@ -69,18 +88,36 @@ export const StyledCafeCard = styled.div`
 export const StyledListing = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  padding: var(--space-s) 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0;
+  margin: var(--space-s) 0;
 
-  @media ${device.tabletLandscape} {
-    padding: 0;
+  @media ${device.tabletPortrait} {
+    flex-direction: row;
+    align-items: center;
+    margin: var(--space-xs) 0;
   }
 
-  > .tag-container {
+  > .name-tags {
     display: flex;
-    margin: var(--space-xs);
+    flex-wrap: wrap;
+    align-items: center;
+    margin: var(--space-xs) 0;
+
+    @media ${device.tabletPortrait} {
+      margin: 0;
+    }
+    > div {
+      display: flex;
+      margin-left: var(--space-xs);
+    }
   }
   > .progressBar {
-    width: 200px;
+    width: 120px;
+    @media ${device.mobile} {
+      width: 180px;
+    }
   }
 `;

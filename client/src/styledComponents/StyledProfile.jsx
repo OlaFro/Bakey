@@ -1,4 +1,6 @@
+import { lighten } from "polished";
 import styled, { css } from "styled-components";
+import colors from "./colors";
 import device from "./device";
 
 export const StyledHeader = styled.header`
@@ -12,6 +14,7 @@ export const StyledBackgroundPic = styled.figure`
   width: 90%;
   max-width: 1200px;
   height: 200px;
+  background-color: ${lighten(0.28, colors.gray)};
 
   > img {
     width: 100%;
@@ -29,6 +32,7 @@ export const StyledLogo = styled.figure`
   height: 150px;
   border-radius: 100%;
   border: 5px solid white;
+  background-color: white;
   position: absolute;
   top: 100%;
   left: 50%;
@@ -36,12 +40,14 @@ export const StyledLogo = styled.figure`
   box-shadow: 0px 10px 14px -2px #b9b9b9;
   z-index: 5;
   overflow: hidden;
+
   @media ${device.tabletPortrait} {
     width: 200px;
     height: 200px;
     border: 15px solid white;
     box-shadow: 0px 10px 24px -2px #b9b9b9;
   }
+
   > img {
     width: 100%;
     height: 100%;
@@ -91,6 +97,7 @@ export const StyledBtnContainer = styled.div`
 
 export const StyledAbout = styled.div`
   display: ${(props) => props.display};
+  margin: var(--space-l) 0;
 `;
 
 export const StyledAddress = styled.div`
@@ -99,6 +106,15 @@ export const StyledAddress = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin: var(--space-s) 0;
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: var(--space-xs) 0;
+  }
+  > span {
+    padding: calc(var(--space-xs) / 2) 0;
+  }
 `;
 
 export const StyledListingContainer = styled.div`

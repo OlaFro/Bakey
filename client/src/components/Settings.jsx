@@ -1,4 +1,4 @@
-import React, {useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
@@ -10,21 +10,47 @@ import {
   StyledPhoto,
   StyledPhotoUpload,
   StyledCoverUpload,
-  StyledTextArea
+  StyledTextArea,
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import Axios from "axios";
 import { StyledButton } from "../styledComponents/StyledButton";
-import {bakeyContext} from "../Context";
+import { bakeyContext } from "../Context";
 
 export default function Settings() {
-  const {isLogged} = useContext(bakeyContext);
+  const {
+    isLogged,
+    setUserName,
+    profilePic,
+    setProfilePic,
+    setCafeName,
+  } = useContext(bakeyContext);
   const history = useHistory();
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const getValue = (e) => {
     setShowWarning(false);
     setData({ ...data, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: `/users/profile-info`,
+    })
+      .then((res) => {
+        setData(res.data);
+        if (res.data.profilePic) {
+          setLogo({ ...logo, preview: res.data.profilePic, raw: "" });
+        }
+        if (res.data.cafeCover) {
+          setCover({ ...cover, preview: res.data.cafeCover, raw: "" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setShowWarning(true);
+      });
+  }, []);
 
   const getCover = (e) => {
     if (e.target.files.length) {
@@ -53,9 +79,6 @@ export default function Settings() {
     setShowWarning(false);
     setMsg({});
     let formData = new FormData();
-    formData.append("file", cover.raw);
-    formData.append("file", logo.raw);
-    formData.append("cafeDescription", data.cafeDescription);
     formData.append("cafeName", data.cafeName);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
@@ -63,16 +86,33 @@ export default function Settings() {
     formData.append("cafeStreetNr", data.cafeStreetNr);
     formData.append("cafeZip", data.cafeZip);
     formData.append("city", data.city);
-    formData.append("cafeUrl", data.cafeUrl);
     formData.append("userType", isLogged.role);
+    if (data.cafeDescription) {
+      formData.append("cafeDescription", data.cafeDescription);
+    }
+    if (data.cafeURL) {
+      formData.append("cafeURL", data.cafeURL);
+    }
+    if (logo.raw) {
+      formData.append("file", logo.raw);
+    }
+
+    if (cover.raw) {
+      formData.append("file", cover.raw);
+    }
 
     Axios({
       method: "PUT",
-      url: "/users",
+      url: "/users/update",
       data: formData,
     })
       .then((res) => {
         console.log(res);
+        setUserName(data.firstName);
+        setCafeName(data.cafeName);
+        if (res.data.profilePic) {
+          setProfilePic({ ...profilePic, profilePic: data.profilePic });
+        }
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;
@@ -82,8 +122,8 @@ export default function Settings() {
         } else if (res.data.errorSource === "image upload") {
           setImageWarning(true);
         } else if (res.data === "info updated") {
-          history.push("/cafe-dashboard");
-        }  else {
+          history.push(`/cafe:${isLogged.id}`);
+        } else {
           setShowWarning(true);
         }
       })
@@ -99,7 +139,7 @@ export default function Settings() {
         <h2>Change your settings</h2>
       </header>
 
-      <StyledForm onSubmit={formSubmit} listing>
+      <StyledForm id="settings-form" onSubmit={formSubmit} listing>
         <header>
           <h2>Fill out:</h2>
         </header>
@@ -160,10 +200,12 @@ export default function Settings() {
             long
             name="cafeDescription"
             id="cafeDescription"
-            placeholder=" "
+            placeholder=""
+            value={data.cafeDescription || ""}
             onInput={getValue}
+            rows="5"
           />
-          <StyledLabel htmlFor="listingName">description*</StyledLabel>
+          <StyledLabel htmlFor="listingName">description</StyledLabel>
           <div>
             {msg.listingName ? <small>Please add description</small> : null}
           </div>
@@ -175,26 +217,16 @@ export default function Settings() {
             type="text"
             name="cafeName"
             id="cafeName"
-            placeholder=" "
-            onInput={getValue}
-          />
-          <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
-          <div>{msg.cafeName ? <small>Required</small> : null}</div>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            long
-            cafe
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder=" "
+            placeholder=""
+            value={data.cafeName || ""}
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="firstName">Owner First Name*</StyledLabel>
+          <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
           <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
+            {msg.cafeName ? (
+              <small>The name must be max. 50 characters long</small>
+            ) : null}
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
@@ -205,6 +237,7 @@ export default function Settings() {
             name="firstName"
             id="firstName"
             placeholder=" "
+            value={data.firstName || ""}
             onInput={getValue}
             required={true}
           />
@@ -221,6 +254,7 @@ export default function Settings() {
             name="lastName"
             id="lastName"
             placeholder=" "
+            value={data.lastName || ""}
             onInput={getValue}
             required={true}
           />
@@ -238,6 +272,7 @@ export default function Settings() {
             name="cafeStreet"
             id="cafeStreet"
             placeholder=" "
+            value={data.cafeStreet || ""}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
@@ -252,6 +287,7 @@ export default function Settings() {
             type="text"
             name="cafeStreetNr"
             id="cafeStreetNr"
+            value={data.cafeStreetNr || ""}
             placeholder=" "
             onInput={getValue}
           />
@@ -271,6 +307,7 @@ export default function Settings() {
             name="cafeZip"
             id="cafeZip"
             placeholder=" "
+            value={data.cafeZip || ""}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
@@ -286,6 +323,7 @@ export default function Settings() {
             name="city"
             id="city"
             placeholder=" "
+            value={data.city || ""}
             onInput={getValue}
           />
           <StyledLabel htmlFor="city">Address / City*</StyledLabel>
@@ -296,14 +334,15 @@ export default function Settings() {
             long
             cafe
             type="text"
-            name="cafeUrl"
-            id="cafeUrl"
+            name="cafeURL"
+            id="cafeURL"
             placeholder=" "
+            value={data.cafeURL || ""}
             onInput={getValue}
           />
-          <StyledLabel htmlFor="cafeUrl">Webpage*</StyledLabel>
+          <StyledLabel htmlFor="cafeURL">Webpage</StyledLabel>
           <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
+            {msg.cafeURL ? <small>Please use only letters</small> : null}
           </div>
         </StyledInputContainer>
         <div className="communication">
@@ -313,7 +352,7 @@ export default function Settings() {
             </StyledButton>
           </div>
           <div>
-            <StyledButton type="submit" form="listing-form" cafe>
+            <StyledButton type="submit" form="settings-form" cafe>
               Save
             </StyledButton>
           </div>

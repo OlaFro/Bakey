@@ -16,11 +16,9 @@ import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
 import ListingForm from "./components/ListingForm";
 
-
 import Profile from "./components/Profile";
 import ListView from "./components/ListView";
 import Settings from "./components/Settings";
-
 
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
@@ -38,7 +36,7 @@ function App() {
       .then((res) => {
         if (res.data.authenticated) {
           console.log(res.data);
-          setIsLogged({ state: true, role: res.data.userType });
+          setIsLogged({ state: true, role: res.data.userType, id:res.data.id });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
@@ -64,7 +62,7 @@ function App() {
         cafeName,
         setCafeName,
         cafes,
-        setCafes
+        setCafes,
       }}
     >
       <Router>
