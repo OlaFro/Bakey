@@ -20,12 +20,11 @@ import { bakeyContext } from "../Context";
 export default function Settings() {
   const { isLogged } = useContext(bakeyContext);
   const history = useHistory();
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const getValue = (e) => {
     setShowWarning(false);
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  const [cafeInfo, setCafeInfo] = useState({});
 
   useEffect(() => {
     Axios({
@@ -33,12 +32,12 @@ export default function Settings() {
       url: `/users/profile-info`,
     })
       .then((res) => {
-        setCafeInfo(res.data);
+        setData(res.data);
         if (res.data.profilePic) {
-          setLogo({ ...logo, preview: res.data.profilePic });
+          setLogo({ ...logo, preview: res.data.profilePic, raw: "" });
         }
         if (res.data.cafeCover) {
-          setCover({ ...cover, preview: res.data.cafeCover });
+          setCover({ ...cover, preview: res.data.cafeCover, raw: "" });
         }
       })
       .catch((err) => {
@@ -141,12 +140,6 @@ export default function Settings() {
                 <div className="picContainer">
                   <img src={cover.preview} alt="cafe cover" />
                 </div>
-              ) : cafeInfo.cafeCover ? (
-                <img
-                  className="picContainer"
-                  src={cafeInfo.cafeCover}
-                  alt="cafe cover"
-                />
               ) : (
                 <StyledPhoto cover />
               )}
@@ -173,12 +166,6 @@ export default function Settings() {
                 <div className="picContainer">
                   <img src={logo.preview} alt="logo" />
                 </div>
-              ) : cafeInfo.profilePic ? (
-                <img
-                  className="picContainer"
-                  src={cafeInfo.profilePic}
-                  alt="logo"
-                />
               ) : (
                 <StyledPhoto />
               )}
@@ -203,7 +190,7 @@ export default function Settings() {
             name="cafeDescription"
             id="cafeDescription"
             placeholder=""
-            value={cafeInfo.cafeDescription || ""}
+            value={data.cafeDescription || ""}
             onInput={getValue}
             rows="5"
           />
@@ -220,7 +207,7 @@ export default function Settings() {
             name="cafeName"
             id="cafeName"
             placeholder=""
-            value={cafeInfo.cafeName}
+            value={data.cafeName}
             onInput={getValue}
             required={true}
           />
@@ -239,7 +226,7 @@ export default function Settings() {
             name="firstName"
             id="firstName"
             placeholder=" "
-            value={cafeInfo.firstName}
+            value={data.firstName}
             onInput={getValue}
             required={true}
           />
@@ -256,7 +243,7 @@ export default function Settings() {
             name="lastName"
             id="lastName"
             placeholder=" "
-            value={cafeInfo.lastName}
+            value={data.lastName}
             onInput={getValue}
             required={true}
           />
@@ -274,7 +261,7 @@ export default function Settings() {
             name="cafeStreet"
             id="cafeStreet"
             placeholder=" "
-            value={cafeInfo.cafeStreet}
+            value={data.cafeStreet}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
@@ -289,7 +276,7 @@ export default function Settings() {
             type="text"
             name="cafeStreetNr"
             id="cafeStreetNr"
-            value={cafeInfo.cafeStreetNr}
+            value={data.cafeStreetNr}
             placeholder=" "
             onInput={getValue}
           />
@@ -309,7 +296,7 @@ export default function Settings() {
             name="cafeZip"
             id="cafeZip"
             placeholder=" "
-            value={cafeInfo.cafeZip}
+            value={data.cafeZip}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
@@ -325,7 +312,7 @@ export default function Settings() {
             name="city"
             id="city"
             placeholder=" "
-            value={cafeInfo.city}
+            value={data.city}
             onInput={getValue}
           />
           <StyledLabel htmlFor="city">Address / City*</StyledLabel>
@@ -339,7 +326,7 @@ export default function Settings() {
             name="cafeURL"
             id="cafeURL"
             placeholder=" "
-            value={cafeInfo.cafeURL}
+            value={data.cafeURL}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeURL">Webpage</StyledLabel>
