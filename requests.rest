@@ -75,7 +75,7 @@ Content-Type: application/json
 
 {
 "userType":"cafe",
-"cafeName":"Paradise new",
+"cafeName":"Paradise",
 "firstName": "Jane",
 "lastName": "Doe",
 "city": "Düsseldorf",
