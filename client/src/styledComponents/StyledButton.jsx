@@ -104,7 +104,7 @@ export const StyledSmallButton = styled.button`
   font-family: var(--headings);
   text-align: left;
   font-size: 1rem;
-  padding: 0;
+  padding: var(--space-xs);
   color: ${colors.black};
   @media ${device.desktop} {
     margin: var(--space-xs) var(--space-s);
