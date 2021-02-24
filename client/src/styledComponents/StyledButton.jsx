@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   border: calc(2 * var(--border)) solid transparent;
   color: var(--black);
   font-size: 1rem;
-  padding: var(--space-s) var(--space-m);
+  padding: var(--space-xs) var(--space-m);
   border-radius: calc(2 * var(--border-radius));
   text-transform: uppercase;
   letter-spacing: var(--ls);

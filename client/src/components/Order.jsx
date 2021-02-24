@@ -6,11 +6,15 @@ import {
   StyledRightPart,
   StyledSummary,
   StyledAmount,
+  StyledTotal,
+  StyledAdd,
 } from "../styledComponents/StyledOrder";
-import { StyledLabel } from "../styledComponents/StyledForm";
 
 import StyledHr from "../styledComponents/StyledHr";
-import { StyledOrderButton } from "../styledComponents/StyledButton";
+import {
+  StyledButton,
+  StyledOrderButton,
+} from "../styledComponents/StyledButton";
 
 import placeholder from "../assets/placeholder_400px.jpg";
 
@@ -35,8 +39,10 @@ export default function Order(props) {
           <div>
             <h3>{props.title ? props.title : "Title"}</h3>
             <div>
-              <p>{props.cafeName ? props.cafeName : "Café name"} </p>
-              <p>{props.pickUpDate ? props.pickUpDate : "Pick-up date"}</p>
+              <span>{props.cafeName ? props.cafeName : "Café name"} </span>
+              <span>
+                {props.pickUpDate ? props.pickUpDate : "Pick-up date"}
+              </span>
             </div>
           </div>
         </StyledPreview>
@@ -44,9 +50,9 @@ export default function Order(props) {
       <StyledRightPart>
         <StyledSummary>
           <h4>Order summary:</h4>
-          <div>
+          <StyledAdd>
             <span>
-              Price pro piece: {props.piecePrice ? props.piecePrice : "4.50"} €
+              Price pro piece: {props.piecePrice ? props.piecePrice : "0.00"} €
             </span>
 
             <StyledAmount>
@@ -59,10 +65,17 @@ export default function Order(props) {
                 +
               </StyledOrderButton>
             </StyledAmount>
-          </div>
+          </StyledAdd>
 
           <StyledHr />
-          <div></div>
+          <StyledTotal>
+            <span>
+              <strong>
+                Total: {props.piecePrice ? props.piecePrice * pcs : "0.00"} €
+              </strong>
+            </span>
+            <StyledButton>Buy</StyledButton>
+          </StyledTotal>
         </StyledSummary>
       </StyledRightPart>
     </StyledOrderContainer>

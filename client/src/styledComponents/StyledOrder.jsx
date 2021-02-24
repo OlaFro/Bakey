@@ -41,7 +41,8 @@ export const StyledPreview = styled.div`
     text-align: center;
     > div {
       margin-bottom: var(--space-m);
-      > p {
+      > span {
+        display: block;
         margin: calc(0.5 * var(--space-xs));
       }
     }
@@ -54,7 +55,28 @@ export const StyledLeftPart = styled.div`
   align-items: center;
 `;
 
-export const StyledRightPart = styled.div``;
+export const StyledRightPart = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledSummary = styled.div`
+  width: 60%;
+
+  > hr {
+    margin: var(--space-s) 0;
+  }
+`;
+
+export const StyledAdd = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > span {
+    font-weight: 500;
+  }
+`;
 
 export const StyledAmount = styled.div`
   width: 100px;
@@ -66,21 +88,12 @@ export const StyledAmount = styled.div`
   }
 `;
 
-export const StyledSummary = styled.div`
-  > div {
-    position: relative;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    > span {
-      font-weight: 500;
-    }
-  }
-
-  > hr {
-    width: 60%;
-    margin-top: var(--space-s);
+export const StyledTotal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  > span {
+    padding-right: 3px;
+    margin-bottom: var(--space-m);
   }
 `;
