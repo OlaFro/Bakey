@@ -1,6 +1,4 @@
-
-import React, { useState, useContext } from "react";
-
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
@@ -22,11 +20,31 @@ import { bakeyContext } from "../Context";
 export default function Settings() {
   const { isLogged } = useContext(bakeyContext);
   const history = useHistory();
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const getValue = (e) => {
     setShowWarning(false);
     setData({ ...data, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: `/users/profile-info`,
+    })
+      .then((res) => {
+        setData(res.data);
+        if (res.data.profilePic) {
+          setLogo({...logo, preview: res.data.profilePic, raw: "" });
+        }
+        if (res.data.cafeCover) {
+          setCover({...cover, preview: res.data.cafeCover, raw: "" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setShowWarning(true);
+      });
+  }, []);
 
   const getCover = (e) => {
     if (e.target.files.length) {
@@ -94,7 +112,7 @@ export default function Settings() {
           setImageWarning(true);
         } else if (res.data === "info updated") {
           history.push("/cafe-dashboard");
-        }  else {
+        } else {
           setShowWarning(true);
         }
       })
@@ -171,10 +189,12 @@ export default function Settings() {
             long
             name="cafeDescription"
             id="cafeDescription"
-            placeholder=" "
+            placeholder=""
+            value={data.cafeDescription || ""}
             onInput={getValue}
+            rows="5"
           />
-          <StyledLabel htmlFor="listingName">description*</StyledLabel>
+          <StyledLabel htmlFor="listingName">description</StyledLabel>
           <div>
             {msg.listingName ? <small>Please add description</small> : null}
           </div>
@@ -186,26 +206,16 @@ export default function Settings() {
             type="text"
             name="cafeName"
             id="cafeName"
-            placeholder=" "
-            onInput={getValue}
-          />
-          <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
-          <div>{msg.cafeName ? <small>Required</small> : null}</div>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            long
-            cafe
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder=" "
+            placeholder=""
+            value={data.cafeName}
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="firstName">Owner First Name*</StyledLabel>
+          <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
           <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
+            {msg.cafeName ? (
+              <small>The name must be max. 50 characters long</small>
+            ) : null}
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
@@ -216,6 +226,7 @@ export default function Settings() {
             name="firstName"
             id="firstName"
             placeholder=" "
+            value={data.firstName}
             onInput={getValue}
             required={true}
           />
@@ -232,6 +243,7 @@ export default function Settings() {
             name="lastName"
             id="lastName"
             placeholder=" "
+            value={data.lastName}
             onInput={getValue}
             required={true}
           />
@@ -249,6 +261,7 @@ export default function Settings() {
             name="cafeStreet"
             id="cafeStreet"
             placeholder=" "
+            value={data.cafeStreet}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
@@ -263,6 +276,7 @@ export default function Settings() {
             type="text"
             name="cafeStreetNr"
             id="cafeStreetNr"
+            value={data.cafeStreetNr}
             placeholder=" "
             onInput={getValue}
           />
@@ -282,6 +296,7 @@ export default function Settings() {
             name="cafeZip"
             id="cafeZip"
             placeholder=" "
+            value={data.cafeZip}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
@@ -297,6 +312,7 @@ export default function Settings() {
             name="city"
             id="city"
             placeholder=" "
+            value={data.city}
             onInput={getValue}
           />
           <StyledLabel htmlFor="city">Address / City*</StyledLabel>
@@ -310,9 +326,10 @@ export default function Settings() {
             name="cafeURL"
             id="cafeURL"
             placeholder=" "
+            value={data.cafeURL}
             onInput={getValue}
           />
-          <StyledLabel htmlFor="cafeUrl">Webpage*</StyledLabel>
+          <StyledLabel htmlFor="cafeURL">Webpage</StyledLabel>
           <div>
             {msg.cafeURL ? <small>Please use only letters</small> : null}
           </div>
