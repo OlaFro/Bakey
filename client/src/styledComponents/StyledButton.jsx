@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
   /* basic button style for yellow buttons */
   font-family: var(--headings);
   background-color: ${colors.accent1};
-  border: var(--border) solid transparent;
+  border: calc(2 * var(--border)) solid transparent;
   color: var(--black);
   font-size: 1rem;
   padding: var(--space-s) var(--space-m);
@@ -58,7 +58,6 @@ export const StyledButton = styled.button`
 
   /* secondary style for pink buttons - white background */
   ${(props) =>
-
     props.cafeSecondary &&
     css`
       background-color: white;
@@ -71,6 +70,15 @@ export const StyledButton = styled.button`
         color: white;
       }
     `};
+
+  /* buttons as headings for profile */
+  ${(props) =>
+    props.headerBtn &&
+    css`
+      background-color: transparent;
+      color: ${colors.accent2};
+    `}
+
   ${(props) =>
     props.buy &&
     css`
