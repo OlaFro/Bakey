@@ -25,9 +25,10 @@ export default function Listing(props) {
 
   const [open, setOpen] = useState(false);
   // soldPieces should come from DB
-  const soldPieces = 0;
+
   const availablePieces = props.availablePieces;
   const maxValue = props.totalPieces;
+  const soldPieces = maxValue - props.availablePieces;
 
   const handleOpen = () => {
     setOpen(true);
@@ -84,6 +85,7 @@ export default function Listing(props) {
     }
     €`;
   };
+  console.log(props);
   return (
     <StyledListingContainer>
       <StyledPhotoContainer>
