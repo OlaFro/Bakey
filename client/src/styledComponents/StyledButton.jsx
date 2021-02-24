@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   border: calc(2 * var(--border)) solid transparent;
   color: var(--black);
   font-size: 1rem;
-  padding: var(--space-s) var(--space-m);
+  padding: var(--space-xs) var(--space-m);
   border-radius: calc(2 * var(--border-radius));
   text-transform: uppercase;
   letter-spacing: var(--ls);
@@ -93,7 +93,7 @@ export const StyledButton = styled.button`
         border: var(--border) solid ${darken(0.1, colors.accent1)};
         background-color: transparent;
       }
-      @media ${device.tabletLandscape} {
+      @media ${device.desktop} {
         margin: var(--space-s);
       }
     `}
@@ -113,25 +113,23 @@ export const StyledSmallButton = styled.button`
   font-family: var(--headings);
   text-align: left;
   font-size: 1rem;
-  padding: 0;
+  padding: var(--space-xs);
+  color: ${colors.black};
   @media ${device.desktop} {
-    padding: var(--space-xs);
-    border-radius: var(--border-radius);
+    margin: var(--space-xs) var(--space-s);
+    padding: var(--space-xs) var(--space-s);
+    border-radius: calc(2 * var(--border-radius));
     text-transform: uppercase;
-    letter-spacing: var(--ls0);
+    letter-spacing: var(--ls);
     font-weight: 700;
+    font-size: 0.9rem;
     transition: all 200ms;
-    background-color: ${colors.accent2};
-    border: var(--border) solid ${colors.accent2};
+    background-color: ${colors.accent1};
+    border: var(--border) solid ${colors.accent1};
     :hover {
       cursor: pointer;
-      background-color: ${darken(0.1, colors.accent2)};
-      border: ${darken(0.1, colors.accent2)} var(--border) solid;
-    }
-    :active {
-      background-color: white;
-      border: var(--border) solid ${darken(0.1, colors.accent2)};
-      color: var(--black);
+      background-color: ${darken(0.1, colors.accent1)};
+      border: ${darken(0.1, colors.accent1)} var(--border) solid;
     }
   }
 `;
