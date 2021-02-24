@@ -20,7 +20,6 @@ import { bakeyContext } from "../Context";
 export default function Settings() {
   const {
     isLogged,
-    setIsLogged,
     setUserName,
     profilePic,
     setProfilePic,
@@ -113,7 +112,7 @@ export default function Settings() {
         setCafeName(data.cafeName);
         if (res.data.profilePic) {
           setProfilePic({ ...profilePic, profilePic: data.profilePic });
-        };
+        }
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;
