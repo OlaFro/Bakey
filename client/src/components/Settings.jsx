@@ -207,7 +207,7 @@ export default function Settings() {
             name="cafeName"
             id="cafeName"
             placeholder=""
-            value={data.cafeName}
+            value={data.cafeName || ""}
             onInput={getValue}
             required={true}
           />
@@ -226,7 +226,7 @@ export default function Settings() {
             name="firstName"
             id="firstName"
             placeholder=" "
-            value={data.firstName}
+            value={data.firstName || ""}
             onInput={getValue}
             required={true}
           />
@@ -243,7 +243,7 @@ export default function Settings() {
             name="lastName"
             id="lastName"
             placeholder=" "
-            value={data.lastName}
+            value={data.lastName || ""}
             onInput={getValue}
             required={true}
           />
@@ -261,7 +261,7 @@ export default function Settings() {
             name="cafeStreet"
             id="cafeStreet"
             placeholder=" "
-            value={data.cafeStreet}
+            value={data.cafeStreet || ""}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
@@ -276,7 +276,7 @@ export default function Settings() {
             type="text"
             name="cafeStreetNr"
             id="cafeStreetNr"
-            value={data.cafeStreetNr}
+            value={data.cafeStreetNr || ""}
             placeholder=" "
             onInput={getValue}
           />
@@ -296,7 +296,7 @@ export default function Settings() {
             name="cafeZip"
             id="cafeZip"
             placeholder=" "
-            value={data.cafeZip}
+            value={data.cafeZip || ""}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
@@ -312,7 +312,7 @@ export default function Settings() {
             name="city"
             id="city"
             placeholder=" "
-            value={data.city}
+            value={data.city || ""}
             onInput={getValue}
           />
           <StyledLabel htmlFor="city">Address / City*</StyledLabel>
@@ -326,7 +326,7 @@ export default function Settings() {
             name="cafeURL"
             id="cafeURL"
             placeholder=" "
-            value={data.cafeURL}
+            value={data.cafeURL || ""}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeURL">Webpage</StyledLabel>
