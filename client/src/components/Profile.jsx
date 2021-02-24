@@ -85,15 +85,18 @@ export default function Profile() {
           <span>
             <strong>Café Ocka</strong>
           </span>
+          <div>
+            <span>Merseburger Str. 88</span>
+            <span> 04177 Leipzig</span>
+          </div>
+          <div>
+            <a href="http://www.cafeocka.de">www.cafeocka.de</a>
+            <span> ocka@ocka.ocka</span>
+          </div>
 
-          <span>Merseburger Str. 88</span>
-          <span> 04177 Leipzig</span>
-
-          <a href="http://www.cafeocka.de">www.cafeocka.de</a>
-
-          <span> ocka@ocka.ocka</span>
-
-          <span>0341 - 12345678</span>
+          <div>
+            <span>0341 - 12345678</span>
+          </div>
           {/* place for the map in the future */}
         </StyledAddress>
 
