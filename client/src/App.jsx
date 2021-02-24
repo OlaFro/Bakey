@@ -20,6 +20,8 @@ import Profile from "./components/Profile";
 import ListView from "./components/ListView";
 import Settings from "./components/Settings";
 
+import Order from "./components/Order";
+
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
   const [userName, setUserName] = useState("");
@@ -36,7 +38,11 @@ function App() {
       .then((res) => {
         if (res.data.authenticated) {
           console.log(res.data);
-          setIsLogged({ state: true, role: res.data.userType, id:res.data.id });
+          setIsLogged({
+            state: true,
+            role: res.data.userType,
+            id: res.data.id,
+          });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
@@ -71,6 +77,7 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <h1>Welcome to bakey</h1>
+            <Order />
           </Route>
           <Route path="/registration/user" exact>
             <RegistrationUser />
