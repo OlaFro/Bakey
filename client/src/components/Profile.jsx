@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledHr from "../styledComponents/StyledHr";
+import { StyledIcon } from "../styledComponents/StyledCafeCard";
 import {
   StyledHeader,
   StyledBackgroundPic,
@@ -17,6 +18,8 @@ import Axios from "axios";
 
 export default function Profile() {
   const params = useParams();
+
+  const [cafeInfo, setCafeInfo] = useState({});
 
   const [showAddress, setShowAddress] = useState(false);
 
@@ -37,6 +40,7 @@ export default function Profile() {
     })
       .then((res) => {
         console.log(res.data);
+        setCafeInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -47,22 +51,20 @@ export default function Profile() {
     <StyledCentered>
       <StyledHeader>
         <StyledBackgroundPic>
-          <img
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1330&q=80"
-            alt="our cafe"
-          ></img>
+          <img src={cafeInfo.cafeCover} alt="our cafe" />
         </StyledBackgroundPic>
         <StyledLogo>
-          <img
-            src="https://i.pinimg.com/originals/1f/c3/ff/1fc3ff4791f292d4ec65893a2087825c.png"
-            alt="our logo"
-          ></img>
+          {cafeInfo.profilePic ? (
+            <img src={cafeInfo.profilePic} alt="our logo"></img>
+          ) : (
+            <StyledIcon />
+          )}
         </StyledLogo>
       </StyledHeader>
       <StyledContentContainer>
         {/* place for review stars in the future */}
-        <h2>Café ocka</h2>
-        <h4>Baker: Kati</h4>
+        <h2>{cafeInfo.cafeName}</h2>
+        <h4>Baker: {cafeInfo.firstName}</h4>
 
         <StyledHr cafe />
         <StyledBtnContainer>
