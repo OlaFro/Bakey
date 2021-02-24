@@ -182,6 +182,14 @@ export const StyledInputContainer = styled.div`
   @media ${device.tabletPortrait} {
     width: 320px;
   }
+
+  ${(props) =>
+    props.number &&
+    css`
+   
+      @media ${device.mobile}{
+        width: 100px;
+      `}
 `;
 
 export const StyledLabel = styled.label`
@@ -269,6 +277,16 @@ export const StyledSelect = styled.select`
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
   }
+
+  ${(props) =>
+    props.number &&
+    css`
+      background-color: transparent;
+      :not(:placeholder-shown) + label {
+        background-color: ${lighten(0.28, colors.gray)};
+      }
+    `};
+
   ${(props) =>
     props.cafe &&
     css`
@@ -357,29 +375,29 @@ export const StyledPhoto = styled(ImageAdd)`
 `;
 
 export const StyledTextArea = styled.textarea`
-padding: var(--space-s);
-width: 100%;
-height: auto;
-background-color: white;
-font-size: 1rem;
-font-family: var(--heading);
-border: var(--border) solid ${colors.accent2};
-border-radius: var(--border-radius);
-:hover {
-  cursor: text;
-  border: var(--border) solid ${darken(0.2, colors.gray)};
-}
-:focus {
-  outline: none;
-  border: var(--border) solid ${darken(0.2, colors.gray)};
-}
-:focus + label,
-:not(:placeholder-shown) + label {
-  font-size: 0.8rem;
-  top: -8px;
-  left: 13px;
-  background: white;
-  padding: 0 calc(0.2 * var(--space-s));
-  letter-spacing: calc(0.66 * var(--ls));
-}
-`
+  padding: var(--space-s);
+  width: 100%;
+  height: auto;
+  background-color: white;
+  font-size: 1rem;
+  font-family: var(--heading);
+  border: var(--border) solid ${colors.accent2};
+  border-radius: var(--border-radius);
+  :hover {
+    cursor: text;
+    border: var(--border) solid ${darken(0.2, colors.gray)};
+  }
+  :focus {
+    outline: none;
+    border: var(--border) solid ${darken(0.2, colors.gray)};
+  }
+  :focus + label,
+  :not(:placeholder-shown) + label {
+    font-size: 0.8rem;
+    top: -8px;
+    left: 13px;
+    background: white;
+    padding: 0 calc(0.2 * var(--space-s));
+    letter-spacing: calc(0.66 * var(--ls));
+  }
+`;

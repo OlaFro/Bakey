@@ -133,3 +133,19 @@ export const StyledSmallButton = styled.button`
     }
   }
 `;
+
+/* buttons for the order summary */
+export const StyledOrderButton = styled.button`
+  background-color: ${colors.accent1};
+  border: none;
+  border-radius: 100%;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+`;
