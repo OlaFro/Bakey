@@ -78,15 +78,11 @@ export const StyledNavBtn = styled.div`
     css`
       @media ${device.desktop} {
         background-color: ${colors.accent1};
-        /* border: var(--border) solid ${colors.accent1}; */
+        border: var(--border) solid ${colors.accent1};
         :hover {
           cursor: pointer;
           background-color: ${darken(0.1, colors.accent1)};
-        }
-        :active {
-          background-color: white;
           border: var(--border) solid ${darken(0.1, colors.accent1)};
-          color: var(--black);
         }
       }
     `};
@@ -103,11 +99,6 @@ export const StyledNavBtn = styled.div`
           border: var(--border) solid ${darken(0.1, colors.accent1)};
           background: white;
           color: ${darken(0.1, colors.accent1)};
-        }
-        :active {
-          background-color: ${colors.accent1};
-          border: var(--border) solid ${colors.accent1};
-          color: var(--black);
         }
       }
     `};
