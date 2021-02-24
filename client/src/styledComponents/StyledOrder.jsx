@@ -8,14 +8,21 @@ export const StyledOrderContainer = styled.div`
 
   /* temporal margin-top for better preview */
   margin-top: 5rem;
-
-  width: 90%;
-  max-width: 900px;
-  height: 500px;
+  max-width: 500px;
+  width: 80%;
   border-radius: var(--border-radius);
   background-color: ${lighten(0.28, colors.gray)};
+
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-rows: 400px 300px;
+  row-gap: var(--space-m);
+  @media ${device.tabletLandscape} {
+    max-width: 900px;
+    row-gap: 0;
+    height: 500px;
+    grid-template-rows: 500px 0;
+    grid-template-columns: 40% 60%;
+  }
 `;
 
 export const StyledPreview = styled.div`
@@ -30,6 +37,7 @@ export const StyledPreview = styled.div`
     width: 200px;
 
     > img {
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
       width: 100%;
       height: 100%;
       object-fit: scale-down;
@@ -61,20 +69,45 @@ export const StyledRightPart = styled.div`
 `;
 
 export const StyledSummary = styled.div`
-  width: 60%;
+  margin: auto;
+  width: 80%;
+  @media ${device.tabletLandscape} {
+    margin: 0;
+    width: 80%;
+  }
+  @media ${device.desktop} {
+    margin: 0;
+    width: 80%;
+  }
 
+  > h4 {
+    text-align: center;
+    @media ${device.tabletLandscape} {
+      text-align: left;
+    }
+  }
   > hr {
-    margin: var(--space-s) 0;
+    margin: var(--space-s) auto;
+    width: 50%;
+    @media ${device.tabletLandscape} {
+      width: 100%;
+    }
   }
 `;
 
 export const StyledAdd = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 
+  @media ${device.tabletLandscape} {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
   > span {
     font-weight: 500;
+    margin: var(--space-xs) 0;
   }
 `;
 
@@ -91,7 +124,11 @@ export const StyledAmount = styled.div`
 export const StyledTotal = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  @media ${device.tabletLandscape} {
+    align-items: flex-end;
+  }
+
   > span {
     padding-right: 3px;
     margin-bottom: var(--space-m);

@@ -21,7 +21,9 @@ import placeholder from "../assets/placeholder_400px.jpg";
 export default function Order(props) {
   const [pcs, setPcs] = useState(1);
   const increment = () => {
-    setPcs(pcs + 1);
+    if (pcs <= props.availablePieces) {
+      setPcs(pcs + 1);
+    }
   };
   const decrement = () => {
     if (pcs > 1) {
