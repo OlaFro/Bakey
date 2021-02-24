@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { bakeyContext } from "../Context";
 import {
   StyledListingContainer,
@@ -24,10 +24,9 @@ export default function Listing(props) {
   const { cafeName } = useContext(bakeyContext);
 
   const [open, setOpen] = useState(false);
-  // soldPieces should come from DB
-  const soldPieces = 0;
   const availablePieces = props.availablePieces;
   const maxValue = props.totalPieces;
+  const soldPieces = maxValue - props.availablePieces || 0;
 
   const handleOpen = () => {
     setOpen(true);
@@ -59,9 +58,9 @@ export default function Listing(props) {
 
       // 22-02 10:48
       return (
-        niceDate.split(" ")[0].split("-").reverse().join("-") +
+        niceDate.split(" ")[0].split("-").reverse().join(".") +
         " " +
-        niceDate.split(" ")[1]
+        niceDate.split(" ")[1].substring(0, 5)
       );
     }
   };
@@ -84,6 +83,7 @@ export default function Listing(props) {
     }
     €`;
   };
+  console.log(soldPieces);
   return (
     <StyledListingContainer>
       <StyledPhotoContainer>
