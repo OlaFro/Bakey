@@ -25,13 +25,12 @@ export default function Profile() {
     setShowAddress(true);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     Axios({
       method: "POST",
-      url: ``
-    })
-  })
-
+      url: ``,
+    });
+  });
 
   return (
     <StyledCentered>

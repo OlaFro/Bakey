@@ -99,6 +99,9 @@ export const StyledAddress = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin: var(--space-s) 0;
+  > span {
+    padding: calc(var(--space-xs) / 2) 0;
+  }
 `;
 
 export const StyledListingContainer = styled.div`
