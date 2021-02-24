@@ -1,4 +1,4 @@
-import React, {useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Warning from "./Warning";
 import {
@@ -10,21 +10,35 @@ import {
   StyledPhoto,
   StyledPhotoUpload,
   StyledCoverUpload,
-  StyledTextArea
+  StyledTextArea,
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import Axios from "axios";
 import { StyledButton } from "../styledComponents/StyledButton";
-import {bakeyContext} from "../Context";
+import { bakeyContext } from "../Context";
 
 export default function Settings() {
-  const {isLogged} = useContext(bakeyContext);
+  const { isLogged } = useContext(bakeyContext);
   const history = useHistory();
   const [data, setData] = useState();
   const getValue = (e) => {
     setShowWarning(false);
     setData({ ...data, [e.target.name]: e.target.value });
   };
+  const [cafeInfo, setCafeInfo] = useState();
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: `/users/profile-info`,
+    })
+      .then((res) => {
+        setCafeInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const getCover = (e) => {
     if (e.target.files.length) {
@@ -63,7 +77,7 @@ export default function Settings() {
     formData.append("cafeStreetNr", data.cafeStreetNr);
     formData.append("cafeZip", data.cafeZip);
     formData.append("city", data.city);
-    formData.append("cafeUrl", data.cafeUrl);
+    formData.append("cafeURL", data.cafeURL);
     formData.append("userType", isLogged.role);
 
     Axios({
@@ -83,7 +97,7 @@ export default function Settings() {
           setImageWarning(true);
         } else if (res.data === "info updated") {
           history.push("/cafe-dashboard");
-        }  else {
+        } else {
           setShowWarning(true);
         }
       })
@@ -160,10 +174,12 @@ export default function Settings() {
             long
             name="cafeDescription"
             id="cafeDescription"
-            placeholder=" "
+            placeholder=""
+            value={cafeInfo.cafeDescription}
             onInput={getValue}
+            rows="5"
           />
-          <StyledLabel htmlFor="listingName">description*</StyledLabel>
+          <StyledLabel htmlFor="listingName">description</StyledLabel>
           <div>
             {msg.listingName ? <small>Please add description</small> : null}
           </div>
@@ -175,8 +191,10 @@ export default function Settings() {
             type="text"
             name="cafeName"
             id="cafeName"
-            placeholder=" "
+            placeholder=""
+            value={cafeInfo.cafeName}
             onInput={getValue}
+            required={true}
           />
           <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
           <div>{msg.cafeName ? <small>Required</small> : null}</div>
@@ -189,22 +207,7 @@ export default function Settings() {
             name="firstName"
             id="firstName"
             placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="firstName">Owner First Name*</StyledLabel>
-          <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
-          </div>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            long
-            cafe
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder=" "
+            value={cafeInfo.firstName}
             onInput={getValue}
             required={true}
           />
@@ -221,6 +224,7 @@ export default function Settings() {
             name="lastName"
             id="lastName"
             placeholder=" "
+            value={cafeInfo.lastName}
             onInput={getValue}
             required={true}
           />
@@ -238,6 +242,7 @@ export default function Settings() {
             name="cafeStreet"
             id="cafeStreet"
             placeholder=" "
+            value={cafeInfo.cafeStreet}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
@@ -252,6 +257,7 @@ export default function Settings() {
             type="text"
             name="cafeStreetNr"
             id="cafeStreetNr"
+            value={cafeInfo.cafeStreetNr}
             placeholder=" "
             onInput={getValue}
           />
@@ -271,6 +277,7 @@ export default function Settings() {
             name="cafeZip"
             id="cafeZip"
             placeholder=" "
+            value={cafeInfo.cafeZip}
             onInput={getValue}
           />
           <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
@@ -286,6 +293,7 @@ export default function Settings() {
             name="city"
             id="city"
             placeholder=" "
+            value={cafeInfo.city}
             onInput={getValue}
           />
           <StyledLabel htmlFor="city">Address / City*</StyledLabel>
@@ -296,14 +304,17 @@ export default function Settings() {
             long
             cafe
             type="text"
-            name="cafeUrl"
-            id="cafeUrl"
+            name="cafeURL"
+            id="cafeURL"
             placeholder=" "
+            value={cafeInfo.cafeURL}
             onInput={getValue}
           />
-          <StyledLabel htmlFor="cafeUrl">Webpage*</StyledLabel>
+          <StyledLabel htmlFor="cafeURL">Webpage</StyledLabel>
           <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
+            {msg.cafeURL ? (
+              <small>Please use valid format of the URL</small>
+            ) : null}
           </div>
         </StyledInputContainer>
         <div className="communication">

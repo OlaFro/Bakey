@@ -356,9 +356,10 @@ export const StyledPhoto = styled(ImageAdd)`
   height: 48px;
 `;
 
-export const StyledTextArea = styled.input.attrs({ type: 'textarea' })`
+export const StyledTextArea = styled.textarea`
 padding: var(--space-s);
 width: 100%;
+height: auto;
 background-color: white;
 font-size: 1rem;
 font-family: var(--heading);
