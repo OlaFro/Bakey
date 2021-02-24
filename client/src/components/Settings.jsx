@@ -25,7 +25,7 @@ export default function Settings() {
     setShowWarning(false);
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  const [cafeInfo, setCafeInfo] = useState();
+  const [cafeInfo, setCafeInfo] = useState({});
 
   useEffect(() => {
     Axios({
@@ -37,6 +37,7 @@ export default function Settings() {
       })
       .catch((err) => {
         console.log(err);
+        setShowWarning(true);
       });
   }, []);
 
@@ -116,6 +117,8 @@ export default function Settings() {
       });
   };
 
+
+
   return (
     <StyledCentered settings>
       <header>
@@ -134,9 +137,7 @@ export default function Settings() {
                 <div className="picContainer">
                   <img src={cover.preview} alt="cafe cover" />
                 </div>
-              ) : (
-                <StyledPhoto cover />
-              )}
+              ) : (cafeInfo.cafeCover ? (<img className="picContainer" src={cafeInfo.cafeCover} alt = "cafe cover" />) : <StyledPhoto cover/>)}
 
               <small className={imageWarning ? "warning" : null}>
                 Please use JPG or PNG (recommended 1200 x 400px and max. size
@@ -161,7 +162,7 @@ export default function Settings() {
                   <img src={logo.preview} alt="logo" />
                 </div>
               ) : (
-                <StyledPhoto />
+                (cafeInfo.profilePic ? (<img className="picContainer" src={cafeInfo.profilePic} alt = "logo" />) : <StyledPhoto />)
               )}
 
               <small className={imageWarning ? "warning" : null}>
@@ -184,7 +185,7 @@ export default function Settings() {
             name="cafeDescription"
             id="cafeDescription"
             placeholder=""
-            value={cafeInfo.cafeDescription}
+            value={cafeInfo.cafeDescription || ""}
             onInput={getValue}
             rows="5"
           />
@@ -206,7 +207,7 @@ export default function Settings() {
             required={true}
           />
           <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
-          <div>{msg.cafeName ? <small>Required</small> : null}</div>
+          <div>{msg.cafeName ? <small>The name must be max. 50 characters long</small> : null}</div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
