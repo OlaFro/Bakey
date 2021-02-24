@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Listing from "./Listing";
 import Warning from "./Warning";
 import StyledCentered from "../styledComponents/StyledCentered";
@@ -174,7 +174,9 @@ export default function ListingForm() {
             />
             <StyledLabel htmlFor="listingName">Title*</StyledLabel>
             <div>
-              {msg.listingName ? <small>PPlease add title no longer than 50 characters</small> : null}
+              {msg.listingName ? (
+                <small>PPlease add title no longer than 50 characters</small>
+              ) : null}
             </div>
           </StyledInputContainer>
 
@@ -389,7 +391,9 @@ export default function ListingForm() {
               Click "cancel" to go back to Your dashboard. <p></p>Your changes
               won't be saved.
             </p>
-            <StyledButton cafeSecondary>Cancel</StyledButton>
+            <Link to="/cafe-dashboard">
+              <StyledButton cafeSecondary>Cancel</StyledButton>
+            </Link>
           </div>
           <div>
             <p>

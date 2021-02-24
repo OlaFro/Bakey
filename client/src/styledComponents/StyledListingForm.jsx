@@ -34,7 +34,8 @@ export const StyledListingSteps = styled.div`
       > p {
         text-align: center;
       }
-      > button {
+      > button,
+      > a {
         margin-top: var(--space-s);
       }
     }
