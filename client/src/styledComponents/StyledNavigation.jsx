@@ -60,30 +60,32 @@ export const StyledNavBtn = styled.div`
   font-family: var(--headings);
   text-align: left;
   @media ${device.desktop} {
-    padding: var(--space-xs);
-    border-radius: var(--border-radius);
+    margin: var(--space-xs) var(--space-s);
+    padding: var(--space-xs) var(--space-s);
+    border-radius: calc(2 * var(--border-radius));
     font-weight: 700;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: var(--ls);
     transition: all 200ms;
-     a {
-       padding-right: 0;
-     }
+    a {
+      padding-right: 0;
+    }
   }
 
   ${(props) =>
     props.registration &&
     css`
       @media ${device.desktop} {
-        background-color: ${colors.accent2};
-        border: var(--border) solid ${colors.accent2};
+        background-color: ${colors.accent1};
+        /* border: var(--border) solid ${colors.accent1}; */
         :hover {
           cursor: pointer;
-          background-color: ${darken(0.1, colors.accent2)};
+          background-color: ${darken(0.1, colors.accent1)};
         }
         :active {
           background-color: white;
-          border: var(--border) solid ${darken(0.1, colors.accent2)};
+          border: var(--border) solid ${darken(0.1, colors.accent1)};
           color: var(--black);
         }
       }
@@ -93,18 +95,18 @@ export const StyledNavBtn = styled.div`
     css`
       @media ${device.desktop} {
         background-color: white;
-        border: var(--border) solid ${colors.accent2};
-        color: ${colors.accent2};
+        border: var(--border) solid ${colors.accent1};
+        color: ${colors.black};
         margin-right: var(--space-xs);
         :hover {
           cursor: pointer;
-          border: var(--border) solid ${darken(0.1, colors.accent2)};
+          border: var(--border) solid ${darken(0.1, colors.accent1)};
           background: white;
-          color: ${darken(0.1, colors.accent2)};
+          color: ${darken(0.1, colors.accent1)};
         }
         :active {
-          background-color: ${colors.accent2};
-          border: var(--border) solid ${colors.accent2};
+          background-color: ${colors.accent1};
+          border: var(--border) solid ${colors.accent1};
           color: var(--black);
         }
       }

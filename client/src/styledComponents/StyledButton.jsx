@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   border: var(--border) solid transparent;
   color: var(--black);
   font-size: 1rem;
-  padding: var(--space-s) var(--space-m);
+  padding: var(--space-xs) var(--space-m);
   border-radius: calc(2 * var(--border-radius));
   text-transform: uppercase;
   letter-spacing: var(--ls);
@@ -58,7 +58,6 @@ export const StyledButton = styled.button`
 
   /* secondary style for pink buttons - white background */
   ${(props) =>
-
     props.cafeSecondary &&
     css`
       background-color: white;
@@ -113,16 +112,16 @@ export const StyledSmallButton = styled.button`
     letter-spacing: var(--ls0);
     font-weight: 700;
     transition: all 200ms;
-    background-color: ${colors.accent2};
-    border: var(--border) solid ${colors.accent2};
+    background-color: ${colors.accent1};
+    border: var(--border) solid ${colors.accent1};
     :hover {
       cursor: pointer;
       background-color: ${darken(0.1, colors.accent2)};
-      border: ${darken(0.1, colors.accent2)} var(--border) solid;
+      border: ${darken(0.1, colors.accent1)} var(--border) solid;
     }
     :active {
       background-color: white;
-      border: var(--border) solid ${darken(0.1, colors.accent2)};
+      border: var(--border) solid ${darken(0.1, colors.accent1)};
       color: var(--black);
     }
   }
