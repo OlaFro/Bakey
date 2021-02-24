@@ -41,15 +41,18 @@ h2 {
   font-weight: 700;
 }
 
-h3{
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: var(--ls);
-}
 
 h4{
   font-size: 1.5rem;
   font-weight: 300;
+
+}
+
+
+h3{
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls);
 }
 
 p {
