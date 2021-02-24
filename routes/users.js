@@ -31,6 +31,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
       console.log(result);
       res.send({
         authenticated: true,
+        id: user.id,
         firstName: result.firstName,
         profilePic: result.profilePic,
         userType: result.userType,
@@ -113,6 +114,7 @@ router.post(
 
     res.send({
       logged: true,
+      id: user._id,
       firstName: user.firstName,
       profilePic: user.profilePic,
       userType: user.userType,

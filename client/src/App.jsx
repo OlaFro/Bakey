@@ -36,7 +36,7 @@ function App() {
       .then((res) => {
         if (res.data.authenticated) {
           console.log(res.data);
-          setIsLogged({ state: true, role: res.data.userType });
+          setIsLogged({ state: true, role: res.data.userType, id:res.data.id });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);

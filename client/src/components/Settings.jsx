@@ -342,7 +342,7 @@ export default function Settings() {
           </div>
           <div>
             <StyledButton type="submit" form="settings-form" cafe>
-              Save
+              <Link to ={`/cafe:${isLogged.id}`}>Save</Link> 
             </StyledButton>
           </div>
         </div>
