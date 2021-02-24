@@ -175,7 +175,7 @@ export default function ListingForm() {
             <StyledLabel htmlFor="listingName">Title*</StyledLabel>
             <div>
               {msg.listingName ? (
-                <small>PPlease add title no longer than 50 characters</small>
+                <small>Please add title no longer than 40 characters</small>
               ) : null}
             </div>
           </StyledInputContainer>
