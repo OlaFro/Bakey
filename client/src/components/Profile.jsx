@@ -44,11 +44,13 @@ export default function Profile() {
     })
       .then((res) => {
         console.log(res.data);
-        setCafeInfo(res.data);
+        if (!res.data) {
+          setShowWarning(true);
+        } else {
+          setCafeInfo(res.data);
+        }
       })
-      .catch((err) => {
-        setShowWarning(true);
-      });
+      .catch((err) => {});
   }, []);
 
   return (

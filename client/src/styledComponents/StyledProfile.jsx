@@ -1,3 +1,4 @@
+import { lighten } from "polished";
 import styled, { css } from "styled-components";
 import colors from "./colors";
 import device from "./device";
@@ -13,7 +14,7 @@ export const StyledBackgroundPic = styled.figure`
   width: 90%;
   max-width: 1200px;
   height: 200px;
-  background-color: ${colors.gray};
+  background-color: ${lighten(0.28, colors.gray)};
 
   > img {
     width: 100%;
