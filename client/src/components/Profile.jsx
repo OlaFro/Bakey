@@ -16,11 +16,14 @@ import {
 } from "../styledComponents/StyledProfile";
 import Axios from "axios";
 import Listing from "./Listing";
+import Warning from "./Warning";
 
 export default function Profile() {
   const params = useParams();
 
   const [cafeInfo, setCafeInfo] = useState({});
+
+  const [showWarning, setShowWarning] = useState(false);
 
   const [showAddress, setShowAddress] = useState(false);
 
@@ -44,7 +47,7 @@ export default function Profile() {
         setCafeInfo(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        setShowWarning(true);
       });
   }, []);
 
@@ -52,7 +55,9 @@ export default function Profile() {
     <StyledCentered>
       <StyledHeader>
         <StyledBackgroundPic>
-          <img src={cafeInfo.cafeCover} alt="our cafe" />
+          {cafeInfo.cafeCover ? (
+            <img src={cafeInfo.cafeCover} alt="our cafe" />
+          ) : null}
         </StyledBackgroundPic>
         <StyledLogo>
           {cafeInfo.profilePic ? (
@@ -65,7 +70,12 @@ export default function Profile() {
       <StyledContentContainer>
         {/* place for review stars in the future */}
         <h2>{cafeInfo.cafeName}</h2>
-        <h4>Baker: {cafeInfo.firstName}</h4>
+
+        {showWarning ? (
+          <Warning msg="the service is out of order" />
+        ) : (
+          <h4>Baker: {cafeInfo.firstName}</h4>
+        )}
 
         <StyledHr cafe />
         <StyledBtnContainer>
