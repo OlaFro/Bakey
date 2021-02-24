@@ -143,7 +143,6 @@ router.get("/profile-info", authenticateToken, (req, res, next) => {
       "cafeStreet",
       "cafeStreetNr",
       "cafeZip",
-      "email",
     ])
     .then((result) => {
       res.send(result);
