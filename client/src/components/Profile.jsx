@@ -58,27 +58,31 @@ export default function Profile() {
           <StyledButton
             onClick={handleShow}
             cafe
-            secondCafe={showAddress ? false : true}
+            headerBtn={showAddress ? false : true}
           >
             About
           </StyledButton>
           <StyledButton
             onClick={handleHide}
             cafe
-            secondCafe={showAddress ? true : false}
+            headerBtn={showAddress ? true : false}
           >
             Address
           </StyledButton>
         </StyledBtnContainer>
         <StyledAbout display={showAddress ? "none" : "block"}>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.{" "}
+            Croissant cupcake cheesecake cake muffin croissant biscuit. I love
+            gummi bears lemon drops pastry lollipop caramels. Liquorice tart
+            dragée cake I love I love sesame snaps halvah chocolate cake. Sesame
+            snaps wafer bonbon jelly pudding jelly-o I love soufflé ice cream.
+            Topping gummies tart sesame snaps soufflé toffee. Chocolate cake
+            sweet pie croissant liquorice sugar plum carrot cake jujubes. I love
+            sugar plum fruitcake jelly I love cake sweet roll gummi bears.
+            Cupcake bonbon sesame snaps I love cheesecake carrot cake cupcake I
+            love donut. Oat cake sugar plum candy canes dessert liquorice
+            tiramisu gummi bears. Pudding chocolate bar pudding topping jujubes
+            gummi bears. Fruitcake chocolate bar pastry. Cake cupcake bonbon.
           </p>
         </StyledAbout>
         <StyledAddress display={showAddress ? "flex" : "none"}>

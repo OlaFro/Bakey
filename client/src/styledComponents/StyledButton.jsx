@@ -70,6 +70,15 @@ export const StyledButton = styled.button`
         color: white;
       }
     `};
+
+  /* buttons as headings for profile */
+  ${(props) =>
+    props.headerBtn &&
+    css`
+      background-color: transparent;
+      color: ${colors.accent2};
+    `}
+
   ${(props) =>
     props.buy &&
     css`

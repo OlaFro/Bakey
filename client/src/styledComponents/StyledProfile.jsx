@@ -36,12 +36,14 @@ export const StyledLogo = styled.figure`
   box-shadow: 0px 10px 14px -2px #b9b9b9;
   z-index: 5;
   overflow: hidden;
+
   @media ${device.tabletPortrait} {
     width: 200px;
     height: 200px;
     border: 15px solid white;
     box-shadow: 0px 10px 24px -2px #b9b9b9;
   }
+
   > img {
     width: 100%;
     height: 100%;
@@ -91,6 +93,7 @@ export const StyledBtnContainer = styled.div`
 
 export const StyledAbout = styled.div`
   display: ${(props) => props.display};
+  margin: var(--space-l) 0;
 `;
 
 export const StyledAddress = styled.div`
