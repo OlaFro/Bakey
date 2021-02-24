@@ -98,9 +98,6 @@ export default function Profile() {
             <span> ocka@ocka.ocka</span>
           </div>
 
-          <div>
-            <span>0341 - 12345678</span>
-          </div>
           {/* place for the map in the future */}
         </StyledAddress>
 
