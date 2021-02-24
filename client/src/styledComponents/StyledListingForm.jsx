@@ -2,7 +2,7 @@ import styled from "styled-components";
 import device from "./device";
 
 export const StyledListingSteps = styled.div`
-  margin: var(--space-s) 0 calc(2 * var(--space-l)) 0;
+  margin: var(--space-s) 0 calc(5 * var(--space-l)) 0;
 
   > div,
   > form,
@@ -34,7 +34,8 @@ export const StyledListingSteps = styled.div`
       > p {
         text-align: center;
       }
-      > button {
+      > button,
+      > a {
         margin-top: var(--space-s);
       }
     }

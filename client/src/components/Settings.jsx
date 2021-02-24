@@ -34,10 +34,10 @@ export default function Settings() {
       .then((res) => {
         setData(res.data);
         if (res.data.profilePic) {
-          setLogo({...logo, preview: res.data.profilePic, raw: "" });
+          setLogo({ ...logo, preview: res.data.profilePic, raw: "" });
         }
         if (res.data.cafeCover) {
-          setCover({...cover, preview: res.data.cafeCover, raw: "" });
+          setCover({ ...cover, preview: res.data.cafeCover, raw: "" });
         }
       })
       .catch((err) => {
