@@ -19,17 +19,17 @@ import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
 import Tag from "./Tag";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Listing(props) {
-  const { cafeName } = useContext(bakeyContext);
+  const { cafeName, isLogged } = useContext(bakeyContext);
+  let history = useHistory();
 
   const [open, setOpen] = useState(false);
 
   //session storage
   const params = useParams();
   const cafeId = params.id.split(":")[1];
-  const [session, setSession] = useState(false);
 
   const availablePieces = props.availablePieces;
   const maxValue = props.totalPieces;
@@ -120,7 +120,7 @@ export default function Listing(props) {
       cafeId: cafeId,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
-    console.log(orderInfo);
+    isLogged ? history.push("/order") : history.push("/login");
   };
   return (
     <StyledListingContainer id={listingIdentifier}>
