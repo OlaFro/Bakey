@@ -19,11 +19,18 @@ import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
 import Tag from "./Tag";
+import { useParams } from "react-router-dom";
 
 export default function Listing(props) {
   const { cafeName } = useContext(bakeyContext);
 
   const [open, setOpen] = useState(false);
+
+  //session storage
+  const params = useParams();
+  const cafeId = params.id.split(":")[1];
+  const [session, setSession] = useState(false);
+
   const availablePieces = props.availablePieces;
   const maxValue = props.totalPieces;
   const soldPieces = maxValue - props.availablePieces || 0;
@@ -91,6 +98,30 @@ export default function Listing(props) {
     €`;
   };
   console.log(soldPieces);
+
+  const storeOrderInfo = (pcs) => {
+    var price;
+    var pieces;
+    if (pcs === "one") {
+      price = props.piecePrice;
+      pieces = 1;
+    } else if (pcs === "many") {
+      price = props.piecePrice * availablePieces;
+      pieces = availablePieces;
+    }
+    let orderInfo = {
+      id: props.id,
+      listingName: props.title,
+      cafeInfo: props.cafeName,
+      pickUpDate: props.pickUpDate,
+      price: price,
+      pieces: pieces,
+      availablePieces: availablePieces,
+      cafeId: cafeId,
+    };
+    sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
+    console.log(orderInfo);
+  };
   return (
     <StyledListingContainer id={listingIdentifier}>
       <StyledPhotoContainer>
@@ -169,10 +200,20 @@ export default function Listing(props) {
           </StyledCentered>
         </StyledTimers>
         <StyledBtnContainer>
-          <StyledButton buy>
+          <StyledButton
+            buy
+            onClick={() => {
+              storeOrderInfo("one");
+            }}
+          >
             Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
           </StyledButton>
-          <StyledButton buy>
+          <StyledButton
+            buy
+            onClick={() => {
+              storeOrderInfo("many");
+            }}
+          >
             {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
           </StyledButton>
         </StyledBtnContainer>

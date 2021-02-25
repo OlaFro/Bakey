@@ -142,6 +142,7 @@ export default function Profile() {
           ? cafeInfo.cafeListings.map((listing, index) => {
               return (
                 <Listing
+                  cafeName={cafeInfo.cafeName}
                   title={listing.listingName}
                   totalPieces={listing.totalPieces}
                   availablePieces={listing.availablePieces}
