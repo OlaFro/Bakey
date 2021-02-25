@@ -41,8 +41,8 @@ router.post(
                 totalPieces: +addListing.totalPieces,
                 availablePieces: +addListing.totalPieces,
                 piecePrice: +addListing.piecePrice,
-                listingPicture: req.files[0]
-                  ? req.files[0].path
+                listingPicture: req.files["file"]
+                  ? req.files["file"][0].path
                   : "../uploads/images/listingplaceholder.png",
                 pickUpDate: addListing.pickUpDate,
                 listingStatus: "active",
@@ -96,7 +96,7 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
   }
   ListingModel.findByIdAndUpdate(listing, {
     $set: modification,
-    $push: {buyers: {_id: buyer, pcs: pcs}}
+    $push: { buyers: { _id: buyer, pcs: pcs } },
   })
     .then((result) => {
       res.send("listing updated");
