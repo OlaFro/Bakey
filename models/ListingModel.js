@@ -49,6 +49,7 @@ const ListingSchema = new mongoose.Schema({
     enum: ["active", "inactive", "sold"],
     required: true,
   },
+  buyers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
 });
 
 module.exports = mongoose.model("Listing", ListingSchema);
