@@ -98,7 +98,7 @@ export default function Settings() {
     }
 
     if (cover.raw) {
-      formData.append("file", cover.raw);
+      formData.append("cover", cover.raw);
     }
 
     Axios({

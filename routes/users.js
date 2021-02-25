@@ -164,17 +164,19 @@ router.put(
     const data = req.body;
     const user = req.user;
 
+    console.log(req.files);
+
     let modification = {};
 
-    if (req.files && req.files[0]) {
-      modification.profilePic = req.files[0].path;
+    if (req.files && req.files["file"]) {
+      modification.profilePic = req.files["file"][0].path;
     }
 
     modification.city = data.city;
 
     if (data.userType === "cafe") {
-      if (req.files && req.files[1]) {
-        modification.cafeCover = req.files[1].path;
+      if (req.files && req.files["cover"]) {
+        modification.cafeCover = req.files["cover"][0].path;
       }
       if (data.cafeURL) {
         modification.cafeURL = data.cafeURL;
