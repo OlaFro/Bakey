@@ -77,7 +77,6 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <h1>Welcome to bakey</h1>
-            <Order />
           </Route>
           <Route path="/registration/user" exact>
             <RegistrationUser />
@@ -117,6 +116,9 @@ function App() {
           </Route>
           <Route path="/cafe:id" exact>
             <Profile />
+          </Route>
+          <Route path="/order" exact>
+            <Order />
           </Route>
           <Route path="*">
             {" "}
