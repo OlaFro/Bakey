@@ -22,11 +22,13 @@ router.post(
     const user = req.user;
     console.log(user);
     console.log(addListing);
-    ListingModel.estimatedDocumentCount({}, (err, result) => {
-      if (err) {
-        res.send(err);
-      } else {
-        addListing.id = result + 1;
+    ListingModel.find()
+      .sort({ _id: -1 })
+      .limit(1)
+      .then((newest) => {
+        console.log("newest", newest);
+        console.log(newest[0].id);
+        addListing.id = +newest[0].id + 1;
 
         UserModel.findById(user.id)
           .then((cafe) => {
@@ -74,8 +76,10 @@ router.post(
           .catch((err) => {
             res.send(err);
           });
-      }
-    });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
   }
 );
 
