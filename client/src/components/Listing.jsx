@@ -28,6 +28,13 @@ export default function Listing(props) {
   const maxValue = props.totalPieces;
   const soldPieces = maxValue - props.availablePieces || 0;
 
+  const listingIdentifier = props.title
+    .split(" ")
+    .map((word) => {
+      return word.substr(0, 1).toLowerCase() + word.substr(1);
+    })
+    .join("-");
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -85,7 +92,7 @@ export default function Listing(props) {
   };
   console.log(soldPieces);
   return (
-    <StyledListingContainer>
+    <StyledListingContainer id={listingIdentifier}>
       <StyledPhotoContainer>
         <img src={props.image ? props.image : placeholder} alt="my offer"></img>
       </StyledPhotoContainer>

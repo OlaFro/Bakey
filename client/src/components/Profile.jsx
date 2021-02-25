@@ -128,8 +128,8 @@ export default function Profile() {
             </span>
           </div>
           <div>
-            <a href="http://www.cafeocka.de">www.cafeocka.de</a>
-            <span> ocka@ocka.ocka</span>
+            <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
+            <span> {cafeInfo.email}</span>
           </div>
 
           {/* place for the map in the future */}
@@ -151,6 +151,7 @@ export default function Profile() {
                   listingTags={listing.listingTags}
                   image={listing.listingPicture}
                   key={`listing-${index}`}
+                  id={listing._id}
                 />
               );
             })
