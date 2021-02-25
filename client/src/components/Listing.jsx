@@ -19,17 +19,20 @@ import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
 import Tag from "./Tag";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 
 export default function Listing(props) {
   const { cafeName, isLogged } = useContext(bakeyContext);
   let history = useHistory();
 
+  const location = useLocation();
+  const params = useParams();
+
   const [open, setOpen] = useState(false);
 
   //session storage
-  const params = useParams();
-  const cafeId = params.id.split(":")[1];
+
+  const cafeId = params.id ? params.id.split(":")[1] : "";
 
   const availablePieces = props.availablePieces;
   const maxValue = props.totalPieces;
@@ -123,7 +126,7 @@ export default function Listing(props) {
     isLogged.state ? history.push("/order") : history.push("/login");
   };
   return (
-    <StyledListingContainer id={listingIdentifier}>
+    <StyledListingContainer id={params.id ? listingIdentifier : null}>
       <StyledPhotoContainer>
         <img src={props.image ? props.image : placeholder} alt="my offer"></img>
       </StyledPhotoContainer>
@@ -203,7 +206,9 @@ export default function Listing(props) {
           <StyledButton
             buy
             onClick={() => {
-              storeOrderInfo("one");
+              if (params.id) {
+                storeOrderInfo("one");
+              }
             }}
           >
             Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
@@ -211,7 +216,9 @@ export default function Listing(props) {
           <StyledButton
             buy
             onClick={() => {
-              storeOrderInfo("many");
+              if (params.id) {
+                storeOrderInfo("many");
+              }
             }}
           >
             {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
