@@ -101,6 +101,7 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
   ListingModel.findByIdAndUpdate(listing, {
     $set: modification,
     $push: { buyers: { _id: buyer, pcs: pcs } },
+
   })
     .then((result) => {
       res.send("listing updated");
