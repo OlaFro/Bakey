@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  StyledOrderContainer,
+  StyledOrderSummaryContainer,
   StyledLeftPart,
   StyledPreview,
   StyledRightPart,
@@ -31,7 +31,7 @@ export default function OrderSummary(props) {
     }
   };
   return (
-    <StyledOrderContainer>
+    <StyledOrderSummaryContainer>
       <StyledLeftPart>
         <StyledPreview>
           <figure>
@@ -79,6 +79,6 @@ export default function OrderSummary(props) {
           </StyledTotal>
         </StyledSummary>
       </StyledRightPart>
-    </StyledOrderContainer>
+    </StyledOrderSummaryContainer>
   );
 }

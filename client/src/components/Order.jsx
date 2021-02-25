@@ -3,12 +3,14 @@ import OrderSummary from "./OrderSummary";
 import OrderPayment from "./OrderPayment";
 import OrderConfirmation from "./OrderSummary";
 
-export default function Order(props) {
+import { StyledOrderContainer } from "../styledComponents/StyledOrder";
+
+export default function Order() {
   return (
-    <div>
+    <StyledOrderContainer>
       <OrderSummary />
-      <OrderPayment />
-      <OrderConfirmation />
-    </div>
+      {/* <OrderPayment />
+      <OrderConfirmation /> */}
+    </StyledOrderContainer>
   );
 }
