@@ -87,3 +87,15 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/users/profile-info
+
+###
+
+PUT http://localhost:5000/listings/checkout
+Content-Type: application/json
+
+{
+    "pcs":4,
+    "availablePieces": 4,
+    "listingId": "60377d0232a64741dcd345c3"
+}
+

@@ -79,6 +79,33 @@ router.post(
   }
 );
 
+router.put("/checkout", authenticateToken, (req, res, next) => {
+  const purchase = req.body;
+  const listing = purchase.listingId;
+  const pcs = purchase.pcs;
+  const buyer = req.user.id;
+  const availablePieces = purchase.availablePieces;
+
+  let pcsLeft = availablePieces - pcs;
+  let modification = {};
+  if (pcsLeft > 0) {
+    modification.availablePieces = pcsLeft;
+  } else if (pcsLeft === 0) {
+    modification.availablePieces = 0;
+    modification.listingStatus = "sold";
+  }
+  ListingModel.findByIdAndUpdate(listing, {
+    $set: modification,
+    $push: {buyers: {_id: buyer, pcs: pcs}}
+  })
+    .then((result) => {
+      res.send("listing updated");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 /* 
 router.put("/update", (req, res, next) => {
   const ListingId = req.body.id;
