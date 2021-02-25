@@ -120,7 +120,7 @@ export default function Listing(props) {
       cafeId: cafeId,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
-    isLogged ? history.push("/order") : history.push("/login");
+    isLogged.state ? history.push("/order") : history.push("/login");
   };
   return (
     <StyledListingContainer id={listingIdentifier}>
