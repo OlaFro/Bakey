@@ -94,8 +94,7 @@ PUT http://localhost:5000/listings/checkout
 Content-Type: application/json
 
 {
-    "pcs":4,
-    "availablePieces": 4,
-    "listingId": "60377d0232a64741dcd345c3"
+    "pcs":2,
+    "listingId": "6034d0b5c8c29cf72c5463ce"
 }
 

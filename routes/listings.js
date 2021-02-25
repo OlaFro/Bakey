@@ -85,25 +85,36 @@ router.post(
 
 router.put("/checkout", authenticateToken, (req, res, next) => {
   const purchase = req.body;
-  const listing = purchase.listingId;
+  const listingId = purchase.listingId;
   const pcs = purchase.pcs;
   const buyer = req.user.id;
-  const availablePieces = purchase.availablePieces;
 
-  let pcsLeft = availablePieces - pcs;
-  let modification = {};
-  if (pcsLeft > 0) {
-    modification.availablePieces = pcsLeft;
-  } else if (pcsLeft === 0) {
-    modification.availablePieces = 0;
-    modification.listingStatus = "sold";
-  }
-  ListingModel.findByIdAndUpdate(listing, {
-    $set: modification,
-    $push: { buyers: { _id: buyer, pcs: pcs } },
-  })
-    .then((result) => {
-      res.send("listing updated");
+  ListingModel.findById(listingId)
+    .then((listing) => {
+      if (listing.availablePieces === 0) {
+        res.send("no available pieces");
+      } else {
+        let pcsLeft = listing.availablePieces - pcs;
+        let modification = {};
+        if (pcsLeft < 0) {
+          res.send({ availablePieces: listing.availablePieces });
+        } else {
+          modification.availablePieces = pcsLeft;
+          if (pcsLeft === 0) {
+            modification.listingStatus = "sold";
+          }
+          ListingModel.findByIdAndUpdate(listing, {
+            $set: modification,
+            $push: { buyers: { _id: buyer, pcs: pcs } },
+          })
+            .then((result) => {
+              res.send("listing updated");
+            })
+            .catch((err) => {
+              res.send(err);
+            });
+        }
+      }
     })
     .catch((err) => {
       res.send(err);
