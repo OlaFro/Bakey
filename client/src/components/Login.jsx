@@ -26,6 +26,8 @@ export default function Login(props) {
 
   let history = useHistory();
 
+  const orderInfo = sessionStorage.getItem("orderInfo");
+
   useEffect(() => {
     return function () {
       console.log("component is unmounting");
@@ -62,12 +64,20 @@ export default function Login(props) {
       .then((res) => {
         if (res.data.logged) {
           console.log(res.data);
-          setIsLogged({ state: true, role: res.data.userType, id: res.data.id });
+          setIsLogged({
+            state: true,
+            role: res.data.userType,
+            id: res.data.id,
+          });
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
           setData({});
-          history.push(`/${res.data.userType}-dashboard`);
+          if (orderInfo && res.data.userType === "client") {
+            history.push("/order");
+          } else {
+            history.push(`/${res.data.userType}-dashboard`);
+          }
         } else {
           setWarning(true);
         }
