@@ -121,6 +121,7 @@ export default function Listing(props) {
       pieces: pieces,
       availablePieces: availablePieces,
       cafeId: cafeId,
+      listingIdentifier: props.listingIdentifier,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
     isLogged.state ? history.push("/order") : history.push("/login");
