@@ -5,15 +5,16 @@ import device from "./device";
 
 export const StyledPaymentContainer = styled.div`
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
+  height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: calc(1.5 * var(--space-l)) 0;
 `;
 
 export const StyledCreditCard = styled.div`
-  height: 400px;
+  /* height: 400px; */
   width: 90%;
   max-width: 600px;
   border: var(--border) solid ${colors.accent1};

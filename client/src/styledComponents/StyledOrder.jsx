@@ -10,6 +10,9 @@ export const StyledOrderContainer = styled.div`
   width: 80%;
   border-radius: var(--border-radius);
   background-color: ${lighten(0.28, colors.gray)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @media ${device.tabletLandscape} {
     max-width: 900px;
   }
