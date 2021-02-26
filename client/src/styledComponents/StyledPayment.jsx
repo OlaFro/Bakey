@@ -63,19 +63,25 @@ export const StyledCreditCard = styled.div`
       justify-content: space-between;
     }
   }
+  > button {
+    margin: var(--space-s) 0;
+    transform: scale(0.7);
+    @media ${device.mobile} {
+      transform: scale(1);
+    }
+  }
 `;
 
 export const StyledSmallInputs = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   @media ${device.tabletPortrait} {
     flex-direction: row;
+    margin-top: -15px;
   }
 
   > div {
     display: flex;
-    /* border: 1px solid red; */
 
     > div {
       margin-right: var(--space-s);

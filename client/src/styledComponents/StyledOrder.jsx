@@ -7,7 +7,7 @@ export const StyledOrderContainer = styled.div`
   margin: calc(3 * var(--space-l)) auto;
   /* max-width: 500px; */
   min-height: 500px;
-  width: 80%;
+  width: 90%;
   border-radius: var(--border-radius);
   background-color: ${lighten(0.28, colors.gray)};
   display: flex;
