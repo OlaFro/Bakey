@@ -211,6 +211,8 @@ export const StyledBtnContainer = styled.div`
   justify-content: center;
   grid-area: btn;
   margin-top: var(--space-s);
+  padding: 0 var(--space-s);
+  gap: var(--space-s);
 
   @media ${device.tabletLandscape} {
     margin-top: 0;
