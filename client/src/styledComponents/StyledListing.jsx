@@ -8,12 +8,13 @@ import {
 } from "styled-icons/material-sharp";
 
 export const StyledListingContainer = styled.div`
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   display: grid;
   grid-template-rows: 400px auto;
   border-radius: var(--border-radius);
   overflow: hidden;
+  margin: auto;
 
   @media ${device.tabletLandscape} {
     max-width: 800px;

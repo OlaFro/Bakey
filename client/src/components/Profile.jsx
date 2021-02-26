@@ -154,6 +154,9 @@ export default function Profile() {
                   ref={listing.id === urlHash ? listingLinkRef : null}
                   className={listing.id === urlHash ? "selected" : null}
                 >
+                  {listing.id === urlHash ? (
+                    <h2>Your Friend's Recommendation:</h2>
+                  ) : null}
                   <Listing
                     cafeName={cafeInfo.cafeName}
                     title={listing.listingName}

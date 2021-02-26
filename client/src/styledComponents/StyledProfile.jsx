@@ -123,7 +123,14 @@ export const StyledListingContainer = styled.div`
   }
   margin-bottom: calc(5 * var(--space-l));
   .selected {
-    border: solid 7px ${colors.accent2};
+    padding: var(--space-m);
+    background-color: ${lighten(0.18, colors.accent2)};
     border-radius: var(--border-radius);
+
+    h2 {
+      padding-bottom: var(--space-s);
+      /* width: 90%;
+      margin: auto; */
+    }
   }
 `;
