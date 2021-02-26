@@ -6,7 +6,7 @@ import OrderConfirmation from "./OrderConfirmation";
 import { StyledOrderContainer } from "../styledComponents/StyledOrder";
 
 export default function Order() {
-  const [step, setStep] = useState("confirmation");
+  const [step, setStep] = useState("summary");
   const [orderInfo, setOrderInfo] = useState(
     JSON.parse(sessionStorage.getItem("orderInfo"))
   );
