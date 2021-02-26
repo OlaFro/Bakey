@@ -112,7 +112,7 @@ function App() {
             <ListView />
           </Route>
           <Route path="/settings" exact>
-            <Settings />
+            {isLogged.role === "cafe" ? <Settings /> : <Redirect to="/" />}
           </Route>
           <Route path="/cafe:id" exact>
             <Profile />
