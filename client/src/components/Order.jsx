@@ -6,26 +6,25 @@ import OrderConfirmation from "./OrderConfirmation";
 import { StyledOrderContainer } from "../styledComponents/StyledOrder";
 
 export default function Order() {
-  const [step, setStep] = useState("summary");
+  const [step, setStep] = useState("confirmation");
+  const [orderInfo, setOrderInfo] = useState(
+    JSON.parse(sessionStorage.getItem("orderInfo"))
+  );
 
-  console.log(window.location.href.split("/order")[0]);
-
-  console.log(JSON.parse(sessionStorage.getItem("orderInfo")));
-
-  const urlTest =
+  const urlListing =
     window.location.href.split("/order")[0] +
     "/cafe:" +
-    JSON.parse(sessionStorage.getItem("orderInfo")).cafeId +
+    orderInfo.cafeId +
     "#" +
-    JSON.parse(sessionStorage.getItem("orderInfo")).listingIdentifier;
-
-  console.log(urlTest);
+    orderInfo.listingIdentifier;
 
   return (
     <StyledOrderContainer>
       {step === "summary" ? <OrderSummary /> : null}
       {step === "payment" ? <OrderPayment /> : null}
-      {step === "confirmation" ? <OrderConfirmation /> : null}
+      {step === "confirmation" ? (
+        <OrderConfirmation urlListing={urlListing} />
+      ) : null}
     </StyledOrderContainer>
   );
 }

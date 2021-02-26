@@ -122,4 +122,8 @@ export const StyledListingContainer = styled.div`
     margin: var(--space-l) 0;
   }
   margin-bottom: calc(5 * var(--space-l));
+  .selected {
+    border: solid 7px ${colors.accent2};
+    border-radius: var(--border-radius);
+  }
 `;
