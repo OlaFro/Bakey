@@ -18,6 +18,8 @@ export default function Order() {
     "#" +
     orderInfo.listingIdentifier;
 
+  console.log(urlListing);
+
   return (
     <StyledOrderContainer>
       {step === "summary" ? <OrderSummary /> : null}

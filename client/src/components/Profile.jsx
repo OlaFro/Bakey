@@ -153,6 +153,7 @@ export default function Profile() {
                 <div
                   ref={listing.id === urlHash ? listingLinkRef : null}
                   className={listing.id === urlHash ? "selected" : null}
+                  key={`listing-${index}`}
                 >
                   {listing.id === urlHash ? (
                     <h2>Your Friend's Recommendation:</h2>
@@ -167,7 +168,6 @@ export default function Profile() {
                     listingAllergenes={listing.listingAllergenes}
                     listingTags={listing.listingTags}
                     image={listing.listingPicture}
-                    key={`listing-${index}`}
                     id={listing._id}
                     listingIdentifier={listing.id}
                   />
