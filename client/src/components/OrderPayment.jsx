@@ -17,9 +17,14 @@ import visa from "../assets/visa.svg";
 import maestro from "../assets/maestro.svg";
 import mastercard from "../assets/mastercard.svg";
 
-export default function OrderPayment() {
+export default function OrderPayment(props) {
+  const handleStep = () => {
+    props.changeStep("summary");
+  };
+
   return (
     <StyledPaymentContainer>
+      <p onClick={handleStep}> ᐸ back </p>
       <StyledCreditCard>
         <header>
           <h3>Credit/Debit card</h3>

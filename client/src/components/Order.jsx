@@ -6,7 +6,7 @@ import OrderConfirmation from "./OrderConfirmation";
 import { StyledOrderContainer } from "../styledComponents/StyledOrder";
 
 export default function Order() {
-  const [step, setStep] = useState("summary");
+  const [step, setStep] = useState("payment");
 
   const changeStep = (status) => {
     setStep(status);
@@ -15,8 +15,10 @@ export default function Order() {
   return (
     <StyledOrderContainer>
       {step === "summary" ? <OrderSummary change={changeStep} /> : null}
-      {step === "payment" ? <OrderPayment /> : null}
-      {step === "confirmation" ? <OrderConfirmation /> : null}
+      {step === "payment" ? <OrderPayment change={changeStep} /> : null}
+      {step === "confirmation" ? (
+        <OrderConfirmation change={changeStep} />
+      ) : null}
     </StyledOrderContainer>
   );
 }

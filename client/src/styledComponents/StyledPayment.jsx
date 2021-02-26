@@ -11,6 +11,19 @@ export const StyledPaymentContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: calc(1.5 * var(--space-l)) 0;
+  position: relative;
+
+>p{
+    cursor: pointer;
+    position: absolute;
+    top: -40px;
+    left: 150px;
+    border-bottom: 2px solid ${colors.accent2};
+    font-size: 0.7rem;
+
+}
+  
+  }
 `;
 
 export const StyledCreditCard = styled.div`
