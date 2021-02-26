@@ -186,10 +186,18 @@ export const StyledInputContainer = styled.div`
   ${(props) =>
     props.number &&
     css`
-   
-      @media ${device.mobile}{
+      @media ${device.mobile} {
         width: 100px;
-      `}
+      }
+    `}
+
+  ${(props) =>
+    props.long &&
+    css`
+      @media ${device.mobile} {
+        width: 100%;
+      }
+    `}
 `;
 
 export const StyledLabel = styled.label`
@@ -249,20 +257,7 @@ export const StyledInputField = styled.input`
   ${(props) =>
     props.fake &&
     css`
-  padding: var(--space-s);
   background-color: transparent;
-  font-size: 1rem;
-  font-family: var(--heading);
-  border: var(--border) solid ${colors.accent1};
-  border-radius: var(--border-radius);
-  :hover {
-    cursor: text;
-    border: var(--border) solid ${darken(0.2, colors.gray)};
-  }
-  :focus {
-    outline: none;
-    border: var(--border) solid ${darken(0.2, colors.gray)};
-  }
   :focus + label,
   :placeholder-shown + label {
     font-size: 0.8rem;
@@ -299,7 +294,7 @@ export const StyledSelect = styled.select`
     font-size: 0.8rem;
     top: -8px;
     left: 13px;
-    background: transparent
+    background: white;
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
   }

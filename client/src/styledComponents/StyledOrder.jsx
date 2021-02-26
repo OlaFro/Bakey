@@ -5,7 +5,7 @@ import device from "./device";
 
 export const StyledOrderContainer = styled.div`
   margin: calc(3 * var(--space-l)) auto;
-  max-width: 500px;
+  /* max-width: 500px; */
   width: 80%;
   border-radius: var(--border-radius);
   background-color: ${lighten(0.28, colors.gray)};
