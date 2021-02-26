@@ -6,7 +6,7 @@ import OrderConfirmation from "./OrderConfirmation";
 import { StyledOrderContainer } from "../styledComponents/StyledOrder";
 
 export default function Order() {
-  const [step, setStep] = useState("payment");
+  const [step, setStep] = useState("summary");
 
   const changeStep = (status) => {
     setStep(status);

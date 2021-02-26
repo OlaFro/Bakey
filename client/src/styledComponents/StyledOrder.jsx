@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { lighten, darken } from "polished";
+import { lighten } from "polished";
 import colors from "./colors";
 import device from "./device";
 
 export const StyledOrderContainer = styled.div`
   margin: calc(3 * var(--space-l)) auto;
-  /* max-width: 500px; */
   min-height: 500px;
   width: 90%;
   border-radius: var(--border-radius);
@@ -23,6 +22,7 @@ export const StyledOrderSummaryContainer = styled.div`
   display: grid;
   grid-template-rows: 400px 300px;
   row-gap: var(--space-m);
+  margin-bottom: var(--space-m);
   @media ${device.tabletLandscape} {
     max-width: 900px;
     row-gap: 0;
