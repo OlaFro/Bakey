@@ -122,10 +122,13 @@ export const StyledListingContainer = styled.div`
     margin: var(--space-l) 0;
   }
   margin-bottom: calc(5 * var(--space-l));
+  padding: 0 var(--space-m);
+
   .selected {
     padding: var(--space-m);
     background-color: ${lighten(0.18, colors.accent2)};
     border-radius: var(--border-radius);
+    margin: var(--space-l) 0;
 
     h2 {
       padding-bottom: var(--space-s);

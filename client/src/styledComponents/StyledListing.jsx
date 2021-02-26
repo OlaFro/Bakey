@@ -44,10 +44,10 @@ export const StyledDescContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: var(--space-xs) var(--space-xs);
-  height: 500px;
+  min-height: 500px;
 
   @media ${device.tabletLandscape} {
-    height: 400px;
+    min-height: 400px;
   }
 
   > header {

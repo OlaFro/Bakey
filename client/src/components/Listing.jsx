@@ -22,7 +22,7 @@ import Tag from "./Tag";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 
 export default function Listing(props) {
-  const { cafeName, isLogged } = useContext(bakeyContext);
+  const { isLogged } = useContext(bakeyContext);
   let history = useHistory();
 
   const location = useLocation();
@@ -149,7 +149,7 @@ export default function Listing(props) {
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
           <StyledTagContainer>{tags()}</StyledTagContainer>
-          <span>{cafeName}</span>
+          <span>{props.cafeName}</span>
         </header>
 
         <div style={{ width: "130px" }}>
