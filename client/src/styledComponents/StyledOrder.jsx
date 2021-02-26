@@ -4,15 +4,19 @@ import colors from "./colors";
 import device from "./device";
 
 export const StyledOrderContainer = styled.div`
-  margin: auto;
-
-  /* temporal margin-top for better preview */
-  margin-top: 5rem;
+  margin: calc(3 * var(--space-l)) auto;
   max-width: 500px;
   width: 80%;
   border-radius: var(--border-radius);
   background-color: ${lighten(0.28, colors.gray)};
+  @media ${device.tabletLandscape} {
+    max-width: 900px;
+    /* height: 500px; */
+  }
+`;
 
+export const StyledOrderSummaryContainer = styled.div`
+  width: 100%;
   display: grid;
   grid-template-rows: 400px 300px;
   row-gap: var(--space-m);
