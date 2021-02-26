@@ -40,11 +40,7 @@ export default function OrderSummary(props) {
           <div>
             <h3>{props.title ? props.title : "Title"}</h3>
             <div>
-              <span>
-                {props.cafeName
-                  ? props.cafeName
-                  : "Café name Café name Café name Café name Café name Café name"}{" "}
-              </span>
+              <span>{props.cafeName ? props.cafeName : "Café name"} </span>
               <span>
                 {props.pickUpDate ? props.pickUpDate : "Pick-up date"}
               </span>
