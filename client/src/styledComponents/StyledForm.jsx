@@ -186,7 +186,8 @@ export const StyledInputContainer = styled.div`
   ${(props) =>
     props.number &&
     css`
-      @media ${device.mobile} {
+      width: 80px;
+      @media (min-width: 400px) {
         width: 100px;
       }
     `}
@@ -194,7 +195,7 @@ export const StyledInputContainer = styled.div`
   ${(props) =>
     props.long &&
     css`
-      @media ${device.mobile} {
+      @media (min-width: 100px) {
         width: 100%;
       }
     `}
@@ -299,14 +300,14 @@ export const StyledSelect = styled.select`
     letter-spacing: calc(0.66 * var(--ls));
   }
 
-  ${(props) =>
+  /* ${(props) =>
     props.number &&
     css`
       background-color: transparent;
       :not(:placeholder-shown) + label {
         background-color: ${lighten(0.28, colors.gray)};
       }
-    `};
+    `}; */
 
   ${(props) =>
     props.cafe &&

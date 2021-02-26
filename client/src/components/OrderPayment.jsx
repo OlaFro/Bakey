@@ -22,7 +22,7 @@ export default function OrderPayment() {
     <StyledPaymentContainer>
       <StyledCreditCard>
         <header>
-          <p>Credit/Debit card</p>
+          <h3>Credit/Debit card</h3>
 
           <div>
             <img height={63} src={visa} alt="visa logo" />

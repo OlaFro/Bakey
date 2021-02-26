@@ -26,19 +26,31 @@ export const StyledCreditCard = styled.div`
   > header {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     width: 80%;
 
     @media ${device.tabletPortrait} {
       flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
 
     > div {
       display: flex;
       align-items: center;
+      margin-left: -10px;
+      margin-top: -20px;
+
       > :first-child {
+        margin-top: 1px;
         margin-right: -7px;
+      }
+
+      @media ${device.tabletPortrait} {
+        margin-top: 0px;
+        > :first-child {
+          margin-right: -7px;
+        }
       }
     }
   }
