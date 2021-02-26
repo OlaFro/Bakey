@@ -88,7 +88,6 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
   const listingId = purchase.listingId;
   let pcs = purchase.pcs;
   const buyer = req.user.id;
-
   ListingModel.findById(listingId)
     .then((listing) => {
       if (listing.availablePieces === 0) {
