@@ -8,7 +8,7 @@ import {
   StyledAmount,
   StyledTotal,
   StyledAdd,
-} from "../styledComponents/StyledOrder";
+} from "../styledComponents/StyledOrderSummary";
 
 import StyledHr from "../styledComponents/StyledHr";
 import {
