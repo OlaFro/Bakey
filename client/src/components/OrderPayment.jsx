@@ -24,7 +24,7 @@ export default function OrderPayment(props) {
 
   return (
     <StyledPaymentContainer>
-      <p onClick={handleStep}> ᐸ back </p>
+      <p onClick={handleStep}> &lt; back </p>
       <StyledCreditCard>
         <header>
           <h3>Credit/Debit card</h3>
