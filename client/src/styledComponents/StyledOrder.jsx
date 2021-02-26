@@ -11,7 +11,7 @@ export const StyledOrderContainer = styled.div`
   background-color: ${lighten(0.28, colors.gray)};
   @media ${device.tabletLandscape} {
     max-width: 900px;
-    /* height: 500px; */
+    min-height: 500px;
   }
 `;
 

@@ -245,6 +245,32 @@ export const StyledInputField = styled.input`
     css`
       width: 100%;
     `}
+
+  ${(props) =>
+    props.fake &&
+    css`
+  padding: var(--space-s);
+  background-color: transparent;
+  font-size: 1rem;
+  font-family: var(--heading);
+  border: var(--border) solid ${colors.accent1};
+  border-radius: var(--border-radius);
+  :hover {
+    cursor: text;
+    border: var(--border) solid ${darken(0.2, colors.gray)};
+  }
+  :focus {
+    outline: none;
+    border: var(--border) solid ${darken(0.2, colors.gray)};
+  }
+  :focus + label,
+  :placeholder-shown + label {
+    font-size: 0.8rem;
+    top: -8px;
+    left: 13px;
+    background: ${lighten(0.28, colors.gray)};
+    padding: 0 calc(0.2 * var(--space-s));
+    letter-spacing: calc(0.66 * var(--ls));`}
 `;
 
 export const StyledSelect = styled.select`
@@ -273,7 +299,7 @@ export const StyledSelect = styled.select`
     font-size: 0.8rem;
     top: -8px;
     left: 13px;
-    background: white;
+    background: transparent
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));
   }
