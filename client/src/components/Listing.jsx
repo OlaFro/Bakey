@@ -38,12 +38,12 @@ export default function Listing(props) {
   const maxValue = props.totalPieces;
   const soldPieces = maxValue - props.availablePieces || 0;
 
-  const listingIdentifier = props.title
-    .split(" ")
-    .map((word) => {
-      return word.substr(0, 1).toLowerCase() + word.substr(1);
-    })
-    .join("-");
+  // const listingIdentifier = props.title
+  //   .split(" ")
+  //   .map((word) => {
+  //     return word.substr(0, 1).toLowerCase() + word.substr(1);
+  //   })
+  //   .join("-");
 
   const handleOpen = () => {
     setOpen(true);
@@ -121,12 +121,13 @@ export default function Listing(props) {
       pieces: pieces,
       availablePieces: availablePieces,
       cafeId: cafeId,
+      listingIdentifier: props.listingIdentifier,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
     isLogged.state ? history.push("/order") : history.push("/login");
   };
   return (
-    <StyledListingContainer id={params.id ? listingIdentifier : null}>
+    <StyledListingContainer id={params.id ? props.listingIdentifier : null}>
       <StyledPhotoContainer>
         <img src={props.image ? props.image : placeholder} alt="my offer"></img>
       </StyledPhotoContainer>
