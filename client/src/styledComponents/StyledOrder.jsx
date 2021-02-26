@@ -116,7 +116,7 @@ export const StyledAdd = styled.div`
 `;
 
 export const StyledAmount = styled.div`
-  width: 100px;
+  width: 115px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,7 +134,7 @@ export const StyledTotal = styled.div`
   }
 
   > span {
-    padding-right: 3px;
     margin-bottom: var(--space-m);
+    letter-spacing: 0.6px;
   }
 `;
