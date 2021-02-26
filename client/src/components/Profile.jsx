@@ -153,6 +153,7 @@ export default function Profile() {
                   image={listing.listingPicture}
                   key={`listing-${index}`}
                   id={listing._id}
+                  listingIdentifier={listing.id}
                 />
               );
             })
