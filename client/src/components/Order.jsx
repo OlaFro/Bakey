@@ -20,12 +20,16 @@ export default function Order() {
 
   console.log(urlListing);
 
+  const changeStep = (status) => {
+    setStep(status);
+  };
+
   return (
     <StyledOrderContainer>
-      {step === "summary" ? <OrderSummary /> : null}
-      {step === "payment" ? <OrderPayment /> : null}
+      {step === "summary" ? <OrderSummary change={changeStep} /> : null}
+      {step === "payment" ? <OrderPayment change={changeStep} /> : null}
       {step === "confirmation" ? (
-        <OrderConfirmation urlListing={urlListing} />
+        <OrderConfirmation change={changeStep} />
       ) : null}
     </StyledOrderContainer>
   );

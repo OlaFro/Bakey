@@ -186,10 +186,19 @@ export const StyledInputContainer = styled.div`
   ${(props) =>
     props.number &&
     css`
-   
-      @media ${device.mobile}{
+      width: 80px;
+      @media (min-width: 400px) {
         width: 100px;
-      `}
+      }
+    `}
+
+  ${(props) =>
+    props.long &&
+    css`
+      @media (min-width: 100px) {
+        width: 100%;
+      }
+    `}
 `;
 
 export const StyledLabel = styled.label`
@@ -245,6 +254,20 @@ export const StyledInputField = styled.input`
     css`
       width: 100%;
     `}
+
+  /* style for credit card mock-up for transparent background in the labels. than changed to white but maybe we can re use it somehow in the future? */
+  ${(props) =>
+    props.fake &&
+    css`
+  background-color: transparent;
+  :focus + label,
+  :placeholder-shown + label {
+    font-size: 0.8rem;
+    top: -8px;
+    left: 13px;
+    background: white;
+    padding: 0 calc(0.2 * var(--space-s));
+    letter-spacing: calc(0.66 * var(--ls));`}
 `;
 
 export const StyledSelect = styled.select`
@@ -278,14 +301,14 @@ export const StyledSelect = styled.select`
     letter-spacing: calc(0.66 * var(--ls));
   }
 
-  ${(props) =>
+  /* ${(props) =>
     props.number &&
     css`
       background-color: transparent;
       :not(:placeholder-shown) + label {
         background-color: ${lighten(0.28, colors.gray)};
       }
-    `};
+    `}; */
 
   ${(props) =>
     props.cafe &&
