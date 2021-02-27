@@ -119,6 +119,7 @@ export const StyledAddress = styled.div`
 
 export const StyledListingContainer = styled.div`
   > div {
+    width: 100%;
     margin: var(--space-l) 0;
   }
   margin-bottom: calc(5 * var(--space-l));
