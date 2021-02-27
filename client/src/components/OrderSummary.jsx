@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyledOrderSummaryContainer,
   StyledLeftPart,
@@ -19,9 +19,9 @@ import {
 import placeholder from "../assets/placeholder_400px.jpg";
 
 export default function OrderSummary(props) {
-  const [orderInfo, setOrderInfo] = useState(
-    JSON.parse(sessionStorage.getItem("orderInfo"))
-  );
+  const { orderInfo, setOrderInfo } = props;
+
+  console.log("orderInfo at rerender", orderInfo);
 
   const handleDate = () => {
     if (orderInfo.pickUpDate) {
@@ -37,33 +37,32 @@ export default function OrderSummary(props) {
     }
   };
 
-  const [pcs, setPcs] = useState(orderInfo.pieces);
+  useEffect(() => {
+    sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
+  }, [orderInfo]);
 
   const increment = () => {
-    if (pcs < orderInfo.availablePieces) {
-      setPcs((prevPcs) => {
-        return prevPcs + 1;
+    if (orderInfo.pieces < orderInfo.availablePieces) {
+      setOrderInfo((curOrderInfo) => {
+        return { ...curOrderInfo, pieces: curOrderInfo.pieces + 1 };
       });
-      updateOrderInfo(pcs + 1);
-      console.log(pcs);
-      console.log(orderInfo.pieces);
+      console.log("pcs", orderInfo.pieces);
+      // updateOrderInfo();
     }
   };
   const decrement = () => {
-    if (pcs > 1) {
-      setPcs(pcs - 1);
-      updateOrderInfo(pcs - 1);
-      console.log(pcs);
-      console.log(orderInfo.pieces);
+    if (orderInfo.pieces > 1) {
+      setOrderInfo((curOrderInfo) => {
+        return { ...curOrderInfo, pieces: curOrderInfo.pieces - 1 };
+      });
+      console.log("pcs", orderInfo.pieces);
+      // updateOrderInfo();
     }
   };
 
-  const updateOrderInfo = (pieces) => {
-    setOrderInfo((prevOrderInfo) => {
-      return { ...prevOrderInfo, pieces: pieces };
-    });
-    sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
-  };
+  // const updateOrderInfo = () => {
+  //   sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
+  // };
 
   return (
     <StyledOrderSummaryContainer>
@@ -101,7 +100,7 @@ export default function OrderSummary(props) {
                 {" "}
                 –
               </StyledOrderButton>
-              <span>{pcs}</span>
+              <span>{orderInfo.pieces}</span>
               <StyledOrderButton order onClick={increment}>
                 +
               </StyledOrderButton>
@@ -112,7 +111,9 @@ export default function OrderSummary(props) {
           <StyledTotal>
             <span>
               <strong>
-                Total: {orderInfo.price ? orderInfo.price * pcs : "0.00"} €
+                Total:{" "}
+                {orderInfo.price ? orderInfo.price * orderInfo.pieces : "0.00"}{" "}
+                €
               </strong>
             </span>
             <StyledButton>Buy</StyledButton>
