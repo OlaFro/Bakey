@@ -37,13 +37,14 @@ export default function OrderSummary(props) {
     }
   };
 
-
   const [pcs, setPcs] = useState(orderInfo.pieces);
 
   const increment = () => {
     if (pcs < orderInfo.availablePieces) {
-      setPcs(pcs + 1);
-      updateOrderInfo(pcs +1);
+      setPcs((prevPcs) => {
+        return prevPcs + 1;
+      });
+      updateOrderInfo(pcs + 1);
       console.log(pcs);
       console.log(orderInfo.pieces);
     }
@@ -51,14 +52,16 @@ export default function OrderSummary(props) {
   const decrement = () => {
     if (pcs > 1) {
       setPcs(pcs - 1);
-      updateOrderInfo(pcs -1 );
+      updateOrderInfo(pcs - 1);
       console.log(pcs);
       console.log(orderInfo.pieces);
     }
   };
 
   const updateOrderInfo = (pieces) => {
-    setOrderInfo({ ...orderInfo, pieces: pieces });
+    setOrderInfo((prevOrderInfo) => {
+      return { ...prevOrderInfo, pieces: pieces };
+    });
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
   };
 
