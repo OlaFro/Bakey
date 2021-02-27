@@ -27,11 +27,14 @@ export default function Profile() {
 
   const listingLinkRef = useRef(null);
 
+  const warningRef = useRef(null);
+
   console.log(urlHash);
 
   const [cafeInfo, setCafeInfo] = useState({});
 
   const [showWarning, setShowWarning] = useState(false);
+  const [offerWarning, setOfferWarning] = useState(false);
 
   const [showAddress, setShowAddress] = useState(false);
 
@@ -45,6 +48,7 @@ export default function Profile() {
 
   useEffect(() => {
     console.log(params.id.split(":")[1]);
+    setOfferWarning(false);
     Axios({
       method: "POST",
       url: "/cafes/info",
@@ -56,7 +60,12 @@ export default function Profile() {
           setShowWarning(true);
         } else {
           setCafeInfo(res.data);
-          listingLinkRef.current?.scrollIntoView({ behavior: "smooth" });
+          if (location.hash && !listingLinkRef.current) {
+            setOfferWarning(true);
+            warningRef.current.scrollIntoView({ behavior: "smooth" });
+          } else {
+            listingLinkRef.current?.scrollIntoView({ behavior: "smooth" });
+          }
         }
       })
       .catch((err) => {
@@ -149,7 +158,10 @@ export default function Profile() {
 
         <StyledHr cafe />
       </StyledContentContainer>
-      <StyledListingContainer>
+      <StyledListingContainer ref={warningRef}>
+        {offerWarning ? (
+          <Warning msg="the offer you are looking for is not any more active. " />
+        ) : null}
         {cafeInfo.cafeListings
           ? cafeInfo.cafeListings.map((listing, index) => {
               return (
