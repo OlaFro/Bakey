@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledHr from "../styledComponents/StyledHr";
@@ -20,6 +20,14 @@ import Warning from "./Warning";
 
 export default function Profile() {
   const params = useParams();
+
+  const location = useLocation();
+
+  const urlHash = location.hash.split("#")[1];
+
+  const listingLinkRef = useRef(null);
+
+  console.log(urlHash);
 
   const [cafeInfo, setCafeInfo] = useState({});
 
@@ -48,6 +56,7 @@ export default function Profile() {
           setShowWarning(true);
         } else {
           setCafeInfo(res.data);
+          listingLinkRef.current?.scrollIntoView({ behavior: "smooth" });
         }
       })
       .catch((err) => {});
@@ -141,19 +150,28 @@ export default function Profile() {
         {cafeInfo.cafeListings
           ? cafeInfo.cafeListings.map((listing, index) => {
               return (
-                <Listing
-                  cafeName={cafeInfo.cafeName}
-                  title={listing.listingName}
-                  totalPieces={listing.totalPieces}
-                  availablePieces={listing.availablePieces}
-                  pickUpDate={listing.pickUpDate}
-                  piecePrice={listing.piecePrice}
-                  listingAllergenes={listing.listingAllergenes}
-                  listingTags={listing.listingTags}
-                  image={listing.listingPicture}
+                <div
+                  ref={listing.id === urlHash ? listingLinkRef : null}
+                  className={listing.id === urlHash ? "selected" : null}
                   key={`listing-${index}`}
-                  id={listing._id}
-                />
+                >
+                  {listing.id === urlHash ? (
+                    <h2>Your Friend's Recommendation:</h2>
+                  ) : null}
+                  <Listing
+                    cafeName={cafeInfo.cafeName}
+                    title={listing.listingName}
+                    totalPieces={listing.totalPieces}
+                    availablePieces={listing.availablePieces}
+                    pickUpDate={listing.pickUpDate}
+                    piecePrice={listing.piecePrice}
+                    listingAllergenes={listing.listingAllergenes}
+                    listingTags={listing.listingTags}
+                    image={listing.listingPicture}
+                    id={listing._id}
+                    listingIdentifier={listing.id}
+                  />
+                </div>
               );
             })
           : null}

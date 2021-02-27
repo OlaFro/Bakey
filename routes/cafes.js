@@ -31,7 +31,7 @@ router.post("/", (req, res, next) => {
 router.post("/info", (req, res, next) => {
   const cafeID = req.body.id;
   UserModel.findById(cafeID)
-    .populate("cafeListings")
+    .populate({ path: "cafeListings", match: { listingStatus: "active" } })
     .select(["-password"])
     .then((result) => {
       res.send(result);
