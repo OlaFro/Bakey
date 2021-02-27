@@ -20,8 +20,8 @@ import mastercard from "../assets/mastercard.svg";
 export default function OrderPayment(props) {
   return (
     <StyledPaymentContainer>
-      <p onClick={() => props.change("summary")}> &lt; back </p>
       <StyledCreditCard title="This is only demo. Please confirm to proceed.">
+        <p onClick={() => props.change("summary")}> &lt; back </p>
         <header>
           <h3>Credit/Debit card</h3>
 
