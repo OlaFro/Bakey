@@ -7,7 +7,10 @@ import { StyledOrderContainer } from "../styledComponents/StyledOrder";
 
 export default function Order() {
   const [step, setStep] = useState("summary");
-  const [orderInfo, setOrderInfo] = useState({});
+  const [orderInfo, setOrderInfo] = useState({
+    cafeId: "",
+    listingIdentifier: "",
+  });
   const urlListing =
     window.location.href.split("/order")[0] +
     "/cafe:" +
@@ -18,7 +21,9 @@ export default function Order() {
   console.log(urlListing);
 
   useEffect(() => {
-    setOrderInfo(JSON.parse(sessionStorage.getItem("orderInfo")));
+    if (sessionStorage.getItem("orderInfo")) {
+      setOrderInfo(JSON.parse(sessionStorage.getItem("orderInfo")));
+    }
   }, []);
 
   const changeStep = (status) => {
