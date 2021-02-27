@@ -5,22 +5,11 @@ import device from "./device";
 
 export const StyledPaymentContainer = styled.div`
   width: 100%;
-  /* height: 500px; */
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: calc(1.5 * var(--space-l)) 0;
-  position: relative;
-
-  > p {
-    cursor: pointer;
-    position: absolute;
-    top: -40px;
-    left: 150px;
-
-    font-size: 0.7rem;
-  }
 `;
 
 export const StyledCreditCard = styled.div`
@@ -32,6 +21,15 @@ export const StyledCreditCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+
+  > p {
+    cursor: pointer;
+    position: absolute;
+    top: -40px;
+    left: 0px;
+    font-size: 0.8rem;
+  }
 
   > header {
     display: flex;
