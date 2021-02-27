@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Axios from "axios";
 import {
   StyledPaymentContainer,
   StyledCreditCard,
@@ -16,8 +17,41 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import visa from "../assets/visa.svg";
 import maestro from "../assets/maestro.svg";
 import mastercard from "../assets/mastercard.svg";
+import Warning from "./Warning";
 
 export default function OrderPayment(props) {
+  const { orderInfo, setOrderInfo } = props;
+
+  const [showWarning, setShowWarning] = useState(false);
+
+  const proceedPayment = () => {
+    setShowWarning(false);
+    Axios({
+      method: "PUT",
+      url: "/listings/checkout",
+      data: { listingId: orderInfo.id, pcs: orderInfo.pieces },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.boughtPieces) {
+          setOrderInfo((prevInfo) => {
+            return { ...prevInfo, boughtPcs: res.data.boughtPieces };
+          });
+          sessionStorage.removeItem("orderInfo");
+          props.change("confirmation");
+        } else {
+          setShowWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setShowWarning(true);
+      });
+  };
+
   return (
     <StyledPaymentContainer>
       <StyledCreditCard title="This is only demo. Please confirm to proceed.">
@@ -60,8 +94,8 @@ export default function OrderPayment(props) {
                 <StyledInputField
                   fake
                   type="text"
-                  name="cardNumber"
-                  id="cardNumber"
+                  name="cardMonth"
+                  id="cardMonth"
                   placeholder="12"
                   readOnly={true}
                 />
@@ -71,8 +105,8 @@ export default function OrderPayment(props) {
                 <StyledInputField
                   fake
                   type="text"
-                  name="cardNumber"
-                  id="cardNumber"
+                  name="cardYear"
+                  id="cardYear"
                   placeholder="2021"
                   readOnly={true}
                 />
@@ -83,8 +117,8 @@ export default function OrderPayment(props) {
               <StyledInputField
                 fake
                 type="text"
-                name="cardNumber"
-                id="cardNumber"
+                name="cardCVV"
+                id="cardCVV"
                 placeholder="***"
                 readOnly={true}
               />
@@ -97,10 +131,9 @@ export default function OrderPayment(props) {
             I have read and accept the terms of use of Bakey
           </label>
         </main>
-        <StyledButton onClick={() => props.change("confirmation")}>
-          Confirm Payment
-        </StyledButton>
+        <StyledButton onClick={proceedPayment}>Confirm Payment</StyledButton>
       </StyledCreditCard>
+      {showWarning ? <Warning msg="the service is out of order" /> : null}
     </StyledPaymentContainer>
   );
 }

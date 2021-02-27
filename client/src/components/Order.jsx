@@ -34,7 +34,13 @@ export default function Order() {
           setOrderInfo={setOrderInfo}
         />
       ) : null}
-      {step === "payment" ? <OrderPayment change={changeStep} /> : null}
+      {step === "payment" ? (
+        <OrderPayment
+          change={changeStep}
+          orderInfo={orderInfo}
+          setOrderInfo={setOrderInfo}
+        />
+      ) : null}
 
       {step === "confirmation" ? (
         <OrderConfirmation change={changeStep} />

@@ -88,10 +88,11 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
   const listingId = purchase.listingId;
   let pcs = purchase.pcs;
   const buyer = req.user.id;
+  console.log(listingId, pcs, buyer);
   ListingModel.findById(listingId)
     .then((listing) => {
       if (listing.availablePieces === 0) {
-        res.send("no available pieces");
+        res.send({ boughtPieces: 0 });
       } else {
         let pcsLeft = listing.availablePieces - pcs;
         let modification = {};
