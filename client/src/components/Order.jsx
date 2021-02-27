@@ -21,14 +21,23 @@ export default function Order() {
     setOrderInfo(JSON.parse(sessionStorage.getItem("orderInfo")));
   }, []);
 
+  const changeStep = (status) => {
+    setStep(status);
+  };
+
   return (
     <StyledOrderContainer>
       {step === "summary" ? (
-        <OrderSummary orderInfo={orderInfo} setOrderInfo={setOrderInfo} />
+        <OrderSummary
+          change={changeStep}
+          orderInfo={orderInfo}
+          setOrderInfo={setOrderInfo}
+        />
       ) : null}
-      {step === "payment" ? <OrderPayment /> : null}
+      {step === "payment" ? <OrderPayment change={changeStep} /> : null}
+
       {step === "confirmation" ? (
-        <OrderConfirmation urlListing={urlListing} />
+        <OrderConfirmation change={changeStep} />
       ) : null}
     </StyledOrderContainer>
   );

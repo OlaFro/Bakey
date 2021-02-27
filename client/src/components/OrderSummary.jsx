@@ -8,7 +8,7 @@ import {
   StyledAmount,
   StyledTotal,
   StyledAdd,
-} from "../styledComponents/StyledOrder";
+} from "../styledComponents/StyledOrderSummary";
 
 import StyledHr from "../styledComponents/StyledHr";
 import {
@@ -105,7 +105,9 @@ export default function OrderSummary(props) {
                 €
               </strong>
             </span>
-            <StyledButton>Buy</StyledButton>
+            <StyledButton onClick={() => props.change("payment")}>
+              Buy
+            </StyledButton>
           </StyledTotal>
         </StyledSummary>
       </StyledRightPart>

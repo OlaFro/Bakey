@@ -59,7 +59,10 @@ export default function Profile() {
           listingLinkRef.current?.scrollIntoView({ behavior: "smooth" });
         }
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+        showWarning(true);
+      });
   }, []);
 
   return (
