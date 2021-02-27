@@ -50,7 +50,7 @@ export default function Order() {
         />
       ) : null}
       {step === "confirmation" ? (
-        <OrderConfirmation change={changeStep} />
+        <OrderConfirmation change={changeStep} urlListing={urlListing} />
       ) : null}
     </StyledOrderContainer>
   );
