@@ -121,6 +121,7 @@ export default function Listing(props) {
       pieces: pieces,
       availablePieces: availablePieces,
       cafeId: cafeId,
+      listingImg: props.image,
       listingIdentifier: props.listingIdentifier,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));

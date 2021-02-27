@@ -19,30 +19,67 @@ import {
 import placeholder from "../assets/placeholder_400px.jpg";
 
 export default function OrderSummary(props) {
-  const [pcs, setPcs] = useState(1);
+  const [orderInfo, setOrderInfo] = useState(
+    JSON.parse(sessionStorage.getItem("orderInfo"))
+  );
+
+  const handleDate = () => {
+    if (orderInfo.pickUpDate) {
+      let niceDate = orderInfo.pickUpDate.substring(5).replace("T", " ");
+      // 02-22 10:48
+
+      // 22-02 10:48
+      return (
+        niceDate.split(" ")[0].split("-").reverse().join(".") +
+        " " +
+        niceDate.split(" ")[1].substring(0, 5)
+      );
+    }
+  };
+
+
+  const [pcs, setPcs] = useState(orderInfo.pieces);
+
   const increment = () => {
-    if (pcs <= props.availablePieces) {
+    if (pcs < orderInfo.availablePieces) {
       setPcs(pcs + 1);
+      updateOrderInfo(pcs +1);
+      console.log(pcs);
+      console.log(orderInfo.pieces);
     }
   };
   const decrement = () => {
     if (pcs > 1) {
       setPcs(pcs - 1);
+      updateOrderInfo(pcs -1 );
+      console.log(pcs);
+      console.log(orderInfo.pieces);
     }
   };
+
+  const updateOrderInfo = (pieces) => {
+    setOrderInfo({ ...orderInfo, pieces: pieces });
+    sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
+  };
+
   return (
     <StyledOrderSummaryContainer>
       <StyledLeftPart>
         <StyledPreview>
           <figure>
-            <img src={props.image ? props.image : placeholder} alt="my offer" />
+            <img
+              src={orderInfo.listingImg ? orderInfo.listingImg : placeholder}
+              alt="my offer"
+            />
           </figure>
           <div>
-            <h3>{props.title ? props.title : "Title"}</h3>
+            <h3>{orderInfo.listingName ? orderInfo.listingName : "Title"}</h3>
             <div>
-              <span>{props.cafeName ? props.cafeName : "Café name"} </span>
               <span>
-                {props.pickUpDate ? props.pickUpDate : "Pick-up date"}
+                {orderInfo.cafeInfo ? orderInfo.cafeInfo : "Café name"}{" "}
+              </span>
+              <span>
+                {orderInfo.pickUpDate ? handleDate() : "Pick-up date"}
               </span>
             </div>
           </div>
@@ -53,7 +90,7 @@ export default function OrderSummary(props) {
           <h4>Order summary:</h4>
           <StyledAdd>
             <span>
-              Price pro piece: {props.piecePrice ? props.piecePrice : "0.00"} €
+              Price pro piece: {orderInfo.price ? orderInfo.price : "0.00"} €
             </span>
 
             <StyledAmount>
@@ -72,7 +109,7 @@ export default function OrderSummary(props) {
           <StyledTotal>
             <span>
               <strong>
-                Total: {props.piecePrice ? props.piecePrice * pcs : "0.00"} €
+                Total: {orderInfo.price ? orderInfo.price * pcs : "0.00"} €
               </strong>
             </span>
             <StyledButton>Buy</StyledButton>
