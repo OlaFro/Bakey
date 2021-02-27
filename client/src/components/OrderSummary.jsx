@@ -21,14 +21,9 @@ import placeholder from "../assets/placeholder_400px.jpg";
 export default function OrderSummary(props) {
   const { orderInfo, setOrderInfo } = props;
 
-  console.log("orderInfo at rerender", orderInfo);
-
   const handleDate = () => {
     if (orderInfo.pickUpDate) {
       let niceDate = orderInfo.pickUpDate.substring(5).replace("T", " ");
-      // 02-22 10:48
-
-      // 22-02 10:48
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
         " " +
@@ -38,16 +33,16 @@ export default function OrderSummary(props) {
   };
 
   useEffect(() => {
-    sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
-  }, [orderInfo]);
+    if (orderInfo.listingName) {
+      sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
+    }
+  }, [orderInfo.pieces]);
 
   const increment = () => {
     if (orderInfo.pieces < orderInfo.availablePieces) {
       setOrderInfo((curOrderInfo) => {
         return { ...curOrderInfo, pieces: curOrderInfo.pieces + 1 };
       });
-      console.log("pcs", orderInfo.pieces);
-      // updateOrderInfo();
     }
   };
   const decrement = () => {
@@ -55,14 +50,8 @@ export default function OrderSummary(props) {
       setOrderInfo((curOrderInfo) => {
         return { ...curOrderInfo, pieces: curOrderInfo.pieces - 1 };
       });
-      console.log("pcs", orderInfo.pieces);
-      // updateOrderInfo();
     }
   };
-
-  // const updateOrderInfo = () => {
-  //   sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
-  // };
 
   return (
     <StyledOrderSummaryContainer>
