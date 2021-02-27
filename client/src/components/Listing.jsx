@@ -22,7 +22,7 @@ import Tag from "./Tag";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 
 export default function Listing(props) {
-  const { cafeName, isLogged } = useContext(bakeyContext);
+  const { isLogged } = useContext(bakeyContext);
   let history = useHistory();
 
   const location = useLocation();
@@ -38,12 +38,12 @@ export default function Listing(props) {
   const maxValue = props.totalPieces;
   const soldPieces = maxValue - props.availablePieces || 0;
 
-  const listingIdentifier = props.title
-    .split(" ")
-    .map((word) => {
-      return word.substr(0, 1).toLowerCase() + word.substr(1);
-    })
-    .join("-");
+  // const listingIdentifier = props.title
+  //   .split(" ")
+  //   .map((word) => {
+  //     return word.substr(0, 1).toLowerCase() + word.substr(1);
+  //   })
+  //   .join("-");
 
   const handleOpen = () => {
     setOpen(true);
@@ -103,13 +103,10 @@ export default function Listing(props) {
   console.log(soldPieces);
 
   const storeOrderInfo = (pcs) => {
-    var price;
     var pieces;
     if (pcs === "one") {
-      price = props.piecePrice;
       pieces = 1;
     } else if (pcs === "many") {
-      price = props.piecePrice * availablePieces;
       pieces = availablePieces;
     }
     let orderInfo = {
@@ -117,16 +114,18 @@ export default function Listing(props) {
       listingName: props.title,
       cafeInfo: props.cafeName,
       pickUpDate: props.pickUpDate,
-      price: price,
+      price: props.piecePrice,
       pieces: pieces,
       availablePieces: availablePieces,
       cafeId: cafeId,
+      listingImg: props.image,
+      listingIdentifier: props.listingIdentifier,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
     isLogged.state ? history.push("/order") : history.push("/login");
   };
   return (
-    <StyledListingContainer id={params.id ? listingIdentifier : null}>
+    <StyledListingContainer id={params.id ? props.listingIdentifier : null}>
       <StyledPhotoContainer>
         <img src={props.image ? props.image : placeholder} alt="my offer"></img>
       </StyledPhotoContainer>
@@ -148,7 +147,7 @@ export default function Listing(props) {
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
           <StyledTagContainer>{tags()}</StyledTagContainer>
-          <span>{cafeName}</span>
+          <span>{props.cafeName}</span>
         </header>
 
         <div style={{ width: "130px" }}>
