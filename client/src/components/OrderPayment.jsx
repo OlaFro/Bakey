@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledPaymentContainer,
   StyledCreditCard,
@@ -18,14 +18,10 @@ import maestro from "../assets/maestro.svg";
 import mastercard from "../assets/mastercard.svg";
 
 export default function OrderPayment(props) {
-  const handleStep = () => {
-    props.changeStep("summary");
-  };
-
   return (
     <StyledPaymentContainer>
-      <p onClick={handleStep}> &lt; back </p>
-      <StyledCreditCard>
+      <p onClick={() => props.change("summary")}> &lt; back </p>
+      <StyledCreditCard title="This is only demo. Please confirm to proceed.">
         <header>
           <h3>Credit/Debit card</h3>
 
@@ -101,7 +97,9 @@ export default function OrderPayment(props) {
             I have read and accept the terms of use of Bakey
           </label>
         </main>
-        <StyledButton>Confirm Payment</StyledButton>
+        <StyledButton onClick={() => props.change("confirmation")}>
+          Confirm Payment
+        </StyledButton>
       </StyledCreditCard>
     </StyledPaymentContainer>
   );

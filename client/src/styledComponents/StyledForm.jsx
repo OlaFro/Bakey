@@ -255,6 +255,7 @@ export const StyledInputField = styled.input`
       width: 100%;
     `}
 
+  /* style for credit card mock-up for transparent background in the labels. than changed to white but maybe we can re use it somehow in the future? */
   ${(props) =>
     props.fake &&
     css`
@@ -264,7 +265,7 @@ export const StyledInputField = styled.input`
     font-size: 0.8rem;
     top: -8px;
     left: 13px;
-    background: ${lighten(0.28, colors.gray)};
+    background: white;
     padding: 0 calc(0.2 * var(--space-s));
     letter-spacing: calc(0.66 * var(--ls));`}
 `;

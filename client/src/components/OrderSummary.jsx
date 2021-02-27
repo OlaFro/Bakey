@@ -75,7 +75,9 @@ export default function OrderSummary(props) {
                 Total: {props.piecePrice ? props.piecePrice * pcs : "0.00"} €
               </strong>
             </span>
-            <StyledButton>Buy</StyledButton>
+            <StyledButton onClick={() => props.change("payment")}>
+              Buy
+            </StyledButton>
           </StyledTotal>
         </StyledSummary>
       </StyledRightPart>

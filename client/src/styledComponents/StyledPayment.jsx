@@ -13,28 +13,24 @@ export const StyledPaymentContainer = styled.div`
   margin: calc(1.5 * var(--space-l)) 0;
   position: relative;
 
->p{
+  > p {
     cursor: pointer;
     position: absolute;
     top: -40px;
     left: 150px;
-    border-bottom: 2px solid ${colors.accent2};
-    font-size: 0.7rem;
 
-}
-  
+    font-size: 0.7rem;
   }
 `;
 
 export const StyledCreditCard = styled.div`
-  /* height: 400px; */
   width: 90%;
   max-width: 600px;
+  background-color: white;
   border: var(--border) solid ${colors.accent1};
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 
   > header {
