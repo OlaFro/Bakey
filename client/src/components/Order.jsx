@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import OrderSummary from "./OrderSummary";
 import OrderPayment from "./OrderPayment";
 import OrderConfirmation from "./OrderConfirmation";
+import Warning from "./Warning";
 
 import { StyledOrderContainer } from "../styledComponents/StyledOrder";
 
@@ -26,12 +27,19 @@ export default function Order() {
     }
   }, []);
 
+  useEffect(() => {
+    if (sessionStorage.orderInfo === undefined) {
+      setStep("warning");
+    }
+  }, []);
+
   const changeStep = (status) => {
     setStep(status);
   };
 
   return (
     <StyledOrderContainer>
+      {step === "warning" ? <Warning msg="there is no order yet" /> : null}
       {step === "summary" ? (
         <OrderSummary
           change={changeStep}
@@ -46,9 +54,8 @@ export default function Order() {
           setOrderInfo={setOrderInfo}
         />
       ) : null}
-
       {step === "confirmation" ? (
-        <OrderConfirmation change={changeStep} />
+        <OrderConfirmation change={changeStep} urlListing={urlListing} />
       ) : null}
     </StyledOrderContainer>
   );
