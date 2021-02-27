@@ -17,13 +17,19 @@ export const StyledLoader = styled.div`
 `;
 
 export const StyledCongrats = styled.main`
-  width: 80%;
-  margin: auto;
+  width: 70%;
+  margin: var(--space-s) auto;
   display: ${(props) => props.display};
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    margin: var(--space-xs) 0;
+  }
+
   p {
     text-align: center;
+    margin: var(--space-xs) 0;
   }
 
   div {
@@ -31,13 +37,16 @@ export const StyledCongrats = styled.main`
     flex-direction: row;
     align-items: center;
   }
+  button {
+    margin: var(--space-xs) 0;
+  }
 `;
 
 export const StyledLinkContainer = styled.div`
   cursor: pointer;
   padding: var(--space-s);
+  margin: var(--space-m) 0;
   background-color: ${lighten(0.2, colors.gray)};
-  font-family: monospace;
 `;
 
 export const StyledLink = styled(Link)`
