@@ -103,13 +103,10 @@ export default function Listing(props) {
   console.log(soldPieces);
 
   const storeOrderInfo = (pcs) => {
-    var price;
     var pieces;
     if (pcs === "one") {
-      price = props.piecePrice;
       pieces = 1;
     } else if (pcs === "many") {
-      price = props.piecePrice * availablePieces;
       pieces = availablePieces;
     }
     let orderInfo = {
@@ -117,7 +114,7 @@ export default function Listing(props) {
       listingName: props.title,
       cafeInfo: props.cafeName,
       pickUpDate: props.pickUpDate,
-      price: price,
+      price: props.piecePrice,
       pieces: pieces,
       availablePieces: availablePieces,
       cafeId: cafeId,
