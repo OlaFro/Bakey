@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <StyledFooter>
       <p>
-        &#169;2020
+        &#169;2021
         <img className="logo" src={logo} alt="Alice Rez logo" />{" "}
         <a href="https://github.com/Alice-Rez">Alice Rez</a> &{" "}
         <a href="https://olafrost.com/">Ola Frost</a> &{" "}
