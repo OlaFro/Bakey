@@ -13,6 +13,10 @@ const StyledFooter = styled.footer`
     width: 25px;
     transform: translateY(40%);
   }
+
+  strong {
+    text-transform: uppercase;
+  }
 `;
 
 export default StyledFooter;

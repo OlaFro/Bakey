@@ -68,11 +68,13 @@ export default function OrderConfirmation(props) {
           <CopyToClipboard
             onCopy={handleCopy}
             text={props.urlListing ? copy.value : "TEST COPIED URL"}
+
           >
             <StyledLinkContainer>
               {props.urlListing ? copy.value : "TEST COPIED URL"}
             </StyledLinkContainer>
           </CopyToClipboard>
+
           <CopyToClipboard
             onCopy={handleCopy}
             text={props.urlListing ? copy.value : "TEST COPIED URL"}
@@ -85,6 +87,7 @@ export default function OrderConfirmation(props) {
           <CopyToClipboard>
             <StyledCopied display={clicked ? "inline" : "none"} />
           </CopyToClipboard>
+
         </div>
         <p>
           If the campaign will reach the goal, we will send You an e-mail with
