@@ -57,7 +57,7 @@ export default function OrderConfirmation(props) {
         </p>
         <div onClick={handleClick}>
           <CopyToClipboard
-            text={props.urlListing ? `${props.urlListing}` : "TEST COPIED URL"}
+            text={props.urlListing ? props.urlListing : "TEST COPIED URL"}
           >
             <StyledLinkContainer>
               {props.urlListing ? props.urlListing : "TEST COPIED URL"}
