@@ -25,7 +25,6 @@ export default function Listing(props) {
   const { isLogged } = useContext(bakeyContext);
   let history = useHistory();
 
-  const location = useLocation();
   const params = useParams();
 
   const [open, setOpen] = useState(false);
@@ -69,6 +68,7 @@ export default function Listing(props) {
   };
 
   const handleDate = () => {
+    console.log(props.pickUpDate);
     if (props.pickUpDate) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
       // 02-22 10:48
@@ -77,7 +77,10 @@ export default function Listing(props) {
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
         " " +
-        niceDate.split(" ")[1].substring(0, 5)
+        (cafeId
+          ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
+          : niceDate.split(" ")[1].substring(0, 2)) +
+        niceDate.split(" ")[1].substring(2, 5)
       );
     }
   };

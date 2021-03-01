@@ -6,10 +6,11 @@ const UserModel = require("../models/UserModel");
 router.post("/", listingAction.inactivate, (req, res, next) => {
   //no need to check connection bc we connect in the app.js
   const city = req.body.city;
+  const today = req.date;
   UserModel.find({ city: city, userType: "cafe", cafeListings: { $ne: null } })
     .populate({
       path: "cafeListings",
-      match: { listingStatus: "active" },
+      match: { listingStatus: "active", pickUpDate: { $gte: today } },
       select: ["listingName", "listingTags", "totalPieces", "availablePieces"],
     })
     .select([
@@ -31,8 +32,12 @@ router.post("/", listingAction.inactivate, (req, res, next) => {
 
 router.post("/info", listingAction.inactivate, (req, res, next) => {
   const cafeID = req.body.id;
+  const today = req.date;
   UserModel.findById(cafeID)
-    .populate({ path: "cafeListings", match: { listingStatus: "active" } })
+    .populate({
+      path: "cafeListings",
+      match: { listingStatus: "active", pickUpDate: { $gte: today } },
+    })
     .select(["-password"])
     .then((result) => {
       res.send(result);
