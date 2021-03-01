@@ -53,6 +53,7 @@ export default function Navigation(props) {
       <StyledNavContainer display={open}>
         <Link to="/cafes-list">cafés</Link>
         <Link to="/">about us</Link>
+        <Link to="/map">map</Link>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
         {isLogged.state ? (

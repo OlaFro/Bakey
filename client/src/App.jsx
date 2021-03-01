@@ -22,6 +22,7 @@ import Settings from "./components/Settings";
 
 import Order from "./components/Order";
 import Footer from "./components/Footer";
+import Map from "./components/Map"
 
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "" });
@@ -121,6 +122,9 @@ function App() {
             </Route>
             <Route path="/order" exact>
               <Order />
+            </Route>
+            <Route path="/map" exact>
+              <Map />
             </Route>
             <Route path="*">
               {" "}
