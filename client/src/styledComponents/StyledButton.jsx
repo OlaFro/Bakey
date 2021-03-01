@@ -90,11 +90,7 @@ export const StyledButton = styled.button`
       margin: 0 0 var(--space-s) 0;
       :hover {
         cursor: pointer;
-        border: var(--border) solid ${darken(0.1, colors.accent1)};
-        background-color: transparent;
-      }
-      @media ${device.desktop} {
-        margin: var(--space-s);
+        background-color: ${darken(0.1, colors.accent1)};
       }
     `}
 
