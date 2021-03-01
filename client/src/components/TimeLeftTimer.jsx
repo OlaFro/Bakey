@@ -12,7 +12,6 @@ export default function Timer(props) {
 
     const finish = new Date(props.pickUpDate.substr(0, 10));
     finish.setHours(0, 0, 0, 0);
-    console.log(finish);
     //next midnight
     const now = new Date();
 
