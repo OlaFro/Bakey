@@ -1,8 +1,9 @@
 var express = require("express");
+const listingAction = require("../controllers/listingControllers");
 var router = express.Router();
 const UserModel = require("../models/UserModel");
 
-router.post("/", (req, res, next) => {
+router.post("/", listingAction.inactivate, (req, res, next) => {
   //no need to check connection bc we connect in the app.js
   const city = req.body.city;
   UserModel.find({ city: city, userType: "cafe", cafeListings: { $ne: null } })
@@ -28,7 +29,7 @@ router.post("/", (req, res, next) => {
     });
 });
 
-router.post("/info", (req, res, next) => {
+router.post("/info", listingAction.inactivate, (req, res, next) => {
   const cafeID = req.body.id;
   UserModel.findById(cafeID)
     .populate({ path: "cafeListings", match: { listingStatus: "active" } })
