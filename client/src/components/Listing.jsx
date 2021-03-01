@@ -96,8 +96,7 @@ export default function Listing(props) {
       availablePieces && props.piecePrice
         ? (availablePieces * props.piecePrice).toFixed(2)
         : "0.00"
-    }
-    €`;
+    }€`;
   };
   console.log(soldPieces);
 
