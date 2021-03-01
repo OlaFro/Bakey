@@ -17,12 +17,21 @@ import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function OrderConfirmation(props) {
   const [loader, setLoader] = useState(true);
-  const [copied, setCopied] = useState(false);
+  const [copy, setCopy] = useState({
+    value: props.urlListing,
+    isCopied: false,
+  });
+
+  const [clicked, setClicked] = useState(false);
 
   let history = useHistory();
 
+  const handleCopy = () => {
+    setCopy({ value: props.urlListing, isCopied: true });
+  };
+
   const handleClick = () => {
-    setCopied(true);
+    setClicked(true);
   };
 
   useEffect(() => {
@@ -55,17 +64,30 @@ export default function OrderConfirmation(props) {
           cake. To increase the chance for meeting the goal of the campaign,
           <strong> copy the link and invite your friends!</strong>
         </p>
-        <div onClick={handleClick}>
+        <div>
           <CopyToClipboard
-            text={props.urlListing ? props.urlListing : "TEST COPIED URL"}
+            onCopy={handleCopy}
+            text={props.urlListing ? copy.value : "TEST COPIED URL"}
+
           >
             <StyledLinkContainer>
-              {props.urlListing ? props.urlListing : "TEST COPIED URL"}
+              {props.urlListing ? copy.value : "TEST COPIED URL"}
             </StyledLinkContainer>
           </CopyToClipboard>
 
-          {/* <StyledLink display={copied ? "none" : "inline"} />
-          <StyledCopied display={copied ? "inline" : "none"} /> */}
+          <CopyToClipboard
+            onCopy={handleCopy}
+            text={props.urlListing ? copy.value : "TEST COPIED URL"}
+          >
+            <StyledLink
+              display={clicked ? "none" : "inline"}
+              onClick={handleClick}
+            />
+          </CopyToClipboard>
+          <CopyToClipboard>
+            <StyledCopied display={clicked ? "inline" : "none"} />
+          </CopyToClipboard>
+
         </div>
         <p>
           If the campaign will reach the goal, we will send You an e-mail with

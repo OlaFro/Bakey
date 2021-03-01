@@ -25,7 +25,6 @@ export default function Listing(props) {
   const { isLogged } = useContext(bakeyContext);
   let history = useHistory();
 
-  const location = useLocation();
   const params = useParams();
 
   const [open, setOpen] = useState(false);
@@ -69,6 +68,7 @@ export default function Listing(props) {
   };
 
   const handleDate = () => {
+    console.log(props.pickUpDate);
     if (props.pickUpDate) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
       // 02-22 10:48
@@ -77,7 +77,10 @@ export default function Listing(props) {
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
         " " +
-        niceDate.split(" ")[1].substring(0, 5)
+        (cafeId
+          ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
+          : niceDate.split(" ")[1].substring(0, 2)) +
+        niceDate.split(" ")[1].substring(2, 5)
       );
     }
   };
@@ -86,9 +89,8 @@ export default function Listing(props) {
     ${
       props.piecePrice && props.totalPieces
         ? (props.piecePrice * props.totalPieces).toFixed(2)
-        : ""
-    }
-    €`;
+        : "0.00"
+    }€`;
   };
 
   const buyRest = () => {
@@ -96,9 +98,8 @@ export default function Listing(props) {
     ${
       availablePieces && props.piecePrice
         ? (availablePieces * props.piecePrice).toFixed(2)
-        : ""
-    }
-    €`;
+        : "0.00"
+    }€`;
   };
   console.log(soldPieces);
 
@@ -124,6 +125,7 @@ export default function Listing(props) {
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
     isLogged.state ? history.push("/order") : history.push("/login");
   };
+
   return (
     <StyledListingContainer id={params.id ? props.listingIdentifier : null}>
       <StyledPhotoContainer>
@@ -192,7 +194,7 @@ export default function Listing(props) {
             <span>Time left:</span>
             <span>
               <strong>
-                <TimeLeftTimer />
+                <TimeLeftTimer pickUpDate={props.pickUpDate} />
               </strong>
             </span>
           </StyledCentered>
@@ -210,7 +212,9 @@ export default function Listing(props) {
               }
             }}
           >
-            Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
+            Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
+            {/* working, but not updated version: */}
+            {/* {props.piecePrice ? parseInt(props.piecePrice).toFixed(2) : "0.00"}€ */}
           </StyledButton>
           <StyledButton
             buy
