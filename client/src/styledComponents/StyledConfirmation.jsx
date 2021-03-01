@@ -47,6 +47,9 @@ export const StyledLinkContainer = styled.div`
   padding: var(--space-s);
   margin: var(--space-m) 0;
   background-color: ${lighten(0.2, colors.gray)};
+  :active {
+    background-color: ${colors.accent1};
+  }
 `;
 
 export const StyledLink = styled(Link)`
