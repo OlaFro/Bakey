@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 
 export default function Timer(props) {
   const [timeLeft, setTimeLeft] = useState({
+    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
 
   const countDown = () => {
-    // time information should come from the server
-
     const finish = new Date(props.pickUpDate.substr(0, 10));
     finish.setHours(0, 0, 0, 0);
-    //next midnight
+    // pickUpDate
     const now = new Date();
 
     const diff = finish - now;
