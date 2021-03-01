@@ -364,7 +364,7 @@ export const StyledOtherInputsContainer = styled.div`
     `}
 
   ${(props) =>
-    props.register &&
+    props.registerCafe &&
     css`
       width: 100%;
       max-width: 320px;
@@ -372,6 +372,18 @@ export const StyledOtherInputsContainer = styled.div`
       justify-self: center;
       @media ${device.tabletLandscape} {
         max-width: 700px;
+      }
+    `}
+
+    ${(props) =>
+    props.registerUser &&
+    css`
+      width: 100%;
+      max-width: 240px;
+      grid-area: check;
+      justify-self: center;
+      @media ${device.tabletPortrait} {
+        max-width: 320px;
       }
     `}
 `;

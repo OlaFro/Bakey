@@ -189,7 +189,7 @@ export default function RegistrationUser(props) {
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
         </StyledInputContainer>
-        <StyledOtherInputsContainer>
+        <StyledOtherInputsContainer registerUser>
           <header>Terms</header>
           <div>
             <input type="checkbox" id="Terms" name="Terms" />
