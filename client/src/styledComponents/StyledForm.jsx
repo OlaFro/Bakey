@@ -364,11 +364,15 @@ export const StyledOtherInputsContainer = styled.div`
     `}
 
   ${(props) =>
-    props.cafeRegister &&
+    props.register &&
     css`
       width: 100%;
+      max-width: 320px;
       grid-area: check;
       justify-self: center;
+      @media ${device.tabletLandscape} {
+        max-width: 700px;
+      }
     `}
 `;
 

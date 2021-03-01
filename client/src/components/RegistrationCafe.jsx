@@ -259,7 +259,7 @@ export default function RegistrationCafe() {
             ) : null}
           </div>
         </StyledInputContainer>
-        <StyledOtherInputsContainer cafe cafeRegister>
+        <StyledOtherInputsContainer cafe register>
           <header>Terms</header>
           <div>
             <input type="checkbox" id="Terms" name="Terms" />
