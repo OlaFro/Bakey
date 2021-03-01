@@ -195,7 +195,7 @@ export default function Listing(props) {
             <span>Time left:</span>
             <span>
               <strong>
-                <TimeLeftTimer />
+                <TimeLeftTimer pickUpDate={props.pickUpDate} />
               </strong>
             </span>
           </StyledCentered>
