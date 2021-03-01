@@ -7,6 +7,7 @@ import {
   StyledForm,
   StyledLabel,
   StyledInputContainer,
+  StyledOtherInputsContainer,
   StyledInputField,
   StyledEyeClose,
   StyledEye,
@@ -258,6 +259,16 @@ export default function RegistrationCafe() {
             ) : null}
           </div>
         </StyledInputContainer>
+        <StyledOtherInputsContainer cafe cafeRegister>
+          <header>Terms</header>
+          <div>
+            <input type="checkbox" id="Terms" name="Terms" />
+            <label htmlFor="Terms">
+              Please use only mock-up data. This is just a demo project not
+              offering real products.
+            </label>
+          </div>
+        </StyledOtherInputsContainer>
 
         <StyledButton cafe cafeRegister>
           Register

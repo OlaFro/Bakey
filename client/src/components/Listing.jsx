@@ -86,7 +86,7 @@ export default function Listing(props) {
     ${
       props.piecePrice && props.totalPieces
         ? (props.piecePrice * props.totalPieces).toFixed(2)
-        : ""
+        : "0.00"
     }
     €`;
   };
@@ -96,7 +96,7 @@ export default function Listing(props) {
     ${
       availablePieces && props.piecePrice
         ? (availablePieces * props.piecePrice).toFixed(2)
-        : ""
+        : "0.00"
     }
     €`;
   };
@@ -210,7 +210,7 @@ export default function Listing(props) {
               }
             }}
           >
-            Buy a piece for {props.piecePrice ? props.piecePrice : ""}€
+            Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
           </StyledButton>
           <StyledButton
             buy

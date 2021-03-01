@@ -26,7 +26,7 @@ export const StyledForm = styled.form`
         display: grid;
         grid-template-columns: auto auto;
         column-gap: var(--space-m);
-        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "register register" "warning warning";
+        grid-template-areas: "input input" "input input" "input input" "input input" "input input" "check check" "register register" "warning warning";
       } ;
     `};
   ${(props) =>
@@ -361,6 +361,14 @@ export const StyledOtherInputsContainer = styled.div`
       @media ${device.tabletLandscape} {
         max-width: 700px;
       }
+    `}
+
+  ${(props) =>
+    props.cafeRegister &&
+    css`
+      width: 100%;
+      grid-area: check;
+      justify-self: center;
     `}
 `;
 
