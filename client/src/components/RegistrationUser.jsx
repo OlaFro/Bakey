@@ -189,6 +189,16 @@ export default function RegistrationUser(props) {
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
         </StyledInputContainer>
+        <StyledOtherInputsContainer>
+          <header>Terms</header>
+          <div>
+            <input type="checkbox" id="Terms" name="Terms" />
+            <label htmlFor="Terms">
+              Please use only mock-up data. This is just a demo project not
+              offering real products.
+            </label>
+          </div>
+        </StyledOtherInputsContainer>
         <StyledButton>Register</StyledButton>
         {warning ? (
           <div>

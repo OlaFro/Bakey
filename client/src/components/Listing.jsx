@@ -210,8 +210,9 @@ export default function Listing(props) {
               }
             }}
           >
-            Buy a piece for{" "}
-            {props.piecePrice ? parseInt(props.piecePrice).toFixed(2) : "0.00"}€
+            Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
+            {/* working, but not updated version: */}
+            {/* {props.piecePrice ? parseInt(props.piecePrice).toFixed(2) : "0.00"}€ */}
           </StyledButton>
           <StyledButton
             buy
