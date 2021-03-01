@@ -9,9 +9,15 @@ export default function Timer(props) {
   });
 
   const countDown = () => {
-    const finish = props.pickUpDate
-      ? new Date(props.pickUpDate.substr(0, 10))
-      : new Date();
+    let finish;
+    console.log(props.pickUpDate);
+    if (props.pickUpDate) {
+      finish = new Date(props.pickUpDate.substr(0, 10));
+    } else {
+      finish = new Date();
+    }
+
+    console.log(finish);
     finish.setHours(0, 0, 0, 0);
     // pickUpDate
     const now = new Date();
@@ -33,11 +39,17 @@ export default function Timer(props) {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      countDown();
-    }, 1000);
-    return () => clearInterval(interval);
+    if (props.pickUpDate) {
+      const interval = setInterval(() => {
+        countDown();
+      }, 1000);
+      return () => clearInterval(interval);
+    }
   }, []);
+
+  useEffect(() => {
+    countDown();
+  }, [props.pickUpDate]);
 
   return (
     <div>
