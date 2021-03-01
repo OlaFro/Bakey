@@ -8,7 +8,7 @@ export default function Map () {
     const [mapInfo, setMapInfo] = useState({})
 
 
-    useEffect(() => {Axios({
+    /* useEffect(() => {Axios({
         method: "GET",
         url: "https://maps.googleapis.com/maps/api/geocode/json?address=windorfer+str.+104+04229+leipzig+germany&key=AIzaSyBxR0OG4tPWe74O5aVfrIOkRILnOhbczr4"
     }).then((res) => {
@@ -23,7 +23,7 @@ export default function Map () {
     }).catch((err) => {
         console.log(err, "it didnt conected")
     })
-}, [])
+}, []) */
     
     return (
        <div>
