@@ -7,6 +7,7 @@ import {
   StyledForm,
   StyledLabel,
   StyledInputContainer,
+  StyledOtherInputsContainer,
   StyledInputField,
   StyledEyeClose,
   StyledEye,
