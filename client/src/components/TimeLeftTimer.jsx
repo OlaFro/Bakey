@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
 
-export default function Timer() {
+export default function Timer(props) {
   const [timeLeft, setTimeLeft] = useState({
+    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
 
   const countDown = () => {
-    // time information should come from the server
-
-    const finish = new Date();
-    finish.setHours(24, 0, 0, 0);
-    //next midnight
+    const finish = new Date(props.pickUpDate.substr(0, 10));
+    finish.setHours(0, 0, 0, 0);
+    // pickUpDate
     const now = new Date();
 
     const diff = finish - now;
     const seconds = Math.floor(diff / 1000);
     const minutes = Math.floor(seconds / 60);
-    const hoursLeft = Math.floor(minutes / 60);
+    const hours = Math.floor(minutes / 60);
+    const daysLeft = Math.floor(hours / 24);
     const minutesLeft = minutes % 60;
     const secondsLeft = seconds % 60;
+    const hoursLeft = hours % 24;
     setTimeLeft({
+      days: daysLeft,
       hours: hoursLeft,
       minutes: minutesLeft,
       seconds: secondsLeft,
@@ -37,8 +39,9 @@ export default function Timer() {
 
   return (
     <div>
-      {" "}
-      {`${timeLeft.hours}`}h {`${timeLeft.minutes}`}min
+      {timeLeft.days
+        ? `${timeLeft.days}days ${timeLeft.hours}h`
+        : `${timeLeft.hours}h ${timeLeft.minutes}min`}
     </div>
   );
 }
