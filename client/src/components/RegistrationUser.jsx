@@ -192,7 +192,7 @@ export default function RegistrationUser(props) {
         <StyledOtherInputsContainer registerUser>
           <header>Terms</header>
           <div>
-            <input type="checkbox" id="Terms" name="Terms" />
+            <input type="checkbox" id="Terms" name="Terms" required />
             <label htmlFor="Terms">
               Please use only mock-up data. This is just a demo project not
               offering real products.

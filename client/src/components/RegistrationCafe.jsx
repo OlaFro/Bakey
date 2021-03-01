@@ -262,7 +262,7 @@ export default function RegistrationCafe() {
         <StyledOtherInputsContainer cafe registerCafe>
           <header>Terms</header>
           <div>
-            <input type="checkbox" id="Terms" name="Terms" />
+            <input type="checkbox" id="Terms" name="Terms" required />
             <label htmlFor="Terms">
               Please use only mock-up data. This is just a demo project not
               offering real products.
