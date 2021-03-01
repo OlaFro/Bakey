@@ -9,7 +9,9 @@ export default function Timer(props) {
   });
 
   const countDown = () => {
-    const finish = new Date(props.pickUpDate.substr(0, 10));
+    const finish = props.pickUpDate
+      ? new Date(props.pickUpDate.substr(0, 10))
+      : new Date();
     finish.setHours(0, 0, 0, 0);
     // pickUpDate
     const now = new Date();
@@ -39,9 +41,11 @@ export default function Timer(props) {
 
   return (
     <div>
-      {timeLeft.days
-        ? `${timeLeft.days}days ${timeLeft.hours}h`
-        : `${timeLeft.hours}h ${timeLeft.minutes}min`}
+      {props.pickUpDate
+        ? timeLeft.days
+          ? `${timeLeft.days}d ${timeLeft.hours}h`
+          : `${timeLeft.hours}h ${timeLeft.minutes}min`
+        : "Days and Hours"}
     </div>
   );
 }
