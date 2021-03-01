@@ -93,9 +93,6 @@ export const StyledButton = styled.button`
         border: var(--border) solid ${darken(0.1, colors.accent1)};
         background-color: transparent;
       }
-      @media ${device.desktop} {
-        margin: var(--space-s);
-      }
     `}
 
   /* right display the button in the grid for cafe registration */
