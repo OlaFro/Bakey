@@ -64,8 +64,8 @@ export default function OrderConfirmation(props) {
             </StyledLinkContainer>
           </CopyToClipboard>
 
-          <StyledLink display={copied ? "none" : "inline"} />
-          <StyledCopied display={copied ? "inline" : "none"} />
+          {/* <StyledLink display={copied ? "none" : "inline"} />
+          <StyledCopied display={copied ? "inline" : "none"} /> */}
         </div>
         <p>
           If the campaign will reach the goal, we will send You an e-mail with
