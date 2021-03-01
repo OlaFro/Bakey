@@ -7,6 +7,9 @@ export default function Footer() {
   return (
     <StyledFooter>
       <p>
+        <strong>This is just a demo project not offering real products!</strong>
+      </p>
+      <p>
         &#169;2021
         <img className="logo" src={logo} alt="Alice Rez logo" />{" "}
         <a href="https://github.com/Alice-Rez">Alice Rez</a> &{" "}
