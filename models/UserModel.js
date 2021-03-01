@@ -1,13 +1,9 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
 
-connectionString = process.env.DB_URL;
-
-const Schema = mongoose.Schema;
-
-const UsersSchema = new Schema({
+const UsersSchema = new mongoose.Schema({
   id: {
     type: String,
+    unique: true,
     required: true,
   },
   email: {
@@ -41,6 +37,24 @@ const UsersSchema = new Schema({
   cafeCover: {
     type: String,
   },
+  cafeStreet: {
+    type: String,
+  },
+  cafeStreetNr: {
+    type: String,
+  },
+  cafeZip: {
+    type: String,
+  },
+  cafeURL: {
+    type: String,
+  },
+  cafeDescription: {
+    type: String,
+  },
+  cafeListings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
 });
 
-module.exports = mongoose.model("User", Users);
+//coordinates?
+
+module.exports = mongoose.model("User", UsersSchema);
