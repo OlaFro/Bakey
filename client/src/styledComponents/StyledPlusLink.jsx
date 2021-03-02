@@ -8,6 +8,8 @@ export const StyledPlusLink = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  font-size: 1.2rem;
+  margin: var(--space-m) 0;
 `;
 
 export const StyledPlusIcon = styled(Plus)`

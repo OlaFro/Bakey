@@ -6,21 +6,30 @@ import {
   StyledPlusIcon,
   StyledPlusLinkInfo,
 } from "../styledComponents/StyledPlusLink";
+import StyledCentered from "../styledComponents/StyledCentered";
+import StyledCafeDashboard from "../styledComponents/StyledCafeDashboard";
 
 export default function DashboardUser() {
   const { userName } = useContext(bakeyContext);
   return (
-    <div>
+    <StyledCafeDashboard>
       <header>
         <h2>Hello {userName} 🥳</h2>
       </header>
       <main>
-        <p>You successfully logged in as a cafe and this is your dashboard. </p>
         <StyledPlusLink>
-            <Link to="/listingform"><StyledPlusIcon></StyledPlusIcon></Link>
+          <Link to="/listingform">
+            <StyledPlusIcon></StyledPlusIcon>
+          </Link>
           <StyledPlusLinkInfo>create a new offer</StyledPlusLinkInfo>
         </StyledPlusLink>
+        <section>
+          <h3>Your current offers:</h3>
+        </section>
+        <section>
+          <h3>Your pick-ups:</h3>
+        </section>
       </main>
-    </div>
+    </StyledCafeDashboard>
   );
 }

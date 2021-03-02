@@ -110,7 +110,7 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
         }
         ListingModel.findByIdAndUpdate(listing, {
           $set: modification,
-          $push: { buyers: { _id: buyer, pcs: pcs } },
+          $push: { buyers: buyer, boughtPieces: pcs },
         })
           .then((result) => {
             res.send({ boughtPieces: pcs });
@@ -130,7 +130,7 @@ router.get("/cafe", authenticateToken, (req, res, next) => {
   ListingModel.find({ cafeId: user.id })
     .populate({
       path: "buyers",
-      select: ["email"],
+      select: "email",
     })
     .then((listings) => {
       res.send(listings);
