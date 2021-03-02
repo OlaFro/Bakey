@@ -125,6 +125,21 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
     });
 });
 
+router.get("/cafe", authenticateToken, (req, res, next) => {
+  const user = req.user;
+  ListingModel.find({ cafeId: user.id })
+    .populate({
+      path: "buyers",
+      select: ["email"],
+    })
+    .then((listings) => {
+      res.send(listings);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 /* 
 router.put("/update", (req, res, next) => {
   const ListingId = req.body.id;
