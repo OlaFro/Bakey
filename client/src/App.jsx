@@ -50,12 +50,12 @@ function App() {
         } else {
           setIsLogged({ state: false, role: "" });
         }
-        alert("This is just a demo project not offering real products!");
+        // alert("This is just a demo project not offering real products!");
       })
       .catch((err) => {
         console.log(err);
         setIsLogged({ state: false, role: "" });
-        alert("This is just a demo project not offering real products!");
+        // alert("This is just a demo project not offering real products!");
       });
   }, []);
 
