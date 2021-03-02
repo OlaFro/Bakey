@@ -45,7 +45,19 @@ export default function Map() {
 
   useEffect(() => {
     getCities(city);
+    getMapInfo();
   }, []);
+
+const getMapInfo = () => {
+    if (cafes) {
+        cafes.map((cafe)=>{
+            //merserburger+str+19+04107+leipzig
+            let address = [cafe.cafeStreet.split(" ").join("+"), cafe.cafeStreetNr, cafe.cafeZip, cafe.city];
+            return console.log(address.join("+"));
+        })
+
+    } else {getCities(city)}
+}
 
   /* useEffect(() => {Axios({
         method: "GET",
@@ -84,7 +96,7 @@ export default function Map() {
           <StyledArrow />
         </StyledInputContainer>
 
-        {/* Ola: I changed {city.city} to {city} because the first one was displaying nothing */}
+        
         <h2>Cafes in {city} with active campaigns:</h2>
         <div className="filtering">
           <p>Show only cafes that offer something:</p>
