@@ -77,7 +77,7 @@ export default function Listing(props) {
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
         " " +
-        (cafeId
+        (!props.preview
           ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
           : niceDate.split(" ")[1].substring(0, 2)) +
         niceDate.split(" ")[1].substring(2, 5)

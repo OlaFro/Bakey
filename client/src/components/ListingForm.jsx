@@ -383,6 +383,7 @@ export default function ListingForm() {
           listingAllergenes={data.listingAllergenes}
           listingTags={data.listingTags}
           image={image.preview}
+          preview={true}
         />
         <h3> 3. Save: </h3>
         <div className="communication">
