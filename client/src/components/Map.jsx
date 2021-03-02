@@ -14,6 +14,7 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledTag } from "../styledComponents/StyledListing";
+require("dotenv").config();
 
 export default function Map() {
   const [mapInfo, setMapInfo] = useState({});
@@ -44,37 +45,41 @@ export default function Map() {
   };
 
   useEffect(() => {
+      console.log("this is working")
     getCities(city);
-    getMapInfo();
-  }, []);
+    getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
+    /* console.log(process.env.REACT_APP_GOOGLE_API_KEY) */
+    
+  }, [city]);
 
-const getMapInfo = () => {
+const getMapInfo = (API_KEY) => {
+    console.log(API_KEY)
     if (cafes) {
-        cafes.map((cafe)=>{
+        cafes.map(async(cafe)=>{
             //merserburger+str+19+04107+leipzig
             let address = [cafe.cafeStreet.split(" ").join("+"), cafe.cafeStreetNr, cafe.cafeZip, cafe.city];
-            return console.log(address.join("+"));
+            let parsedAddress = address.join("+");
+            await Axios({
+                method: "GET",
+                url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`
+            }).then((res) => {
+                console.log('then block')
+                console.log(res);
+                let location = res.data.results[0].geometry.location;
+                if (location) {
+                    console.log(location.lat);
+                    console.log(location.lng)
+                } else {
+                    console.log("no results")
+                }
+            }).catch((err) => {
+            
+                console.log(err, "it didnt connected")
+            })
         })
-
     } else {getCities(city)}
 }
 
-  /* useEffect(() => {Axios({
-        method: "GET",
-        url: "https://maps.googleapis.com/maps/api/geocode/json?address=windorfer+str.+104+04229+leipzig+germany&key=AIzaSyBxR0OG4tPWe74O5aVfrIOkRILnOhbczr4"
-    }).then((res) => {
-        console.log(res);
-        let location = res.data.results[0].geometry.location;
-        if (location) {
-            console.log(location.lat);
-            console.log(location.lng)
-        } else {
-            console.log("no results")
-        }
-    }).catch((err) => {
-        console.log(err, "it didnt conected")
-    })
-}, []) */
 
   return (
     <StyledListView>
