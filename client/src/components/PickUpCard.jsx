@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { bakeyContext } from "../Context";
 import { StyledButton } from "../styledComponents/StyledButton";
 import {
   StyledPickUpCard,
@@ -6,6 +7,8 @@ import {
 } from "../styledComponents/StyledPickUpCard";
 
 export default function PickUpCard(props) {
+  const { userName, cafeName } = useContext(bakeyContext);
+
   const getDate = () => {
     return props.pickUpDate.split("T")[0].split("-").reverse().join(".");
   };
@@ -46,7 +49,15 @@ export default function PickUpCard(props) {
                     <td>{buyer.email}</td>
                     <td>{props.boughtPieces[index]}</td>
                     <td>
-                      <a href={`mailto:${buyer.email}`}>
+                      <a
+                        href={`mailto:${
+                          buyer.email
+                        }&subject=Cake%20order%20through%20Bakey%20-%20pick-up%20notification&body=Dear%20Customer,%0D%0Athank%20you%20very%20much%20for%20your%20support%20of%20our%20cafe.%0D%0A%20Your%20order%20of%20the%20${
+                          props.title
+                        }%20will%20be%20prepared%20for%20pick%20up%20at%20${getDate()}%20in%20${getTime(
+                          scheduledTime
+                        )}.%0D%0ABest%20regards,%0D%0A${userName}%20from%20${cafeName}`}
+                      >
                         <StyledMailIcon />
                       </a>
                     </td>
