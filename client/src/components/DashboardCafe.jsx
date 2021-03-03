@@ -85,7 +85,7 @@ export default function DashboardUser() {
               }
             })}
           </div>
-          <h4>Terminated:</h4>
+          <h4>Expired:</h4>
           <div className="offers-wrapper">
             {listings.map((listing) => {
               const today = new Date();
@@ -109,6 +109,7 @@ export default function DashboardUser() {
                     image={listing.listingPicture}
                     id={listing._id}
                     dashboard={true}
+                    expired={true}
                   />
                 );
               } else {
@@ -121,7 +122,15 @@ export default function DashboardUser() {
           <h3>Your pick-ups:</h3>
           {listings.map((listing) => {
             if (listing.listingStatus === "sold") {
-              return <PickUpCard />;
+              return (
+                <PickUpCard
+                  title={listing.listingName}
+                  id={listing.id}
+                  buyers={listing.buyers}
+                  boughtPieces={listing.boughtPieces}
+                  pickUpDate={listing.pickUpDate}
+                />
+              );
             } else {
               return null;
             }

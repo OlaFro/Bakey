@@ -232,6 +232,12 @@ export default function Listing(props) {
             </StyledButton>
           </StyledBtnContainer>
         )}
+        {props.expired ? (
+          <StyledBtnContainer>
+            <StyledButton buy>Reactivate</StyledButton>
+            <StyledButton buy>Archive</StyledButton>
+          </StyledBtnContainer>
+        ) : null}
       </StyledDescContainer>
     </StyledListingContainer>
   );

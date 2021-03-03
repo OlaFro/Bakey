@@ -12,6 +12,10 @@ const StyledCafeDashboard = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
   }
+
+  h3 {
+    margin-bottom: var(--space-m);
+  }
 `;
 
 export default StyledCafeDashboard;
