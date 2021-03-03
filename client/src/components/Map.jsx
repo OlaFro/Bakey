@@ -17,7 +17,7 @@ import { StyledTag } from "../styledComponents/StyledListing";
 require("dotenv").config();
 
 export default function Map() {
-  const [mapInfo, setMapInfo] = useState([]);
+  const [mapFlag, setMapFlag] = useState(false);
   const { cafes, setCafes } = useContext(bakeyContext);
   const [city, setCity] = useState("Leipzig");
   /* const [dbError, setDbError] = useState(false);
@@ -36,6 +36,7 @@ export default function Map() {
           /*  setEmptyWarning(true); */
         } else {
           setCafes(res.data);
+          setMapFlag((prevValue)=>{return !prevValue})
         }
       })
       .catch((err) => {
@@ -44,52 +45,71 @@ export default function Map() {
       });
   };
 
-  const testUpdateObject = () => {
-    cafes.map((cafe) => {
-      setMapInfo([...mapInfo, { ...cafe, lat: "123", lng: "456" }]);
+  /*  const testUpdateObject = () => {
+    cafes.map((cafe, index) => {
+      return setCafes(() => {
+       cafes[index] = {
+          ...cafe,
+          lat: "123",
+          lgn: "456",
+        };
+        return cafes;
+      });
+    });
+  }; */
+  const getMapInfo = (API_KEY) => {
+    cafes.map((cafe, i) => {
+      let address = [
+        cafe.cafeStreet.split(" ").join("+"),
+        cafe.cafeStreetNr,
+        cafe.cafeZip,
+        cafe.city,
+      ];
+      let parsedAddress = address.join("+");
+      Axios({
+        method: "GET",
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
+      })
+        .then((res) => {
+          let location = res.data.results[0].geometry.location;
+          console.log(location);
+          if (location) {
+            if (i === cafes.length - 1) {
+              return setCafes(() => {
+                cafes[i] = {
+                  ...cafe,
+                  lat: location.lat,
+                  lng: location.lng,
+                };
+                return cafes;
+              });
+            } else {
+              return setCafes(() => {
+                cafes[i] = {
+                  ...cafe,
+                  lat: location.lat,
+                  lng: location.lng,
+                };
+                return cafes;
+              });
+            }
+          } else {
+            console.log("no results");
+          }
+        })
+        .catch((err) => {
+          console.log(err, "it didnt connected");
+        });
     });
   };
-  /* const getMapInfo = (API_KEY) => {
-    console.log(API_KEY);
-    if (cafes) {
-      cafes.map(async (cafe, i) => {
-        //merserburger+str+19+04107+leipzig
-        let address = [
-          cafe.cafeStreet.split(" ").join("+"),
-          cafe.cafeStreetNr,
-          cafe.cafeZip,
-          cafe.city,
-        ];
-        let parsedAddress = address.join("+");
-        await Axios({
-          method: "GET",
-          url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
-        })
-          .then((res) => {
-            console.log(res);
-            let location = res.data.results[0].geometry.location;
-            if (location) {
-              console.log(location.lat);
-              console.log(location.lng);
-            } else {
-              console.log("no results");
-            }
-          })
-          .catch((err) => {
-            console.log(err, "it didnt connected");
-          });
-      });
-    } else {
-      getCities(city);
-    }
-  }; */
 
   useEffect(() => {
     getCities(city);
-    testUpdateObject();
-    /* getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY); */
-    /* console.log(process.env.REACT_APP_GOOGLE_API_KEY) */
   }, [city]);
+
+useEffect(() => {
+    getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [mapFlag]);
 
   return (
     <StyledListView>
@@ -101,7 +121,6 @@ export default function Map() {
             onChange={(e) => {
               setCity(e.target.value);
               getCities(e.target.value);
-              testUpdateObject();
             }}
           >
             <option value="Leipzig">Leipzig</option>
