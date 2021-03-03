@@ -127,7 +127,10 @@ export default function Listing(props) {
   };
 
   return (
-    <StyledListingContainer id={params.id ? props.listingIdentifier : null}>
+    <StyledListingContainer
+      id={params.id ? props.listingIdentifier : null}
+      cafeDashboard={props.dashboard ? true : false}
+    >
       <StyledPhotoContainer>
         <img src={props.image ? props.image : placeholder} alt="my offer"></img>
       </StyledPhotoContainer>
@@ -203,30 +206,32 @@ export default function Listing(props) {
             <strong>{props.pickUpDate ? handleDate() : "Day and hour"}</strong>
           </StyledCentered>
         </StyledTimers>
-        <StyledBtnContainer>
-          <StyledButton
-            buy
-            onClick={() => {
-              if (params.id) {
-                storeOrderInfo("one");
-              }
-            }}
-          >
-            Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
-            {/* working, but not updated version: */}
-            {/* {props.piecePrice ? parseInt(props.piecePrice).toFixed(2) : "0.00"}€ */}
-          </StyledButton>
-          <StyledButton
-            buy
-            onClick={() => {
-              if (params.id) {
-                storeOrderInfo("many");
-              }
-            }}
-          >
-            {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
-          </StyledButton>
-        </StyledBtnContainer>
+        {props.dashboard ? null : (
+          <StyledBtnContainer>
+            <StyledButton
+              buy
+              onClick={() => {
+                if (params.id) {
+                  storeOrderInfo("one");
+                }
+              }}
+            >
+              Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
+              {/* working, but not updated version: */}
+              {/* {props.piecePrice ? parseInt(props.piecePrice).toFixed(2) : "0.00"}€ */}
+            </StyledButton>
+            <StyledButton
+              buy
+              onClick={() => {
+                if (params.id) {
+                  storeOrderInfo("many");
+                }
+              }}
+            >
+              {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
+            </StyledButton>
+          </StyledBtnContainer>
+        )}
       </StyledDescContainer>
     </StyledListingContainer>
   );

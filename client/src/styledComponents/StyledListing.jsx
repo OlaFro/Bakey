@@ -21,6 +21,12 @@ export const StyledListingContainer = styled.div`
     height: 400px;
     grid-template-columns: 50% 50%;
   }
+
+  ${(props) =>
+    props.cafeDashboard &&
+    css`
+      margin: 0 0 var(--space-m);
+    `}
 `;
 
 export const StyledPhotoContainer = styled.div`

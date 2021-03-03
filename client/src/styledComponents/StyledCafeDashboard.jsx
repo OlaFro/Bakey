@@ -6,6 +6,12 @@ const StyledCafeDashboard = styled.div`
   @media ${device.tabletPortrait} {
     margin: var(--space-l);
   }
+
+  .offers-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 `;
 
 export default StyledCafeDashboard;

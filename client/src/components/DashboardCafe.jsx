@@ -9,9 +9,11 @@ import {
   StyledPlusLinkInfo,
 } from "../styledComponents/StyledPlusLink";
 import StyledCafeDashboard from "../styledComponents/StyledCafeDashboard";
+import Listing from "./Listing";
+import PickUpCard from "./PickUpCard";
 
 export default function DashboardUser() {
-  const { userName } = useContext(bakeyContext);
+  const { userName, cafeName } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
@@ -52,9 +54,78 @@ export default function DashboardUser() {
         {showWarning ? <Warning msg="the service is out of order" /> : null}
         <section>
           <h3>Your current offers:</h3>
+          <h4>Active:</h4>
+          <div className="offers-wrapper">
+            {listings.map((listing) => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              const pickUpTime = new Date(listing.pickUpDate);
+              pickUpTime.setHours(0, 0, 0, 0);
+              if (
+                listing.listingStatus === "active" &&
+                today.getTime() < pickUpTime.getTime()
+              ) {
+                return (
+                  <Listing
+                    cafeName={cafeName}
+                    title={listing.listingName}
+                    totalPieces={listing.totalPieces}
+                    availablePieces={listing.availablePieces}
+                    pickUpDate={listing.pickUpDate}
+                    piecePrice={listing.piecePrice}
+                    listingAllergenes={listing.listingAllergenes}
+                    listingTags={listing.listingTags}
+                    image={listing.listingPicture}
+                    id={listing._id}
+                    dashboard={true}
+                  />
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+          <h4>Terminated:</h4>
+          <div className="offers-wrapper">
+            {listings.map((listing) => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              const pickUpTime = new Date(listing.pickUpDate);
+              pickUpTime.setHours(0, 0, 0, 0);
+              if (
+                listing.listingStatus === "active" &&
+                today.getTime() >= pickUpTime.getTime()
+              ) {
+                return (
+                  <Listing
+                    cafeName={cafeName}
+                    title={listing.listingName}
+                    totalPieces={listing.totalPieces}
+                    availablePieces={listing.availablePieces}
+                    pickUpDate={listing.pickUpDate}
+                    piecePrice={listing.piecePrice}
+                    listingAllergenes={listing.listingAllergenes}
+                    listingTags={listing.listingTags}
+                    image={listing.listingPicture}
+                    id={listing._id}
+                    dashboard={true}
+                  />
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
         </section>
         <section>
           <h3>Your pick-ups:</h3>
+          {listings.map((listing) => {
+            if (listing.listingStatus === "sold") {
+              return <PickUpCard />;
+            } else {
+              return null;
+            }
+          })}
         </section>
       </main>
     </StyledCafeDashboard>
