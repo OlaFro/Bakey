@@ -17,15 +17,15 @@ import { StyledTag } from "../styledComponents/StyledListing";
 require("dotenv").config();
 
 export default function Map() {
-  const [mapInfo, setMapInfo] = useState({});
+  const [mapInfo, setMapInfo] = useState([]);
   const { cafes, setCafes } = useContext(bakeyContext);
   const [city, setCity] = useState("Leipzig");
-  const [dbError, setDbError] = useState(false);
-  const [emptyWarning, setEmptyWarning] = useState(false);
+  /* const [dbError, setDbError] = useState(false);
+  const [emptyWarning, setEmptyWarning] = useState(false); */
 
   const getCities = (city) => {
-    setDbError(false);
-    setEmptyWarning(false);
+    /*   setDbError(false);
+    setEmptyWarning(false); */
     Axios({
       method: "POST",
       url: "/cafes",
@@ -33,53 +33,63 @@ export default function Map() {
     })
       .then((res) => {
         if (res.data.length === 0) {
-          setEmptyWarning(true);
+          /*  setEmptyWarning(true); */
         } else {
           setCafes(res.data);
         }
       })
       .catch((err) => {
         console.log(err);
-        setDbError(true);
+        /*  setDbError(true); */
       });
   };
 
-  useEffect(() => {
-      console.log("this is working")
-    getCities(city);
-    getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
-    /* console.log(process.env.REACT_APP_GOOGLE_API_KEY) */
-    
-  }, [city]);
-
-const getMapInfo = (API_KEY) => {
-    console.log(API_KEY)
+  const testUpdateObject = () => {
+    cafes.map((cafe) => {
+      setMapInfo([...mapInfo, { ...cafe, lat: "123", lng: "456" }]);
+    });
+  };
+  /* const getMapInfo = (API_KEY) => {
+    console.log(API_KEY);
     if (cafes) {
-        cafes.map(async(cafe)=>{
-            //merserburger+str+19+04107+leipzig
-            let address = [cafe.cafeStreet.split(" ").join("+"), cafe.cafeStreetNr, cafe.cafeZip, cafe.city];
-            let parsedAddress = address.join("+");
-            await Axios({
-                method: "GET",
-                url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`
-            }).then((res) => {
-                console.log('then block')
-                console.log(res);
-                let location = res.data.results[0].geometry.location;
-                if (location) {
-                    console.log(location.lat);
-                    console.log(location.lng)
-                } else {
-                    console.log("no results")
-                }
-            }).catch((err) => {
-            
-                console.log(err, "it didnt connected")
-            })
+      cafes.map(async (cafe, i) => {
+        //merserburger+str+19+04107+leipzig
+        let address = [
+          cafe.cafeStreet.split(" ").join("+"),
+          cafe.cafeStreetNr,
+          cafe.cafeZip,
+          cafe.city,
+        ];
+        let parsedAddress = address.join("+");
+        await Axios({
+          method: "GET",
+          url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
         })
-    } else {getCities(city)}
-}
+          .then((res) => {
+            console.log(res);
+            let location = res.data.results[0].geometry.location;
+            if (location) {
+              console.log(location.lat);
+              console.log(location.lng);
+            } else {
+              console.log("no results");
+            }
+          })
+          .catch((err) => {
+            console.log(err, "it didnt connected");
+          });
+      });
+    } else {
+      getCities(city);
+    }
+  }; */
 
+  useEffect(() => {
+    getCities(city);
+    testUpdateObject();
+    /* getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY); */
+    /* console.log(process.env.REACT_APP_GOOGLE_API_KEY) */
+  }, [city]);
 
   return (
     <StyledListView>
@@ -91,6 +101,7 @@ const getMapInfo = (API_KEY) => {
             onChange={(e) => {
               setCity(e.target.value);
               getCities(e.target.value);
+              testUpdateObject();
             }}
           >
             <option value="Leipzig">Leipzig</option>
@@ -101,7 +112,6 @@ const getMapInfo = (API_KEY) => {
           <StyledArrow />
         </StyledInputContainer>
 
-        
         <h2>Cafes in {city} with active campaigns:</h2>
         <div className="filtering">
           <p>Show only cafes that offer something:</p>
