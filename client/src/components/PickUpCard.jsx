@@ -54,7 +54,7 @@ export default function PickUpCard(props) {
       <h3>
         {props.title} #{props.id}
       </h3>
-      <section>
+      <section className="table-wrapper">
         <table>
           <thead>
             <tr>

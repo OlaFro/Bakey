@@ -12,7 +12,7 @@ export const StyledPickUpCard = styled.article`
   padding: var(--space-s);
   margin: 0 auto var(--space-m);
 
-  section {
+  .table-wrapper {
     max-width: 1000px;
     overflow-x: scroll;
 
@@ -22,6 +22,7 @@ export const StyledPickUpCard = styled.article`
   }
 
   table {
+    width: 80%;
     border-collapse: separate;
     border-spacing: 10px;
 
