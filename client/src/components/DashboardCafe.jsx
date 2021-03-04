@@ -5,15 +5,22 @@ import Axios from "axios";
 import Warning from "./Warning";
 import {
   StyledPlusLink,
-  StyledPlusIcon,
   StyledPlusLinkInfo,
+  StyledIcon,
+  StyledPlusIcon,
 } from "../styledComponents/StyledPlusLink";
-import StyledCafeDashboard from "../styledComponents/StyledCafeDashboard";
+import {
+  StyledCafeDashboard,
+  StyledQuickLinks,
+} from "../styledComponents/StyledCafeDashboard";
 import Listing from "./Listing";
 import PickUpCard from "./PickUpCard";
+import cafeProfileIcon from "../assets/cafe.svg";
+import { Settings } from "@styled-icons/feather/Settings";
+import StyledHr from "../styledComponents/StyledHr";
 
 export default function DashboardUser() {
-  const { userName, cafeName } = useContext(bakeyContext);
+  const { userName, cafeName, isLogged } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
@@ -45,12 +52,36 @@ export default function DashboardUser() {
         <h2>Hello {userName} 🥳</h2>
       </header>
       <main>
-        <StyledPlusLink>
-          <Link to="/listingform">
-            <StyledPlusIcon></StyledPlusIcon>
-          </Link>
-          <StyledPlusLinkInfo>create a new offer</StyledPlusLinkInfo>
-        </StyledPlusLink>
+        <StyledQuickLinks>
+          <StyledPlusLink>
+            <Link to="/listingform">
+              <StyledPlusIcon></StyledPlusIcon>
+              <StyledPlusLinkInfo>create new offer</StyledPlusLinkInfo>
+            </Link>
+          </StyledPlusLink>
+          <StyledPlusLink>
+            <Link to={`/cafe:${isLogged.id}`}>
+              <StyledIcon profile>
+                <img
+                  src={cafeProfileIcon}
+                  alt="icon of the cafe in the circle"
+                />
+              </StyledIcon>
+              <StyledPlusLinkInfo>café profile</StyledPlusLinkInfo>
+            </Link>
+          </StyledPlusLink>
+          <StyledPlusLink>
+            <Link to="/settings">
+              <StyledIcon notPlus>
+                <Settings />
+              </StyledIcon>
+              <StyledPlusLinkInfo>settings</StyledPlusLinkInfo>
+            </Link>
+          </StyledPlusLink>
+        </StyledQuickLinks>
+
+        <StyledHr cafe />
+
         {showWarning ? <Warning msg="the service is out of order" /> : null}
         <section>
           <h3>Your current offers:</h3>

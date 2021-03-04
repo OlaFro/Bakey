@@ -51,7 +51,7 @@ export const StyledDescContainer = styled.div`
   justify-content: space-between;
   padding: var(--space-xs) var(--space-xs);
   min-height: 500px;
-
+  padding-bottom: var(--space-s);
   @media ${device.tabletLandscape} {
     min-height: 400px;
   }

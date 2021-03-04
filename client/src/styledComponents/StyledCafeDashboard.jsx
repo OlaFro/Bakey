@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import device from "./device";
 
-const StyledCafeDashboard = styled.div`
+export const StyledCafeDashboard = styled.div`
   margin: var(--space-m);
   text-align: center;
   @media ${device.tabletPortrait} {
@@ -19,4 +19,19 @@ const StyledCafeDashboard = styled.div`
   }
 `;
 
-export default StyledCafeDashboard;
+export const StyledQuickLinks = styled.section`
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  @media ${device.tabletPortrait} {
+    justify-content: space-around;
+  }
+
+  div {
+    flex: 1;
+  }
+`;
