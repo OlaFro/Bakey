@@ -19,6 +19,7 @@ import ListingForm from "./components/ListingForm";
 import Profile from "./components/Profile";
 import ListView from "./components/ListView";
 import Settings from "./components/Settings";
+import LandingPage from "./components/LandingPage";
 
 import Order from "./components/Order";
 import Footer from "./components/Footer";
@@ -50,12 +51,12 @@ function App() {
         } else {
           setIsLogged({ state: false, role: "" });
         }
-        alert("This is just a demo project not offering real products!");
+        // alert("This is just a demo project not offering real products!");
       })
       .catch((err) => {
         console.log(err);
         setIsLogged({ state: false, role: "" });
-        alert("This is just a demo project not offering real products!");
+        // alert("This is just a demo project not offering real products!");
       });
   }, []);
 
@@ -80,7 +81,7 @@ function App() {
           <Navigation />
           <Switch>
             <Route path="/" exact>
-              <h1>Welcome to bakey</h1>
+              <LandingPage />
             </Route>
             <Route path="/registration/user" exact>
               <RegistrationUser />
