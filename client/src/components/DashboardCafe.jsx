@@ -59,7 +59,7 @@ export default function DashboardUser() {
   return (
     <StyledCafeDashboard>
       <header>
-        <h2>Hello, {userName} </h2>
+        <h2>Hello, {userName}! </h2>
       </header>
       <main>
         <StyledQuickLinks>
