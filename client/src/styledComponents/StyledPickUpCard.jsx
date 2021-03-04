@@ -13,7 +13,7 @@ export const StyledPickUpCard = styled.article`
   margin: 0 auto var(--space-m);
 
   section {
-    width: 400px;
+    max-width: 1000px;
     overflow-x: scroll;
 
     @media ${device.tabletPortrait} {
@@ -22,7 +22,7 @@ export const StyledPickUpCard = styled.article`
   }
 
   table {
-    /* border-collapse: separate;
+    border-collapse: separate;
     border-spacing: 10px;
 
     tr,
@@ -36,7 +36,7 @@ export const StyledPickUpCard = styled.article`
       td:nth-of-type(3) {
         padding-left: var(--space-xs);
       }
-    } */
+    }
   }
 
   a {
