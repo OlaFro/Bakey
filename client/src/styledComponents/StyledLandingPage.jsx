@@ -10,8 +10,6 @@ export const StyledHeader = styled.header`
   margin: auto;
   height: 600px;
 
-  margin-bottom: 300vh;
-
   background-image: url(${hero});
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -44,4 +42,14 @@ export const StyledCTA = styled.div`
   }
 `;
 
-export const StyledMain = styled.div``;
+export const StyledTitle = styled.span`
+  margin: calc(4 * var(--space-l)) auto calc(2 * var(--space-l)) auto;
+  padding: var(--space-m) calc(1.5 * var(--space-l));
+  box-shadow: 9.01px 9.01px 29px #c3c5c8, -9.01px -9.01px 23px #ffffff;
+
+  h2 {
+    margin: 0;
+    color: ${colors.accent2};
+  }
+`;
+export const StyledMain = styled.main``;
