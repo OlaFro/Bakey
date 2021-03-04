@@ -14,8 +14,6 @@ import {
   StyledCafeDashboard,
   StyledQuickLinks,
 } from "../styledComponents/StyledCafeDashboard";
-import Listing from "./Listing";
-import PickUpCard from "./PickUpCard";
 import cafeProfileIcon from "../assets/cafe.svg";
 import { Settings } from "@styled-icons/feather/Settings";
 import StyledHr from "../styledComponents/StyledHr";
@@ -26,7 +24,7 @@ import DashboardCafeArchiveTab from "./DashboardCafeArchiveTab";
 import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function DashboardUser() {
-  const { userName, cafeName, isLogged } = useContext(bakeyContext);
+  const { userName, isLogged } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
