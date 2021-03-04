@@ -78,7 +78,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <div className="wrapper">
-          <Navigation />
+          {/* <Navigation /> */}
           <Switch>
             <Route path="/" exact>
               <LandingPage />

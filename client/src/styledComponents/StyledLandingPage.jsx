@@ -29,7 +29,7 @@ export const StyledHeader = styled.header`
     text-transform: uppercase;
     letter-spacing: var(--ls);
     color: white;
-    text-shadow: 1px 1px 5px #111111;
+    text-shadow: 1px 1px 5px #666;
     font-size: 3rem;
     text-align: center;
   }
