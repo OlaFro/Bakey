@@ -11,14 +11,6 @@ export const StyledCafeDashboard = styled.div`
   .offers-wrapper {
     margin: auto;
     width: 100%;
-    max-width: 1650px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    @media ${device.bigDesktop} {
-      justify-content: space-between;
-    }
   }
 
   h3 {

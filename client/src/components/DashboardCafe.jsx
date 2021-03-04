@@ -59,7 +59,7 @@ export default function DashboardUser() {
   return (
     <StyledCafeDashboard>
       <header>
-        <h2>Hello {userName} 🥳</h2>
+        <h2>Hello, {userName}! </h2>
       </header>
       <main>
         <StyledQuickLinks>
@@ -82,7 +82,7 @@ export default function DashboardUser() {
           </StyledPlusLink>
           <StyledPlusLink>
             <Link to="/settings">
-              <StyledIcon notPlus>
+              <StyledIcon settings>
                 <Settings />
               </StyledIcon>
               <StyledPlusLinkInfo>settings</StyledPlusLinkInfo>
