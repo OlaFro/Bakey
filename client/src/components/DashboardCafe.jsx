@@ -20,6 +20,8 @@ import { Settings } from "@styled-icons/feather/Settings";
 import StyledHr from "../styledComponents/StyledHr";
 import DashboardCafeActiveTab from "./DashboardCafeActiveTab";
 import DashboardCafeExpiredTab from "./DashboardCafeExpiredTab";
+import DashboardCafePickupTab from "./DashboardCafePickupTab";
+import DashboardCafeArchiveTab from "./DashboardCafeArchiveTab";
 
 export default function DashboardUser() {
   const { userName, cafeName, isLogged } = useContext(bakeyContext);
@@ -93,25 +95,23 @@ export default function DashboardUser() {
           <h4>Active:</h4>
           <DashboardCafeActiveTab activeListings={listings} />
           <h4>Expired:</h4>
-          <DashboardCafeExpiredTab />
+          <DashboardCafeExpiredTab expiredListings={listings} />
         </section>
         <section>
           <h3>Your pick-ups:</h3>
-          {listings.map((listing) => {
-            if (listing.listingStatus === "sold") {
-              return (
-                <PickUpCard
-                  title={listing.listingName}
-                  id={listing.id}
-                  buyers={listing.buyers}
-                  boughtPieces={listing.boughtPieces}
-                  pickUpDate={listing.pickUpDate}
-                />
-              );
-            } else {
-              return null;
-            }
-          })}
+          <DashboardCafePickupTab
+            soldListings={listings.filter(
+              (item) => item.listingStatus === "sold"
+            )}
+          />
+        </section>
+        <section>
+          <h3>Archive</h3>
+          <DashboardCafeArchiveTab
+            inactiveListings={listings.filter(
+              (item) => item.listingStatus === "inactive"
+            )}
+          />
         </section>
       </main>
     </StyledCafeDashboard>
