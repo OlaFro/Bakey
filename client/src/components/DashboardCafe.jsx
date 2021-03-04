@@ -32,7 +32,7 @@ export default function DashboardUser() {
 
   const [showWarning, setShowWarning] = useState(false);
 
-  const [display, setDisplay] = useState("pickup");
+  const [display, setDisplay] = useState("active");
 
   useEffect(() => {
     Axios({
