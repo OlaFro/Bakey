@@ -5,6 +5,7 @@ import {
   StyledCTA,
   StyledTitle,
   StyledMain,
+  StyledDesc,
 } from "../styledComponents/StyledLandingPage";
 import {
   StyledInputContainer,
@@ -16,19 +17,11 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import StyledCentered from "../styledComponents/StyledCentered";
 
 export default function LandingPage() {
-  const contentStyle = {
-    height: "160px",
-    color: "#fff",
-    lineHeight: "160px",
-    textAlign: "center",
-    background: "#364d79",
-  };
-
   const [city, setCity] = useState("Leipzig");
   return (
     <StyledCentered>
       <StyledHeader>
-        <div>
+        <div className="headingContainer">
           <h1>Let them order cake!</h1>
           <StyledCTA>
             <StyledInputContainer>
@@ -49,6 +42,10 @@ export default function LandingPage() {
             </StyledInputContainer>
             <StyledButton>go</StyledButton>
           </StyledCTA>
+          <StyledDesc>
+            <h2>Support your local cafe and order small portions.</h2>
+            <h2> We will find other customers to fulfill the order.</h2>
+          </StyledDesc>
         </div>
       </StyledHeader>
 
