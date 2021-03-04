@@ -301,14 +301,30 @@ export const StyledSelect = styled.select`
     letter-spacing: calc(0.66 * var(--ls));
   }
 
-  /* ${(props) =>
-    props.number &&
+  ${(props) =>
+    props.landingPage &&
     css`
-      background-color: transparent;
-      :not(:placeholder-shown) + label {
-        background-color: ${lighten(0.28, colors.gray)};
+      border: var(--border) solid transparent;
+      height: 4.2rem;
+      padding: var(--space-xs) var(--space-s) 0 15px;
+      font-size: 1.2rem;
+      background: rgba(255, 255, 255, 0.829);
+      color: #2e2e2e;
+
+      :hover {
+        border: var(--border) solid ${colors.black};
       }
-    `}; */
+
+      :focus + label,
+      :not(:placeholder-shown) + label {
+        font-size: 0.8rem;
+        top: 10px;
+        left: 15px;
+        background: transparent;
+        padding: 0 calc(0.2 * var(--space-s));
+        letter-spacing: calc(0.66 * var(--ls));
+      }
+    `};
 
   ${(props) =>
     props.cafe &&
