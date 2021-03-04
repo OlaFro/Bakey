@@ -25,7 +25,7 @@ export const StyledListingContainer = styled.div`
   ${(props) =>
     props.cafeDashboard &&
     css`
-      margin: 0 0 var(--space-m);
+      margin: 0 0 var(--space-l);
     `}
 `;
 

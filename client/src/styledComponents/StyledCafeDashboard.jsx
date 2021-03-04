@@ -9,9 +9,16 @@ export const StyledCafeDashboard = styled.div`
   }
 
   .offers-wrapper {
+    margin: auto;
+    width: 100%;
+    max-width: 1650px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+
+    @media ${device.bigDesktop} {
+      justify-content: space-between;
+    }
   }
 
   h3 {
@@ -33,5 +40,28 @@ export const StyledQuickLinks = styled.section`
 
   div {
     flex: 1;
+  }
+`;
+
+export const StyledButtonContainer = styled.section`
+  width: 90%;
+  max-width: 1000px;
+  margin: var(--space-xl) auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  button {
+    margin-bottom: var(--space-m);
+  }
+
+  @media ${device.tabletPortrait} {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    button {
+      padding: var(--space-s) var(--space-m);
+      order: 0;
+    }
   }
 `;

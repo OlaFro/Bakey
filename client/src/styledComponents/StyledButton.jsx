@@ -77,6 +77,10 @@ export const StyledButton = styled.button`
     css`
       background-color: transparent;
       color: ${colors.accent2};
+      :hover {
+        background-color: transparent;
+        color: ${colors.accent2};
+      }
     `}
 
   ${(props) =>

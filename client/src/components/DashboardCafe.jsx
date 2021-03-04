@@ -10,6 +10,7 @@ import {
   StyledPlusIcon,
 } from "../styledComponents/StyledPlusLink";
 import {
+  StyledButtonContainer,
   StyledCafeDashboard,
   StyledQuickLinks,
 } from "../styledComponents/StyledCafeDashboard";
@@ -22,6 +23,7 @@ import DashboardCafeActiveTab from "./DashboardCafeActiveTab";
 import DashboardCafeExpiredTab from "./DashboardCafeExpiredTab";
 import DashboardCafePickupTab from "./DashboardCafePickupTab";
 import DashboardCafeArchiveTab from "./DashboardCafeArchiveTab";
+import { StyledButton } from "../styledComponents/StyledButton";
 
 export default function DashboardUser() {
   const { userName, cafeName, isLogged } = useContext(bakeyContext);
@@ -30,9 +32,7 @@ export default function DashboardUser() {
 
   const [showWarning, setShowWarning] = useState(false);
 
-  const [emptyListings, setEmptyListings] = useState(false);
-
-  const [display, setDisplay] = useState("active");
+  const [display, setDisplay] = useState("pickup");
 
   useEffect(() => {
     Axios({
@@ -43,8 +43,9 @@ export default function DashboardUser() {
         console.log(res.data);
         if (res.data.length) {
           setListings(res.data);
-        } else {
-          setEmptyListings(true);
+        }
+        if (!res.data) {
+          setShowWarning(true);
         }
       })
       .catch((err) => {
@@ -52,6 +53,11 @@ export default function DashboardUser() {
         setShowWarning(true);
       });
   }, []);
+
+  const changeDisplay = (page) => {
+    setDisplay(page);
+  };
+
   return (
     <StyledCafeDashboard>
       <header>
@@ -86,33 +92,72 @@ export default function DashboardUser() {
           </StyledPlusLink>
         </StyledQuickLinks>
 
-        <StyledHr cafe />
+        <StyledHr cafe dashboard />
+
+        <StyledButtonContainer>
+          <StyledButton
+            cafe
+            headerBtn={display === "active" ? true : false}
+            onClick={() => {
+              changeDisplay("active");
+            }}
+          >
+            Active Offers
+          </StyledButton>
+          <StyledButton
+            cafe
+            headerBtn={display === "expired" ? true : false}
+            onClick={() => {
+              changeDisplay("expired");
+            }}
+          >
+            Expired Offers
+          </StyledButton>
+          <StyledButton
+            cafe
+            headerBtn={display === "pickup" ? true : false}
+            onClick={() => {
+              changeDisplay("pickup");
+            }}
+          >
+            PickUps
+          </StyledButton>
+          <StyledButton
+            cafe
+            headerBtn={display === "archive" ? true : false}
+            onClick={() => {
+              changeDisplay("archive");
+            }}
+          >
+            Archive
+          </StyledButton>
+        </StyledButtonContainer>
 
         {showWarning ? <Warning msg="the service is out of order" /> : null}
 
-        <section>
-          <h3>Your current offers:</h3>
-          <h4>Active:</h4>
+        {display === "active" ? (
           <DashboardCafeActiveTab activeListings={listings} />
-          <h4>Expired:</h4>
+        ) : null}
+
+        {display === "expired" ? (
           <DashboardCafeExpiredTab expiredListings={listings} />
-        </section>
-        <section>
-          <h3>Your pick-ups:</h3>
+        ) : null}
+
+        {display === "pickup" ? (
           <DashboardCafePickupTab
             soldListings={listings.filter(
               (item) => item.listingStatus === "sold"
             )}
           />
-        </section>
-        <section>
-          <h3>Archive</h3>
+        ) : null}
+
+        {display === "archive" ? (
           <DashboardCafeArchiveTab
             inactiveListings={listings.filter(
               (item) => item.listingStatus === "inactive"
             )}
           />
-        </section>
+        ) : null}
       </main>
     </StyledCafeDashboard>
   );
