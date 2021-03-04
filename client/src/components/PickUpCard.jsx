@@ -67,6 +67,7 @@ export default function PickUpCard(props) {
             : null}
         </tbody>
       </table>
+      <StyledButton buy>Send Emails</StyledButton>
       <StyledButton buy>Delivered</StyledButton>
     </StyledPickUpCard>
   );

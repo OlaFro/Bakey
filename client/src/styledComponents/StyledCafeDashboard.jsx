@@ -3,6 +3,7 @@ import device from "./device";
 
 const StyledCafeDashboard = styled.div`
   margin: var(--space-m);
+  text-align: center;
   @media ${device.tabletPortrait} {
     margin: var(--space-l);
   }
