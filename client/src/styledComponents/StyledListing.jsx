@@ -7,7 +7,7 @@ import {
   KeyboardArrowUp,
 } from "styled-icons/material-sharp";
 
-export const StyledListingContainer = styled.div`
+export const StyledListingContainer = styled.article`
   width: 100%;
   max-width: 400px;
   display: grid;
@@ -25,7 +25,7 @@ export const StyledListingContainer = styled.div`
   ${(props) =>
     props.cafeDashboard &&
     css`
-      margin: 0 0 var(--space-l);
+      margin: 0 auto var(--space-l);
     `}
 `;
 

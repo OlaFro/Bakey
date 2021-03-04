@@ -15,7 +15,7 @@ const StyledHr = styled.hr`
     props.dashboard &&
     css`
       width: 90%;
-      max-width: 1300px;
+      max-width: 950px;
       margin: var(--space-m) auto;
     `}
 `;

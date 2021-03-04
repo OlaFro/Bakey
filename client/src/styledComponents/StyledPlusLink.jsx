@@ -20,7 +20,7 @@ export const StyledPlusLink = styled.div`
   a {
     width: 250px;
     text-decoration: none;
-    color: black;
+    color: ${colors.black};
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -28,6 +28,7 @@ export const StyledPlusLink = styled.div`
 
     @media ${device.tabletPortrait} {
       justify-content: center;
+    }
   }
 `;
 
@@ -60,6 +61,14 @@ export const StyledIcon = styled.figure`
 
       img {
         width: 80%;
+      }
+    `}
+
+  ${(props) =>
+    props.settings &&
+    css`
+      svg {
+        width: 90%;
       }
     `}
 `;
