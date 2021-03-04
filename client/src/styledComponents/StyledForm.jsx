@@ -430,6 +430,14 @@ export const StyledArrow = styled(ArrowDown)`
   right: 12px;
   top: 19.2px;
   pointer-events: none;
+
+  ${(props) =>
+    props.landingPage &&
+    css`
+      width: 19.2px;
+      height: 19.2px;
+      top: 30px;
+    `}
 `;
 
 export const StyledPhoto = styled(ImageAdd)`

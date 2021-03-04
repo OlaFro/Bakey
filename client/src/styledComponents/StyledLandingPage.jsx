@@ -17,7 +17,7 @@ export const StyledHeader = styled.header`
   background-attachment: fixed;
   background-origin: content-box;
   background-clip: content-box;
-  background-position: center 50%;
+  background-position: center 51%;
   background-size: 1200px;
 
   display: flex;
@@ -25,7 +25,7 @@ export const StyledHeader = styled.header`
   align-items: center;
 
   h1 {
-    margin-top: var(--space-l);
+    margin: var(--space-l) 0;
     text-transform: uppercase;
     letter-spacing: var(--ls);
     color: white;
@@ -43,3 +43,5 @@ export const StyledCTA = styled.div`
     margin-left: 3rem;
   }
 `;
+
+export const StyledMain = styled.div``;
