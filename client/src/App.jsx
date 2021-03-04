@@ -24,7 +24,7 @@ import Order from "./components/Order";
 import Footer from "./components/Footer";
 
 function App() {
-  const [isLogged, setIsLogged] = useState({ state: false, role: "" });
+  const [isLogged, setIsLogged] = useState({ state: false, role: "", id: "" });
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const [cafeName, setCafeName] = useState("");
@@ -50,12 +50,12 @@ function App() {
         } else {
           setIsLogged({ state: false, role: "" });
         }
-        alert("This is just a demo project not offering real products!");
+        // alert("This is just a demo project not offering real products!");
       })
       .catch((err) => {
         console.log(err);
         setIsLogged({ state: false, role: "" });
-        alert("This is just a demo project not offering real products!");
+        // alert("This is just a demo project not offering real products!");
       });
   }, []);
 

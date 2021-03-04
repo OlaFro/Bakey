@@ -10,14 +10,11 @@ export default function Timer(props) {
 
   const countDown = () => {
     let finish;
-    console.log(props.pickUpDate);
     if (props.pickUpDate) {
       finish = new Date(props.pickUpDate.substr(0, 10));
     } else {
       finish = new Date();
     }
-
-    console.log(finish);
     finish.setHours(0, 0, 0, 0);
     // pickUpDate
     const now = new Date();

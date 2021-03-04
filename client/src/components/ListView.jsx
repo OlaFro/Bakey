@@ -18,6 +18,8 @@ import CafeCard from "./CafeCard";
 export default function ListView() {
   const [city, setCity] = useState("Leipzig");
   const { cafes, setCafes } = useContext(bakeyContext);
+  const [filteredCafes, setFilteredCafes] = useState([]);
+  const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
 
@@ -71,42 +73,60 @@ export default function ListView() {
         <div className="filtering">
           <p>Show only cafes that offer something:</p>
           <div className="tag-container">
-            <div>
-              <StyledTag no lactose title="lactose free">
-                L
-              </StyledTag>
-              <p>lactose-free</p>
-            </div>
-            <div>
-              <StyledTag no gluten title="gluten free">
-                G
-              </StyledTag>
-              <p>gluten-free</p>
-            </div>
-            <div>
-              <StyledTag no sugar title="sugar free">
-                S
-              </StyledTag>
-              <p>sugar-free</p>
-            </div>
-            <div>
-              <StyledTag wheat title="wheat free">
-                W
-              </StyledTag>
-              <p>wheat-free</p>
-            </div>
-            <div>
-              <StyledTag vegan title="vegan">
-                V
-              </StyledTag>
-              <p>vegan</p>
-            </div>
-            <div>
-              <StyledTag organic title="organic">
-                O
-              </StyledTag>
-              <p>organic</p>
-            </div>
+            <label>
+              <input type="checkbox" />
+              <div>
+                <StyledTag no lactose title="lactose free">
+                  L
+                </StyledTag>
+                <p>lactose-free</p>
+              </div>
+            </label>
+            <label>
+              <input type="checkbox" />
+              <div>
+                <StyledTag no gluten title="gluten free">
+                  G
+                </StyledTag>
+                <p>gluten-free</p>
+              </div>
+            </label>
+            <label>
+              <input type="checkbox" />
+              <div>
+                <StyledTag no sugar title="sugar free">
+                  S
+                </StyledTag>
+                <p>sugar-free</p>
+              </div>
+            </label>
+            <label>
+              <input type="checkbox" />
+              <div>
+                <StyledTag wheat title="wheat free">
+                  W
+                </StyledTag>
+                <p>wheat-free</p>
+              </div>
+            </label>
+            <label>
+              <input type="checkbox" />
+              <div>
+                <StyledTag vegan title="vegan">
+                  V
+                </StyledTag>
+                <p>vegan</p>
+              </div>
+            </label>
+            <label>
+              <input type="checkbox" />
+              <div>
+                <StyledTag organic title="organic">
+                  O
+                </StyledTag>
+                <p>organic</p>
+              </div>
+            </label>
           </div>
         </div>
       </StyledHeader>
