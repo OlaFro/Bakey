@@ -4,6 +4,7 @@ const StyledMap = styled.div`
 
 width: 50%;
 height: 500px;
-border: 1px red solid`
+margin: var(--space-s)
+`
 
 export default StyledMap;

@@ -7,7 +7,6 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
-/* import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react"; */
 import { bakeyContext } from "../Context";
 import StyledMap from "../styledComponents/StyledMap";
 import {
@@ -21,13 +20,16 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledTag } from "../styledComponents/StyledListing";
+import cafeMarker from "../assets/cafe.svg"
+/* import { useHistory } from "react-router-dom"; */
 //import mapStyles from "./mapStyles" we can download a style from snazzy maps, copy the json and save it somewhere as mapStyles.js
-require("dotenv").config();
 
-export default function Map() {
+export default function MapView() {
+  /*  let history = useHistory(); */
   const [mapFlag, setMapFlag] = useState(false);
   const { cafes, setCafes } = useContext(bakeyContext);
   const [city, setCity] = useState("Leipzig");
+  const [cityCoor, setCityCoor] = useState({})
   /* const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false); */
 
@@ -54,6 +56,17 @@ export default function Map() {
         /*  setDbError(true); */
       });
   };
+  const getCityCoordinates = (API_KEY) => {
+Axios({
+  method: "GET",
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+germany&key=${API_KEY}`,
+}).then((res)=>{
+  let cityCoordinates = res.data.results[0].geometry.location;
+  console.log(cityCoordinates)
+  setCityCoor(cityCoordinates);
+  
+}).catch((err)=> {console.log("no results from GM")})
+  }
   const getMapInfo = (API_KEY) => {
     cafes.map((cafe, i) => {
       let address = [
@@ -100,17 +113,13 @@ export default function Map() {
     });
   };
 
-  useEffect(
-    () => {
-      getCities(city);
-    },
-    [
-      //do not put city here or the requests will be called twice after selecting a new city
-    ]
-  );
+  useEffect(() => {
+    getCities(city);
+  }, []);
 
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
 
   //creting the hook for the BakeyMap:
@@ -120,31 +129,24 @@ export default function Map() {
     return (
       <GoogleMap
         defaultZoom={13}
-        defaultCenter={{ lat: 51.33688, lng: 12.36743 }}
+        defaultCenter={{ lat: cityCoor.lat, lng: cityCoor.lng }}
         //defaultOptions={{styles: mapStyles}}
       >
         {cafes.map((cafe) => {
-          if (cafe.profilePic) {
-            console.log(cafe.profilePic);
-            return <Marker
-                key={cafe._id}
-                position={{ lat: cafe.lat, lng: cafe.lng }}
-                onClick={() => setSelectedCafe(cafe)}
-                icon={{
-                  url: "uploads/images/930e456d-8ba8-490a-a13d-195a523431d1.png",
-                  anchor: new window.google.maps.Point(32,32),
-                  scaledSize: new window.google.maps.Size(64, 64),
-                }}
-              />
-            ;
-          } /* else {
-            return  <Marker
-                key={cafe._id}
-                position={{ lat: cafe.lat, lng: cafe.lng }}
-                onClick={() => setSelectedCafe(cafe)}
-              /> 
-            ;
-          } */
+          let icon = {
+            url: cafeMarker,
+            scaledSize: new window.google.maps.Size(30, 30),
+          };
+          console.log(cafe.profilePic);
+          return (
+            <Marker
+              key={cafe._id}
+              title={cafe.cafeName}
+              icon={icon}
+              position={{ lat: cafe.lat, lng: cafe.lng }}
+              onClick={() => setSelectedCafe(cafe)}
+            />
+          );
         })}
 
         {selectedCafe && (
