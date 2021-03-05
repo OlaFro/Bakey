@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import Axios from "axios";
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
+import {
+  GoogleMap,
+  withScriptjs,
+  withGoogleMap,
+  Marker,
+  InfoWindow,
+} from "react-google-maps";
+/* import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react"; */
 import { bakeyContext } from "../Context";
 import StyledMap from "../styledComponents/StyledMap";
 import {
@@ -14,6 +21,7 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledTag } from "../styledComponents/StyledListing";
+//import mapStyles from "./mapStyles" we can download a style from snazzy maps, copy the json and save it somewhere as mapStyles.js
 require("dotenv").config();
 
 export default function Map() {
@@ -36,7 +44,9 @@ export default function Map() {
           /*  setEmptyWarning(true); */
         } else {
           setCafes(res.data);
-          setMapFlag((prevValue)=>{return !prevValue})
+          setMapFlag((prevValue) => {
+            return !prevValue;
+          });
         }
       })
       .catch((err) => {
@@ -44,19 +54,6 @@ export default function Map() {
         /*  setDbError(true); */
       });
   };
-
-  /*  const testUpdateObject = () => {
-    cafes.map((cafe, index) => {
-      return setCafes(() => {
-       cafes[index] = {
-          ...cafe,
-          lat: "123",
-          lgn: "456",
-        };
-        return cafes;
-      });
-    });
-  }; */
   const getMapInfo = (API_KEY) => {
     cafes.map((cafe, i) => {
       let address = [
@@ -103,13 +100,67 @@ export default function Map() {
     });
   };
 
-  useEffect(() => {
-    getCities(city);
-  }, [city]);
+  useEffect(
+    () => {
+      getCities(city);
+    },
+    [
+      //do not put city here or the requests will be called twice after selecting a new city
+    ]
+  );
 
-useEffect(() => {
+  useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
+
+  //creting the hook for the BakeyMap:
+
+  function BakeyMap() {
+    const [selectedCafe, setSelectedCafe] = useState(null);
+    return (
+      <GoogleMap
+        defaultZoom={13}
+        defaultCenter={{ lat: 51.33688, lng: 12.36743 }}
+        //defaultOptions={{styles: mapStyles}}
+      >
+        {cafes.map((cafe) => {
+          if (cafe.profilePic) {
+            console.log(cafe.profilePic);
+            return <Marker
+                key={cafe._id}
+                position={{ lat: cafe.lat, lng: cafe.lng }}
+                onClick={() => setSelectedCafe(cafe)}
+                icon={{
+                  url: "uploads/images/930e456d-8ba8-490a-a13d-195a523431d1.png",
+                  anchor: new window.google.maps.Point(32,32),
+                  scaledSize: new window.google.maps.Size(64, 64),
+                }}
+              />
+            ;
+          } /* else {
+            return  <Marker
+                key={cafe._id}
+                position={{ lat: cafe.lat, lng: cafe.lng }}
+                onClick={() => setSelectedCafe(cafe)}
+              /> 
+            ;
+          } */
+        })}
+
+        {selectedCafe && (
+          <InfoWindow
+            position={{ lat: selectedCafe.lat, lng: selectedCafe.lng }}
+            onCloseClick={() => {
+              setSelectedCafe(null);
+            }}
+          >
+            <div>details of {selectedCafe.cafeName}</div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
+    );
+  }
+  const WrappedMap = withScriptjs(withGoogleMap(BakeyMap));
 
   return (
     <StyledListView>
@@ -174,6 +225,14 @@ useEffect(() => {
           </div>
         </div>
       </StyledHeader>
+      <StyledMap>
+        <WrappedMap
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `500px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </StyledMap>
     </StyledListView>
   );
 }

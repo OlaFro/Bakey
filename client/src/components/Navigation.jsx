@@ -59,11 +59,7 @@ export default function Navigation(props) {
         {isLogged.state ? (
           <Link to={`/${isLogged.role}-dashboard`}>Dashboard</Link>
         ) : null}
-        {isLogged.state ? (
-          isLogged.role === "cafe" ? (
-            <Link to={`/settings`}>Settings</Link>
-          ) : null
-        ) : (
+        {isLogged.state ? null : (
           <StyledNavBtn login>
             <Link to="/login">log in</Link>
           </StyledNavBtn>

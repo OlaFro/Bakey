@@ -50,12 +50,10 @@ const ListingSchema = new mongoose.Schema({
     required: true,
   },
   //it is not creating a new collection otherw. the id cant repeat
-  buyers: [
-    {
-      _id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-      pcs: { type: Number },
-    },
-  ],
+  buyers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  boughtPieces: {
+    type: Object,
+  },
 });
 
 module.exports = mongoose.model("Listing", ListingSchema);

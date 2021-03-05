@@ -110,7 +110,7 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
         }
         ListingModel.findByIdAndUpdate(listing, {
           $set: modification,
-          $push: { buyers: { _id: buyer, pcs: pcs } },
+          $push: { buyers: buyer, boughtPieces: pcs },
         })
           .then((result) => {
             res.send({ boughtPieces: pcs });
@@ -119,6 +119,21 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
             res.send(err);
           });
       }
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+router.get("/cafe", authenticateToken, (req, res, next) => {
+  const user = req.user;
+  ListingModel.find({ cafeId: user.id })
+    .populate({
+      path: "buyers",
+      select: "email",
+    })
+    .then((listings) => {
+      res.send(listings);
     })
     .catch((err) => {
       res.send(err);

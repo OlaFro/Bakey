@@ -7,7 +7,7 @@ import {
   KeyboardArrowUp,
 } from "styled-icons/material-sharp";
 
-export const StyledListingContainer = styled.div`
+export const StyledListingContainer = styled.article`
   width: 100%;
   max-width: 400px;
   display: grid;
@@ -21,6 +21,12 @@ export const StyledListingContainer = styled.div`
     height: 400px;
     grid-template-columns: 50% 50%;
   }
+
+  ${(props) =>
+    props.cafeDashboard &&
+    css`
+      margin: 0 auto var(--space-l);
+    `}
 `;
 
 export const StyledPhotoContainer = styled.div`
@@ -45,7 +51,7 @@ export const StyledDescContainer = styled.div`
   justify-content: space-between;
   padding: var(--space-xs) var(--space-xs);
   min-height: 500px;
-
+  padding-bottom: var(--space-s);
   @media ${device.tabletLandscape} {
     min-height: 400px;
   }

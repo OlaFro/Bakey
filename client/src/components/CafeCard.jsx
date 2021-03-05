@@ -42,7 +42,7 @@ export default function ListViewCafe(props) {
         </div>
       </header>
       <main>
-        <h3>Running campaignes:</h3>
+        <h3>Running campaigns:</h3>
         {cafe.cafeListings.map((listing, index) => {
           return (
             <StyledListing key={`listing-${index}`}>

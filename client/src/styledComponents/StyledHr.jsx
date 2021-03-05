@@ -10,6 +10,14 @@ const StyledHr = styled.hr`
     css`
       border-top: var(--border) solid ${colors.accent2};
     `}
+
+  ${(props) =>
+    props.dashboard &&
+    css`
+      width: 90%;
+      max-width: 950px;
+      margin: var(--space-m) auto;
+    `}
 `;
 
 export default StyledHr;

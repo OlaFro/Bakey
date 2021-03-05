@@ -77,6 +77,10 @@ export const StyledButton = styled.button`
     css`
       background-color: transparent;
       color: ${colors.accent2};
+      :hover {
+        background-color: transparent;
+        color: ${colors.accent2};
+      }
     `}
 
   ${(props) =>
@@ -87,7 +91,7 @@ export const StyledButton = styled.button`
       border-radius: calc(var(--border-radius) * 2);
       background-color: ${colors.accent1};
       font-size: 0.8rem;
-      margin: 0 0 var(--space-s) 0;
+      margin: 0;
       :hover {
         cursor: pointer;
         background-color: ${darken(0.1, colors.accent1)};

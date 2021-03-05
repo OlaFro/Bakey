@@ -26,7 +26,8 @@ export const StyledHeader = styled.div`
       display: flex;
       flex-wrap: wrap;
 
-      > div {
+      div,
+      label {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -34,6 +35,10 @@ export const StyledHeader = styled.div`
         > p {
           margin: var(--space-xs) 0;
           font-size: 0.9rem;
+        }
+
+        input {
+          margin-right: var(--space-xs);
         }
       }
     }

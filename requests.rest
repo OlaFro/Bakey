@@ -98,3 +98,6 @@ Content-Type: application/json
     "listingId": "60339e23ebc07c6a9dec75ca"
 }
 
+###
+
+GET http://localhost:5000/listings/cafe
