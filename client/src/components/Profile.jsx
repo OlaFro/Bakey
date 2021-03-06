@@ -17,6 +17,7 @@ import {
 import Axios from "axios";
 import Listing from "./Listing";
 import Warning from "./Warning";
+import MapCardView from "./MapCardView"
 
 export default function Profile() {
   const params = useParams();
@@ -153,7 +154,7 @@ export default function Profile() {
             <span> {cafeInfo.email}</span>
           </div>
 
-          {/* place for the map in the future */}
+          <MapCardView cafeInfo={cafeInfo}/>
         </StyledAddress>
 
         <StyledHr cafe />
