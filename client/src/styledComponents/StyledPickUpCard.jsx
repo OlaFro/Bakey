@@ -25,6 +25,41 @@ export const StyledPickUpCard = styled.article`
     width: 80%;
     border-collapse: separate;
     border-spacing: 10px;
+    margin-bottom: var(--space-m);
+
+    @media screen and (max-width: 499px) {
+      tr {
+        display: grid;
+        place-items: center start;
+        grid-template-areas: "time qty icon" "mail mail mail";
+        margin-bottom: var(--space-m);
+      }
+
+      th:first-of-type,
+      td:first-of-type {
+        grid-area: time;
+      }
+
+      th:nth-of-type(2),
+      td:nth-of-type(2) {
+        grid-area: mail;
+        margin-top: var(--space-xs);
+      }
+
+      th:nth-of-type(3),
+      td:nth-of-type(3) {
+        grid-area: qty;
+      }
+
+      th:last-of-type,
+      td:last-of-type {
+        grid-area: icon;
+      }
+
+      td:nth-of-type(3) {
+        padding-left: var(--space-s);
+      }
+    }
 
     tr,
     td,
