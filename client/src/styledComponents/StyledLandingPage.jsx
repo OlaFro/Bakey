@@ -6,7 +6,7 @@ import { lighten, darken } from "polished";
 import hero from "../assets/hero.jpg";
 
 export const StyledHeader = styled.header`
-  width: 1200px;
+  width: 100%;
   margin: auto;
   height: 800px;
 
@@ -14,9 +14,10 @@ export const StyledHeader = styled.header`
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-origin: content-box;
+  /* background-position: center; */
   background-clip: content-box;
-  background-position: center 40%;
-  background-size: 1200px;
+
+  background-size: 100%;
 
   display: flex;
   justify-content: center;
@@ -24,8 +25,12 @@ export const StyledHeader = styled.header`
 
   position: relative;
 
+  @media (min-width: 1190px) {
+    background-position: center 40%;
+  }
+
   h1 {
-    margin: var(--space-s) 0;
+    margin: var(--space-s) 0 var(--space-s) 0;
     text-transform: uppercase;
     letter-spacing: var(--ls);
     color: white;
@@ -34,15 +39,10 @@ export const StyledHeader = styled.header`
     text-align: center;
   }
   .headingContainer {
-    margin-top: 10rem;
+    margin-top: 14rem;
   }
 `;
 
-export const StyledLogo = styled.span`
-  font-family: "Montserrat Alternates", sans-serif;
-  color: ${colors.accent2};
-  margin: auto;
-`;
 export const StyledCTA = styled.div`
   display: flex;
   align-items: center;
@@ -53,15 +53,11 @@ export const StyledCTA = styled.div`
 `;
 
 export const StyledDesc = styled.div`
-  width: 55%;
   background: white;
   padding: var(--space-s) var(--space-m);
-  position: absolute;
-  bottom: -8%;
-  left: 50%;
-  transform: translate(-50%, 0);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
+  margin-top: 9rem;
 
   h2 {
     line-height: 29px;

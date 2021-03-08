@@ -306,7 +306,7 @@ export const StyledSelect = styled.select`
     css`
       border: var(--border) solid transparent;
       height: 4.2rem;
-      padding: var(--space-xs) var(--space-s) 0 15px;
+      padding: var(--space-xs) var(--space-s) 0 12px;
       font-size: 1.2rem;
       background: rgba(255, 255, 255, 0.829);
       color: #2e2e2e;

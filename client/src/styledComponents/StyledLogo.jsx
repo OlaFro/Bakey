@@ -20,6 +20,7 @@ export const StyledLogo = styled.div`
   height: 120px;
   border-radius: 100%;
   background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   > img {
     width: 90px;
     position: absolute;

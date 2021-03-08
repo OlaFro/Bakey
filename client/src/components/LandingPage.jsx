@@ -50,7 +50,7 @@ export default function LandingPage() {
             <StyledButton>go</StyledButton>
           </StyledCTA>
           <StyledDesc>
-            <h2>Support your local cafe and order small portions.</h2>
+            <h2>Support your local café and order small portions.</h2>
             <h2> We will find other customers to fulfill the order.</h2>
           </StyledDesc>
         </div>
