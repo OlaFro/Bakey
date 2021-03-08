@@ -56,7 +56,7 @@ export default function LandingPage() {
         </div>
       </StyledHeader>
 
-      <StyledMain>
+      {/* <StyledMain>
         <StyledTitle>
           <h2>Easy as a piece of cake!</h2>
         </StyledTitle>
@@ -99,11 +99,11 @@ export default function LandingPage() {
             <Listing />
           </div>
         </StyledEndSoon>
-      </StyledMain>
-      <StyledForCafe>
+      </StyledMain> */}
+      {/* <StyledForCafe>
         <h2>Do you want to offer your products on Bakey? </h2>
         <StyledButton cafe>register</StyledButton>
-      </StyledForCafe>
+      </StyledForCafe> */}
     </StyledCentered>
   );
 }

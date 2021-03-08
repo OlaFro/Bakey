@@ -130,7 +130,7 @@ function App() {
               <Redirect to="/" />{" "}
             </Route>
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </bakeyContext.Provider>

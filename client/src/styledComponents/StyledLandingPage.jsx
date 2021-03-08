@@ -12,9 +12,9 @@ export const StyledHeader = styled.header`
 
   background-image: url(${hero});
   background-repeat: no-repeat;
-  background-attachment: fixed;
+
   background-origin: content-box;
-  /* background-position: center; */
+
   background-clip: content-box;
 
   background-size: 100%;
@@ -25,12 +25,16 @@ export const StyledHeader = styled.header`
 
   position: relative;
 
+  @media ${device.tabletPortrait} {
+    background-attachment: fixed;
+  }
+
   @media (min-width: 1190px) {
     background-position: center 40%;
   }
 
   h1 {
-    margin: var(--space-s) 0 var(--space-s) 0;
+    margin: var(--space-s);
     text-transform: uppercase;
     letter-spacing: var(--ls);
     color: white;
@@ -39,16 +43,24 @@ export const StyledHeader = styled.header`
     text-align: center;
   }
   .headingContainer {
-    margin-top: 14rem;
+    margin-top: 2rem;
+    @media ${device.tabletPortrait} {
+      margin-top: 14rem;
+    }
   }
 `;
 
 export const StyledCTA = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  > button {
-    margin-left: 3rem;
+  align-items: center;
+  @media ${device.tabletPortrait} {
+    flex-direction: row;
+
+    > button {
+      margin-left: 3rem;
+    }
   }
 `;
 
@@ -57,7 +69,11 @@ export const StyledDesc = styled.div`
   padding: var(--space-s) var(--space-m);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
-  margin-top: 9rem;
+  margin-top: 3rem;
+
+  @media ${device.mobile} {
+    margin-top: 9rem;
+  }
 
   h2 {
     line-height: 29px;
