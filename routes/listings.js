@@ -191,55 +191,59 @@ router.post(
   }
 );
 
-/* 
-router.put("/update", (req, res, next) => {
-  const ListingId = req.body.id;
-  const updatedListing = req.body;
-  ListingModel.findByIdAndUpdate(ListingId, {
-    listingName: updatedListing.listingName,
-    listingTags: updatedListing.listingTags,
-    listingAllergenes: updatedListing.listingAllergenes,
-    totalPieces: updatedListing.totalPieces,
-    availablePieces: updatedListing.availablePieces,
-    piecePrice: updatedListing.piecePrice,
-  })
-    .then((update) => {
-      console.log(update);
-      res.send({ updated: true });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
+router.post(
+  "/reactivate",
+  authenticateToken,
+  listingAction.inactivate,
+  (req, res, next) => {
+    const user = req.user;
+    const today = req.date;
+    const listingID = req.body.listingID;
+    const totalPieces = req.body.totalPieces;
+    const newDate = req.body.date;
 
-
-router.put("/updatepic", (req, res, next) => {
-  const ListingId = req.body.id;
-  ListingModel.findByIdAndUpdate(
-    ListingId,
-    {
-      listingPicture: req.file.path,
-    },
-    { useFindAndModify: false }
-  )
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
-
-router.delete("/delete", (req, res, next) => {
-  const ListingId = req.body.id;
-  ListingModel.deleteOne(ListingId)
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((err)=>{
-      console.log(err)
-  });
-});
- */
+    UserModel.findById(user.id)
+      .then((cafe) => {
+        if (cafe.userType === "cafe") {
+          ListingModel.findOneAndUpdate(
+            {
+              _id: listingID,
+              totalPieces: totalPieces,
+              $or: [
+                { listingStatus: "inactive" },
+                { pickUpDate: { $lte: today } },
+              ],
+            },
+            {
+              listingStatus: "active",
+              buyers: [],
+              boughtPieces: [],
+              availablePieces: totalPieces,
+              pickUpDate: newDate,
+            },
+            { new: true }
+          )
+            .then((listing) => {
+              if (listing) {
+                res.send({
+                  status: "changed",
+                  listing: listing,
+                });
+              } else {
+                res.send({ status: "not changed" });
+              }
+            })
+            .catch((err) => {
+              res.send(err);
+            });
+        } else {
+          res.send({ status: "no authorization" });
+        }
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
+);
 
 module.exports = router;
