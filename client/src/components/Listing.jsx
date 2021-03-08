@@ -21,6 +21,11 @@ import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
 import Tag from "./Tag";
 import { useParams, useHistory } from "react-router-dom";
+import {
+  StyledInputContainer,
+  StyledInputField,
+  StyledLabel,
+} from "../styledComponents/StyledForm";
 
 export default function Listing(props) {
   const { isLogged } = useContext(bakeyContext);
@@ -29,6 +34,12 @@ export default function Listing(props) {
   const params = useParams();
 
   const [open, setOpen] = useState(false);
+
+  const [date, setDate] = useState(false);
+
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const [msg, setMsg] = useState("");
 
   const cafeId = params.id ? params.id.split(":")[1] : "";
 
@@ -153,6 +164,60 @@ export default function Listing(props) {
       });
   };
 
+  const wantReactivate = () => {
+    setShowDatePicker((prevValue) => !prevValue);
+  };
+
+  const getValue = (e) => {
+    props.setShowWarning(false);
+    setDate(e.target.value);
+  };
+
+  const reactivateListing = () => {
+    props.setWarningContent("the service is out of order.");
+    props.setShowWarning(false);
+    Axios({
+      method: "POST",
+      url: `listings/reactivate`,
+      data: {
+        listingID: props.id,
+        totalPieces: props.totalPieces,
+        pickUpDate: date,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+
+        if (res.data.msg) {
+          setMsg(true);
+        } else if (res.data.status === "changed") {
+          props.setListings((prevListings) =>
+            prevListings.map((listing, index, array) => {
+              if (listing._id === res.data.listing._id) {
+                return (array[index] = res.data.listing);
+              } else {
+                return listing;
+              }
+            })
+          );
+        } else if (res.data.status === "no authorization") {
+          props.setWarningContent(
+            "that you are not authorized to change the status of the offer."
+          );
+          props.setShowWarning(true);
+        } else {
+          props.setWarningContent(
+            "that the state of this offer can not be changed, please contact our helpdesk."
+          );
+          props.setShowWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        props.setShowWarning(true);
+      });
+  };
+
   return (
     <StyledListingContainer
       id={params.id ? props.listingIdentifier : null}
@@ -244,8 +309,6 @@ export default function Listing(props) {
               }}
             >
               Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
-              {/* working, but not updated version: */}
-              {/* {props.piecePrice ? parseInt(props.piecePrice).toFixed(2) : "0.00"}€ */}
             </StyledButton>
             <StyledButton
               buy
@@ -260,14 +323,46 @@ export default function Listing(props) {
           </StyledBtnContainer>
         )}
         {props.expired ? (
-          <StyledBtnContainer>
-            <StyledButton buy>Reactivate</StyledButton>
-            {props.archive ? null : (
-              <StyledButton buy onClick={archiveListing}>
-                Archive
+          showDatePicker ? (
+            <section>
+              <StyledInputContainer listing>
+                <StyledInputField
+                  type="datetime-local"
+                  name="pickUpDate"
+                  id="pickUpDate"
+                  placeholder=" "
+                  onInput={getValue}
+                  required={true}
+                />
+                <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
+                <div>
+                  {msg ? (
+                    <small>Pick up time has to be in the future</small>
+                  ) : null}
+                </div>
+              </StyledInputContainer>
+              <StyledBtnContainer>
+                <StyledButton buy onClick={reactivateListing}>
+                  Save
+                </StyledButton>
+
+                <StyledButton buy onClick={wantReactivate}>
+                  Cancel
+                </StyledButton>
+              </StyledBtnContainer>
+            </section>
+          ) : (
+            <StyledBtnContainer>
+              <StyledButton buy onClick={wantReactivate}>
+                Reactivate
               </StyledButton>
-            )}
-          </StyledBtnContainer>
+              {props.archive ? null : (
+                <StyledButton buy onClick={archiveListing}>
+                  Archive
+                </StyledButton>
+              )}
+            </StyledBtnContainer>
+          )
         ) : null}
       </StyledDescContainer>
     </StyledListingContainer>

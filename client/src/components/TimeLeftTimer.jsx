@@ -52,7 +52,9 @@ export default function Timer(props) {
     <div>
       {props.pickUpDate
         ? timeLeft.days
-          ? `${timeLeft.days}d ${timeLeft.hours}h`
+          ? timeLeft.minutes < 0
+            ? "expired"
+            : `${timeLeft.days}d ${timeLeft.hours}h`
           : `${timeLeft.hours}h ${timeLeft.minutes}min`
         : "Days and Hours"}
     </div>

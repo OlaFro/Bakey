@@ -118,6 +118,19 @@ validateData.newListing = (req, res, next) => {
   }
 };
 
+validateData.reactivateListing = (req, res, next) => {
+  console.log(req.body);
+  req.check("pickUpDate", "pickUpDate").isAfter();
+
+  let errors = req.validationErrors();
+
+  if (!errors) {
+    next();
+  } else {
+    res.send({ msg: errors });
+  }
+};
+
 const customRules = {};
 
 customRules.germanLetters = (value) => {
