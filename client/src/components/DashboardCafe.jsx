@@ -138,7 +138,10 @@ export default function DashboardUser() {
         ) : null}
 
         {display === "expired" ? (
-          <DashboardCafeExpiredTab expiredListings={listings} />
+          <DashboardCafeExpiredTab
+            expiredListings={listings}
+            setListings={setListings}
+          />
         ) : null}
 
         {display === "pickup" ? (

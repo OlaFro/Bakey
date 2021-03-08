@@ -140,6 +140,32 @@ router.get("/cafe", authenticateToken, (req, res, next) => {
     });
 });
 
+router.post("/archive", authenticateToken, (req, res, next) => {
+  const user = req.user;
+  const listingID = req.body.listingID;
+  UserModel.findById(user.id)
+    .then((cafe) => {
+      if (cafe.userType === "cafe") {
+        ListingModel.findByIdAndUpdate(
+          listingID,
+          { listingStatus: "inactive" },
+          { new: true }
+        )
+          .then((listing) => {
+            res.send(listing);
+          })
+          .catch((err) => {
+            res.send(err);
+          });
+      } else {
+        res.send("no authorization");
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 /* 
 router.put("/update", (req, res, next) => {
   const ListingId = req.body.id;

@@ -25,7 +25,6 @@ export default function PickUpCard(props) {
       addedTime;
     const hours = Math.floor(time / 60);
     const minutes = time - hours * 60;
-    console.log(time, hours, minutes);
     return hours + ":" + minutes;
   };
 

@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { bakeyContext } from "../Context";
+import Axios from "axios";
 import {
   StyledListingContainer,
   StyledPhotoContainer,
@@ -19,7 +20,7 @@ import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
 import Tag from "./Tag";
-import { useParams, useHistory, useLocation } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Listing(props) {
   const { isLogged } = useContext(bakeyContext);
@@ -124,6 +125,34 @@ export default function Listing(props) {
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(orderInfo));
     isLogged.state ? history.push("/order") : history.push("/login");
+  };
+
+  const archiveListing = () => {
+    Axios({
+      method: "POST",
+      url: `listings/archive`,
+      data: { listingID: props.id },
+    })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data._id) {
+          props.setListings((prevListings) =>
+            prevListings.map((listing, index, array) => {
+              if (listing._id === res.data._id) {
+                return (array[index] = res.data);
+              } else {
+                return listing;
+              }
+            })
+          );
+        } else {
+          props.setShowWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        props.setShowWarning(true);
+      });
   };
 
   return (
@@ -235,7 +264,11 @@ export default function Listing(props) {
         {props.expired ? (
           <StyledBtnContainer>
             <StyledButton buy>Reactivate</StyledButton>
-            {props.archive ? null : <StyledButton buy>Archive</StyledButton>}
+            {props.archive ? null : (
+              <StyledButton buy onClick={archiveListing}>
+                Archive
+              </StyledButton>
+            )}
           </StyledBtnContainer>
         ) : null}
       </StyledDescContainer>
