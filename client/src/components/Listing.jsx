@@ -30,20 +30,11 @@ export default function Listing(props) {
 
   const [open, setOpen] = useState(false);
 
-  //session storage
-
   const cafeId = params.id ? params.id.split(":")[1] : "";
 
   const availablePieces = props.availablePieces;
   const maxValue = props.totalPieces;
   const soldPieces = maxValue - props.availablePieces || 0;
-
-  // const listingIdentifier = props.title
-  //   .split(" ")
-  //   .map((word) => {
-  //     return word.substr(0, 1).toLowerCase() + word.substr(1);
-  //   })
-  //   .join("-");
 
   const handleOpen = () => {
     setOpen(true);
@@ -72,9 +63,6 @@ export default function Listing(props) {
     console.log(props.pickUpDate);
     if (props.pickUpDate) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
-      // 02-22 10:48
-
-      // 22-02 10:48
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
         " " +
@@ -102,7 +90,6 @@ export default function Listing(props) {
         : "0.00"
     }€`;
   };
-  console.log(soldPieces);
 
   const storeOrderInfo = (pcs) => {
     var pieces;
@@ -128,24 +115,35 @@ export default function Listing(props) {
   };
 
   const archiveListing = () => {
+    console.log("request sent");
+    props.setWarningContent("the service is out of order.");
+    props.setShowWarning(false);
     Axios({
       method: "POST",
       url: `listings/archive`,
-      data: { listingID: props.id },
+      data: { listingID: props.id, totalPieces: props.totalPieces },
     })
       .then((res) => {
-        console.log(res.data);
-        if (res.data._id) {
+        console.log(res);
+        if (res.data.status === "changed") {
           props.setListings((prevListings) =>
             prevListings.map((listing, index, array) => {
-              if (listing._id === res.data._id) {
-                return (array[index] = res.data);
+              if (listing._id === res.data.listing._id) {
+                return (array[index] = res.data.listing);
               } else {
                 return listing;
               }
             })
           );
+        } else if (res.data.status === "no authorization") {
+          props.setWarningContent(
+            "that you are not authorized to change the status of the offer."
+          );
+          props.setShowWarning(true);
         } else {
+          props.setWarningContent(
+            "that the state of this offer can not be changed, please contact our helpdesk."
+          );
           props.setShowWarning(true);
         }
       })

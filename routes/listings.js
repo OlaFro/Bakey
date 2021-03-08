@@ -5,6 +5,7 @@ const UserModel = require("../models/UserModel");
 const uploadFile = require("../controllers/multerController");
 const { authenticateToken } = require("../controllers/authControllers");
 const { sanitize, newListing } = require("../controllers/validControllers");
+const listingAction = require("../controllers/listingControllers");
 /* 
 
 */
@@ -140,31 +141,55 @@ router.get("/cafe", authenticateToken, (req, res, next) => {
     });
 });
 
-router.post("/archive", authenticateToken, (req, res, next) => {
-  const user = req.user;
-  const listingID = req.body.listingID;
-  UserModel.findById(user.id)
-    .then((cafe) => {
-      if (cafe.userType === "cafe") {
-        ListingModel.findByIdAndUpdate(
-          listingID,
-          { listingStatus: "inactive" },
-          { new: true }
-        )
-          .then((listing) => {
-            res.send(listing);
-          })
-          .catch((err) => {
-            res.send(err);
-          });
-      } else {
-        res.send("no authorization");
-      }
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
+router.post(
+  "/archive",
+  authenticateToken,
+  listingAction.inactivate,
+  (req, res, next) => {
+    const user = req.user;
+    const today = req.date;
+    const listingID = req.body.listingID;
+    const totalPieces = req.body.totalPieces;
+    console.log(today);
+    UserModel.findById(user.id)
+      .then((cafe) => {
+        if (cafe.userType === "cafe") {
+          ListingModel.findOneAndUpdate(
+            {
+              _id: listingID,
+              totalPieces: totalPieces,
+              $or: [{ listingStatus: "sold" }, { pickUpDate: { $lte: today } }],
+            },
+            {
+              listingStatus: "inactive",
+              buyers: [],
+              boughtPieces: [],
+              availablePieces: totalPieces,
+            },
+            { new: true }
+          )
+            .then((listing) => {
+              if (listing) {
+                res.send({
+                  status: "changed",
+                  listing: listing,
+                });
+              } else {
+                res.send({ status: "not changed" });
+              }
+            })
+            .catch((err) => {
+              res.send(err);
+            });
+        } else {
+          res.send({ status: "no authorization" });
+        }
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
+);
 
 /* 
 router.put("/update", (req, res, next) => {

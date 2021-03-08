@@ -10,6 +10,10 @@ export default function DashboardCafeExpiredTab(props) {
 
   const [showWarning, setShowWarning] = useState(false);
 
+  const [warningContent, setWarningContent] = useState(
+    "the service is out of order"
+  );
+
   return (
     <section className="offers-wrapper">
       {expiredListings.map((listing, index) => {
@@ -37,6 +41,7 @@ export default function DashboardCafeExpiredTab(props) {
               dashboard={true}
               expired={true}
               setShowWarning={setShowWarning}
+              setWarningContent={setWarningContent}
               setListings={setListings}
             />
           );
@@ -44,6 +49,7 @@ export default function DashboardCafeExpiredTab(props) {
           return null;
         }
       })}
+      {showWarning ? <Warning msg={warningContent} /> : null}
     </section>
   );
 }
