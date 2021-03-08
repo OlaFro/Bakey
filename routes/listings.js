@@ -3,7 +3,10 @@ var router = express.Router();
 const ListingModel = require("../models/ListingModel");
 const UserModel = require("../models/UserModel");
 const uploadFile = require("../controllers/multerController");
-const { authenticateToken } = require("../controllers/authControllers");
+const {
+  authenticateToken,
+  authorizeCafe,
+} = require("../controllers/authControllers");
 const {
   sanitize,
   newListing,
@@ -148,6 +151,7 @@ router.get("/cafe", authenticateToken, (req, res, next) => {
 router.post(
   "/archive",
   authenticateToken,
+  authorizeCafe,
   listingAction.inactivate,
   (req, res, next) => {
     const user = req.user;
@@ -155,38 +159,28 @@ router.post(
     const listingID = req.body.listingID;
     const totalPieces = req.body.totalPieces;
     console.log(today);
-    UserModel.findById(user.id)
-      .then((cafe) => {
-        if (cafe.userType === "cafe") {
-          ListingModel.findOneAndUpdate(
-            {
-              _id: listingID,
-              totalPieces: totalPieces,
-              $or: [{ listingStatus: "sold" }, { pickUpDate: { $lte: today } }],
-            },
-            {
-              listingStatus: "inactive",
-              buyers: [],
-              boughtPieces: [],
-              availablePieces: totalPieces,
-            },
-            { new: true }
-          )
-            .then((listing) => {
-              if (listing) {
-                res.send({
-                  status: "changed",
-                  listing: listing,
-                });
-              } else {
-                res.send({ status: "not changed" });
-              }
-            })
-            .catch((err) => {
-              res.send(err);
-            });
+    ListingModel.findOneAndUpdate(
+      {
+        _id: listingID,
+        totalPieces: totalPieces,
+        $or: [{ listingStatus: "sold" }, { pickUpDate: { $lte: today } }],
+      },
+      {
+        listingStatus: "inactive",
+        buyers: [],
+        boughtPieces: [],
+        availablePieces: totalPieces,
+      },
+      { new: true }
+    )
+      .then((listing) => {
+        if (listing) {
+          res.send({
+            status: "changed",
+            listing: listing,
+          });
         } else {
-          res.send({ status: "no authorization" });
+          res.send({ status: "not changed" });
         }
       })
       .catch((err) => {
@@ -198,6 +192,7 @@ router.post(
 router.post(
   "/reactivate",
   authenticateToken,
+  authorizeCafe,
   listingAction.inactivate,
   sanitize,
   reactivateListing,
@@ -207,43 +202,29 @@ router.post(
     const listingID = req.body.listingID;
     const totalPieces = req.body.totalPieces;
     const newDate = req.body.pickUpDate;
-
-    UserModel.findById(user.id)
-      .then((cafe) => {
-        if (cafe.userType === "cafe") {
-          ListingModel.findOneAndUpdate(
-            {
-              _id: listingID,
-              totalPieces: totalPieces,
-              $or: [
-                { listingStatus: "inactive" },
-                { pickUpDate: { $lte: today } },
-              ],
-            },
-            {
-              listingStatus: "active",
-              buyers: [],
-              boughtPieces: [],
-              availablePieces: totalPieces,
-              pickUpDate: newDate,
-            },
-            { new: true }
-          )
-            .then((listing) => {
-              if (listing) {
-                res.send({
-                  status: "changed",
-                  listing: listing,
-                });
-              } else {
-                res.send({ status: "not changed" });
-              }
-            })
-            .catch((err) => {
-              res.send(err);
-            });
+    ListingModel.findOneAndUpdate(
+      {
+        _id: listingID,
+        totalPieces: totalPieces,
+        $or: [{ listingStatus: "inactive" }, { pickUpDate: { $lte: today } }],
+      },
+      {
+        listingStatus: "active",
+        buyers: [],
+        boughtPieces: [],
+        availablePieces: totalPieces,
+        pickUpDate: newDate,
+      },
+      { new: true }
+    )
+      .then((listing) => {
+        if (listing) {
+          res.send({
+            status: "changed",
+            listing: listing,
+          });
         } else {
-          res.send({ status: "no authorization" });
+          res.send({ status: "not changed" });
         }
       })
       .catch((err) => {
