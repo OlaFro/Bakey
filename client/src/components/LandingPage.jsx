@@ -20,15 +20,15 @@ import {
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledCentered from "../styledComponents/StyledCentered";
-import { StyledLogo } from "../styledComponents/StyledLogo";
+import Logo from "./Logo";
 
 export default function LandingPage() {
   const [city, setCity] = useState("Leipzig");
   return (
     <StyledCentered>
-      <StyledLogo />
       <StyledHeader>
         <div className="headingContainer">
+          <Logo />
           <h1>Let them order cake!</h1>
           <StyledCTA>
             <StyledInputContainer>

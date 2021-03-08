@@ -134,7 +134,7 @@ export const StyledEndSoon = styled.section`
   clip-path: polygon(0 16%, 100% 0, 100% 100%, 0 100%);
   padding: 30vh 0 20vh 0;
   background-color: rgb(252, 230, 152);
-  margin > div {
+  > div {
     display: flex;
     flex-direction: column;
     > * {
