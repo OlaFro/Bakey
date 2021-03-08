@@ -68,20 +68,34 @@ export const StyledDesc = styled.div`
 `;
 
 export const StyledTitle = styled.span`
-  margin: calc(4 * var(--space-l)) auto calc(2 * var(--space-l)) auto;
-  padding: var(--space-m) calc(1.5 * var(--space-l));
-  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  margin: calc(6 * var(--space-l)) auto calc(-3 * var(--space-l)) auto;
+  padding: var(--space-s);
+  /* border: 4px solid ${colors.accent2}; */
+  border-radius: 100%;
+  width: 15rem;
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  background-color: white;
 
   h2 {
     margin: 0;
     color: ${colors.accent2};
+    letter-spacing: 0;
+    text-transform: none;
   }
 `;
 export const StyledMain = styled.main`
   width: 100%;
+  z-index: 0;
 `;
 export const StyledCarrousel = styled.section`
   padding: 30vh 1rem;
   background-color: ${lighten(0.28, colors.gray)};
-  clip-path: polygon(0 7%, 100% 23%, 100% 83%, 0 89%);
+  clip-path: polygon(0 7%, 100% 20%, 100% 100%, 0 90%);
+  margin-bottom: 10vh;
 `;

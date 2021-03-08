@@ -312,7 +312,7 @@ export const StyledSelect = styled.select`
       color: #2e2e2e;
 
       :hover {
-        border: var(--border) solid ${colors.black};
+        border: var(--border) solid ${darken(0.2, colors.gray)};
       }
 
       :focus + label,
