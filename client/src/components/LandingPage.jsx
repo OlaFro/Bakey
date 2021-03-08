@@ -7,6 +7,7 @@ import {
   StyledMain,
   StyledDesc,
   StyledCarrousel,
+  StyledAbout,
 } from "../styledComponents/StyledLandingPage";
 import {
   StyledInputContainer,
@@ -50,12 +51,32 @@ export default function LandingPage() {
         </div>
       </StyledHeader>
 
-      <StyledTitle>
-        <h2>Easy as a piece of cake!</h2>
-      </StyledTitle>
-
       <StyledMain>
+        <StyledTitle>
+          <h2>Easy as a piece of cake!</h2>
+        </StyledTitle>
         <StyledCarrousel>here we will have a carousel</StyledCarrousel>
+
+        <StyledAbout>
+          <StyledTitle>
+            <h2>What is Bakey?</h2>
+          </StyledTitle>
+          <h3>
+            Here we will have a paragraph about our project. Donut candy chupa
+            chups pudding gummi bears gummies sweet tootsie roll muffin. Danish
+            danish brownie dessert gummi bears. Cotton candy topping cake
+            jelly-o carrot cake. Jelly-o cake toffee pudding gummies topping
+            muffin carrot cake. Danish ice cream chupa chups tart chocolate cake
+            powder sesame snaps chocolate. Biscuit tiramisu sweet sugar plum
+            bonbon cupcake donut. Marzipan tart candy lollipop jujubes chupa
+            chups pie chupa chups. Jelly dragée jelly powder gingerbread sesame
+            snaps pastry. Lemon drops bonbon gummi bears tootsie roll bonbon.
+            Fruitcake marshmallow chupa chups cupcake gingerbread candy donut
+            jelly beans dessert. Fruitcake candy halvah candy marzipan caramels
+            lollipop caramels. Liquorice lemon drops ice cream sweet.
+          </h3>
+          <p>At the end will be the link to the ABOUT US section</p>
+        </StyledAbout>
       </StyledMain>
     </StyledCentered>
   );

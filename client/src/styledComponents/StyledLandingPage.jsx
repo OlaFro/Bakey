@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import colors from "../styledComponents/colors";
 import device from "./device";
-import { lighten } from "polished";
+import { lighten, darken } from "polished";
 
 import hero from "../assets/hero.jpg";
 
@@ -68,9 +68,8 @@ export const StyledDesc = styled.div`
 `;
 
 export const StyledTitle = styled.span`
-  margin: calc(6 * var(--space-l)) auto calc(-3 * var(--space-l)) auto;
+  margin: auto;
   padding: var(--space-s);
-  /* border: 4px solid ${colors.accent2}; */
   border-radius: 100%;
   width: 15rem;
   height: 15rem;
@@ -79,7 +78,7 @@ export const StyledTitle = styled.span`
   justify-content: center;
   text-align: center;
   box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
-  z-index: 10;
+  /* z-index: 10; */
   background-color: white;
 
   h2 {
@@ -91,11 +90,29 @@ export const StyledTitle = styled.span`
 `;
 export const StyledMain = styled.main`
   width: 100%;
-  z-index: 0;
+  margin-top: calc(6 * var(--space-l));
 `;
 export const StyledCarrousel = styled.section`
   padding: 30vh 1rem;
   background-color: ${lighten(0.28, colors.gray)};
   clip-path: polygon(0 7%, 100% 20%, 100% 100%, 0 90%);
+  margin-top: calc(-1 * var(--space-l));
   margin-bottom: 10vh;
+  z-index: 1;
+`;
+
+export const StyledAbout = styled.section`
+  width: 60%;
+  padding: var(--space-l);
+  background-color: ${lighten(0.18, colors.accent2)};
+  margin: auto;
+  border-radius: var(--border-radius);
+  text-align: center;
+  h3 {
+    line-height: 29px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: 0;
+  }
 `;
