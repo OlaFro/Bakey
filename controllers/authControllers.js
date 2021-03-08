@@ -76,4 +76,19 @@ allowedAccess.verifyPassword = (req, res, next) => {
   }
 };
 
+allowedAccess.authorizeCafe = (req, res, next) => {
+  const user = req.user;
+  UserModel.findById(user.id)
+    .then((cafe) => {
+      if (cafe.userType === "cafe") {
+        next();
+      } else {
+        res.send({ status: "no authorization" });
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
 module.exports = allowedAccess;
