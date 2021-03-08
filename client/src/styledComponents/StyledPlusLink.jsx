@@ -67,8 +67,10 @@ export const StyledIcon = styled.figure`
   ${(props) =>
     props.settings &&
     css`
-      svg {
-        width: 90%;
+      @media ${device.tabletPortrait} {
+        svg {
+          width: 90%;
+        }
       }
     `}
 `;

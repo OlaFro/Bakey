@@ -146,6 +146,7 @@ export default function DashboardUser() {
             soldListings={listings.filter(
               (item) => item.listingStatus === "sold"
             )}
+            setListings={setListings}
           />
         ) : null}
 
