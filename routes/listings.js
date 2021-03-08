@@ -4,7 +4,11 @@ const ListingModel = require("../models/ListingModel");
 const UserModel = require("../models/UserModel");
 const uploadFile = require("../controllers/multerController");
 const { authenticateToken } = require("../controllers/authControllers");
-const { sanitize, newListing } = require("../controllers/validControllers");
+const {
+  sanitize,
+  newListing,
+  reactivateListing,
+} = require("../controllers/validControllers");
 const listingAction = require("../controllers/listingControllers");
 /* 
 
@@ -195,12 +199,14 @@ router.post(
   "/reactivate",
   authenticateToken,
   listingAction.inactivate,
+  sanitize,
+  reactivateListing,
   (req, res, next) => {
     const user = req.user;
     const today = req.date;
     const listingID = req.body.listingID;
     const totalPieces = req.body.totalPieces;
-    const newDate = req.body.date;
+    const newDate = req.body.pickUpDate;
 
     UserModel.findById(user.id)
       .then((cafe) => {

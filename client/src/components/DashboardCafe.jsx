@@ -159,6 +159,7 @@ export default function DashboardUser() {
             inactiveListings={listings.filter(
               (item) => item.listingStatus === "inactive"
             )}
+            setListings={setListings}
           />
         ) : null}
       </main>

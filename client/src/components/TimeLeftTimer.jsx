@@ -48,8 +48,6 @@ export default function Timer(props) {
     countDown();
   }, [props.pickUpDate]);
 
-  console.log(timeLeft.days < 0);
-
   return (
     <div>
       {props.pickUpDate

@@ -199,6 +199,12 @@ export const StyledInputContainer = styled.div`
         width: 100%;
       }
     `}
+
+    ${(props) =>
+    props.listing &&
+    css`
+      margin-top: var(--space-m);
+    `}
 `;
 
 export const StyledLabel = styled.label`
