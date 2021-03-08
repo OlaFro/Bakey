@@ -17,7 +17,7 @@ import {
 import Axios from "axios";
 import Listing from "./Listing";
 import Warning from "./Warning";
-import MapCardView from "./MapCardView"
+import MapCardView from "./MapCardView";
 
 export default function Profile() {
   const params = useParams();
@@ -33,6 +33,7 @@ export default function Profile() {
   console.log(urlHash);
 
   const [cafeInfo, setCafeInfo] = useState({});
+  const [cafeLocation, setCafeLocation] = useState({});
 
   const [showWarning, setShowWarning] = useState(false);
   const [offerWarning, setOfferWarning] = useState(false);
@@ -74,6 +75,36 @@ export default function Profile() {
         showWarning(true);
       });
   }, []);
+
+  useEffect(() => {
+    getCafeLocation(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [cafeInfo]);
+
+  const getCafeLocation = (API_KEY) => {
+    let address = [
+      cafeInfo.cafeStreet,
+      cafeInfo.cafeStreetNr,
+      cafeInfo.cafeZip,
+      cafeInfo.city,
+    ];
+    let parsedAddress = address.join("+");
+    console.log(parsedAddress);
+    Axios({
+      method: "GET",
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
+    })
+      .then((res) => {
+        let location = res.data.results[0].geometry.location;
+        console.log(location);
+        setCafeLocation({
+          lat: location.lat,
+          lng: location.lng,
+        });
+      })
+      .catch((err) => {
+        console.log(err, "it didnt connected");
+      });
+  };
 
   return (
     <StyledCentered>
@@ -153,10 +184,9 @@ export default function Profile() {
             <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
             <span> {cafeInfo.email}</span>
           </div>
-
-          <MapCardView cafeInfo={cafeInfo}/>
+         
         </StyledAddress>
-
+        <MapCardView cafeLocation={cafeLocation} />
         <StyledHr cafe />
       </StyledContentContainer>
       <StyledListingContainer ref={warningRef}>
