@@ -184,9 +184,8 @@ export default function Profile() {
             <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
             <span> {cafeInfo.email}</span>
           </div>
-         
+          <MapCardView cafeLocation={cafeLocation} />
         </StyledAddress>
-        <MapCardView cafeLocation={cafeLocation} />
         <StyledHr cafe />
       </StyledContentContainer>
       <StyledListingContainer ref={warningRef}>
