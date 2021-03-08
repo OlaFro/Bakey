@@ -50,13 +50,13 @@ export default function LandingPage() {
             <StyledButton>go</StyledButton>
           </StyledCTA>
           <StyledDesc>
-            <h2>Support your local café and order small portions.</h2>
-            <h2> We will find other customers to fulfill the order.</h2>
+            <h2>Support your local café and order a piece of cake.</h2>
+            <h2> We will find other customers to bake the whole one.</h2>
           </StyledDesc>
         </div>
       </StyledHeader>
 
-      {/* <StyledMain>
+      <StyledMain>
         <StyledTitle>
           <h2>Easy as a piece of cake!</h2>
         </StyledTitle>
@@ -99,11 +99,11 @@ export default function LandingPage() {
             <Listing />
           </div>
         </StyledEndSoon>
-      </StyledMain> */}
-      {/* <StyledForCafe>
-        <h2>Do you want to offer your products on Bakey? </h2>
+      </StyledMain>
+      <StyledForCafe>
+        <h3>Do you want to offer your products on Bakey? </h3>
         <StyledButton cafe>register</StyledButton>
-      </StyledForCafe> */}
+      </StyledForCafe>
     </StyledCentered>
   );
 }

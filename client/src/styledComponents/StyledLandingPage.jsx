@@ -12,25 +12,28 @@ export const StyledHeader = styled.header`
 
   background-image: url(${hero});
   background-repeat: no-repeat;
-
   background-origin: content-box;
-
   background-clip: content-box;
-
   background-size: 100%;
 
   display: flex;
   justify-content: center;
   align-items: flex-start;
 
-  position: relative;
-
   @media ${device.tabletPortrait} {
     background-attachment: fixed;
   }
 
+  /* better position for the background image on desktop */
   @media (min-width: 1190px) {
     background-position: center 40%;
+  }
+
+  .headingContainer {
+    margin-top: 2rem;
+    @media ${device.tabletPortrait} {
+      margin-top: 16rem;
+    }
   }
 
   h1 {
@@ -38,15 +41,9 @@ export const StyledHeader = styled.header`
     text-transform: uppercase;
     letter-spacing: var(--ls);
     color: white;
-    text-shadow: 1px 1px 5px #666;
+    text-shadow: 0px 0px 6px #666;
     font-size: 3rem;
     text-align: center;
-  }
-  .headingContainer {
-    margin-top: 2rem;
-    @media ${device.tabletPortrait} {
-      margin-top: 14rem;
-    }
   }
 `;
 
@@ -72,7 +69,7 @@ export const StyledDesc = styled.div`
   margin-top: 3rem;
 
   @media ${device.mobile} {
-    margin-top: 9rem;
+    margin-top: 6rem;
   }
 
   h2 {
@@ -85,26 +82,9 @@ export const StyledDesc = styled.div`
 `;
 
 export const StyledTitle = styled.span`
-  margin: auto;
-  padding: var(--space-m);
-  border-radius: 80px;
-  width: 17rem;
-  height: 8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: ${colors.accent2};
   text-align: center;
-  /* box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25); */
-  /* z-index: 10; */
-  background-color: white;
-  border: 8px solid ${colors.accent2};
-
-  h2 {
-    margin: 0;
-    color: ${colors.accent2};
-    letter-spacing: 0;
-    text-transform: none;
-  }
+  padding: var(--space-m);
 `;
 export const StyledMain = styled.main`
   width: 100%;
@@ -113,13 +93,12 @@ export const StyledMain = styled.main`
 export const StyledCarrousel = styled.section`
   padding: 30vh 1rem;
   background-color: ${lighten(0.18, colors.accent2)};
-  clip-path: polygon(0 7%, 100% 20%, 100% 100%, 0 90%);
+  clip-path: polygon(0 7%, 100% 15%, 100% 100%, 0 90%);
   margin-top: calc(-1 * var(--space-l));
 
-  z-index: 1;
   > div {
-    height: 450px;
-    width: 900px;
+    height: 400px;
+    max-width: 900px;
     background-color: gray;
     margin: auto;
   }
@@ -128,23 +107,26 @@ export const StyledCarrousel = styled.section`
 export const StyledAbout = styled.section`
   width: 60%;
   padding: var(--space-l);
-  border: var(--border) solid ${colors.gray};
+  background-color: ${lighten(0.28, colors.gray)};
   margin: 30vh auto;
   border-radius: var(--border-radius);
   text-align: center;
 
   h3 {
     line-height: 29px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 300;
     text-transform: none;
     letter-spacing: 0;
   }
+  button {
+    margin: var(--space-s) 0;
+  }
 `;
 
 export const StyledEndSoon = styled.section`
-  clip-path: polygon(0 16%, 100% 0, 100% 100%, 0 100%);
-  padding: 30vh 0 20vh 0;
+  clip-path: polygon(0 100px, 100% 0, 100% 100%, 0 100%);
+  padding: 20vh 0;
   background-color: rgb(252, 230, 152);
   > div {
     display: flex;
@@ -157,9 +139,10 @@ export const StyledEndSoon = styled.section`
 
 export const StyledForCafe = styled.section`
   margin: 15vh 0 30vh 0;
+  padding: var(--space-l);
   display: flex;
   align-items: center;
-  > h2 {
+  > h3 {
     margin-right: var(--space-m);
   }
 `;

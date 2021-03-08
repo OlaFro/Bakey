@@ -31,7 +31,7 @@ export const StyledLogo = styled.div`
   > span {
     text-align: center;
     color: ${colors.accent2};
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: var(--logo);
     font-weight: 700;
     position: absolute;
     top: 72%;
