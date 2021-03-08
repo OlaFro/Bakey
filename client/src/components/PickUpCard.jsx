@@ -108,7 +108,7 @@ export default function PickUpCard(props) {
               ? props.buyers.map((buyer, index) => {
                   const scheduledTime = 5 * index;
                   return (
-                    <tr>
+                    <tr key={`customer-${index}`}>
                       <td>{getTime(scheduledTime)}</td>
                       <td>{buyer.email}</td>
                       <td>{props.boughtPieces[index]}</td>

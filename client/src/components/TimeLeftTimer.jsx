@@ -48,11 +48,15 @@ export default function Timer(props) {
     countDown();
   }, [props.pickUpDate]);
 
+  console.log(timeLeft.days < 0);
+
   return (
     <div>
       {props.pickUpDate
         ? timeLeft.days
-          ? `${timeLeft.days}d ${timeLeft.hours}h`
+          ? timeLeft.minutes < 0
+            ? "expired"
+            : `${timeLeft.days}d ${timeLeft.hours}h`
           : `${timeLeft.hours}h ${timeLeft.minutes}min`
         : "Days and Hours"}
     </div>
