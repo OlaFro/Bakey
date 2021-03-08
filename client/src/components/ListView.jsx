@@ -136,6 +136,11 @@ export default function ListView() {
     width: "100%",
     height: "100%"
   }
+
+  const onLoad = marker => {
+    console.log('marker: ', marker)
+  }
+  
   return (
     <StyledListView>
       <StyledHeader>
@@ -229,7 +234,8 @@ export default function ListView() {
             icon={icon}
             title={cafe.cafeName}
             position={{ lat: cafe.lat, lng: cafe.lng }} 
-            onClick={() => history.push(`/cafe:${cafe._id}`)}/>
+            onClick={() => history.push(`/cafe:${cafe._id}`)}
+            onLoad={onLoad}/>
           })}
          
         </GoogleMap>
