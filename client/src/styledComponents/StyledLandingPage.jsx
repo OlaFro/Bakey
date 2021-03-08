@@ -38,6 +38,11 @@ export const StyledHeader = styled.header`
   }
 `;
 
+export const StyledLogo = styled.span`
+  font-family: "Montserrat Alternates", sans-serif;
+  color: ${colors.accent2};
+  margin: auto;
+`;
 export const StyledCTA = styled.div`
   display: flex;
   align-items: center;
@@ -69,17 +74,18 @@ export const StyledDesc = styled.div`
 
 export const StyledTitle = styled.span`
   margin: auto;
-  padding: var(--space-s);
-  border-radius: 100%;
-  width: 15rem;
-  height: 15rem;
+  padding: var(--space-m);
+  border-radius: 80px;
+  width: 17rem;
+  height: 8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25); */
   /* z-index: 10; */
   background-color: white;
+  border: 8px solid ${colors.accent2};
 
   h2 {
     margin: 0;
@@ -94,21 +100,27 @@ export const StyledMain = styled.main`
 `;
 export const StyledCarrousel = styled.section`
   padding: 30vh 1rem;
-  background-color: ${lighten(0.28, colors.gray)};
+  background-color: ${lighten(0.18, colors.accent2)};
   clip-path: polygon(0 7%, 100% 20%, 100% 100%, 0 90%);
   margin-top: calc(-1 * var(--space-l));
 
   z-index: 1;
+  > div {
+    height: 450px;
+    width: 900px;
+    background-color: gray;
+    margin: auto;
+  }
 `;
 
 export const StyledAbout = styled.section`
   width: 60%;
   padding: var(--space-l);
-  border: var(--border) solid ${lighten(0.18, colors.accent2)};
-  margin: auto;
+  border: var(--border) solid ${colors.gray};
+  margin: 30vh auto;
   border-radius: var(--border-radius);
   text-align: center;
-  margin: 10vh auto;
+
   h3 {
     line-height: 29px;
     font-size: 1.5rem;
@@ -122,9 +134,7 @@ export const StyledEndSoon = styled.section`
   clip-path: polygon(0 16%, 100% 0, 100% 100%, 0 100%);
   padding: 30vh 0 20vh 0;
   background-color: rgb(252, 230, 152);
-  margin-top: -8rem;
-
-  > div {
+  margin > div {
     display: flex;
     flex-direction: column;
     > * {

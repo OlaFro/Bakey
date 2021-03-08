@@ -20,11 +20,13 @@ import {
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
 import StyledCentered from "../styledComponents/StyledCentered";
+import { StyledLogo } from "../styledComponents/StyledLogo";
 
 export default function LandingPage() {
   const [city, setCity] = useState("Leipzig");
   return (
     <StyledCentered>
+      <StyledLogo />
       <StyledHeader>
         <div className="headingContainer">
           <h1>Let them order cake!</h1>
@@ -58,7 +60,9 @@ export default function LandingPage() {
         <StyledTitle>
           <h2>Easy as a piece of cake!</h2>
         </StyledTitle>
-        <StyledCarrousel>here we will have a carousel</StyledCarrousel>
+        <StyledCarrousel>
+          <div></div>
+        </StyledCarrousel>
 
         <StyledAbout>
           <StyledTitle>
@@ -71,14 +75,19 @@ export default function LandingPage() {
             jelly-o carrot cake. Jelly-o cake toffee pudding gummies topping
             muffin carrot cake. Danish ice cream chupa chups tart chocolate cake
             powder sesame snaps chocolate. Biscuit tiramisu sweet sugar plum
-            bonbon cupcake donut. Marzipan tart candy lollipop jujubes chupa
-            chups pie chupa chups. Jelly dragée jelly powder gingerbread sesame
-            snaps pastry. Lemon drops bonbon gummi bears tootsie roll bonbon.
-            Fruitcake marshmallow chupa chups cupcake gingerbread candy donut
-            jelly beans dessert. Fruitcake candy halvah candy marzipan caramels
-            lollipop caramels. Liquorice lemon drops ice cream sweet.
+            bonbon cupcake donut.
           </h3>
-          <p>At the end will be the link to the ABOUT US page</p>
+          <StyledButton>Explore Bakey</StyledButton>
+          <h3>
+            Here we will have a paragraph about our project. Donut candy chupa
+            chups pudding gummi bears gummies sweet tootsie roll muffin. Danish
+            danish brownie dessert gummi bears. Cotton candy topping cake
+            jelly-o carrot cake. Jelly-o cake toffee pudding gummies topping
+            muffin carrot cake. Danish ice cream chupa chups tart chocolate cake
+            powder sesame snaps chocolate. Biscuit tiramisu sweet sugar plum
+            bonbon cupcake donut.
+          </h3>
+          <StyledButton>About Us</StyledButton>
         </StyledAbout>
         <StyledTitle>
           <h2>This campaigns end soon!</h2>
