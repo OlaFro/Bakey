@@ -235,7 +235,7 @@ export default function Listing(props) {
         {props.expired ? (
           <StyledBtnContainer>
             <StyledButton buy>Reactivate</StyledButton>
-            <StyledButton buy>Archive</StyledButton>
+            {props.archive ? null : <StyledButton buy>Archive</StyledButton>}
           </StyledBtnContainer>
         ) : null}
       </StyledDescContainer>

@@ -24,6 +24,7 @@ export default function DashboardCafeArchiveTab(props) {
             id={listing._id}
             dashboard={true}
             expired={true}
+            archive={true}
           />
         );
       })}
