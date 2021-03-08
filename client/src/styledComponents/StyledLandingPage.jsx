@@ -97,22 +97,47 @@ export const StyledCarrousel = styled.section`
   background-color: ${lighten(0.28, colors.gray)};
   clip-path: polygon(0 7%, 100% 20%, 100% 100%, 0 90%);
   margin-top: calc(-1 * var(--space-l));
-  margin-bottom: 10vh;
+
   z-index: 1;
 `;
 
 export const StyledAbout = styled.section`
   width: 60%;
   padding: var(--space-l);
-  background-color: ${lighten(0.18, colors.accent2)};
+  border: var(--border) solid ${lighten(0.18, colors.accent2)};
   margin: auto;
   border-radius: var(--border-radius);
   text-align: center;
+  margin: 10vh auto;
   h3 {
     line-height: 29px;
     font-size: 1.5rem;
     font-weight: 300;
     text-transform: none;
     letter-spacing: 0;
+  }
+`;
+
+export const StyledEndSoon = styled.section`
+  clip-path: polygon(0 16%, 100% 0, 100% 100%, 0 100%);
+  padding: 30vh 0 20vh 0;
+  background-color: rgb(252, 230, 152);
+  margin-top: -8rem;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    > * {
+      margin: var(--space-m) auto;
+    }
+  }
+`;
+
+export const StyledForCafe = styled.section`
+  margin: 15vh 0 30vh 0;
+  display: flex;
+  align-items: center;
+  > h2 {
+    margin-right: var(--space-m);
   }
 `;

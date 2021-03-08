@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Listing from "./Listing";
 
 import {
   StyledHeader,
@@ -8,6 +9,8 @@ import {
   StyledDesc,
   StyledCarrousel,
   StyledAbout,
+  StyledEndSoon,
+  StyledForCafe,
 } from "../styledComponents/StyledLandingPage";
 import {
   StyledInputContainer,
@@ -75,9 +78,23 @@ export default function LandingPage() {
             jelly beans dessert. Fruitcake candy halvah candy marzipan caramels
             lollipop caramels. Liquorice lemon drops ice cream sweet.
           </h3>
-          <p>At the end will be the link to the ABOUT US section</p>
+          <p>At the end will be the link to the ABOUT US page</p>
         </StyledAbout>
+        <StyledTitle>
+          <h2>This campaigns end soon!</h2>
+        </StyledTitle>
+        <StyledEndSoon>
+          <div>
+            <Listing />
+            <Listing />
+            <Listing />
+          </div>
+        </StyledEndSoon>
       </StyledMain>
+      <StyledForCafe>
+        <h2>Do you want to offer your products on Bakey? </h2>
+        <StyledButton cafe>register</StyledButton>
+      </StyledForCafe>
     </StyledCentered>
   );
 }
