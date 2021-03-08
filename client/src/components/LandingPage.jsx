@@ -6,6 +6,7 @@ import {
   StyledTitle,
   StyledMain,
   StyledDesc,
+  StyledCarrousel,
 } from "../styledComponents/StyledLandingPage";
 import {
   StyledInputContainer,
@@ -53,7 +54,9 @@ export default function LandingPage() {
         <h2>Easy as a piece of cake!</h2>
       </StyledTitle>
 
-      <StyledMain></StyledMain>
+      <StyledMain>
+        <StyledCarrousel>here we will have a carousel</StyledCarrousel>
+      </StyledMain>
     </StyledCentered>
   );
 }

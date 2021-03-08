@@ -70,11 +70,18 @@ export const StyledDesc = styled.div`
 export const StyledTitle = styled.span`
   margin: calc(4 * var(--space-l)) auto calc(2 * var(--space-l)) auto;
   padding: var(--space-m) calc(1.5 * var(--space-l));
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 
   h2 {
     margin: 0;
     color: ${colors.accent2};
   }
 `;
-export const StyledMain = styled.main``;
+export const StyledMain = styled.main`
+  width: 100%;
+`;
+export const StyledCarrousel = styled.section`
+  padding: 30vh 1rem;
+  background-color: ${lighten(0.28, colors.gray)};
+  clip-path: polygon(0 7%, 100% 23%, 100% 83%, 0 89%);
+`;
