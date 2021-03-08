@@ -17,7 +17,7 @@ import Warning from "./Warning";
 import CafeCard from "./CafeCard";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import StyledMap from "../styledComponents/StyledMap";
-import cafeMarker from "../assets/cafe.svg"
+import cafeMarker from "../assets/cafeMarker.png"
 
 export default function ListView() {
   const [city, setCity] = useState("Leipzig");
@@ -223,7 +223,7 @@ export default function ListView() {
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={13}>
           {cafes.map((cafe) => {
             let icon = {url: cafeMarker,
-              scaledSize: new window.google.maps.Size(30, 30)}
+              scaledSize: new window.google.maps.Size(30, 40)}
            return <Marker 
             key={cafe._id}
             icon={icon}
