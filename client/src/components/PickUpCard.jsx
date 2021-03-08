@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { bakeyContext } from "../Context";
+import Axios from "axios";
 import { StyledButton } from "../styledComponents/StyledButton";
 import {
   StyledPickUpCard,
@@ -46,6 +47,45 @@ export default function PickUpCard(props) {
       }
       return null;
     });
+  };
+
+  const archiveListing = () => {
+    console.log("request sent");
+    props.setWarningContent("the service is out of order.");
+    props.setShowWarning(false);
+    Axios({
+      method: "POST",
+      url: `listings/archive`,
+      data: { listingID: props.dbID, totalPieces: props.totalPieces },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === "changed") {
+          props.setListings((prevListings) =>
+            prevListings.map((listing, index, array) => {
+              if (listing._id === res.data.listing._id) {
+                return (array[index] = res.data.listing);
+              } else {
+                return listing;
+              }
+            })
+          );
+        } else if (res.data.status === "no authorization") {
+          props.setWarningContent(
+            "that you are not authorized to change the status of the offer."
+          );
+          props.setShowWarning(true);
+        } else {
+          props.setWarningContent(
+            "that the state of this offer can not be changed, please contact our helpdesk."
+          );
+          props.setShowWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        props.setShowWarning(true);
+      });
   };
   return (
     <StyledPickUpCard>
@@ -108,6 +148,7 @@ export default function PickUpCard(props) {
         <StyledButton
           buy
           title="Move delivered offer to the archive. You can anytime reactivate it."
+          onClick={archiveListing}
         >
           Finished
         </StyledButton>
