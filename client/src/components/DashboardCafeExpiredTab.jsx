@@ -1,15 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { bakeyContext } from "../Context";
 import Listing from "./Listing";
+import Warning from "./Warning";
 
 export default function DashboardCafeExpiredTab(props) {
-  const { expiredListings } = props;
+  const { expiredListings, setListings } = props;
 
   const { cafeName } = useContext(bakeyContext);
 
+  const [showWarning, setShowWarning] = useState(false);
+
+  const [warningContent, setWarningContent] = useState(
+    "the service is out of order"
+  );
+
   return (
     <section className="offers-wrapper">
-      {expiredListings.map((listing) => {
+      {expiredListings.map((listing, index) => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const pickUpTime = new Date(listing.pickUpDate);
@@ -30,14 +37,19 @@ export default function DashboardCafeExpiredTab(props) {
               listingTags={listing.listingTags}
               image={listing.listingPicture}
               id={listing._id}
+              key={`listing-${index}`}
               dashboard={true}
               expired={true}
+              setShowWarning={setShowWarning}
+              setWarningContent={setWarningContent}
+              setListings={setListings}
             />
           );
         } else {
           return null;
         }
       })}
+      {showWarning ? <Warning msg={warningContent} /> : null}
     </section>
   );
 }

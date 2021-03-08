@@ -9,7 +9,7 @@ export default function DashboardCafeActiveTab(props) {
 
   return (
     <section className="offers-wrapper">
-      {activeListings.map((listing) => {
+      {activeListings.map((listing, index) => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const pickUpTime = new Date(listing.pickUpDate);
@@ -29,6 +29,7 @@ export default function DashboardCafeActiveTab(props) {
               listingAllergenes={listing.listingAllergenes}
               listingTags={listing.listingTags}
               image={listing.listingPicture}
+              key={`listing-${index}`}
               id={listing._id}
               dashboard={true}
             />
