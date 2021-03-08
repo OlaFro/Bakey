@@ -34,7 +34,7 @@ export const StyledHeader = styled.header`
     text-align: center;
   }
   .headingContainer {
-    margin-top: 15rem;
+    margin-top: 10rem;
   }
 `;
 
