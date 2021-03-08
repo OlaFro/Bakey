@@ -86,6 +86,7 @@ export default function PickUpCard(props) {
                           onClick={() => {
                             mailSentCheck(index);
                           }}
+                          title="send email notification about pick-up to customer"
                         >
                           <StyledMailIcon />
                         </a>
@@ -100,7 +101,7 @@ export default function PickUpCard(props) {
       <StyledBtnContainer>
         <StyledButton
           buy
-          title="Send email to all customers at once"
+          title="Send email notification about pick up to all customers"
           onClick={sentAllMails}
         >
           Send Emails
