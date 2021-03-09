@@ -178,7 +178,14 @@ export default function LandingPage() {
       </StyledMain>
       <StyledForCafe>
         <h3>Do you want to offer your products on Bakey? </h3>
-        <StyledButton cafe>register</StyledButton>
+        <StyledButton
+          cafe
+          onClick={() => {
+            history.push("/registration/cafe");
+          }}
+        >
+          register
+        </StyledButton>
       </StyledForCafe>
     </StyledCentered>
   );
