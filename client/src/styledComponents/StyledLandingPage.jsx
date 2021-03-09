@@ -112,12 +112,10 @@ export const StyledAbout = styled.section`
   border-radius: var(--border-radius);
   text-align: center;
 
-  h3 {
+  p {
     line-height: 29px;
     font-size: 1.2rem;
     font-weight: 300;
-    text-transform: none;
-    letter-spacing: 0;
   }
   button {
     margin: var(--space-s) 0;
