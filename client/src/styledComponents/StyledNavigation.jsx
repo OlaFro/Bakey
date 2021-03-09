@@ -11,7 +11,7 @@ export const StyledNavigation = styled.nav`
   position: sticky;
   display: flex;
   flex-direction: column;
-  margin-bottom: var(--space-m);
+  /* margin-bottom: var(--space-m); */
   border-bottom: 1px solid ${colors.black};
 
   a {
