@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
+import Axios from "axios";
 import Listing from "./Listing";
 
 import {
@@ -24,11 +25,39 @@ import { StyledButton } from "../styledComponents/StyledButton";
 
 import StyledCentered from "../styledComponents/StyledCentered";
 import Logo from "./Logo";
+import Warning from "./Warning";
 
 export default function LandingPage() {
   let history = useHistory();
 
   const { setCity } = useContext(bakeyContext);
+
+  const [listings, setListings] = useState([]);
+  const [warning, setWarning] = useState(false);
+  const [warningContent, setWarningContent] = useState(
+    "the server is out of service"
+  );
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: "/listings/end-soon",
+    })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.length === 0) {
+          setWarningContent("there are no offers yet");
+          setWarning(true);
+        } else {
+          setListings(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setWarningContent("the server is out of service");
+        setWarning(true);
+      });
+  }, []);
 
   return (
     <StyledCentered>
@@ -101,6 +130,8 @@ export default function LandingPage() {
               history.push("/cafes-list");
             }}
           >
+            Explore Bakey
+          </StyledButton>
           <p>
             Bakey is a final project of web development students of Digital
             Career Institute in Leipzig. It is only demo containing the
@@ -115,16 +146,33 @@ export default function LandingPage() {
               history.push("/about-us");
             }}
           >
-
+            About us
+          </StyledButton>
         </StyledAbout>
         <StyledTitle>
           <h2>This campaigns end soon!</h2>
         </StyledTitle>
         <StyledEndSoon>
+          {warning ? <Warning msg={warningContent} /> : null}
           <div>
-            <Listing />
-            <Listing />
-            <Listing />
+            {listings.map((listing, index) => {
+              return (
+                <Listing
+                  cafeName={listing.cafeName}
+                  title={listing.listingName}
+                  totalPieces={listing.totalPieces}
+                  availablePieces={listing.availablePieces}
+                  pickUpDate={listing.pickUpDate}
+                  piecePrice={listing.piecePrice}
+                  listingAllergenes={listing.listingAllergenes}
+                  listingTags={listing.listingTags}
+                  image={listing.listingPicture}
+                  id={listing._id}
+                  listingIdentifier={listing.id}
+                  key={`listing-${index}`}
+                />
+              );
+            })}
           </div>
         </StyledEndSoon>
       </StyledMain>

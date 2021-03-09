@@ -131,3 +131,7 @@ Content-Type: application/json
     "totalPieces": 10,
     "pickUpDate": "2021-03-09T15:00"
 }
+
+###
+
+GET http://localhost:5000/listings/end-soon
