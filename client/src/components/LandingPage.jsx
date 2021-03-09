@@ -11,6 +11,9 @@ import Logo from "./Logo";
 import Warning from "./Warning";
 
 import slide1 from "../assets/slide-one.png";
+import slide2 from "../assets/slide-two.png";
+import slide3 from "../assets/slide-three.png";
+import slide4 from "../assets/slide-four.png";
 
 import {
   StyledHeader,
@@ -113,21 +116,25 @@ export default function LandingPage() {
           <h2>Easy as a piece of cake!</h2>
         </StyledTitle>
         <StyledCarrousel>
-          <div>
-            <Slider {...settings}>
-              <div>
+          <div className="carrousel-container">
+            <div className="carrousel-card"></div>
+            <Slider {...settings} adaptiveHeight="true">
+              <figure className="carrousel-card">
                 <img src={slide1} alt="slide1" />
-                <h3>Café publishes new offer for a cake.</h3>
-              </div>
-              <div>
-                <h3>second</h3>
-              </div>
-              <div>
-                <h3>3</h3>
-              </div>
-              <div>
-                <h3>4</h3>
-              </div>
+                <h3>Café publishes new offer of a cake.</h3>
+              </figure>
+              <figure className="carrousel-card">
+                <img src={slide2} alt="slide2" />
+                <h3>Café publishes new offer of a cake.</h3>
+              </figure>
+              <figure className="carrousel-card">
+                <img src={slide3} alt="slide3" />
+                <h3>Café publishes new offer of a cake.</h3>
+              </figure>
+              <figure className="carrousel-card">
+                <img src={slide4} alt="slide4" />
+                <h3>Café publishes new offer of a cake.</h3>
+              </figure>
             </Slider>
           </div>
         </StyledCarrousel>

@@ -91,16 +91,27 @@ export const StyledMain = styled.main`
   margin-top: calc(6 * var(--space-l));
 `;
 export const StyledCarrousel = styled.section`
-  padding: 30vh 1rem;
-  background-color: ${lighten(0.18, colors.accent2)};
+  padding: 30vh 0;
+  background-color: ${lighten(0.28, colors.gray)};
   clip-path: polygon(0 7%, 100% 15%, 100% 100%, 0 90%);
   margin-top: calc(-1 * var(--space-l));
 
-  > div {
-    height: 400px;
-    max-width: 900px;
+  .carrousel-container {
+    width: 60%;
+    max-width: 600px;
+    height: 200px;
     /* background-color: gray; */
     margin: auto;
+  }
+  .carrousel-card {
+    margin: 1rem;
+    img {
+      height: 280px;
+      margin: auto;
+    }
+    h3 {
+      text-align: center;
+    }
   }
 `;
 
