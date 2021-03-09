@@ -2,7 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 import Axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import Listing from "./Listing";
+import Logo from "./Logo";
+import Warning from "./Warning";
+
+import slide1 from "../assets/slide-one.png";
 
 import {
   StyledHeader,
@@ -22,10 +30,7 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
-
 import StyledCentered from "../styledComponents/StyledCentered";
-import Logo from "./Logo";
-import Warning from "./Warning";
 
 export default function LandingPage() {
   let history = useHistory();
@@ -59,6 +64,13 @@ export default function LandingPage() {
       });
   }, []);
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <StyledCentered>
       <StyledHeader>
@@ -96,13 +108,28 @@ export default function LandingPage() {
           </StyledDesc>
         </div>
       </StyledHeader>
-
       <StyledMain>
         <StyledTitle>
           <h2>Easy as a piece of cake!</h2>
         </StyledTitle>
         <StyledCarrousel>
-          <div></div>
+          <div>
+            <Slider {...settings}>
+              <div>
+                <img src={slide1} alt="slide1" />
+                <h3>Café publishes new offer for a cake.</h3>
+              </div>
+              <div>
+                <h3>second</h3>
+              </div>
+              <div>
+                <h3>3</h3>
+              </div>
+              <div>
+                <h3>4</h3>
+              </div>
+            </Slider>
+          </div>
         </StyledCarrousel>
 
         <StyledAbout>
@@ -139,7 +166,7 @@ export default function LandingPage() {
             offering real products. It shows all skills we've learned during the
             one-year MERN-stack course. If you want to learn more about used
             technologies and us - Alice, Ola, and Willy that created Bakey -
-            visit ours About Us section.
+            visit ours About Us page.
           </p>
           <StyledButton
             onClick={() => {

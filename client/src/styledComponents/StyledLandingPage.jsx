@@ -99,7 +99,7 @@ export const StyledCarrousel = styled.section`
   > div {
     height: 400px;
     max-width: 900px;
-    background-color: gray;
+    /* background-color: gray; */
     margin: auto;
   }
 `;
