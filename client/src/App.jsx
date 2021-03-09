@@ -30,6 +30,7 @@ function App() {
   const [profilePic, setProfilePic] = useState("");
   const [cafeName, setCafeName] = useState("");
   const [cafes, setCafes] = useState([]);
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     console.log("authentication  request sent");

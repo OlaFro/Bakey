@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { bakeyContext } from "../Context";
 import Listing from "./Listing";
 
 import {
@@ -25,8 +26,10 @@ import StyledCentered from "../styledComponents/StyledCentered";
 import Logo from "./Logo";
 
 export default function LandingPage() {
-  const [city, setCity] = useState("Leipzig");
   let history = useHistory();
+
+  const { city, setCity } = useContext(bakeyContext);
+
   return (
     <StyledCentered>
       <StyledHeader>
