@@ -68,25 +68,31 @@ export default function LandingPage() {
           <StyledTitle>
             <h2>What is Bakey?</h2>
           </StyledTitle>
-          <h3>
-            Here we will have a paragraph about our project. Donut candy chupa
-            chups pudding gummi bears gummies sweet tootsie roll muffin. Danish
-            danish brownie dessert gummi bears. Cotton candy topping cake
-            jelly-o carrot cake. Jelly-o cake toffee pudding gummies topping
-            muffin carrot cake. Danish ice cream chupa chups tart chocolate cake
-            powder sesame snaps chocolate. Biscuit tiramisu sweet sugar plum
-            bonbon cupcake donut.
-          </h3>
+          <p>
+            Everyone would like to have a piece of cake, but it's hard to bake
+            only one slice! Usually, cafés were estimating their production
+            based on regular visitors. In the hard times of the Covid-19
+            lockdown, they can offer their food only to-go, but many of them are
+            not taking the risk of baking products that won't be sold.{" "}
+          </p>
+          <p>
+            Bakey is a web-application that allows clients to order small
+            portions in their local café and in form of small crowdfunding
+            campaigns gathers other customers to reach the profitable minimum
+            for the café to bake the cake. If the goal won't be met, clients get
+            their money back. To increase the chance of the campaign to succeed
+            users can recommend it to friends.
+          </p>
           <StyledButton>Explore Bakey</StyledButton>
-          <h3>
-            Here we will have a paragraph about our project. Donut candy chupa
-            chups pudding gummi bears gummies sweet tootsie roll muffin. Danish
-            danish brownie dessert gummi bears. Cotton candy topping cake
-            jelly-o carrot cake. Jelly-o cake toffee pudding gummies topping
-            muffin carrot cake. Danish ice cream chupa chups tart chocolate cake
-            powder sesame snaps chocolate. Biscuit tiramisu sweet sugar plum
-            bonbon cupcake donut.
-          </h3>
+          <p>
+            Bakey is a final project of web development students of Digital
+            Career Institute in Leipzig. It is only demo containing the
+            functionalities we personally would use in the app like this and not
+            offering real products. It shows all skills we've learned during the
+            one-year MERN-stack course. If you want to learn more about used
+            technologies and us - Alice, Ola, and Willy that created Bakey -
+            visit ours About Us section.
+          </p>
           <StyledButton>About Us</StyledButton>
         </StyledAbout>
         <StyledTitle>
