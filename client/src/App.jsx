@@ -78,7 +78,7 @@ function App() {
       <Router>
         <GlobalStyle />
         <div className="wrapper">
-          {/* <Navigation /> */}
+          <Navigation />
           <Switch>
             <Route path="/" exact>
               <LandingPage />
@@ -130,7 +130,7 @@ function App() {
               <Redirect to="/" />{" "}
             </Route>
           </Switch>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     </bakeyContext.Provider>
