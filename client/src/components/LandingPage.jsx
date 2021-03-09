@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { bakeyContext } from "../Context";
 import Listing from "./Listing";
 
 import {
@@ -19,11 +21,15 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
+
 import StyledCentered from "../styledComponents/StyledCentered";
 import Logo from "./Logo";
 
 export default function LandingPage() {
-  const [city, setCity] = useState("Leipzig");
+  let history = useHistory();
+
+  const { setCity } = useContext(bakeyContext);
+
   return (
     <StyledCentered>
       <StyledHeader>
@@ -47,7 +53,13 @@ export default function LandingPage() {
               <StyledLabel htmlFor="city">See offers from:</StyledLabel>
               <StyledArrow landingPage />
             </StyledInputContainer>
-            <StyledButton>go</StyledButton>
+            <StyledButton
+              onClick={() => {
+                history.push("/cafes-list");
+              }}
+            >
+              go
+            </StyledButton>
           </StyledCTA>
           <StyledDesc>
             <h2>Support your local café and order a piece of cake.</h2>
@@ -68,6 +80,7 @@ export default function LandingPage() {
           <StyledTitle>
             <h2>What is Bakey?</h2>
           </StyledTitle>
+
           <p>
             Everyone would like to have a piece of cake, but it's hard to bake
             only one slice! Usually, cafés were estimating their production
@@ -83,7 +96,11 @@ export default function LandingPage() {
             their money back. To increase the chance of the campaign to succeed
             users can recommend it to friends.
           </p>
-          <StyledButton>Explore Bakey</StyledButton>
+          <StyledButton
+            onClick={() => {
+              history.push("/cafes-list");
+            }}
+          >
           <p>
             Bakey is a final project of web development students of Digital
             Career Institute in Leipzig. It is only demo containing the
@@ -93,7 +110,12 @@ export default function LandingPage() {
             technologies and us - Alice, Ola, and Willy that created Bakey -
             visit ours About Us section.
           </p>
-          <StyledButton>About Us</StyledButton>
+          <StyledButton
+            onClick={() => {
+              history.push("/about-us");
+            }}
+          >
+
         </StyledAbout>
         <StyledTitle>
           <h2>This campaigns end soon!</h2>

@@ -16,12 +16,15 @@ import Warning from "./Warning";
 import CafeCard from "./CafeCard";
 
 export default function ListView() {
-  const [city, setCity] = useState("Leipzig");
+  const context = useContext(bakeyContext);
+  const [city, setCity] = useState(context.city);
   const { cafes, setCafes } = useContext(bakeyContext);
   const [filteredCafes, setFilteredCafes] = useState([]);
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
+
+  console.log(context);
 
   const getCities = (city) => {
     setDbError(false);
@@ -55,6 +58,7 @@ export default function ListView() {
           <StyledSelect
             id="city"
             name="city"
+            defaultValue={city}
             onChange={(e) => {
               setCity(e.target.value);
               getCities(e.target.value);
