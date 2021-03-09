@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 import {
   StyledListView,
@@ -14,8 +15,13 @@ import {
 import { StyledTag } from "../styledComponents/StyledListing";
 import Warning from "./Warning";
 import CafeCard from "./CafeCard";
+import { GoogleMap, LoadScript, Marker, Map } from "@react-google-maps/api";
+import StyledMap from "../styledComponents/StyledMap";
+import cafeMarker from "../assets/newCafeMarker.png";
 
 export default function ListView() {
+  const [cityCoor, setCityCoor] = useState({});
+  const [mapFlag, setMapFlag] = useState(false);
   const context = useContext(bakeyContext);
   const [city, setCity] = useState(context.city);
   const { cafes, setCafes } = useContext(bakeyContext);
@@ -23,6 +29,9 @@ export default function ListView() {
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  let history = useHistory();
 
   console.log(context);
 
@@ -39,6 +48,10 @@ export default function ListView() {
           setEmptyWarning(true);
         } else {
           setCafes(res.data);
+          setMapFlag((prevValue) => {
+            return !prevValue;
+          });
+          setMapLoaded(false);
         }
       })
       .catch((err) => {
@@ -50,6 +63,71 @@ export default function ListView() {
   useEffect(() => {
     getCities(city);
   }, []);
+
+  const getCityCoordinates = (API_KEY) => {
+    Axios({
+      method: "GET",
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+germany&key=${API_KEY}`,
+    })
+      .then((res) => {
+        let cityCoordinates = res.data.results[0].geometry.location;
+        setCityCoor(cityCoordinates);
+      })
+      .catch((err) => {
+        console.log("no results from GM");
+      });
+  };
+  const getMapInfo = (API_KEY) => {
+    cafes.map((cafe, i) => {
+      let address = [
+        cafe.cafeStreet.split(" ").join("+"),
+        cafe.cafeStreetNr,
+        cafe.cafeZip,
+        cafe.city,
+      ];
+      let parsedAddress = address.join("+");
+      Axios({
+        method: "GET",
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
+      })
+        .then(async(res) => {
+          let location = res.data.results[0].geometry.location;
+          await setCafes(() => {
+            cafes[i] = {
+              ...cafe,
+              lat: location.lat,
+              lng: location.lng,
+            };
+            return cafes;
+          });
+          setMapLoaded(true)
+          console.log(mapLoaded)
+        })
+        .catch((err) => {
+          console.log(err, "it didnt connected");
+        });
+    });
+  };
+
+  useEffect(() => {
+    getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+    console.log("info is updated")
+  }, [mapFlag]);
+
+  const center = {
+    lat: cityCoor.lat,
+    lng: cityCoor.lng,
+  };
+
+  //necessary for the map
+
+  const containerStyle = {
+    width: "100%",
+    height: "100%",
+  };
+
+  
 
   return (
     <StyledListView>
@@ -134,11 +212,36 @@ export default function ListView() {
           </div>
         </div>
       </StyledHeader>
+     {mapLoaded ?  (<StyledMap>
+        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={13}
+            onLoad={()=> {console.log("the map is loaded")}}
+                      >
+            {cafes.map((cafe) => {
+              console.log(typeof cafe.lat);
+              console.log(typeof cafe.lng);
+              return (
+                <Marker
+                  key={cafe._id}
+                  title={cafe.cafeName}
+                  icon={cafeMarker}
+                  position={{ lat: cafe.lat, lng: cafe.lng }}
+                  onClick={() => history.push(`/cafe:${cafe._id}`)}
+                  onLoad={()=>{console.log("the marker for ", cafe.cafeName, " is loaded")}}
+
+                />
+              );
+            })} 
+          </GoogleMap>
+        </LoadScript>
+      </StyledMap> ) : null }
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
       {emptyWarning === true ? (
         <Warning msg="there are no offers available for this city" />
       ) : null}
-
       {emptyWarning === false
         ? cafes.map((cafe, index) => {
             return <CafeCard key={index} cafe={cafe} />;
