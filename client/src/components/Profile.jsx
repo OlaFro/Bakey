@@ -13,6 +13,7 @@ import {
   StyledAbout,
   StyledAddress,
   StyledListingContainer,
+  StyledAddressContainer,
 } from "../styledComponents/StyledProfile";
 import Axios from "axios";
 import Listing from "./Listing";
@@ -167,25 +168,27 @@ export default function Profile() {
             </p>
           )}
         </StyledAbout>
-        <StyledAddress display={showAddress ? "flex" : "none"}>
-          <span>
-            <strong>{cafeInfo.cafeName}</strong>
-          </span>
-          <div>
+        <StyledAddressContainer display={showAddress ? "flex" : "none"}>
+          <StyledAddress>
             <span>
-              {cafeInfo.cafeStreet} {cafeInfo.cafeStreetNr}
+              <strong>{cafeInfo.cafeName}</strong>
             </span>
-            <span>
-              {" "}
-              {cafeInfo.cafeZip} {cafeInfo.city}
-            </span>
-          </div>
-          <div>
-            <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
-            <span> {cafeInfo.email}</span>
-          </div>
+            <div>
+              <span>
+                {cafeInfo.cafeStreet} {cafeInfo.cafeStreetNr}
+              </span>
+              <span>
+                {" "}
+                {cafeInfo.cafeZip} {cafeInfo.city}
+              </span>
+            </div>
+            <div>
+              <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
+              <span> {cafeInfo.email}</span>
+            </div>
+          </StyledAddress>
           <MapCardView cafeLocation={cafeLocation} />
-        </StyledAddress>
+        </StyledAddressContainer>
         <StyledHr cafe />
       </StyledContentContainer>
       <StyledListingContainer ref={warningRef}>
