@@ -63,6 +63,8 @@ function App() {
   return (
     <bakeyContext.Provider
       value={{
+        city,
+        setCity,
         isLogged,
         setIsLogged,
         userName,
