@@ -10,7 +10,7 @@ import {
   StyledLogoContainer,
   StyledNavBtn,
 } from "../styledComponents/StyledNavigation";
-import StyledLogo from "../styledComponents/StyledLogo";
+import { StyledNavLogo } from "../styledComponents/StyledLogo";
 import { StyledSmallButton } from "../styledComponents/StyledButton";
 import { bakeyContext } from "../Context";
 import axios from "axios";
@@ -44,9 +44,9 @@ export default function Navigation(props) {
   return (
     <StyledNavigation>
       <StyledLogoContainer>
-        <StyledLogo>
+        <StyledNavLogo>
           <Link to="/">bakey</Link>
-        </StyledLogo>
+        </StyledNavLogo>
         <StyledExit onClick={handleClose} display={open} />
         <StyledMenu onClick={handleOpen} display={open} />
       </StyledLogoContainer>

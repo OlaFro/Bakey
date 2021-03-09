@@ -102,15 +102,7 @@ export default function DashboardUser() {
           >
             Active Offers
           </StyledButton>
-          <StyledButton
-            cafe
-            headerBtn={display === "expired" ? true : false}
-            onClick={() => {
-              changeDisplay("expired");
-            }}
-          >
-            Expired Offers
-          </StyledButton>
+
           <StyledButton
             cafe
             headerBtn={display === "pickup" ? true : false}
@@ -119,6 +111,15 @@ export default function DashboardUser() {
             }}
           >
             PickUps
+          </StyledButton>
+          <StyledButton
+            cafe
+            headerBtn={display === "expired" ? true : false}
+            onClick={() => {
+              changeDisplay("expired");
+            }}
+          >
+            Expired Offers
           </StyledButton>
           <StyledButton
             cafe
@@ -138,7 +139,10 @@ export default function DashboardUser() {
         ) : null}
 
         {display === "expired" ? (
-          <DashboardCafeExpiredTab expiredListings={listings} />
+          <DashboardCafeExpiredTab
+            expiredListings={listings}
+            setListings={setListings}
+          />
         ) : null}
 
         {display === "pickup" ? (
@@ -146,6 +150,7 @@ export default function DashboardUser() {
             soldListings={listings.filter(
               (item) => item.listingStatus === "sold"
             )}
+            setListings={setListings}
           />
         ) : null}
 
@@ -154,6 +159,7 @@ export default function DashboardUser() {
             inactiveListings={listings.filter(
               (item) => item.listingStatus === "inactive"
             )}
+            setListings={setListings}
           />
         ) : null}
       </main>

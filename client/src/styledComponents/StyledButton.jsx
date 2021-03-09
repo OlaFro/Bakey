@@ -97,6 +97,7 @@ export const StyledButton = styled.button`
         background-color: ${darken(0.1, colors.accent1)};
       }
     `}
+    
 
   /* right display the button in the grid for cafe registration */
   ${(props) =>

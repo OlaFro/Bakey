@@ -20,10 +20,10 @@ import StyledMap from "../styledComponents/StyledMap";
 import cafeMarker from "../assets/newCafeMarker.png";
 
 export default function ListView() {
-  const [city, setCity] = useState("Leipzig");
-  //to center the map in the right city
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
+  const context = useContext(bakeyContext);
+  const [city, setCity] = useState(context.city);
   const { cafes, setCafes } = useContext(bakeyContext);
   const [filteredCafes, setFilteredCafes] = useState([]);
   const [filter, setFilter] = useState([]);
@@ -32,6 +32,8 @@ export default function ListView() {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   let history = useHistory();
+
+  console.log(context);
 
   const getCities = (city) => {
     setDbError(false);
@@ -134,6 +136,7 @@ export default function ListView() {
           <StyledSelect
             id="city"
             name="city"
+            defaultValue={city}
             onChange={(e) => {
               setCity(e.target.value);
               getCities(e.target.value);

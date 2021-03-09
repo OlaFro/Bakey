@@ -18,8 +18,9 @@ export const StyledListingContainer = styled.article`
 
   @media ${device.tabletLandscape} {
     max-width: 800px;
-    height: 400px;
+    min-height: 400px;
     grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
   }
 
   ${(props) =>
