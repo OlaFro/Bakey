@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { bakeyContext } from "../Context";
 import Listing from "./Listing";
 
 import {
@@ -19,11 +21,15 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
+
 import StyledCentered from "../styledComponents/StyledCentered";
 import Logo from "./Logo";
 
 export default function LandingPage() {
-  const [city, setCity] = useState("Leipzig");
+  let history = useHistory();
+
+  const { city, setCity } = useContext(bakeyContext);
+
   return (
     <StyledCentered>
       <StyledHeader>
@@ -47,7 +53,13 @@ export default function LandingPage() {
               <StyledLabel htmlFor="city">See offers from:</StyledLabel>
               <StyledArrow landingPage />
             </StyledInputContainer>
-            <StyledButton>go</StyledButton>
+            <StyledButton
+              onClick={() => {
+                history.push("/cafes-list");
+              }}
+            >
+              go
+            </StyledButton>
           </StyledCTA>
           <StyledDesc>
             <h2>Support your local café and order a piece of cake.</h2>
@@ -77,7 +89,13 @@ export default function LandingPage() {
             powder sesame snaps chocolate. Biscuit tiramisu sweet sugar plum
             bonbon cupcake donut.
           </h3>
-          <StyledButton>Explore Bakey</StyledButton>
+          <StyledButton
+            onClick={() => {
+              history.push("/cafes-list");
+            }}
+          >
+            Explore Bakey
+          </StyledButton>
           <h3>
             Here we will have a paragraph about our project. Donut candy chupa
             chups pudding gummi bears gummies sweet tootsie roll muffin. Danish
@@ -87,7 +105,13 @@ export default function LandingPage() {
             powder sesame snaps chocolate. Biscuit tiramisu sweet sugar plum
             bonbon cupcake donut.
           </h3>
-          <StyledButton>About Us</StyledButton>
+          <StyledButton
+            onClick={() => {
+              history.push("/about-us");
+            }}
+          >
+            About Us
+          </StyledButton>
         </StyledAbout>
         <StyledTitle>
           <h2>This campaigns end soon!</h2>
