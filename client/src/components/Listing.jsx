@@ -71,7 +71,6 @@ export default function Listing(props) {
   };
 
   const handleDate = () => {
-    console.log(props.pickUpDate);
     if (props.pickUpDate) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
       return (
