@@ -28,7 +28,7 @@ import Logo from "./Logo";
 export default function LandingPage() {
   let history = useHistory();
 
-  const { city, setCity } = useContext(bakeyContext);
+  const { setCity } = useContext(bakeyContext);
 
   return (
     <StyledCentered>
