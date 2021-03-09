@@ -17,7 +17,7 @@ import CafeCard from "./CafeCard";
 
 export default function ListView() {
   const context = useContext(bakeyContext);
-  const [city, setCity] = useState("Leipzig");
+  const [city, setCity] = useState(context.city);
   const { cafes, setCafes } = useContext(bakeyContext);
   const [filteredCafes, setFilteredCafes] = useState([]);
   const [filter, setFilter] = useState([]);
@@ -51,10 +51,6 @@ export default function ListView() {
     getCities(city);
   }, []);
 
-  useEffect(() => {
-    setCity(context.city);
-  }, [context.city]);
-
   return (
     <StyledListView>
       <StyledHeader>
@@ -62,7 +58,7 @@ export default function ListView() {
           <StyledSelect
             id="city"
             name="city"
-            defaultValue={city || "Leipzig"}
+            defaultValue={city}
             onChange={(e) => {
               setCity(e.target.value);
               getCities(e.target.value);
