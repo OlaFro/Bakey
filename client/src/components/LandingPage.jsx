@@ -101,6 +101,8 @@ export default function LandingPage() {
               history.push("/cafes-list");
             }}
           >
+            Explore Bakey
+          </StyledButton>
           <p>
             Bakey is a final project of web development students of Digital
             Career Institute in Leipzig. It is only demo containing the
@@ -115,7 +117,8 @@ export default function LandingPage() {
               history.push("/about-us");
             }}
           >
-
+            About us
+          </StyledButton>
         </StyledAbout>
         <StyledTitle>
           <h2>This campaigns end soon!</h2>
