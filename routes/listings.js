@@ -233,4 +233,17 @@ router.post(
   }
 );
 
+router.get("/end-soon", listingAction.inactivate, (req, res, next) => {
+  const today = req.date;
+  ListingModel.find({ listingStatus: "active", pickUpDate: { $gte: today } })
+    .sort({ pickUpDate: 1 })
+    .limit(3)
+    .then((listings) => {
+      res.send(listings);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 module.exports = router;
