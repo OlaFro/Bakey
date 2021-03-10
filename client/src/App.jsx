@@ -11,7 +11,7 @@ import { bakeyContext } from "./Context";
 import Login from "./components/Login";
 import RegistrationUser from "./components/RegistrationUser";
 import RegistrationCafe from "./components/RegistrationCafe";
-import DashboardUser from "./components/DashboardUser";
+import DashboardClient from "./components/DashboardClient";
 import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
 import ListingForm from "./components/ListingForm";
@@ -95,7 +95,7 @@ function App() {
             </Route>
             <Route path="/client-dashboard" exact>
               {isLogged.state && isLogged.role === "client" ? (
-                <DashboardUser />
+                <DashboardClient />
               ) : (
                 <Redirect to="/" />
               )}

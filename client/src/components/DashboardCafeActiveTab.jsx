@@ -14,13 +14,12 @@ export default function DashboardCafeActiveTab(props) {
         today.setHours(0, 0, 0, 0);
         const pickUpTime = new Date(listing.pickUpDate);
         pickUpTime.setHours(0, 0, 0, 0);
-        if (
-          listing.listingStatus === "active" &&
-          today.getTime() < pickUpTime.getTime()
-        ) {
+        if (props.dashboardClient) {
           return (
             <Listing
-              cafeName={cafeName}
+              cafeName={listing.cafeName}
+              cafeId={listing.cafeId}
+              withLink={true}
               title={listing.listingName}
               totalPieces={listing.totalPieces}
               availablePieces={listing.availablePieces}
@@ -32,10 +31,33 @@ export default function DashboardCafeActiveTab(props) {
               key={`listing-${index}`}
               id={listing._id}
               dashboard={true}
+              expiredClient={today.getTime() > pickUpTime.getTime()}
             />
           );
         } else {
-          return null;
+          if (
+            listing.listingStatus === "active" &&
+            today.getTime() < pickUpTime.getTime()
+          ) {
+            return (
+              <Listing
+                cafeName={cafeName}
+                title={listing.listingName}
+                totalPieces={listing.totalPieces}
+                availablePieces={listing.availablePieces}
+                pickUpDate={listing.pickUpDate}
+                piecePrice={listing.piecePrice}
+                listingAllergenes={listing.listingAllergenes}
+                listingTags={listing.listingTags}
+                image={listing.listingPicture}
+                key={`listing-${index}`}
+                id={listing._id}
+                dashboard={true}
+              />
+            );
+          } else {
+            return null;
+          }
         }
       })}
     </section>

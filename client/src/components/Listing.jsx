@@ -12,6 +12,7 @@ import {
   StyledLess,
   StyledTimers,
   StyledLink,
+  StyledMessage,
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
@@ -218,6 +219,8 @@ export default function Listing(props) {
       });
   };
 
+  console.log(props.cafeName);
+
   return (
     <StyledListingContainer
       id={params.id ? props.listingIdentifier : null}
@@ -369,6 +372,18 @@ export default function Listing(props) {
               )}
             </StyledBtnContainer>
           )
+        ) : null}
+        {props.expiredClient ? (
+          <StyledMessage warning>
+            There were not enough customers to bake a cake. Your money will be
+            sent back.
+          </StyledMessage>
+        ) : null}
+        {props.soldClient ? (
+          <StyledMessage>
+            Congratulations, you will get your cake! Details in the email from
+            baker.
+          </StyledMessage>
         ) : null}
       </StyledDescContainer>
     </StyledListingContainer>

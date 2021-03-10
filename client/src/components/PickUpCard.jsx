@@ -20,13 +20,19 @@ export default function PickUpCard(props) {
   };
 
   const getTime = (addedTime) => {
+    console.log(
+      props.pickUpDate.split("T")[1].substr(0, 2),
+      props.pickUpDate.split("T")[1].substr(3, 2)
+    );
     const time =
       Number(props.pickUpDate.split("T")[1].substr(0, 2)) * 60 +
+      60 +
       Number(props.pickUpDate.split("T")[1].substr(3, 2)) +
       addedTime;
+
     const hours = Math.floor(time / 60);
     const minutes = time - hours * 60;
-    return hours + ":" + minutes;
+    return hours + ":" + (minutes < 10 ? "0" + minutes : minutes);
   };
 
   const mailSentCheck = (index) => {
