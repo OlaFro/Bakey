@@ -122,6 +122,13 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
         })
           .then((result) => {
             res.send({ boughtPieces: pcs });
+            UserModel.findByIdAndUpdate(buyer, { $push: { orders: listingId } })
+              .then((result) => {
+                res.send(console.log("user Updated", listingId));
+              })
+              .catch((err) => {
+                res.send(err);
+              });
           })
           .catch((err) => {
             res.send(err);
