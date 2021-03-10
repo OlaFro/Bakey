@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { useHistory, Link } from "react-router-dom";
+import { bakeyContext } from "../Context";
 import Listing from "./Listing";
 import Warning from "./Warning";
 import StyledCentered from "../styledComponents/StyledCentered";
@@ -17,12 +18,10 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import { StyledListingSteps } from "../styledComponents/StyledListingForm";
 
 export default function ListingForm() {
+  const { selectedListing } = useContext(bakeyContext);
+  console.log(selectedListing);
   const history = useHistory();
-  const [data, setData] = useState({
-    listingName: "",
-    listingTags: [],
-    listingAllergenes: [],
-  });
+  const [data, setData] = useState(selectedListing);
   const [msg, setMsg] = useState({});
   const [showWarning, setShowWarning] = useState(false);
   const [imageWarning, setImageWarning] = useState(false);
@@ -169,6 +168,7 @@ export default function ListingForm() {
               name="listingName"
               id="listingName"
               placeholder=" "
+              value={data.listingName}
               onInput={getValue}
               required={true}
             />

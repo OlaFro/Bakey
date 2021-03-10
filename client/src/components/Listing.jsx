@@ -30,7 +30,7 @@ import {
 } from "../styledComponents/StyledForm";
 
 export default function Listing(props) {
-  const { isLogged } = useContext(bakeyContext);
+  const { isLogged, setSelectedListing } = useContext(bakeyContext);
   let history = useHistory();
 
   const params = useParams();
@@ -159,7 +159,18 @@ export default function Listing(props) {
       });
   };
 
-  const wantReactivate = () => {};
+  const wantReactivate = () => {
+    setSelectedListing({
+      listingImage: props.image,
+      listingName: props.title,
+      listingAllergenes: props.listingAllergenes,
+      listingTags: props.listingTags,
+      totalPieces: props.totalPieces,
+      pickUpDate: props.pickUpDate,
+      piecePrice: props.piecePrice,
+    });
+    history.push("/listingform");
+  };
 
   return (
     <StyledListingContainer
