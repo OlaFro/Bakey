@@ -53,6 +53,7 @@ const UsersSchema = new mongoose.Schema({
     type: String,
   },
   cafeListings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
+  orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
 });
 
 //coordinates?

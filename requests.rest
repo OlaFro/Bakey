@@ -26,7 +26,7 @@ POST http://localhost:5000/users/login
 Content-Type: application/json
 
 {
-    "email":"max.mustermann@gmail.com",
+    "email":"aloevera@gmail.com",
     "password":"12345678910"
 }
 
@@ -135,3 +135,8 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/listings/end-soon
+
+
+###
+
+GET http://localhost:5000/users/orders
