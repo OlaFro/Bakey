@@ -37,12 +37,6 @@ export default function Listing(props) {
 
   const [open, setOpen] = useState(false);
 
-  const [date, setDate] = useState(false);
-
-  const [showDatePicker, setShowDatePicker] = useState(false);
-
-  const [msg, setMsg] = useState("");
-
   const cafeId = params.id ? params.id.split(":")[1] : "";
 
   const availablePieces = props.availablePieces;
@@ -133,7 +127,7 @@ export default function Listing(props) {
     Axios({
       method: "POST",
       url: `listings/archive`,
-      data: { listingID: props.id, totalPieces: props.totalPieces },
+      data: { listingID: props.id },
     })
       .then((res) => {
         console.log(res);
@@ -165,61 +159,7 @@ export default function Listing(props) {
       });
   };
 
-  const wantReactivate = () => {
-    setShowDatePicker((prevValue) => !prevValue);
-  };
-
-  const getValue = (e) => {
-    props.setShowWarning(false);
-    setDate(e.target.value);
-  };
-
-  const reactivateListing = () => {
-    props.setWarningContent("the service is out of order.");
-    props.setShowWarning(false);
-    Axios({
-      method: "POST",
-      url: `listings/reactivate`,
-      data: {
-        listingID: props.id,
-        totalPieces: props.totalPieces,
-        pickUpDate: date,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-
-        if (res.data.msg) {
-          setMsg(true);
-        } else if (res.data.status === "changed") {
-          props.setListings((prevListings) =>
-            prevListings.map((listing, index, array) => {
-              if (listing._id === res.data.listing._id) {
-                return (array[index] = res.data.listing);
-              } else {
-                return listing;
-              }
-            })
-          );
-        } else if (res.data.status === "no authorization") {
-          props.setWarningContent(
-            "that you are not authorized to change the status of the offer."
-          );
-          props.setShowWarning(true);
-        } else {
-          props.setWarningContent(
-            "that the state of this offer can not be changed, please contact our helpdesk."
-          );
-          props.setShowWarning(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        props.setShowWarning(true);
-      });
-  };
-
-  console.log(props.cafeName);
+  const wantReactivate = () => {};
 
   return (
     <StyledListingContainer
@@ -332,46 +272,16 @@ export default function Listing(props) {
           </StyledBtnContainer>
         )}
         {props.expired ? (
-          showDatePicker ? (
-            <section>
-              <StyledInputContainer listing>
-                <StyledInputField
-                  type="datetime-local"
-                  name="pickUpDate"
-                  id="pickUpDate"
-                  placeholder=" "
-                  onInput={getValue}
-                  required={true}
-                />
-                <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
-                <div>
-                  {msg ? (
-                    <small>Pick up time has to be in the future</small>
-                  ) : null}
-                </div>
-              </StyledInputContainer>
-              <StyledBtnContainer>
-                <StyledButton buy onClick={reactivateListing}>
-                  Save
-                </StyledButton>
-
-                <StyledButton buy onClick={wantReactivate}>
-                  Cancel
-                </StyledButton>
-              </StyledBtnContainer>
-            </section>
-          ) : (
-            <StyledBtnContainer>
-              <StyledButton buy onClick={wantReactivate}>
-                Reactivate
+          <StyledBtnContainer>
+            <StyledButton buy onClick={wantReactivate}>
+              Reactivate
+            </StyledButton>
+            {props.archive ? null : (
+              <StyledButton buy onClick={archiveListing}>
+                Archive
               </StyledButton>
-              {props.archive ? null : (
-                <StyledButton buy onClick={archiveListing}>
-                  Archive
-                </StyledButton>
-              )}
-            </StyledBtnContainer>
-          )
+            )}
+          </StyledBtnContainer>
         ) : null}
         {props.expiredClient ? (
           <StyledMessage warning>

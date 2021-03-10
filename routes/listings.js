@@ -160,66 +160,17 @@ router.post(
   authorizeCafe,
   listingAction.inactivate,
   (req, res, next) => {
-    const user = req.user;
     const today = req.date;
     const listingID = req.body.listingID;
-    const totalPieces = req.body.totalPieces;
-    console.log(today);
     ListingModel.findOneAndUpdate(
       {
         _id: listingID,
-        totalPieces: totalPieces,
         $or: [{ listingStatus: "sold" }, { pickUpDate: { $lte: today } }],
       },
       {
         listingStatus: "inactive",
         buyers: [],
         boughtPieces: [],
-        availablePieces: totalPieces,
-      },
-      { new: true }
-    )
-      .then((listing) => {
-        if (listing) {
-          res.send({
-            status: "changed",
-            listing: listing,
-          });
-        } else {
-          res.send({ status: "not changed" });
-        }
-      })
-      .catch((err) => {
-        res.send(err);
-      });
-  }
-);
-
-router.post(
-  "/reactivate",
-  authenticateToken,
-  authorizeCafe,
-  listingAction.inactivate,
-  sanitize,
-  reactivateListing,
-  (req, res, next) => {
-    const user = req.user;
-    const today = req.date;
-    const listingID = req.body.listingID;
-    const totalPieces = req.body.totalPieces;
-    const newDate = req.body.pickUpDate;
-    ListingModel.findOneAndUpdate(
-      {
-        _id: listingID,
-        totalPieces: totalPieces,
-        $or: [{ listingStatus: "inactive" }, { pickUpDate: { $lte: today } }],
-      },
-      {
-        listingStatus: "active",
-        buyers: [],
-        boughtPieces: [],
-        availablePieces: totalPieces,
-        pickUpDate: newDate,
       },
       { new: true }
     )

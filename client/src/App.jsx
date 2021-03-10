@@ -31,6 +31,7 @@ function App() {
   const [cafeName, setCafeName] = useState("");
   const [cafes, setCafes] = useState([]);
   const [city, setCity] = useState("Leipzig");
+  const [selectedListing, setSelectedListing] = useState({});
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -77,6 +78,8 @@ function App() {
         setCafeName,
         cafes,
         setCafes,
+        selectedListing,
+        setSelectedListing,
       }}
     >
       <Router>
