@@ -166,7 +166,7 @@ export default function Listing(props) {
       listingAllergenes: props.listingAllergenes,
       listingTags: props.listingTags,
       totalPieces: props.totalPieces,
-      pickUpDate: props.pickUpDate,
+      pickUpDate: "",
       piecePrice: props.piecePrice,
     });
     history.push("/listingform");
