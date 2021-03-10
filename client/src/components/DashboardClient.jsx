@@ -23,7 +23,7 @@ import DashboardCafePickupTab from "./DashboardCafePickupTab";
 import DashboardCafeArchiveTab from "./DashboardCafeArchiveTab";
 import { StyledButton } from "../styledComponents/StyledButton";
 
-export default function DashboardCafe() {
+export default function DashboardClient() {
   const { userName, isLogged } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
@@ -32,25 +32,25 @@ export default function DashboardCafe() {
 
   const [display, setDisplay] = useState("active");
 
-  useEffect(() => {
-    Axios({
-      method: "GET",
-      url: `listings/cafe`,
-    })
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.length) {
-          setListings(res.data);
-        }
-        if (!res.data) {
-          setShowWarning(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setShowWarning(true);
-      });
-  }, []);
+  //   useEffect(() => {
+  //     Axios({
+  //       method: "GET",
+  //       url: `listings/cafe`,
+  //     })
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         if (res.data.length) {
+  //           setListings(res.data);
+  //         }
+  //         if (!res.data) {
+  //           setShowWarning(true);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         setShowWarning(true);
+  //       });
+  //   }, []);
 
   const changeDisplay = (page) => {
     setDisplay(page);
