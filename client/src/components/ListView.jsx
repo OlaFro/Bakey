@@ -4,6 +4,7 @@ import { bakeyContext } from "../Context";
 import {
   StyledListView,
   StyledHeader,
+  StyledViewWrapper,
 } from "../styledComponents/StyledListView";
 import Axios from "axios";
 import {
@@ -90,7 +91,7 @@ export default function ListView() {
         method: "GET",
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
       })
-        .then(async(res) => {
+        .then(async (res) => {
           let location = res.data.results[0].geometry.location;
           await setCafes(() => {
             cafes[i] = {
@@ -100,8 +101,8 @@ export default function ListView() {
             };
             return cafes;
           });
-          setMapLoaded(true)
-          console.log(mapLoaded)
+          setMapLoaded(true);
+          console.log(mapLoaded);
         })
         .catch((err) => {
           console.log(err, "it didnt connected");
@@ -112,7 +113,7 @@ export default function ListView() {
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
-    console.log("info is updated")
+    console.log("info is updated");
   }, [mapFlag]);
 
   const center = {
@@ -126,8 +127,6 @@ export default function ListView() {
     width: "100%",
     height: "100%",
   };
-
-  
 
   return (
     <StyledListView>
@@ -212,41 +211,54 @@ export default function ListView() {
           </div>
         </div>
       </StyledHeader>
-     {mapLoaded ?  (<StyledMap>
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={13}
-            onLoad={()=> {console.log("the map is loaded")}}
-                      >
-            {cafes.map((cafe) => {
-              console.log(typeof cafe.lat);
-              console.log(typeof cafe.lng);
-              return (
-                <Marker
-                  key={cafe._id}
-                  title={cafe.cafeName}
-                  icon={cafeMarker}
-                  position={{ lat: cafe.lat, lng: cafe.lng }}
-                  onClick={() => history.push(`/cafe:${cafe._id}`)}
-                  onLoad={()=>{console.log("the marker for ", cafe.cafeName, " is loaded")}}
-
-                />
-              );
-            })} 
-          </GoogleMap>
-        </LoadScript>
-      </StyledMap> ) : null }
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
       {emptyWarning === true ? (
         <Warning msg="there are no offers available for this city" />
       ) : null}
-      {emptyWarning === false
-        ? cafes.map((cafe, index) => {
-            return <CafeCard key={index} cafe={cafe} />;
-          })
-        : null}
+      <StyledViewWrapper>
+        <article>
+          {emptyWarning === false
+            ? cafes.map((cafe, index) => {
+                return <CafeCard key={index} cafe={cafe} />;
+              })
+            : null}
+        </article>
+        {mapLoaded ? (
+          <StyledMap>
+            <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={13}
+                onLoad={() => {
+                  console.log("the map is loaded");
+                }}
+              >
+                {cafes.map((cafe) => {
+                  console.log(typeof cafe.lat);
+                  console.log(typeof cafe.lng);
+                  return (
+                    <Marker
+                      key={cafe._id}
+                      title={cafe.cafeName}
+                      icon={cafeMarker}
+                      position={{ lat: cafe.lat, lng: cafe.lng }}
+                      onClick={() => history.push(`/cafe:${cafe._id}`)}
+                      onLoad={() => {
+                        console.log(
+                          "the marker for ",
+                          cafe.cafeName,
+                          " is loaded"
+                        );
+                      }}
+                    />
+                  );
+                })}
+              </GoogleMap>
+            </LoadScript>
+          </StyledMap>
+        ) : null}
+      </StyledViewWrapper>
     </StyledListView>
   );
 }

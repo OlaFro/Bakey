@@ -7,7 +7,7 @@ import { Cake3 } from "styled-icons/remix-line/";
 export const StyledIcon = styled(Cake3)``;
 
 export const StyledCafeCard = styled.article`
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   margin: var(--space-m) 0;
   cursor: pointer;

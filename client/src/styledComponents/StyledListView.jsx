@@ -44,3 +44,23 @@ export const StyledHeader = styled.div`
     }
   }
 `;
+
+export const StyledViewWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media ${device.desktop} {
+    flex-direction: row;
+    gap: var(--space-l);
+  }
+
+  > article {
+    width: 100%;
+    max-width: 600px;
+    order: 2;
+
+    @media ${device.desktop} {
+      order: 0;
+    }
+  }
+`;
