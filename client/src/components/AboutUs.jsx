@@ -15,13 +15,15 @@ export default function AboutUs() {
       <h1>About us</h1>
 
       <StyledCard>
-        <h2>Hi,thanks for visiting our project! </h2>
+        <h2>Hi, thanks for visiting our project! </h2>
         <StyledFaces>
           <div>
             <figure>
               <img src={Alice} alt="Alice" />
             </figure>
-            <p>Alice Reznickova</p>
+            <h3>
+              Alice<br></br> Reznickova
+            </h3>
             <p>tech-lead</p>
             <p> back-end lead</p>
           </div>
@@ -29,15 +31,21 @@ export default function AboutUs() {
             <figure>
               <img src={Ola} alt="Ola" />
             </figure>
-            <p>Ola Frost</p>
-            <p>product owner, front-end lead</p>
+            <h3>
+              Ola<br></br> Frost
+            </h3>
+            <p>product owner</p>
+            <p> front-end lead</p>
           </div>
           <div>
             <figure>
               <img src={Willy} alt="Willy" />
             </figure>
-            <p>Willy Calvo</p>
-            <p>Database architect, map specialist</p>
+            <h3>
+              Willy<br></br> Calvo
+            </h3>
+            <p>database architect</p>
+            <p> map specialist</p>
           </div>
         </StyledFaces>
         <h3>Get to know us</h3>

@@ -6,21 +6,37 @@ import device from "./device";
 export const StyledAbout = styled.section``;
 
 export const StyledFaces = styled.header`
-  border: 1px solid red;
   margin: auto;
   width: 80%;
   display: flex;
   justify-content: space-between;
 
-  > div > figure {
-    margin: 0;
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    overflow: hidden;
-    > img {
-      width: 100%;
-      object-fit: contain;
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-l);
+
+    > figure {
+      margin: 0;
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      overflow: hidden;
+      > img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+    > h3 {
+      margin-bottom: -0.5rem;
+      text-align: center;
+    }
+    > p {
+      margin-bottom: -0.75rem;
+      font-size: 0.9rem;
+      font-weight: 700;
     }
   }
 `;
