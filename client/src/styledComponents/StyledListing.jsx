@@ -231,6 +231,10 @@ export const StyledBtnContainer = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
-  color: ${colors.black};
+  color: #4a4a4a;
   text-decoration: none;
+  border-bottom: 3px solid #ed8db2;
+  :hover {
+    border-bottom: 3px solid transparent;
+  }
 `;
