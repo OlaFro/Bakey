@@ -118,18 +118,6 @@ Content-Type: application/json
 
 {
     "listingID": "603e3a1b6ba690001562ef34",
-    "totalPieces": 10
-}
-
-###
-
-POST http://localhost:5000/listings/reactivate
-Content-Type: application/json
-
-{
-    "listingID": "603e3a1b6ba690001562ef34",
-    "totalPieces": 10,
-    "pickUpDate": "2021-03-09T15:00"
 }
 
 ###
