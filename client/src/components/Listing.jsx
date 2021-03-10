@@ -117,7 +117,7 @@ export default function Listing(props) {
       price: props.piecePrice,
       pieces: pieces,
       availablePieces: availablePieces,
-      cafeId: cafeId,
+      cafeId: cafeId || props.cafeId,
       listingImg: props.image,
       listingIdentifier: props.listingIdentifier,
     };
@@ -309,7 +309,7 @@ export default function Listing(props) {
             <StyledButton
               buy
               onClick={() => {
-                if (params.id) {
+                if (params.id || props.landingPage) {
                   storeOrderInfo("one");
                 }
               }}
@@ -319,7 +319,7 @@ export default function Listing(props) {
             <StyledButton
               buy
               onClick={() => {
-                if (params.id) {
+                if (params.id || props.landingPage) {
                   storeOrderInfo("many");
                 }
               }}

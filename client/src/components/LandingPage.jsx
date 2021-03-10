@@ -172,6 +172,7 @@ export default function LandingPage() {
                   key={`listing-${index}`}
                   cafeId={listing.cafeId}
                   withLink={true}
+                  landingPage={true}
                 />
               );
             })}
