@@ -42,7 +42,7 @@ export default function DashboardClient() {
       listingPicture:
         "uploads/images/b18906b7-8152-496a-8da7-f8b307bec264.jpeg",
       pickUpDate: "2021-02-28T20:00:00Z",
-      listingStatus: "sold",
+      listingStatus: "active",
     },
   ]);
 
@@ -117,7 +117,7 @@ export default function DashboardClient() {
               changeDisplay("active");
             }}
           >
-            Open Offers
+            Open Orders
           </StyledButton>
 
           <StyledButton
