@@ -20,6 +20,7 @@ import Profile from "./components/Profile";
 import ListView from "./components/ListView";
 import Settings from "./components/Settings";
 import LandingPage from "./components/LandingPage";
+import AboutUs from "./components/AboutUs";
 
 import Order from "./components/Order";
 import Footer from "./components/Footer";
@@ -85,6 +86,9 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <LandingPage />
+            </Route>
+            <Route path="/about-us" exact>
+              <AboutUs />
             </Route>
             <Route path="/registration/user" exact>
               <RegistrationUser />
