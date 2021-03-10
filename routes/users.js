@@ -203,4 +203,17 @@ router.put(
   }
 );
 
+router.get("/orders", authenticateToken, (req, res, next) => {
+  const user = req.user;
+  UserModel.findById(user.id)
+    .populate({ path: "orders", select: ["-buyers"] })
+    .select("orders")
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 module.exports = router;
