@@ -3,7 +3,9 @@ import { lighten, darken } from "polished";
 import colors from "./colors";
 import device from "./device";
 
-export const StyledAbout = styled.section``;
+export const StyledAbout = styled.section`
+  padding: 10vh 0 20vh 0;
+`;
 
 export const StyledFaces = styled.header`
   margin: auto;
@@ -23,7 +25,7 @@ export const StyledFaces = styled.header`
       height: 100px;
       border-radius: 100%;
       overflow: hidden;
-      > img {
+      a > img {
         width: 100%;
         object-fit: contain;
       }
@@ -43,7 +45,7 @@ export const StyledFaces = styled.header`
 
 export const StyledCard = styled.main`
   background-color: ${lighten(0.28, colors.gray)};
-  padding: var(--space-m);
+  padding: var(--space-l);
   width: 90%;
   max-width: 800px;
   margin: auto;

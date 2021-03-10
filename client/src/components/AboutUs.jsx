@@ -12,24 +12,38 @@ import Ola from "../assets/ola.png";
 export default function AboutUs() {
   return (
     <StyledAbout>
-      <h1>About us</h1>
+      {/* <h1>About us</h1> */}
 
       <StyledCard>
         <h2>Hi, thanks for visiting our project! </h2>
         <StyledFaces>
           <div>
             <figure>
-              <img src={Alice} alt="Alice" />
+              <a
+                href="https://github.com/Alice-Rez"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <img src={Alice} alt="Alice" />
+              </a>
             </figure>
+
             <h3>
               Alice<br></br> Reznickova
             </h3>
+
             <p>tech-lead</p>
             <p> back-end lead</p>
           </div>
           <div>
             <figure>
-              <img src={Ola} alt="Ola" />
+              <a
+                href="https://github.com/OlaFro"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <img src={Ola} alt="Ola" />
+              </a>
             </figure>
             <h3>
               Ola<br></br> Frost
@@ -39,7 +53,13 @@ export default function AboutUs() {
           </div>
           <div>
             <figure>
-              <img src={Willy} alt="Willy" />
+              <a
+                href="https://github.com/willoid"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <img src={Willy} alt="Willy" />
+              </a>
             </figure>
             <h3>
               Willy<br></br> Calvo
@@ -101,7 +121,7 @@ export default function AboutUs() {
         <p>
           We would love to hear your feedback about Bakey! If you have any
           suggestions, please share them with us via{" "}
-          <a href="mailto:bakey-app@gmail.com">bakey-app@gmail.com</a>
+          <a href="mailto:bakey-app@gmail.com">bakey-app@gmail.com</a>.
         </p>
       </StyledCard>
     </StyledAbout>
