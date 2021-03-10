@@ -18,9 +18,13 @@ import { StyledButton } from "../styledComponents/StyledButton";
 export default function Login(props) {
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-  const { setIsLogged, setUserName, setProfilePic, setCafeName } = useContext(
-    bakeyContext
-  );
+  const {
+    setIsLogged,
+    setUserName,
+    setProfilePic,
+    setCafeName,
+    setCity,
+  } = useContext(bakeyContext);
   const [visible, setVisible] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
 
@@ -72,6 +76,7 @@ export default function Login(props) {
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
+          setCity(res.data.city);
           setData({});
           if (orderInfo && res.data.userType === "client") {
             history.push("/order");

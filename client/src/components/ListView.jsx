@@ -23,9 +23,9 @@ import cafeMarker from "../assets/newCafeMarker.png";
 export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
-  const context = useContext(bakeyContext);
-  const [city, setCity] = useState(context.city);
-  const { cafes, setCafes } = useContext(bakeyContext);
+  // const context = useContext(bakeyContext);
+  // const [city, setCity] = useState(context.city);
+  const { cafes, setCafes, city, setCity } = useContext(bakeyContext);
   const [filteredCafes, setFilteredCafes] = useState([]);
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
@@ -34,11 +34,10 @@ export default function ListView() {
 
   let history = useHistory();
 
-  console.log(context);
-
   const getCities = (city) => {
     setDbError(false);
     setEmptyWarning(false);
+    setMapLoaded(false);
     Axios({
       method: "POST",
       url: "/cafes",
@@ -52,7 +51,6 @@ export default function ListView() {
           setMapFlag((prevValue) => {
             return !prevValue;
           });
-          setMapLoaded(false);
         }
       })
       .catch((err) => {
@@ -78,8 +76,11 @@ export default function ListView() {
         console.log("no results from GM");
       });
   };
-  const getMapInfo = (API_KEY) => {
-    cafes.map((cafe, i) => {
+
+  const getMapInfo = async (API_KEY) => {
+    console.log("get map info", cafes);
+    await cafes.map((cafe, i) => {
+      console.log("cafe", i);
       let address = [
         cafe.cafeStreet.split(" ").join("+"),
         cafe.cafeStreetNr,
@@ -92,6 +93,7 @@ export default function ListView() {
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
       })
         .then(async (res) => {
+          console.log(res.data.results[0].geometry.location);
           let location = res.data.results[0].geometry.location;
           await setCafes(() => {
             cafes[i] = {
@@ -99,18 +101,24 @@ export default function ListView() {
               lat: location.lat,
               lng: location.lng,
             };
+            console.log("setting lat and lng", cafes);
             return cafes;
           });
+          console.log(cafes);
           setMapLoaded(true);
           console.log(mapLoaded);
+          console.log("inside of map");
         })
         .catch((err) => {
           console.log(err, "it didnt connected");
         });
     });
+
+    console.log("outside of map");
   };
 
   useEffect(() => {
+    setMapLoaded(false);
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
     console.log("info is updated");
@@ -225,7 +233,9 @@ export default function ListView() {
         </article>
         {mapLoaded ? (
           <StyledMap>
+            {console.log("Styled map")}
             <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
+              {console.log("LoadScript")}
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
@@ -250,6 +260,7 @@ export default function ListView() {
                           cafe.cafeName,
                           " is loaded"
                         );
+                        console.log(cafe.lat, cafe.lng);
                       }}
                     />
                   );
