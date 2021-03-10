@@ -84,6 +84,17 @@ export const StyledButton = styled.button`
     `}
 
   ${(props) =>
+    props.headerBtnClient &&
+    css`
+      background-color: transparent;
+      color: ${colors.black};
+      :hover {
+        background-color: transparent;
+        color: ${colors.black};
+      }
+    `}
+
+  ${(props) =>
     props.buy &&
     css`
       padding: var(--space-xs) var(--space-m);

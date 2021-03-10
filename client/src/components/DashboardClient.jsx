@@ -22,11 +22,29 @@ import DashboardCafeExpiredTab from "./DashboardCafeExpiredTab";
 import DashboardCafePickupTab from "./DashboardCafePickupTab";
 import DashboardCafeArchiveTab from "./DashboardCafeArchiveTab";
 import { StyledButton } from "../styledComponents/StyledButton";
+import DashboardClientPickupTab from "./DashboardClientPickupTab";
 
 export default function DashboardClient() {
   const { userName, isLogged } = useContext(bakeyContext);
 
-  const [listings, setListings] = useState([]);
+  const [listings, setListings] = useState([
+    {
+      _id: "60339e23ebc07c6a9dec75ca",
+      id: "3",
+      cafeId: "60338ba368603838c0e860d9",
+      cafeName: "OCKA Cafe",
+      listingName: "Super Chocolate Cake",
+      listingTags: [""],
+      listingAllergenes: ["cereal", "eggs", "dairy"],
+      totalPieces: 15,
+      availablePieces: 8,
+      piecePrice: 3,
+      listingPicture:
+        "uploads/images/b18906b7-8152-496a-8da7-f8b307bec264.jpeg",
+      pickUpDate: "2021-02-28T20:00:00Z",
+      listingStatus: "sold",
+    },
+  ]);
 
   const [showWarning, setShowWarning] = useState(false);
 
@@ -62,7 +80,7 @@ export default function DashboardClient() {
         <h2>Hello, {userName}! </h2>
       </header>
       <main>
-        <StyledQuickLinks>
+        {/* <StyledQuickLinks>
           <StyledPlusLink>
             <Link to="/listingform">
               <StyledPlusIcon></StyledPlusIcon>
@@ -88,24 +106,22 @@ export default function DashboardClient() {
               <StyledPlusLinkInfo>settings</StyledPlusLinkInfo>
             </Link>
           </StyledPlusLink>
-        </StyledQuickLinks>
+        </StyledQuickLinks> */}
 
-        <StyledHr cafe dashboard />
+        {/* <StyledHr cafe dashboard /> */}
 
         <StyledButtonContainer>
           <StyledButton
-            cafe
-            headerBtn={display === "active" ? true : false}
+            headerBtnClient={display === "active" ? true : false}
             onClick={() => {
               changeDisplay("active");
             }}
           >
-            Active Offers
+            Open Offers
           </StyledButton>
 
           <StyledButton
-            cafe
-            headerBtn={display === "pickup" ? true : false}
+            headerBtnClient={display === "pickup" ? true : false}
             onClick={() => {
               changeDisplay("pickup");
             }}
@@ -113,17 +129,7 @@ export default function DashboardClient() {
             PickUps
           </StyledButton>
           <StyledButton
-            cafe
-            headerBtn={display === "expired" ? true : false}
-            onClick={() => {
-              changeDisplay("expired");
-            }}
-          >
-            Expired Offers
-          </StyledButton>
-          <StyledButton
-            cafe
-            headerBtn={display === "archive" ? true : false}
+            headerBtnClient={display === "archive" ? true : false}
             onClick={() => {
               changeDisplay("archive");
             }}
@@ -135,18 +141,16 @@ export default function DashboardClient() {
         {showWarning ? <Warning msg="the service is out of order" /> : null}
 
         {display === "active" ? (
-          <DashboardCafeActiveTab activeListings={listings} />
-        ) : null}
-
-        {display === "expired" ? (
-          <DashboardCafeExpiredTab
-            expiredListings={listings}
-            setListings={setListings}
+          <DashboardCafeActiveTab
+            activeListings={listings.filter(
+              (item) => item.listingStatus === "active"
+            )}
+            dashboardClient={true}
           />
         ) : null}
 
         {display === "pickup" ? (
-          <DashboardCafePickupTab
+          <DashboardClientPickupTab
             soldListings={listings.filter(
               (item) => item.listingStatus === "sold"
             )}
@@ -159,7 +163,7 @@ export default function DashboardClient() {
             inactiveListings={listings.filter(
               (item) => item.listingStatus === "inactive"
             )}
-            setListings={setListings}
+            dashboardClient={true}
           />
         ) : null}
       </main>

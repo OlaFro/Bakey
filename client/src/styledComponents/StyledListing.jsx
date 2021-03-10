@@ -238,3 +238,14 @@ export const StyledLink = styled(Link)`
     border-bottom: 3px solid transparent;
   }
 `;
+
+export const StyledMessage = styled.p`
+  color: ${colors.black};
+  font-weight: 900;
+  padding: 0 var(--space-s)
+    ${(props) =>
+      props.warning &&
+      css`
+        color: ${colors.accent2};
+      `};
+`;

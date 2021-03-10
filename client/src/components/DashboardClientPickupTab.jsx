@@ -3,10 +3,8 @@ import { bakeyContext } from "../Context";
 import Listing from "./Listing";
 import Warning from "./Warning";
 
-export default function DashboardCafeArchiveTab(props) {
-  const { inactiveListings, setListings } = props;
-
-  const { cafeName } = useContext(bakeyContext);
+export default function DashboardClientPickupTab(props) {
+  const { soldListings } = props;
 
   const [showWarning, setShowWarning] = useState(false);
 
@@ -16,10 +14,10 @@ export default function DashboardCafeArchiveTab(props) {
 
   return (
     <section className="offers-wrapper">
-      {inactiveListings.map((listing, index) => {
+      {soldListings.map((listing, index) => {
         return (
           <Listing
-            cafeName={cafeName}
+            cafeName={listing.cafeName}
             title={listing.listingName}
             totalPieces={listing.totalPieces}
             availablePieces={listing.availablePieces}
@@ -30,14 +28,12 @@ export default function DashboardCafeArchiveTab(props) {
             image={listing.listingPicture}
             id={listing._id}
             dashboard={true}
-            expired={props.dashboardClient ? false : true}
-            archive={props.dashboardClient ? false : true}
-            setListings={setListings}
             setShowWarning={setShowWarning}
             setWarningContent={setWarningContent}
             cafeId={props.dashboardClient ? null : listing.cafeId}
             withLink={props.dashboardClient}
             key={`listing-${index}`}
+            soldClient={true}
           />
         );
       })}
