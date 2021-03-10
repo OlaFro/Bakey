@@ -140,3 +140,7 @@ GET http://localhost:5000/listings/end-soon
 ###
 
 GET http://localhost:5000/users/orders
+
+###
+
+GET http://localhost:5000/users/cities

@@ -218,4 +218,12 @@ router.get("/orders", authenticateToken, (req, res, next) => {
     });
 });
 
+router.get("/cities", (req, res, next) => {
+  UserModel.distinct('city', { userType: "cafe" })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => res.send(err));
+});
+
 module.exports = router;
