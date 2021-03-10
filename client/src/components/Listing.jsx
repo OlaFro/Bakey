@@ -11,6 +11,7 @@ import {
   StyledMore,
   StyledLess,
   StyledTimers,
+  StyledLink,
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
@@ -20,7 +21,7 @@ import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
 import Tag from "./Tag";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import {
   StyledInputContainer,
   StyledInputField,
@@ -243,7 +244,13 @@ export default function Listing(props) {
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
           <StyledTagContainer>{tags()}</StyledTagContainer>
-          <span>{props.cafeName}</span>
+          {props.withLink ? (
+            <StyledLink to={`/cafe:${props.cafeId}`}>
+              {props.cafeName}
+            </StyledLink>
+          ) : (
+            <span>{props.cafeName}</span>
+          )}
         </header>
 
         <div style={{ width: "130px" }}>

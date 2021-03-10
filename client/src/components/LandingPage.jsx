@@ -170,6 +170,8 @@ export default function LandingPage() {
                   id={listing._id}
                   listingIdentifier={listing.id}
                   key={`listing-${index}`}
+                  cafeId={listing.cafeId}
+                  withLink={true}
                 />
               );
             })}
