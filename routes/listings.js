@@ -121,10 +121,9 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
           $push: { buyers: buyer, boughtPieces: pcs },
         })
           .then((result) => {
-            res.send({ boughtPieces: pcs });
             UserModel.findByIdAndUpdate(buyer, { $push: { orders: listingId } })
               .then((result) => {
-                res.send(console.log("user Updated", listingId));
+                res.send({ boughtPieces: pcs });
               })
               .catch((err) => {
                 res.send(err);
