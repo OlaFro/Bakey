@@ -27,48 +27,31 @@ import DashboardClientPickupTab from "./DashboardClientPickupTab";
 export default function DashboardClient() {
   const { userName, isLogged } = useContext(bakeyContext);
 
-  const [listings, setListings] = useState([
-    {
-      _id: "60339e23ebc07c6a9dec75ca",
-      id: "3",
-      cafeId: "60338ba368603838c0e860d9",
-      cafeName: "OCKA Cafe",
-      listingName: "Super Chocolate Cake",
-      listingTags: [""],
-      listingAllergenes: ["cereal", "eggs", "dairy"],
-      totalPieces: 15,
-      availablePieces: 8,
-      piecePrice: 3,
-      listingPicture:
-        "uploads/images/b18906b7-8152-496a-8da7-f8b307bec264.jpeg",
-      pickUpDate: "2021-02-28T20:00:00Z",
-      listingStatus: "active",
-    },
-  ]);
+  const [listings, setListings] = useState([]);
 
   const [showWarning, setShowWarning] = useState(false);
 
   const [display, setDisplay] = useState("active");
 
-  //   useEffect(() => {
-  //     Axios({
-  //       method: "GET",
-  //       url: `listings/cafe`,
-  //     })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         if (res.data.length) {
-  //           setListings(res.data);
-  //         }
-  //         if (!res.data) {
-  //           setShowWarning(true);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setShowWarning(true);
-  //       });
-  //   }, []);
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: `users/orders`,
+    })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.orders.length) {
+          setListings(res.data.orders);
+        }
+        if (!res.data) {
+          setShowWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setShowWarning(true);
+      });
+  }, []);
 
   const changeDisplay = (page) => {
     setDisplay(page);
