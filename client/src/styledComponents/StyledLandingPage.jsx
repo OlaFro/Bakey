@@ -90,20 +90,22 @@ export const StyledMain = styled.main`
   width: 100%;
   margin-top: calc(6 * var(--space-l));
 `;
-export const StyledCarrousel = styled.section`
+export const StyledCarrousel = styled.div`
   padding: 30vh 0;
   background-color: ${lighten(0.28, colors.gray)};
   clip-path: polygon(0 7%, 100% 15%, 100% 100%, 0 90%);
   margin-top: calc(-1 * var(--space-l));
+  display: flex;
+  justify-content: center;
 
   .carrousel-container {
-    width: 60%;
+    width: 100%;
     max-width: 600px;
-    height: 200px;
-    /* background-color: gray; */
-    margin: auto;
+    height: 450px;
+    border: 2px solid red;
   }
   .carrousel-card {
+    width: inherit;
     margin: 1rem;
     img {
       height: 280px;
@@ -111,6 +113,7 @@ export const StyledCarrousel = styled.section`
     }
     h3 {
       text-align: center;
+      padding: 0 1rem;
     }
   }
 `;
