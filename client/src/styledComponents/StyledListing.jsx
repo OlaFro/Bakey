@@ -6,6 +6,7 @@ import {
   KeyboardArrowDown,
   KeyboardArrowUp,
 } from "styled-icons/material-sharp";
+import { Link } from "react-router-dom";
 
 export const StyledListingContainer = styled.article`
   width: 100%;
@@ -226,5 +227,14 @@ export const StyledBtnContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  color: #4a4a4a;
+  text-decoration: none;
+  border-bottom: 3px solid #ed8db2;
+  :hover {
+    border-bottom: 3px solid transparent;
   }
 `;

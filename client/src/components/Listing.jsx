@@ -11,6 +11,7 @@ import {
   StyledMore,
   StyledLess,
   StyledTimers,
+  StyledLink,
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
@@ -20,7 +21,7 @@ import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
 import placeholder from "../assets/placeholder_400px.jpg";
 import Tag from "./Tag";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import {
   StyledInputContainer,
   StyledInputField,
@@ -116,7 +117,7 @@ export default function Listing(props) {
       price: props.piecePrice,
       pieces: pieces,
       availablePieces: availablePieces,
-      cafeId: cafeId,
+      cafeId: cafeId || props.cafeId,
       listingImg: props.image,
       listingIdentifier: props.listingIdentifier,
     };
@@ -243,7 +244,13 @@ export default function Listing(props) {
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
           <StyledTagContainer>{tags()}</StyledTagContainer>
-          <span>{props.cafeName}</span>
+          {props.withLink ? (
+            <StyledLink to={`/cafe:${props.cafeId}`}>
+              {props.cafeName}
+            </StyledLink>
+          ) : (
+            <span>{props.cafeName}</span>
+          )}
         </header>
 
         <div style={{ width: "130px" }}>
@@ -302,7 +309,7 @@ export default function Listing(props) {
             <StyledButton
               buy
               onClick={() => {
-                if (params.id) {
+                if (params.id || props.landingPage) {
                   storeOrderInfo("one");
                 }
               }}
@@ -312,7 +319,7 @@ export default function Listing(props) {
             <StyledButton
               buy
               onClick={() => {
-                if (params.id) {
+                if (params.id || props.landingPage) {
                   storeOrderInfo("many");
                 }
               }}
