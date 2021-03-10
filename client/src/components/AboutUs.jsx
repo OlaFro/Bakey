@@ -9,6 +9,8 @@ import Alice from "../assets/Alice.jpg";
 import Willy from "../assets/Willy.jpeg";
 import Ola from "../assets/ola.png";
 
+import Logo from "./Logo";
+
 export default function AboutUs() {
   return (
     <StyledAbout>
@@ -24,7 +26,7 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <img src={Alice} alt="Alice" />
+                <img src={Alice} alt="Alice" title="github.com/alice-rez" />
               </a>
             </figure>
 
@@ -42,7 +44,7 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <img src={Ola} alt="Ola" />
+                <img src={Ola} alt="Ola" title="github.com/olafro" />
               </a>
             </figure>
             <h3>
@@ -58,7 +60,7 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <img src={Willy} alt="Willy" />
+                <img src={Willy} alt="Willy" title="github.com/willoid" />
               </a>
             </figure>
             <h3>
@@ -68,7 +70,7 @@ export default function AboutUs() {
             <p> map specialist</p>
           </div>
         </StyledFaces>
-        <h3>Get to know us</h3>
+        <h3>About us</h3>
         <p>
           We are Alice, Ola, and Willy - three friends that studied together Web
           Development at{" "}
@@ -107,8 +109,9 @@ export default function AboutUs() {
           Bakey is done with React and Styled-Components in the front-end and
           node.js and Express.js in the back-end. For the database, we've used
           MongoDB with Mongoose and Mongo Atlas. We are using ecrypting
-          (hashing) of the password, JWT and store the order data in the session
-          storage. During the work on Bakey we've used Agile Project Management.
+          (hashing) of the passwords, JWT and store the order data in the
+          session storage. During the work on Bakey we've used Agile Project
+          Management.
         </p>
         <h3>Remote</h3>
         <p>
@@ -123,6 +126,7 @@ export default function AboutUs() {
           suggestions, please share them with us via{" "}
           <a href="mailto:bakey-app@gmail.com">bakey-app@gmail.com</a>.
         </p>
+        <Logo />
       </StyledCard>
     </StyledAbout>
   );

@@ -51,9 +51,15 @@ export const StyledCard = styled.main`
   margin: auto;
   border-radius: var(--border-radius);
 
+  > :last-child {
+    margin-bottom: var(--space-l);
+    box-shadow: none;
+    background-color: transparent;
+  }
+
   > h2 {
     text-align: center;
-    margin-bottom: var(--space-l);
+    margin-bottom: var(--space-m);
   }
 
   > h3 {
