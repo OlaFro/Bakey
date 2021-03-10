@@ -11,12 +11,19 @@ export const StyledFaces = styled.header`
   margin: auto;
   width: 80%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  @media ${device.tabletPortrait} {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 
   > div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: var(--space-s);
     margin-bottom: var(--space-l);
 
     > figure {
@@ -52,7 +59,6 @@ export const StyledCard = styled.main`
   border-radius: var(--border-radius);
 
   > :last-child {
-    margin-bottom: var(--space-l);
     box-shadow: none;
     background-color: transparent;
   }

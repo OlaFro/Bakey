@@ -14,8 +14,6 @@ import Logo from "./Logo";
 export default function AboutUs() {
   return (
     <StyledAbout>
-      {/* <h1>About us</h1> */}
-
       <StyledCard>
         <h2>Hi, thanks for visiting our project! </h2>
         <StyledFaces>
