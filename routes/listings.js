@@ -41,6 +41,16 @@ router.post(
         UserModel.findById(user.id)
           .then((cafe) => {
             if (cafe.userType === "cafe") {
+              let image;
+
+              if (req.files["file"]) {
+                image = req.files["file"][0].path;
+              } else if (addListing.listingImage) {
+                image = "../uploads/images/" + addListing.listingImage;
+              } else {
+                image = "../uploads/images/listingplaceholder.png";
+              }
+
               let addedListing = new ListingModel({
                 id: addListing.id,
                 cafeId: user.id,
@@ -51,9 +61,7 @@ router.post(
                 totalPieces: +addListing.totalPieces,
                 availablePieces: +addListing.totalPieces,
                 piecePrice: +addListing.piecePrice,
-                listingPicture: req.files["file"]
-                  ? req.files["file"][0].path
-                  : "../uploads/images/listingplaceholder.png",
+                listingPicture: image,
                 pickUpDate: addListing.pickUpDate,
                 listingStatus: "active",
               });

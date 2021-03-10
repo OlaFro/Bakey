@@ -96,6 +96,7 @@ export default function ListingForm() {
     formData.append("totalPieces", data.totalPieces);
     formData.append("piecePrice", data.piecePrice);
     formData.append("pickUpDate", data.pickUpDate);
+    formData.append("listingImage", data.listingImage.split("images/")[1]);
 
     Axios({
       method: "POST",
@@ -213,7 +214,7 @@ export default function ListingForm() {
                 type="checkbox"
                 id="eggs"
                 name="eggs"
-                checked={data.listingTags.includes("eggs")}
+                checked={data.listingAllergenes.includes("eggs")}
                 onChange={getAllergenes}
               />
               <label htmlFor="eggs">eggs</label>
