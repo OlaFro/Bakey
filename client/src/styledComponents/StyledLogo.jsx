@@ -29,23 +29,6 @@ import { lighten, darken } from "polished";
 //     transform: translateX(-50%);
 //   }
 
-//   ${(props) =>
-//     props.nav &&
-//     css`
-//       box-shadow: none;
-//       height: 40px;
-//       width: 40px;
-
-//       border-radius: 0;
-
-//       > img {
-//         width: inherit;
-//       }
-//       > span {
-//         padding: 3px 0;
-//         display: none;
-//       }
-//     `}
 // `;
 
 export const StyledLogo = styled.div`
@@ -71,4 +54,22 @@ export const StyledLogo = styled.div`
     font-weight: 700;
     margin-top: -13px;
   }
+  ${(props) =>
+    props.nav &&
+    css`
+      box-shadow: none;
+      height: 40px;
+      width: 40px;
+      border-radius: 0;
+      flex-direction: row;
+      align-items: center;
+      border: 1px solid red;
+
+      > img {
+        width: inherit;
+      }
+      > span {
+     
+    
+    `}
 `;
