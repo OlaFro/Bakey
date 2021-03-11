@@ -14,6 +14,7 @@ import { StyledNavLogo } from "../styledComponents/StyledLogo";
 import { StyledSmallButton } from "../styledComponents/StyledButton";
 import { bakeyContext } from "../Context";
 import axios from "axios";
+import Logo from "./Logo";
 
 export default function Navigation(props) {
   const [open, setOpen] = useState(0);
@@ -44,30 +45,41 @@ export default function Navigation(props) {
   return (
     <StyledNavigation>
       <StyledLogoContainer>
-        <StyledNavLogo>
-          <Link to="/">bakey</Link>
-        </StyledNavLogo>
+        <Link to="/">
+          <Logo nav />
+        </Link>
+
         <StyledExit onClick={handleClose} display={open} />
         <StyledMenu onClick={handleOpen} display={open} />
       </StyledLogoContainer>
       <StyledNavContainer display={open}>
-        <Link to="/cafes-list">cafés</Link>
-        <Link to="/">about us</Link>
+        <Link to="/cafes-list" onClick={handleClose}>
+          cafés
+        </Link>
+        <Link to="/about-us" onClick={handleClose}>
+          about us
+        </Link>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
         {isLogged.state ? (
-          <Link to={`/${isLogged.role}-dashboard`}>Dashboard</Link>
+          <Link to={`/${isLogged.role}-dashboard`} onClick={handleClose}>
+            Dashboard
+          </Link>
         ) : null}
         {isLogged.state ? null : (
           <StyledNavBtn login>
-            <Link to="/login">log in</Link>
+            <Link to="/login" onClick={handleClose}>
+              log in
+            </Link>
           </StyledNavBtn>
         )}
         {isLogged.state ? (
           <StyledSmallButton onClick={logout}>Log out</StyledSmallButton>
         ) : (
           <StyledNavBtn registration>
-            <Link to="/registration/user">register</Link>
+            <Link to="/registration/user" onClick={handleClose}>
+              register
+            </Link>
           </StyledNavBtn>
         )}
       </StyledNavBtnsContainer>

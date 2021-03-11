@@ -3,16 +3,6 @@ import colors from "../styledComponents/colors";
 import device from "./device";
 import { lighten, darken } from "polished";
 
-export const StyledNavLogo = styled.div`
-  font-family: var(--logo);
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0;
-  @media ${device.desktop} {
-    padding-right: var(--space-xs);
-  }
-`;
-
 export const StyledLogo = styled.div`
   margin: auto;
   position: relative;
@@ -38,4 +28,22 @@ export const StyledLogo = styled.div`
     left: 50%;
     transform: translateX(-50%);
   }
+
+  ${(props) =>
+    props.nav &&
+    css`
+      box-shadow: none;
+      height: 40px;
+      width: 40px;
+
+      border-radius: 0;
+
+      > img {
+        width: inherit;
+      }
+      > span {
+        padding: 3px 0;
+        display: none;
+      }
+    `}
 `;

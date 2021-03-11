@@ -12,7 +12,7 @@ export const StyledNavigation = styled.nav`
   display: flex;
   flex-direction: column;
   /* margin-bottom: var(--space-m); */
-  border-bottom: 1px solid ${colors.black};
+  /* border-bottom: 1px solid ${colors.black}; */
 
   a {
     text-decoration: none;
