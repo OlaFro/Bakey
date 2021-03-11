@@ -187,7 +187,7 @@ export default function Profile() {
               <span> {cafeInfo.email}</span>
             </div>
           </StyledAddress>
-          <MapCardView cafeLocation={cafeLocation} />
+          {cafeLocation ? <MapCardView cafeLocation={cafeLocation} /> : null}
         </StyledAddressContainer>
         <StyledHr cafe />
       </StyledContentContainer>
