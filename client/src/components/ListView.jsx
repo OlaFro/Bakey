@@ -237,7 +237,7 @@ export default function ListView() {
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={11}
+                zoom={13}
                 onLoad={() => {
                   console.log("the map is loaded");
                 }}
