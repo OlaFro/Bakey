@@ -10,7 +10,6 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 import Tag from "./Tag";
 
-
 export default function ListViewCafe(props) {
   const { cafe } = props;
 
@@ -20,6 +19,13 @@ export default function ListViewCafe(props) {
     if (listing.listingTags) {
       return <Tag key={listing.listingTags} data={listing.listingTags} />;
     }
+  };
+
+  const getPercentage = (listing) => {
+    let dividend = listing.totalPieces - listing.availablePieces;
+    let quotien = dividend / listing.totalPieces;
+    let result = (100 * quotien).toFixed(0) * 1;
+    return result;
   };
   return (
     <StyledCafeCard
@@ -55,14 +61,9 @@ export default function ListViewCafe(props) {
               <div className="progressBar">
                 {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
                 <ProgressBar
-                  completed={
-                    (100 *
-                      (listing.totalPieces - listing.availablePieces) /
-                      listing.totalPieces
-                    ).toFixed(0) * 1
-                  }
+                  completed={getPercentage(listing)}
                   bgcolor={colors.accent1}
-                  isLabelVisible={true}
+                  isLabelVisible={getPercentage(listing) === 0 || getPercentage(listing) >= 30 ? true : false}
                 />
               </div>
             </StyledListing>
