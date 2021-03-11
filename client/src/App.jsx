@@ -31,7 +31,8 @@ function App() {
   const [profilePic, setProfilePic] = useState("");
   const [cafeName, setCafeName] = useState("");
   const [cafes, setCafes] = useState([]);
-  const [city, setCity] = useState("Leipzig");
+  const [city, setCity] = useState("");
+  const [availableCities, setAvailableCities] = useState([])
   const [selectedListing, setSelectedListing] = useState({
     listingImage: "",
     listingName: "",
@@ -89,6 +90,8 @@ function App() {
         setCafes,
         selectedListing,
         setSelectedListing,
+        availableCities,
+        setAvailableCities
       }}
     >
       <Router>
