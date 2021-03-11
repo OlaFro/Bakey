@@ -117,7 +117,6 @@ export default function LandingPage() {
         </StyledTitle>
         <StyledCarrousel>
           <div className="carrousel-container">
-            <div></div>
             <Slider {...settings}>
               <figure className="carrousel-card">
                 <img src={slide1} alt="slide1" />

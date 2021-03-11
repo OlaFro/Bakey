@@ -100,15 +100,20 @@ export const StyledCarrousel = styled.div`
 
   .carrousel-container {
     width: 100%;
-    max-width: 800px;
-    border: 1px solid red;
+    max-width: 500px;
+    @media ${device.tabletLandscape} {
+      max-width: 700px;
+    }
   }
   .carrousel-card {
     width: inherit;
     margin: 1rem;
     img {
-      height: 480px;
+      height: 250px;
       margin: auto;
+      @media ${device.tabletLandscape} {
+        height: 480px;
+      }
     }
     h3 {
       text-align: center;
