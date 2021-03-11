@@ -90,7 +90,7 @@ export const StyledMain = styled.main`
   width: 100%;
   margin-top: calc(6 * var(--space-l));
 `;
-export const StyledCarrousel = styled.div`
+export const StyledCarousel = styled.div`
   padding: 30vh 0;
   background-color: ${lighten(0.28, colors.gray)};
   clip-path: polygon(0 7%, 100% 15%, 100% 100%, 0 90%);
@@ -101,6 +101,10 @@ export const StyledCarrousel = styled.div`
   .carrousel-container {
     width: 100%;
     max-width: 500px;
+    display: none;
+    @media ${device.tabletPortrait} {
+      display: block;
+    }
     @media ${device.tabletLandscape} {
       max-width: 700px;
     }
@@ -108,6 +112,7 @@ export const StyledCarrousel = styled.div`
   .carrousel-card {
     width: inherit;
     margin: 1rem;
+
     img {
       height: 250px;
       margin: auto;
@@ -122,14 +127,44 @@ export const StyledCarrousel = styled.div`
   }
 `;
 
+export const StyledNoCarousel = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media ${device.tabletPortrait} {
+    display: none;
+  }
+
+  .carrousel-card {
+    width: inherit;
+    margin: 2rem 0;
+
+
+    img {
+      /* height: 250px; */
+      margin: auto;
+   
+    }
+    h3 {
+      text-align: center;
+      font-size: 0.8rem;
+      margin: inherit 0;
+      padding: 1rem;
+    }
+`;
+
 export const StyledAbout = styled.section`
-  width: 60%;
+  width: 80%;
   padding: var(--space-l);
   background-color: ${lighten(0.28, colors.gray)};
   margin: 30vh auto;
   border-radius: var(--border-radius);
   text-align: center;
 
+  @media ${device.tabletPortrait} {
+    width: 60%;
+  }
   p {
     line-height: 29px;
     font-size: 1.2rem;
