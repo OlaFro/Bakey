@@ -30,7 +30,7 @@ import Warning from "./Warning";
 export default function LandingPage() {
   let history = useHistory();
 
-  const { setCity } = useContext(bakeyContext);
+  const { city, setCity } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
   const [warning, setWarning] = useState(false);
@@ -74,6 +74,7 @@ export default function LandingPage() {
                 onChange={(e) => {
                   setCity(e.target.value);
                 }}
+                value={city ? city : "Leipzig"}
               >
                 <option value="Leipzig">Leipzig</option>
                 <option value="Hamburg">Hamburg</option>
