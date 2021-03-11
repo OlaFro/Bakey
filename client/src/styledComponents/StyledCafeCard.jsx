@@ -37,7 +37,10 @@ export const StyledCafeCard = styled.article`
       > img {
         width: 100px;
         height: 100px;
-        object-fit: scale-down;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       > ${StyledIcon} {
         position: absolute;
