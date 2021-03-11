@@ -100,15 +100,14 @@ export const StyledCarrousel = styled.div`
 
   .carrousel-container {
     width: 100%;
-    max-width: 600px;
-    height: 450px;
-    border: 2px solid red;
+    max-width: 800px;
+    border: 1px solid red;
   }
   .carrousel-card {
     width: inherit;
     margin: 1rem;
     img {
-      height: 280px;
+      height: 480px;
       margin: auto;
     }
     h3 {
