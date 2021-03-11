@@ -26,7 +26,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import {
   StyledInputContainer,
   StyledInputField,
-  StyledLabel,
+  StyledLabel
 } from "../styledComponents/StyledForm";
 
 export default function Listing(props) {
@@ -268,7 +268,7 @@ export default function Listing(props) {
                 }
               }}
             >
-              Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
+              Buy a piece for {props.piecePrice ? parseFloat(props.piecePrice).toFixed(2): "0.00"}€
             </StyledButton>
             <StyledButton
               buy
