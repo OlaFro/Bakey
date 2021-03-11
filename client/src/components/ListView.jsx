@@ -23,8 +23,6 @@ import cafeMarker from "../assets/newCafeMarker.png";
 export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
-  // const context = useContext(bakeyContext);
-  // const [city, setCity] = useState(context.city);
   const { cafes, setCafes, city, setCity } = useContext(bakeyContext);
   const [filteredCafes, setFilteredCafes] = useState([]);
   const [filter, setFilter] = useState([]);
@@ -37,7 +35,6 @@ export default function ListView() {
   const getCities = (city) => {
     setDbError(false);
     setEmptyWarning(false);
-    setMapLoaded(false);
     Axios({
       method: "POST",
       url: "/cafes",
@@ -105,7 +102,9 @@ export default function ListView() {
             return cafes;
           });
           console.log(cafes);
-          setMapLoaded(true);
+          setMapLoaded((prevValue) => {
+            return !prevValue;
+          });
           console.log(mapLoaded);
           console.log("inside of map");
         })
@@ -118,7 +117,6 @@ export default function ListView() {
   };
 
   useEffect(() => {
-    setMapLoaded(false);
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
     console.log("info is updated");
@@ -231,7 +229,7 @@ export default function ListView() {
               })
             : null}
         </article>
-        {mapLoaded ? (
+        {cafes.every((cafe) => cafe.lat && cafe.lng) ? (
           <StyledMap>
             {console.log("Styled map")}
             <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
@@ -239,7 +237,7 @@ export default function ListView() {
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={13}
+                zoom={11}
                 onLoad={() => {
                   console.log("the map is loaded");
                 }}
