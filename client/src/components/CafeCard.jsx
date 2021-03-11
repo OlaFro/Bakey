@@ -56,13 +56,13 @@ export default function ListViewCafe(props) {
                 {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
                 <ProgressBar
                   completed={
-                    (
+                    (100 *
                       (listing.totalPieces - listing.availablePieces) /
                       listing.totalPieces
-                    ).toFixed(2) * 100
+                    ).toFixed(0) * 1
                   }
                   bgcolor={colors.accent1}
-                  isLabelVisible={false}
+                  isLabelVisible={true}
                 />
               </div>
             </StyledListing>
