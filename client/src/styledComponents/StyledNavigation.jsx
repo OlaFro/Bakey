@@ -50,6 +50,7 @@ export const StyledNavBtnsContainer = styled.section`
   grid-area: btnsContainer;
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
+
   @media ${device.tabletLandscape} {
     display: flex;
     flex-direction: row;
@@ -61,6 +62,8 @@ export const StyledNavBtnsContainer = styled.section`
 export const StyledNavBtn = styled.div`
   font-family: var(--headings);
   text-align: left;
+  margin: var(--space-xs) 0;
+
   @media ${device.tabletLandscape} {
     margin: var(--space-xs) var(--space-s);
     padding: var(--space-xs) var(--space-s);
