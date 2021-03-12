@@ -127,7 +127,7 @@ export const StyledSmallButton = styled.button`
   font-size: 1rem;
   padding: var(--space-xs);
   color: ${colors.black};
-  @media ${device.desktop} {
+  @media ${device.tabletLandscape} {
     margin: var(--space-xs) var(--space-s);
     padding: var(--space-xs) var(--space-s);
     border-radius: calc(2 * var(--border-radius));

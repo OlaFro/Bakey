@@ -20,7 +20,7 @@ export const StyledNavigation = styled.nav`
     padding: var(--space-xs);
   }
 
-  @media ${device.desktop} {
+  @media ${device.tabletLandscape} {
     display: grid;
     grid-template-columns: auto 1fr 1fr;
     grid-template-rows: 1fr;
@@ -38,7 +38,7 @@ export const StyledNavContainer = styled.section`
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
   font-family: var(--headings);
-  @media ${device.desktop} {
+  @media ${device.tabletLandscape} {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -50,7 +50,7 @@ export const StyledNavBtnsContainer = styled.section`
   grid-area: btnsContainer;
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
-  @media ${device.desktop} {
+  @media ${device.tabletLandscape} {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -61,7 +61,7 @@ export const StyledNavBtnsContainer = styled.section`
 export const StyledNavBtn = styled.div`
   font-family: var(--headings);
   text-align: left;
-  @media ${device.desktop} {
+  @media ${device.tabletLandscape} {
     margin: var(--space-xs) var(--space-s);
     padding: var(--space-xs) var(--space-s);
     border-radius: calc(2 * var(--border-radius));
@@ -78,7 +78,7 @@ export const StyledNavBtn = styled.div`
   ${(props) =>
     props.registration &&
     css`
-      @media ${device.desktop} {
+      @media ${device.tabletLandscape} {
         background-color: ${colors.accent1};
         border: var(--border) solid ${colors.accent1};
         :hover {
@@ -91,7 +91,7 @@ export const StyledNavBtn = styled.div`
   ${(props) =>
     props.login &&
     css`
-      @media ${device.desktop} {
+      @media ${device.tabletLandscape} {
         background-color: white;
         border: var(--border) solid ${colors.accent1};
         color: ${colors.black};
@@ -110,7 +110,7 @@ export const StyledMenu = styled(Menu)`
   height: 30px;
   cursor: pointer;
   display: ${(props) => (props.display ? "none" : "flex")};
-  @media ${device.desktop} {
+  @media ${device.tabletLandscape} {
     display: none;
   }
   align-self: flex-end;
@@ -121,7 +121,7 @@ export const StyledExit = styled(X)`
   height: 30px;
   cursor: pointer;
   display: ${(props) => (props.display ? "flex" : "none")};
-  @media ${device.desktop} {
+  @media ${device.tabletLandscape} {
     display: none;
   }
 `;

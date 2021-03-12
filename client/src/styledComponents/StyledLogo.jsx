@@ -66,6 +66,7 @@ export const StyledLogo = styled.div`
         height: 40px;
         width: 40px;
         margin-right: 0.5rem;
+        margin-top: 0;
       }
       > span {
         margin-top: 0;
