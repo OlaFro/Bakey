@@ -10,7 +10,6 @@ import {
   StyledLogoContainer,
   StyledNavBtn,
 } from "../styledComponents/StyledNavigation";
-import { StyledNavLogo } from "../styledComponents/StyledLogo";
 import { StyledSmallButton } from "../styledComponents/StyledButton";
 import { bakeyContext } from "../Context";
 import axios from "axios";

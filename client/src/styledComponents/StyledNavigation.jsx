@@ -9,10 +9,10 @@ export const StyledNavigation = styled.nav`
   padding: var(--space-xs);
   z-index: 1;
   position: sticky;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  /* margin-bottom: var(--space-m); */
-  /* border-bottom: 1px solid ${colors.black}; */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   a {
     text-decoration: none;

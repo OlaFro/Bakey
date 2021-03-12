@@ -33,7 +33,6 @@ import { lighten, darken } from "polished";
 
 export const StyledLogo = styled.div`
   margin: auto;
-  position: relative;
   width: 120px;
   height: 120px;
   border-radius: 100%;
@@ -57,19 +56,19 @@ export const StyledLogo = styled.div`
   ${(props) =>
     props.nav &&
     css`
-      box-shadow: none;
       height: 40px;
-      width: 40px;
+      box-shadow: none;
       border-radius: 0;
       flex-direction: row;
       align-items: center;
-      border: 1px solid red;
 
       > img {
-        width: inherit;
+        height: 40px;
+        width: 40px;
+        margin-right: 0.5rem;
       }
       > span {
-     
-    
+        margin-top: 0;
+      }
     `}
 `;
