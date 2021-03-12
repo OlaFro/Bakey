@@ -30,7 +30,7 @@ export const StyledNavigation = styled.nav`
 export const StyledLogoContainer = styled.section`
   grid-area: logoContainer;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 export const StyledNavContainer = styled.section`
@@ -113,15 +113,18 @@ export const StyledMenu = styled(Menu)`
   @media ${device.tabletLandscape} {
     display: none;
   }
-  align-self: flex-end;
-  justify-self: flex-start;
+  align-self: center;
+  color: ${colors.accent2};
+  stroke-width: 2px;
 `;
 
 export const StyledExit = styled(X)`
   height: 30px;
   cursor: pointer;
   display: ${(props) => (props.display ? "flex" : "none")};
+  color: ${colors.accent2};
   @media ${device.tabletLandscape} {
     display: none;
   }
+  stroke-width: 2px;
 `;

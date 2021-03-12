@@ -57,10 +57,14 @@ export const StyledLogo = styled.div`
     props.nav &&
     css`
       height: 40px;
+      width: 40px;
       box-shadow: none;
       border-radius: 0;
       flex-direction: row;
       align-items: center;
+      @media ${device.tabletLandscape} {
+        width: 120px;
+      }
 
       > img {
         height: 40px;
@@ -70,6 +74,10 @@ export const StyledLogo = styled.div`
       }
       > span {
         margin-top: 0;
+        display: none;
+        @media ${device.tabletLandscape} {
+          display: block;
+        }
       }
     `}
 `;

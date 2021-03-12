@@ -62,7 +62,7 @@ export default function Navigation(props) {
       <StyledNavBtnsContainer display={open}>
         {isLogged.state ? (
           <Link to={`/${isLogged.role}-dashboard`} onClick={handleClose}>
-            Dashboard
+            dashboard
           </Link>
         ) : null}
         {isLogged.state ? null : (
@@ -73,7 +73,7 @@ export default function Navigation(props) {
           </StyledNavBtn>
         )}
         {isLogged.state ? (
-          <StyledSmallButton onClick={logout}>Log out</StyledSmallButton>
+          <StyledSmallButton onClick={logout}>log out</StyledSmallButton>
         ) : (
           <StyledNavBtn registration>
             <Link to="/registration/user" onClick={handleClose}>
