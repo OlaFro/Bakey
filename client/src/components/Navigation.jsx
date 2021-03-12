@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import {
   StyledMenu,
   StyledExit,
@@ -52,34 +52,38 @@ export default function Navigation(props) {
         <StyledMenu onClick={handleOpen} display={open} />
       </StyledLogoContainer>
       <StyledNavContainer display={open}>
-        <Link to="/cafes-list" onClick={handleClose}>
+        <NavLink
+          to="/cafes-list"
+          activeClassName="active"
+          onClick={handleClose}
+        >
           cafés
-        </Link>
-        <Link to="/about-us" onClick={handleClose}>
+        </NavLink>
+        <NavLink to="/about-us" activeClassName="active" onClick={handleClose}>
           about us
-        </Link>
+        </NavLink>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
         {isLogged.state ? (
-          <Link to={`/${isLogged.role}-dashboard`} onClick={handleClose}>
+          <NavLink
+            to={`/${isLogged.role}-dashboard`}
+            activeClassName="active"
+            onClick={handleClose}
+          >
             dashboard
-          </Link>
+          </NavLink>
         ) : null}
         {isLogged.state ? null : (
-          <StyledNavBtn login>
-            <Link to="/login" onClick={handleClose}>
-              log in
-            </Link>
-          </StyledNavBtn>
+          <NavLink to="/login" activeClassName="active" onClick={handleClose}>
+            log in
+          </NavLink>
         )}
         {isLogged.state ? (
-          <StyledSmallButton onClick={logout}>log out</StyledSmallButton>
+          <span onClick={logout}>log out</span>
         ) : (
-          <StyledNavBtn registration>
-            <Link to="/registration/user" onClick={handleClose}>
-              register
-            </Link>
-          </StyledNavBtn>
+          <NavLink to="/registration/user" onClick={handleClose}>
+            register
+          </NavLink>
         )}
       </StyledNavBtnsContainer>
     </StyledNavigation>
