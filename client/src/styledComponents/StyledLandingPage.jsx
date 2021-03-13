@@ -197,7 +197,15 @@ export const StyledForCafe = styled.section`
   padding: var(--space-l);
   display: flex;
   align-items: center;
+  flex-direction: column;
   > h3 {
-    margin-right: var(--space-m);
+    text-align: center;
+    padding: var(--space-m);
+    @media ${device.tabletLandscape} {
+      text-align: left;
+    }
+  }
+  @media ${device.tabletLandscape} {
+    flex-direction: row;
   }
 `;
