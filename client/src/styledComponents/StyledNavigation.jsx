@@ -2,13 +2,14 @@ import styled, { css } from "styled-components";
 import { Menu, X } from "styled-icons/feather";
 import device from "./device";
 import colors from "./colors";
-import { darken } from "polished";
 
 export const StyledNavigation = styled.nav`
   width: 100%;
   padding: var(--space-xs);
   z-index: 1;
   position: sticky;
+  position: -webkit-sticky;
+  top: 0;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -38,11 +39,14 @@ export const StyledNavContainer = styled.section`
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
   font-family: var(--headings);
+  margin-left: var(--space-xs);
+
   @media ${device.tabletLandscape} {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-left: 0;
   }
 
   .active {
@@ -56,13 +60,14 @@ export const StyledNavBtnsContainer = styled.section`
   grid-area: btnsContainer;
   display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
+  align-items: flex-start;
 
   @media ${device.tabletLandscape} {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
   }
 
   a {
@@ -70,12 +75,23 @@ export const StyledNavBtnsContainer = styled.section`
     color: ${colors.accent2};
     font-family: var(--logo);
     font-weight: 700;
-  }
-  .active {
+    margin-left: var(--space-xs);
+    @media ${device.tabletLandscape} {
+      margin-left: 0;
+    }
   }
 
   span {
     cursor: pointer;
+    padding: var(--space-xs);
+    text-align: center;
+    color: ${colors.accent2};
+    font-family: var(--logo);
+    font-weight: 700;
+    margin-left: var(--space-xs);
+    @media ${device.tabletLandscape} {
+      margin-left: 0;
+    }
   }
 `;
 
@@ -133,12 +149,13 @@ export const StyledMenu = styled(Menu)`
   height: 30px;
   cursor: pointer;
   display: ${(props) => (props.display ? "none" : "flex")};
-  @media ${device.tabletLandscape} {
-    display: none;
-  }
   align-self: center;
   color: ${colors.accent2};
   stroke-width: 2px;
+  margin-right: var(--space-xs);
+  @media ${device.tabletLandscape} {
+    display: none;
+  }
 `;
 
 export const StyledExit = styled(X)`
@@ -146,8 +163,9 @@ export const StyledExit = styled(X)`
   cursor: pointer;
   display: ${(props) => (props.display ? "flex" : "none")};
   color: ${colors.accent2};
+  stroke-width: 2px;
+  margin-right: var(--space-xs);
   @media ${device.tabletLandscape} {
     display: none;
   }
-  stroke-width: 2px;
 `;

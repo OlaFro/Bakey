@@ -28,14 +28,14 @@ export const StyledLogo = styled.div`
   ${(props) =>
     props.nav &&
     css`
-      height: 40px;
+      height: 30px;
       width: 40px;
       box-shadow: none;
       border-radius: 0;
       flex-direction: row;
       align-items: center;
       @media ${device.tabletLandscape} {
-        width: 120px;
+        width: 110px;
       }
 
       > img {
@@ -43,6 +43,7 @@ export const StyledLogo = styled.div`
         width: 40px;
         margin-right: 0.5rem;
         margin-top: 0;
+        margin-left: var(--space-xs);
       }
       > span {
         margin-top: 0;
