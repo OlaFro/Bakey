@@ -97,7 +97,7 @@ export default function Login(props) {
     <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
-          <h2>Login</h2>
+          <h2>Log in</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField

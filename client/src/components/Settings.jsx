@@ -148,9 +148,9 @@ export default function Settings() {
           <StyledCoverUpload cafe>
             <label htmlFor="cafeCover">
               {cover.preview ? (
-                <div className="picContainer">
+                <figure className="picContainer">
                   <img src={cover.preview} alt="cafe cover" />
-                </div>
+                </figure>
               ) : (
                 <StyledPhoto cover />
               )}

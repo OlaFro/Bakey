@@ -146,17 +146,14 @@ export default function ListingForm() {
       <StyledListingSteps>
         <h3> 1. Fill out: </h3>
         <StyledForm id="listing-form" onSubmit={formSubmit} listing>
-          {/* <header>
-            <h2>Fill out:</h2>
-          </header> */}
           <StyledOtherInputsContainer cafe>
             <header>Upload photo</header>
             <StyledPhotoUpload cafe>
               <label htmlFor="upload-button">
                 {image.preview ? (
-                  <div className="picContainer">
+                  <figure className="picContainer">
                     <img src={image.preview} alt="Listing" />
-                  </div>
+                  </figure>
                 ) : data.listingImage ? (
                   <div className="picContainer">
                     <img src={data.listingImage} alt="Listing" />
