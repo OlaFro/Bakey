@@ -52,7 +52,7 @@ export const StyledDescContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-xs) var(--space-xs);
+  padding: var(--space-s) var(--space-xs);
   min-height: 500px;
   padding-bottom: var(--space-s);
   @media ${device.tabletLandscape} {
@@ -123,7 +123,7 @@ export const StyledAllergenesContainer = styled.div`
 `;
 
 export const StyledTagContainer = styled.div`
-  display: flex;
+  display: ${(props) => props.display};
   justify-content: center;
   width: 192px;
   height: 2rem;
