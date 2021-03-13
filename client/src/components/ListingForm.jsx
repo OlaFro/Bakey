@@ -18,7 +18,9 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import { StyledListingSteps } from "../styledComponents/StyledListingForm";
 
 export default function ListingForm() {
-  const { selectedListing, setSelectedListing } = useContext(bakeyContext);
+  const { selectedListing, setSelectedListing, cafeName } = useContext(
+    bakeyContext
+  );
   const history = useHistory();
   const [data, setData] = useState(selectedListing);
   const [msg, setMsg] = useState({});
@@ -410,6 +412,7 @@ export default function ListingForm() {
         <h3> 2. Preview: </h3>
         <Listing
           title={data.listingName}
+          cafeName={cafeName}
           totalPieces={data.totalPieces}
           pickUpDate={data.pickUpDate}
           piecePrice={data.piecePrice}
