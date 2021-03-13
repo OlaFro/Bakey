@@ -24,7 +24,6 @@ export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
   const { cafes, setCafes, city, setCity } = useContext(bakeyContext);
-  const [filteredCafes, setFilteredCafes] = useState([]);
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
@@ -75,9 +74,7 @@ export default function ListView() {
   };
 
   const getMapInfo = async (API_KEY) => {
-    console.log("get map info", cafes);
     await cafes.map((cafe, i) => {
-      console.log("cafe", i);
       let address = [
         cafe.cafeStreet.split(" ").join("+"),
         cafe.cafeStreetNr,
@@ -90,7 +87,6 @@ export default function ListView() {
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
       })
         .then(async (res) => {
-          console.log(res.data.results[0].geometry.location);
           let location = res.data.results[0].geometry.location;
           await setCafes(() => {
             cafes[i] = {
@@ -98,28 +94,21 @@ export default function ListView() {
               lat: location.lat,
               lng: location.lng,
             };
-            console.log("setting lat and lng", cafes);
             return cafes;
           });
-          console.log(cafes);
           setMapLoaded((prevValue) => {
             return !prevValue;
           });
-          console.log(mapLoaded);
-          console.log("inside of map");
         })
         .catch((err) => {
           console.log(err, "it didnt connected");
         });
     });
-
-    console.log("outside of map");
   };
 
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
-    console.log("info is updated");
   }, [mapFlag]);
 
   const center = {
@@ -251,20 +240,13 @@ export default function ListView() {
         </article>
         {cafes.every((cafe) => cafe.lat && cafe.lng) ? (
           <StyledMap>
-            {console.log("Styled map")}
             <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
-              {console.log("LoadScript")}
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
                 zoom={13}
-                onLoad={() => {
-                  console.log("the map is loaded");
-                }}
               >
                 {cafes.map((cafe) => {
-                  console.log(typeof cafe.lat);
-                  console.log(typeof cafe.lng);
                   if (
                     !filter.length ||
                     cafe.cafeListings.some((listing) =>
@@ -278,14 +260,6 @@ export default function ListView() {
                         icon={cafeMarker}
                         position={{ lat: cafe.lat, lng: cafe.lng }}
                         onClick={() => history.push(`/cafe:${cafe._id}`)}
-                        onLoad={() => {
-                          console.log(
-                            "the marker for ",
-                            cafe.cafeName,
-                            " is loaded"
-                          );
-                          console.log(cafe.lat, cafe.lng);
-                        }}
                       />
                     );
                   } else {
