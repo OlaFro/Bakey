@@ -122,21 +122,22 @@ export default function LandingPage() {
             <Slider {...settings}>
               <figure className="carrousel-card">
                 <img src={slide1} alt="slide1" />
-                <h3>Café publishes new offer of a cake.</h3>
+                <h3>1. Café publishes new offer of a cake.</h3>
               </figure>
               <figure className="carrousel-card">
                 <img src={slide2} alt="slide2" />
-                <h3>Buy your portion a.k.a. piece of cake</h3>
+                <h3>2. You buy your portion a.k.a. piece of cake</h3>
               </figure>
               <figure className="carrousel-card">
                 <img src={slide3} alt="slide3" />
                 <h3>
-                  Invite your friends to participate and buy other portions
+                  3. You invite your friends to participate and buy other
+                  portions
                 </h3>
               </figure>
               <figure className="carrousel-card">
                 <img src={slide4} alt="slide4" />
-                <h3>Your cake is ready for the pick up!</h3>
+                <h3>4. Your cake is ready for the pick up!</h3>
               </figure>
             </Slider>
           </div>
