@@ -26,11 +26,11 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import {
   StyledInputContainer,
   StyledInputField,
-  StyledLabel
+  StyledLabel,
 } from "../styledComponents/StyledForm";
 
 export default function Listing(props) {
-  const { isLogged, setSelectedListing } = useContext(bakeyContext);
+  const { isLogged, setSelectedListing, cafeName } = useContext(bakeyContext);
   let history = useHistory();
 
   const params = useParams();
@@ -172,6 +172,8 @@ export default function Listing(props) {
     history.push("/listingform");
   };
 
+  console.log(props.listingTags);
+
   return (
     <StyledListingContainer
       id={params.id ? props.listingIdentifier : null}
@@ -197,13 +199,21 @@ export default function Listing(props) {
           <StyledAllergenesContainer display={open ? 1 : 0}>
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
-          <StyledTagContainer>{tags()}</StyledTagContainer>
+          <StyledTagContainer
+            display={
+              props.listingTags[0] === "" || props.listingTags.length < 1
+                ? "none"
+                : "flex"
+            }
+          >
+            {tags()}
+          </StyledTagContainer>
           {props.withLink ? (
             <StyledLink to={`/cafe:${props.cafeId}`}>
               {props.cafeName}
             </StyledLink>
           ) : (
-            <span>{props.cafeName}</span>
+            <span>{props.cafeName ? props.cafeName : cafeName}</span>
           )}
         </header>
 
@@ -268,7 +278,11 @@ export default function Listing(props) {
                 }
               }}
             >
-              Buy a piece for {props.piecePrice ? parseFloat(props.piecePrice).toFixed(2): "0.00"}€
+              Buy a piece for{" "}
+              {props.piecePrice
+                ? parseFloat(props.piecePrice).toFixed(2)
+                : "0.00"}
+              €
             </StyledButton>
             <StyledButton
               buy
