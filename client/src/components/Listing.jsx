@@ -172,6 +172,8 @@ export default function Listing(props) {
     history.push("/listingform");
   };
 
+  console.log(props.listingTags);
+
   return (
     <StyledListingContainer
       id={params.id ? props.listingIdentifier : null}
@@ -198,7 +200,11 @@ export default function Listing(props) {
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
           <StyledTagContainer
-            display={props.listingTags.length > 0 ? "flex" : "none"}
+            display={
+              props.listingTags[0] === "" || props.listingTags.length < 1
+                ? "none"
+                : "flex"
+            }
           >
             {tags()}
           </StyledTagContainer>
