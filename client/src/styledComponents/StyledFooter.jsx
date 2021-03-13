@@ -5,7 +5,6 @@ import { lighten } from "polished";
 const { default: styled } = require("styled-components");
 
 const StyledFooter = styled.footer`
-  height: 40vh;
   display: grid;
   justify-items: center;
   align-content: center;
@@ -22,8 +21,12 @@ const StyledFooter = styled.footer`
     box-shadow: none;
     background-color: transparent;
     height: 80px;
+    margin-top: 2vh;
   }
 
+  > div {
+    margin-bottom: 2vh;
+  }
   p {
     font-weight: 700;
     letter-spacing: 0.5px;
