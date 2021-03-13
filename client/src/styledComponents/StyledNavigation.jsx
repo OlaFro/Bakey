@@ -53,6 +53,7 @@ export const StyledNavContainer = styled.section`
     text-decoration: underline;
     text-decoration-color: ${colors.accent2};
     text-decoration-thickness: 3px;
+    text-underline-position: under;
   }
 `;
 
