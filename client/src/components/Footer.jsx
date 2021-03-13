@@ -11,17 +11,18 @@ export default function Footer() {
       <img src={bakey_white} alt="bakey logo" />
       <div>
         <p>
-          Bakey is only a demo. Please read more{" "}
+          Bakey is only a demo.
+          <br class="responsive" /> Please read more{" "}
           <Link to="/about-us">about us</Link>.
         </p>
 
         <p className="logos">
-          &#169;2021
           <img className="logoAlice" src={logo} alt="Alice Rez logo" />{" "}
           <a href="https://github.com/Alice-Rez">Alice Rez</a> &{" "}
           <a href="https://olafrost.com/">Ola Frost</a> &{" "}
           <a href="https://github.com/willoid">willoid</a>
         </p>
+        <p>&#169;2021</p>
       </div>
     </StyledFooter>
   );

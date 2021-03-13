@@ -29,6 +29,13 @@ const StyledFooter = styled.footer`
     letter-spacing: 0.5px;
   }
 
+  .responsive {
+    display: inline;
+    @media ${device.mobile} {
+      display: none;
+    }
+  }
+
   a {
     color: white;
   }
@@ -36,6 +43,7 @@ const StyledFooter = styled.footer`
   .logos {
     letter-spacing: 1px;
     text-transform: uppercase;
+    margin-top: -1rem;
   }
 
   .logoAlice {
