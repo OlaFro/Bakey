@@ -8,11 +8,11 @@ import {
   Redirect,
 } from "react-router-dom";
 import { bakeyContext } from "./Context";
-import Login from "./components/Login";
-import RegistrationUser from "./components/RegistrationUser";
-import RegistrationCafe from "./components/RegistrationCafe";
-import DashboardClient from "./components/DashboardClient";
-import DashboardCafe from "./components/DashboardCafe";
+import Login from "./pages/Login";
+import RegistrationUser from "./pages/RegistrationUser";
+import RegistrationCafe from "./pages/RegistrationCafe";
+import DashboardClient from "./pages/DashboardClient";
+import DashboardCafe from "./pages/DashboardCafe";
 import Navigation from "./components/Navigation";
 import ListingForm from "./components/ListingForm";
 

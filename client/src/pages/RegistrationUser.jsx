@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-import Warning from "./Warning";
+import Warning from "../components/Warning";
 import {
   StyledForm,
   StyledLabel,
@@ -11,15 +11,16 @@ import {
   StyledInputField,
   StyledEyeClose,
   StyledEye,
+  StyledSelect,
+  StyledArrow,
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
-
 import { StyledButton } from "../styledComponents/StyledButton";
 
-export default function RegistrationCafe() {
+export default function RegistrationUser(props) {
   const history = useHistory();
 
-  const [data, setData] = useState({ userType: "cafe" });
+  const [data, setData] = useState({ userType: "client", city: "Leipzig" });
   const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
   const [warningContent, setWarningContent] = useState("");
@@ -91,26 +92,40 @@ export default function RegistrationCafe() {
 
   return (
     <StyledCentered>
-      <StyledForm onSubmit={submit} cafe>
+      <StyledForm onSubmit={submit}>
         <header>
-          <h2>Café Registration</h2>
+          <h2>Registration</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField
-            cafe
             type="text"
-            name="cafeName"
-            id="cafeName"
+            name="firstName"
+            id="firstName"
             placeholder=" "
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="cafeName">Café Name*</StyledLabel>
-          <div>{msg.cafeName ? <small>Required</small> : null}</div>
+          <StyledLabel htmlFor="firstName">First Name*</StyledLabel>
+          <div>
+            {msg.firstName ? <small>Please use only letters</small> : null}
+          </div>
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
-            cafe
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder=" "
+            onInput={getValue}
+            required={true}
+          />
+          <StyledLabel htmlFor="lastName">Last Name*</StyledLabel>
+          <div>
+            {msg.lastName ? <small>Please use only letters</small> : null}
+          </div>
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <StyledInputField
             type="email"
             name="email"
             id="email"
@@ -123,103 +138,8 @@ export default function RegistrationCafe() {
             {msg.email ? <small>Please use proper email format</small> : null}
           </div>
         </StyledInputContainer>
-
         <StyledInputContainer>
           <StyledInputField
-            cafe
-            type="text"
-            name="cafeStreet"
-            id="cafeStreet"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="cafeStreet">Address / Street*</StyledLabel>
-          <div>
-            {msg.cafeStreet ? <small> Please use only letters </small> : null}
-          </div>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="text"
-            name="cafeStreetNr"
-            id="cafeStreetNr"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="cafeStreetNr">Address / Street Nr*</StyledLabel>
-          <div>
-            {msg.cafeStreetNr ? (
-              <small>Please use only letters and numbers.</small>
-            ) : null}
-          </div>
-        </StyledInputContainer>
-
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="text"
-            name="cafeZip"
-            id="cafeZip"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="cafeZip">Address / ZIP code*</StyledLabel>
-          <div>
-            {msg.cafeZip ? <small>Please use only numbers</small> : null}
-          </div>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="text"
-            name="city"
-            id="city"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="city">Address / City*</StyledLabel>
-          <div>{msg.city ? <small>Please use only letters</small> : null}</div>
-        </StyledInputContainer>
-
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="firstName">Owner First Name*</StyledLabel>
-          <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
-          </div>
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
-            type="text"
-            name="lastName"
-            id="lastName"
-            placeholder=" "
-            onInput={getValue}
-            required={true}
-          />
-          <StyledLabel htmlFor="lastName">Owner Last Name*</StyledLabel>
-          <div>
-            {msg.lastName ? <small>Please use only letters</small> : null}
-          </div>
-        </StyledInputContainer>
-
-        <StyledInputContainer>
-          <StyledInputField
-            cafe
             type={visible ? "text" : "password"}
             name="password"
             id="password"
@@ -239,7 +159,6 @@ export default function RegistrationCafe() {
         </StyledInputContainer>
         <StyledInputContainer>
           <StyledInputField
-            cafe
             type={visible ? "text" : "password"}
             name="passwordConfirm"
             id="passwordConfirm"
@@ -247,7 +166,7 @@ export default function RegistrationCafe() {
             onInput={getValue}
             required={true}
           />
-          <StyledLabel htmlFor="passwordConfirm">Repeat password*</StyledLabel>
+          <StyledLabel htmlFor="confirmPassword">Repeat password*</StyledLabel>
           {visible ? (
             <StyledEye onClick={hidePassword} />
           ) : (
@@ -255,11 +174,22 @@ export default function RegistrationCafe() {
           )}
           <div>
             {msg.passwordConfirm ? (
-              <small>Passwords are not the same</small>
+              <small>Your passwords are not the same</small>
             ) : null}
           </div>
         </StyledInputContainer>
-        <StyledOtherInputsContainer cafe registerCafe>
+        <StyledInputContainer>
+          <StyledSelect id="city" name="city" onInput={getValue}>
+            <option value="Leipzig">Leipzig</option>
+            <option value="Hamburg">Hamburg</option>
+            <option value="Düsseldorf">Düsseldorf</option>
+            {/* we can later add a map function with dynamic city names */}
+          </StyledSelect>
+
+          <StyledLabel htmlFor="city">See offers from:</StyledLabel>
+          <StyledArrow />
+        </StyledInputContainer>
+        <StyledOtherInputsContainer registerUser>
           <header>Terms</header>
           <div>
             <input type="checkbox" id="Terms" name="Terms" required />
@@ -269,27 +199,25 @@ export default function RegistrationCafe() {
             </label>
           </div>
         </StyledOtherInputsContainer>
-
-        <StyledButton cafe cafeRegister>
-          Register
-        </StyledButton>
+        <StyledButton>Register</StyledButton>
         {warning ? (
           <div>
             <p className="warning">
-              User with this {warningContent} already exists, please log-in
+              User with this {warningContent} already exists, please log-in or
+              use another password
             </p>
           </div>
         ) : null}
         {warningValidation ? (
           <p className="warning">Please fill all fields!</p>
         ) : null}
-        <div className="oops-warning">
-          {showWarning ? <Warning msg="the service is out of order" /> : null}
-        </div>
+        {showWarning ? <Warning msg="the service is out of order" /> : null}
       </StyledForm>
-
       <p>
-        If you have already registered, please <Link to="/login">log in</Link>.
+        If you have already registered, please <Link to="/login">log in</Link>.{" "}
+        <br></br>
+        If you want to register as a café owner, please click{" "}
+        <Link to="/registration/cafe">here</Link>.
       </p>
     </StyledCentered>
   );
