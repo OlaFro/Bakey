@@ -63,7 +63,8 @@ p {
 a {
     text-decoration: underline;
     text-decoration-color: #ED8DB2;
-    text-decoration-thickness: 3px;
+    text-decoration-thickness: 2px;
+    text-underline-position: under;
 
     :hover {
       text-decoration: none;

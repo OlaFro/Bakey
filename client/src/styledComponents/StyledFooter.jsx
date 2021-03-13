@@ -42,11 +42,6 @@ const StyledFooter = styled.footer`
     width: 25px;
     transform: translateY(40%);
   }
-
-  .logoOla {
-    width: 20px;
-    transform: translateY(25%);
-  }
 `;
 
 export default StyledFooter;
