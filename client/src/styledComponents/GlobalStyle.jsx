@@ -61,8 +61,14 @@ p {
 }
 
 a {
+    text-decoration: underline;
+    text-decoration-color: #ED8DB2;
+    text-decoration-thickness: 3px;
 
-  
+    :hover {
+      text-decoration: none;
+    }
+
 }
 
 .wrapper{

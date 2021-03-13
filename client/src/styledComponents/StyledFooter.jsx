@@ -26,6 +26,11 @@ const StyledFooter = styled.footer`
 
   p {
     font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  a {
+    color: white;
   }
 
   .logos {
