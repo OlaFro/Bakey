@@ -94,15 +94,15 @@ export default function ListingForm() {
     if (image.raw) {
       formData.append("file", image.raw);
     }
-    if (data.listingName) {
-      formData.append("listingName", data.listingName);
+    if (data.listingImage.split("images/")[1]) {
+      formData.append("listingImage", data.listingImage.split("images/")[1]);
     }
+    formData.append("listingName", data.listingName);
     formData.append("listingTags", data.listingTags);
     formData.append("listingAllergenes", data.listingAllergenes);
     formData.append("totalPieces", data.totalPieces);
     formData.append("piecePrice", data.piecePrice);
     formData.append("pickUpDate", data.pickUpDate);
-    formData.append("listingImage", data.listingImage.split("images/")[1]);
 
     Axios({
       method: "POST",
