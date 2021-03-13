@@ -31,8 +31,9 @@ export const StyledListingContainer = styled.article`
     `}
 `;
 
-export const StyledPhotoContainer = styled.div`
+export const StyledPhotoContainer = styled.figure`
   height: 400px;
+  margin: 0;
   > img {
     width: 100%;
     height: 100%;
