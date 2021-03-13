@@ -6,8 +6,6 @@ import Warning from "./Warning";
 export default function DashboardCafeArchiveTab(props) {
   const { inactiveListings, setListings } = props;
 
-  const { cafeName } = useContext(bakeyContext);
-
   const [showWarning, setShowWarning] = useState(false);
 
   const [warningContent, setWarningContent] = useState(
@@ -19,7 +17,7 @@ export default function DashboardCafeArchiveTab(props) {
       {inactiveListings.map((listing, index) => {
         return (
           <Listing
-            cafeName={cafeName}
+            cafeName={listing.cafeName}
             title={listing.listingName}
             totalPieces={listing.totalPieces}
             availablePieces={listing.availablePieces}

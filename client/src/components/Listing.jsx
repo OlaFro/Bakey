@@ -20,14 +20,9 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
-import placeholder from "../assets/placeholder_400px.jpg";
+import placeholder from "../assets/bakey-placeholder.png";
 import Tag from "./Tag";
-import { useParams, useHistory, Link } from "react-router-dom";
-import {
-  StyledInputContainer,
-  StyledInputField,
-  StyledLabel,
-} from "../styledComponents/StyledForm";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Listing(props) {
   const { isLogged, setSelectedListing, cafeName } = useContext(bakeyContext);

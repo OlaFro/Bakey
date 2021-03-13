@@ -18,7 +18,9 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import { StyledListingSteps } from "../styledComponents/StyledListingForm";
 
 export default function ListingForm() {
-  const { selectedListing, setSelectedListing } = useContext(bakeyContext);
+  const { selectedListing, setSelectedListing, cafeName } = useContext(
+    bakeyContext
+  );
   const history = useHistory();
   const [data, setData] = useState(selectedListing);
   const [msg, setMsg] = useState({});
@@ -89,14 +91,18 @@ export default function ListingForm() {
     console.log("submiting form");
 
     let formData = new FormData();
-    formData.append("file", image.raw);
+    if (image.raw) {
+      formData.append("file", image.raw);
+    }
+    if (data.listingImage.split("images/")[1]) {
+      formData.append("listingImage", data.listingImage.split("images/")[1]);
+    }
     formData.append("listingName", data.listingName);
     formData.append("listingTags", data.listingTags);
     formData.append("listingAllergenes", data.listingAllergenes);
     formData.append("totalPieces", data.totalPieces);
     formData.append("piecePrice", data.piecePrice);
     formData.append("pickUpDate", data.pickUpDate);
-    formData.append("listingImage", data.listingImage.split("images/")[1]);
 
     Axios({
       method: "POST",
@@ -407,6 +413,7 @@ export default function ListingForm() {
         <h3> 2. Preview: </h3>
         <Listing
           title={data.listingName}
+          cafeName={cafeName}
           totalPieces={data.totalPieces}
           pickUpDate={data.pickUpDate}
           piecePrice={data.piecePrice}

@@ -41,15 +41,17 @@ router.post(
         UserModel.findById(user.id)
           .then((cafe) => {
             if (cafe.userType === "cafe") {
-              let image;
+              let image = "../uploads/images/bakey-placeholder.png";
+
+              console.log(req.files["file"], addListing.listingImage);
 
               if (req.files["file"]) {
                 image = req.files["file"][0].path;
               } else if (addListing.listingImage) {
                 image = "../uploads/images/" + addListing.listingImage;
-              } else {
-                image = "../uploads/images/listingplaceholder.png";
               }
+
+              console.log(image);
 
               let addedListing = new ListingModel({
                 id: addListing.id,
@@ -65,12 +67,9 @@ router.post(
                 pickUpDate: addListing.pickUpDate,
                 listingStatus: "active",
               });
-              console.log(addedListing);
               addedListing
                 .save()
                 .then((result) => {
-                  console.log("result", result);
-                  console.log(cafe);
                   UserModel.findByIdAndUpdate(user.id, {
                     $push: { cafeListings: result._id },
                   })
