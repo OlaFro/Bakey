@@ -134,6 +134,18 @@ export default function ListView() {
     height: "100%",
   };
 
+  const getFilter = (e) => {
+    if (filter.includes(e.target.name)) {
+      setFilter((prevFilter) =>
+        prevFilter.filter((item) => item !== e.target.name)
+      );
+    } else {
+      setFilter((prevFilter) => {
+        return [...prevFilter, e.target.name];
+      });
+    }
+  };
+
   return (
     <StyledListView>
       <StyledHeader>
@@ -160,7 +172,7 @@ export default function ListView() {
           <p>Show only cafes that offer something:</p>
           <div className="tag-container">
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="lactoseFree" onChange={getFilter} />
               <div>
                 <StyledTag no lactose title="lactose free">
                   L
@@ -169,7 +181,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="glutenFree" onChange={getFilter} />
               <div>
                 <StyledTag no gluten title="gluten free">
                   G
@@ -178,7 +190,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="sugarFree" onChange={getFilter} />
               <div>
                 <StyledTag no sugar title="sugar free">
                   S
@@ -187,7 +199,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="wheatFree" onChange={getFilter} />
               <div>
                 <StyledTag no wheat title="wheat free">
                   W
@@ -196,7 +208,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="vegan" onChange={getFilter} />
               <div>
                 <StyledTag vegan title="vegan">
                   V
@@ -205,7 +217,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="organic" onChange={getFilter} />
               <div>
                 <StyledTag organic title="organic">
                   O
@@ -224,7 +236,16 @@ export default function ListView() {
         <article>
           {emptyWarning === false
             ? cafes.map((cafe, index) => {
-                return <CafeCard key={index} cafe={cafe} />;
+                if (
+                  !filter.length ||
+                  cafe.cafeListings.some((listing) =>
+                    listing.listingTags.some((tag) => filter.includes(tag))
+                  )
+                ) {
+                  return <CafeCard key={index} cafe={cafe} />;
+                } else {
+                  return null;
+                }
               })
             : null}
         </article>
@@ -244,23 +265,32 @@ export default function ListView() {
                 {cafes.map((cafe) => {
                   console.log(typeof cafe.lat);
                   console.log(typeof cafe.lng);
-                  return (
-                    <Marker
-                      key={cafe._id}
-                      title={cafe.cafeName}
-                      icon={cafeMarker}
-                      position={{ lat: cafe.lat, lng: cafe.lng }}
-                      onClick={() => history.push(`/cafe:${cafe._id}`)}
-                      onLoad={() => {
-                        console.log(
-                          "the marker for ",
-                          cafe.cafeName,
-                          " is loaded"
-                        );
-                        console.log(cafe.lat, cafe.lng);
-                      }}
-                    />
-                  );
+                  if (
+                    !filter.length ||
+                    cafe.cafeListings.some((listing) =>
+                      listing.listingTags.some((tag) => filter.includes(tag))
+                    )
+                  ) {
+                    return (
+                      <Marker
+                        key={cafe._id}
+                        title={cafe.cafeName}
+                        icon={cafeMarker}
+                        position={{ lat: cafe.lat, lng: cafe.lng }}
+                        onClick={() => history.push(`/cafe:${cafe._id}`)}
+                        onLoad={() => {
+                          console.log(
+                            "the marker for ",
+                            cafe.cafeName,
+                            " is loaded"
+                          );
+                          console.log(cafe.lat, cafe.lng);
+                        }}
+                      />
+                    );
+                  } else {
+                    return null;
+                  }
                 })}
               </GoogleMap>
             </LoadScript>
