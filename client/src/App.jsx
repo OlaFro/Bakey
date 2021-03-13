@@ -19,8 +19,8 @@ import ListingForm from "./components/ListingForm";
 import Profile from "./components/Profile";
 import ListView from "./components/ListView";
 import Settings from "./components/Settings";
-import LandingPage from "./components/LandingPage";
-import AboutUs from "./components/AboutUs";
+import LandingPage from "./pages/LandingPage";
+import AboutUs from "./pages/AboutUs";
 
 import Order from "./components/Order";
 import Footer from "./components/Footer";

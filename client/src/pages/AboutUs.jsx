@@ -9,7 +9,7 @@ import Alice from "../assets/Alice.jpg";
 import Willy from "../assets/Willy.jpeg";
 import Ola from "../assets/ola.png";
 
-import Logo from "./Logo";
+import Logo from "../components/Logo";
 
 export default function AboutUs() {
   return (
