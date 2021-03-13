@@ -41,7 +41,7 @@ router.post(
         UserModel.findById(user.id)
           .then((cafe) => {
             if (cafe.userType === "cafe") {
-              let image = "../uploads/images/listingplaceholder.png";
+              let image = "../uploads/images/bakey-placeholder.png";
 
               console.log(req.files["file"], addListing.listingImage);
 
