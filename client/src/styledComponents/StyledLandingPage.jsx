@@ -108,6 +108,10 @@ export const StyledCarousel = styled.div`
     @media ${device.tabletLandscape} {
       max-width: 700px;
     }
+    > .slick-slider > button::before {
+      color: ${colors.black};
+      font-size: 25px;
+    }
   }
   .carrousel-card {
     width: inherit;
