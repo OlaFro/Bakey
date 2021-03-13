@@ -14,9 +14,9 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledTag } from "../styledComponents/StyledListing";
-import Warning from "./Warning";
-import CafeCard from "./CafeCard";
-import { GoogleMap, LoadScript, Marker, Map } from "@react-google-maps/api";
+import Warning from "../components/Warning";
+import CafeCard from "../components/CafeCard";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import StyledMap from "../styledComponents/StyledMap";
 import cafeMarker from "../assets/newCafeMarker.png";
 

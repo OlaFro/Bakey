@@ -16,9 +16,9 @@ import {
   StyledAddressContainer,
 } from "../styledComponents/StyledProfile";
 import Axios from "axios";
-import Listing from "./Listing";
-import Warning from "./Warning";
-import MapCardView from "./MapCardView";
+import Listing from "../components/Listing";
+import Warning from "../components/Warning";
+import MapCardView from "../components/MapCardView";
 
 export default function Profile() {
   const params = useParams();
