@@ -92,7 +92,7 @@ export const StyledMain = styled.main`
 `;
 export const StyledCarousel = styled.div`
   padding: 30vh 0;
-  background-color: ${lighten(0.28, colors.gray)};
+  background-color: ${lighten(0.18, colors.accent2)};
   clip-path: polygon(0 7%, 100% 15%, 100% 100%, 0 90%);
   margin-top: calc(-1 * var(--space-l));
   display: flex;

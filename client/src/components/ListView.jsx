@@ -155,7 +155,6 @@ export default function ListView() {
           <StyledArrow />
         </StyledInputContainer>
 
-        {/* Ola: I changed {city.city} to {city} because the first one was displaying nothing */}
         <h2>Cafes in {city} with active campaigns:</h2>
         <div className="filtering">
           <p>Show only cafes that offer something:</p>
@@ -190,7 +189,7 @@ export default function ListView() {
             <label>
               <input type="checkbox" />
               <div>
-                <StyledTag wheat title="wheat free">
+                <StyledTag no wheat title="wheat free">
                   W
                 </StyledTag>
                 <p>wheat-free</p>
