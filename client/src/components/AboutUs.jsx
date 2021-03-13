@@ -49,7 +49,7 @@ export default function AboutUs() {
               Ola<br></br> Frost
             </h3>
             <p>product owner</p>
-            <p> front-end lead</p>
+            <p>front-end lead</p>
           </div>
           <div>
             <figure>
@@ -64,8 +64,8 @@ export default function AboutUs() {
             <h3>
               Willy<br></br> Calvo
             </h3>
-            <p>database architect</p>
-            <p> map specialist</p>
+            <p>full-stack</p>
+            <p> developer</p>
           </div>
         </StyledFaces>
         <h3>About us</h3>
