@@ -167,8 +167,6 @@ export default function Listing(props) {
     history.push("/listingform");
   };
 
-  console.log(props.listingTags);
-
   return (
     <StyledListingContainer
       id={params.id ? props.listingIdentifier : null}
