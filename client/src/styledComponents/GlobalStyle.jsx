@@ -60,6 +60,11 @@ p {
   font-family: var(--text);
 }
 
+a {
+
+  
+}
+
 .wrapper{
   min-height: 100vh;
   display: grid;
