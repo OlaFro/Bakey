@@ -10,10 +10,9 @@ export default function Footer() {
     <StyledFooter>
       <img src={bakey_white} alt="bakey logo" />
       <div>
+        <p>Bakey is only a demo.</p>
         <p>
-          Bakey is only a demo.
-          <br class="responsive" /> Please read more{" "}
-          <Link to="/about-us">about us</Link>.
+          Please read more <Link to="/about-us">about us</Link>.
         </p>
 
         <p className="logos">

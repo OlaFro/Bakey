@@ -26,6 +26,9 @@ const StyledFooter = styled.footer`
 
   > div {
     margin-bottom: 2vh;
+    p {
+      font-weight: 900;
+    }
   }
   p {
     font-weight: 700;
