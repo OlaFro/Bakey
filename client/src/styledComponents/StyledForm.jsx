@@ -140,16 +140,15 @@ export const StyledCoverUpload = styled.div`
     }
     > .picContainer {
       margin: 0;
-      position: relative;
+
       overflow: hidden;
       width: 125px;
       height: 125px;
       border-radius: var(--border-radius);
       > img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 125px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     > div {
