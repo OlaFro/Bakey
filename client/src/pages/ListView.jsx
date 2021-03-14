@@ -24,7 +24,6 @@ export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
   const { cafes, setCafes, city, setCity } = useContext(bakeyContext);
-  const [filteredCafes, setFilteredCafes] = useState([]);
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
@@ -75,9 +74,7 @@ export default function ListView() {
   };
 
   const getMapInfo = async (API_KEY) => {
-    console.log("get map info", cafes);
     await cafes.map((cafe, i) => {
-      console.log("cafe", i);
       let address = [
         cafe.cafeStreet.split(" ").join("+"),
         cafe.cafeStreetNr,
@@ -90,7 +87,6 @@ export default function ListView() {
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
       })
         .then(async (res) => {
-          console.log(res.data.results[0].geometry.location);
           let location = res.data.results[0].geometry.location;
           await setCafes(() => {
             cafes[i] = {
@@ -98,28 +94,21 @@ export default function ListView() {
               lat: location.lat,
               lng: location.lng,
             };
-            console.log("setting lat and lng", cafes);
             return cafes;
           });
-          console.log(cafes);
           setMapLoaded((prevValue) => {
             return !prevValue;
           });
-          console.log(mapLoaded);
-          console.log("inside of map");
         })
         .catch((err) => {
           console.log(err, "it didnt connected");
         });
     });
-
-    console.log("outside of map");
   };
 
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
-    console.log("info is updated");
   }, [mapFlag]);
 
   const center = {
@@ -132,6 +121,18 @@ export default function ListView() {
   const containerStyle = {
     width: "100%",
     height: "100%",
+  };
+
+  const getFilter = (e) => {
+    if (filter.includes(e.target.name)) {
+      setFilter((prevFilter) =>
+        prevFilter.filter((item) => item !== e.target.name)
+      );
+    } else {
+      setFilter((prevFilter) => {
+        return [...prevFilter, e.target.name];
+      });
+    }
   };
 
   return (
@@ -160,7 +161,7 @@ export default function ListView() {
           <p>Show only cafes that offer something:</p>
           <div className="tag-container">
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="lactoseFree" onChange={getFilter} />
               <div>
                 <StyledTag no lactose title="lactose free">
                   L
@@ -169,7 +170,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="glutenFree" onChange={getFilter} />
               <div>
                 <StyledTag no gluten title="gluten free">
                   G
@@ -178,7 +179,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="sugarFree" onChange={getFilter} />
               <div>
                 <StyledTag no sugar title="sugar free">
                   S
@@ -187,7 +188,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="wheatFree" onChange={getFilter} />
               <div>
                 <StyledTag no wheat title="wheat free">
                   W
@@ -196,7 +197,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="vegan" onChange={getFilter} />
               <div>
                 <StyledTag vegan title="vegan">
                   V
@@ -205,7 +206,7 @@ export default function ListView() {
               </div>
             </label>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" name="organic" onChange={getFilter} />
               <div>
                 <StyledTag organic title="organic">
                   O
@@ -224,43 +225,46 @@ export default function ListView() {
         <article>
           {emptyWarning === false
             ? cafes.map((cafe, index) => {
-                return <CafeCard key={index} cafe={cafe} />;
+                if (
+                  !filter.length ||
+                  cafe.cafeListings.some((listing) =>
+                    listing.listingTags.some((tag) => filter.includes(tag))
+                  )
+                ) {
+                  return <CafeCard key={index} cafe={cafe} />;
+                } else {
+                  return null;
+                }
               })
             : null}
         </article>
         {cafes.every((cafe) => cafe.lat && cafe.lng) ? (
           <StyledMap>
-            {console.log("Styled map")}
             <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
-              {console.log("LoadScript")}
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
                 zoom={13}
-                onLoad={() => {
-                  console.log("the map is loaded");
-                }}
               >
                 {cafes.map((cafe) => {
-                  console.log(typeof cafe.lat);
-                  console.log(typeof cafe.lng);
-                  return (
-                    <Marker
-                      key={cafe._id}
-                      title={cafe.cafeName}
-                      icon={cafeMarker}
-                      position={{ lat: cafe.lat, lng: cafe.lng }}
-                      onClick={() => history.push(`/cafe:${cafe._id}`)}
-                      onLoad={() => {
-                        console.log(
-                          "the marker for ",
-                          cafe.cafeName,
-                          " is loaded"
-                        );
-                        console.log(cafe.lat, cafe.lng);
-                      }}
-                    />
-                  );
+                  if (
+                    !filter.length ||
+                    cafe.cafeListings.some((listing) =>
+                      listing.listingTags.some((tag) => filter.includes(tag))
+                    )
+                  ) {
+                    return (
+                      <Marker
+                        key={cafe._id}
+                        title={cafe.cafeName}
+                        icon={cafeMarker}
+                        position={{ lat: cafe.lat, lng: cafe.lng }}
+                        onClick={() => history.push(`/cafe:${cafe._id}`)}
+                      />
+                    );
+                  } else {
+                    return null;
+                  }
                 })}
               </GoogleMap>
             </LoadScript>
