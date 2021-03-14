@@ -6,9 +6,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Listing from "./Listing";
-import Logo from "./Logo";
-import Warning from "./Warning";
+import Listing from "../components/Listing";
+import Logo from "../components/Logo";
+import Warning from "../components/Warning";
 
 import slide1 from "../assets/slide-one.png";
 import slide2 from "../assets/slide-two.png";

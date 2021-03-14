@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import { bakeyContext } from "../Context";
-import Listing from "./Listing";
-import Warning from "./Warning";
+import Listing from "../components/Listing";
+import Warning from "../components/Warning";
 import StyledCentered from "../styledComponents/StyledCentered";
 import {
   StyledForm,
