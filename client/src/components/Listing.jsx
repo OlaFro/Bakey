@@ -62,11 +62,11 @@ export default function Listing(props) {
   };
 
   const handleDate = () => {
-    if (props.pickUpDate) {
+    if (props.pickUpDate && props.pickUpDate.includes("T")) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
-        " " +
+        ". " +
         (!props.preview
           ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
           : niceDate.split(" ")[1].substring(0, 2)) +
