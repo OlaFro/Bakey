@@ -62,8 +62,10 @@ export default function ListViewCafe(props) {
                 {/* documentation for the counter: https://www.npmjs.com/package/@ramonak/react-progress-bar */}
                 <ProgressBar
                   completed={getPercentage(listing)}
-                  bgcolor={colors.accent1}
-                  isLabelVisible={getPercentage(listing) === 0 || getPercentage(listing) >= 30 ? true : false}
+                  bgcolor={getPercentage(listing) <= 80 ? colors.accent1 : colors.accent2}
+                  isLabelVisible={true}
+                  labelAlignment={getPercentage(listing) <= 30 ? "left" : "right"}
+                  labelColor={"white"}
                 />
               </div>
             </StyledListing>
