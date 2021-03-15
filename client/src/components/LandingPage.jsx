@@ -30,7 +30,7 @@ import Warning from "./Warning";
 export default function LandingPage() {
   let history = useHistory();
 
-  const { city, setCity, setAvailableCities, availableCities } = useContext(bakeyContext);
+  const { city, setCity, availableCities } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
   const [warning, setWarning] = useState(false);
@@ -58,19 +58,14 @@ export default function LandingPage() {
       });
   }, []);
 
-  useEffect(()=>{
-    Axios({
-      method:"GET",
-      url: "users/cities"
-    }).then((res)=>{
-      console.log(res.data)
-      setAvailableCities(res.data)
-      if (!city) {setCity(res.data[0])}
-    }).catch((err)=> {
-      console.log(err)
-    })
-  },[])
+  //function to put something in the city context when uses press go without picking a city
 
+
+ const selectCity = () => {
+   if (!city) {
+     setCity(availableCities[0])
+   }
+ }
   return (
     <StyledCentered>
       <StyledHeader>
@@ -97,6 +92,7 @@ export default function LandingPage() {
             </StyledInputContainer>) : null }  
             <StyledButton
               onClick={() => {
+                selectCity();
                 history.push("/cafes-list");
               }}
             >

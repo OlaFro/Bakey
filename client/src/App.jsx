@@ -32,7 +32,7 @@ function App() {
   const [cafeName, setCafeName] = useState("");
   const [cafes, setCafes] = useState([]);
   const [city, setCity] = useState("");
-  const [availableCities, setAvailableCities] = useState([])
+  const [availableCities, setAvailableCities] = useState([]);
   const [selectedListing, setSelectedListing] = useState({
     listingImage: "",
     listingName: "",
@@ -73,6 +73,20 @@ function App() {
     // });
   }, []);
 
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: "users/cities",
+    })
+      .then((res) => {
+        console.log(res.data);
+        setAvailableCities(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <bakeyContext.Provider
       value={{
@@ -91,7 +105,7 @@ function App() {
         selectedListing,
         setSelectedListing,
         availableCities,
-        setAvailableCities
+        setAvailableCities,
       }}
     >
       <Router>
