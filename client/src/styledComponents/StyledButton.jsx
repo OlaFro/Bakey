@@ -77,6 +77,21 @@ export const StyledButton = styled.button`
     css`
       background-color: transparent;
       color: ${colors.accent2};
+      :hover {
+        background-color: transparent;
+        color: ${colors.accent2};
+      }
+    `}
+
+  ${(props) =>
+    props.headerBtnClient &&
+    css`
+      background-color: transparent;
+      color: ${colors.black};
+      :hover {
+        background-color: transparent;
+        color: ${colors.black};
+      }
     `}
 
   ${(props) =>
@@ -87,12 +102,13 @@ export const StyledButton = styled.button`
       border-radius: calc(var(--border-radius) * 2);
       background-color: ${colors.accent1};
       font-size: 0.8rem;
-      margin: 0 0 var(--space-s) 0;
+      margin: 0;
       :hover {
         cursor: pointer;
         background-color: ${darken(0.1, colors.accent1)};
       }
     `}
+    
 
   /* right display the button in the grid for cafe registration */
   ${(props) =>
@@ -103,32 +119,32 @@ export const StyledButton = styled.button`
     `}
 `;
 
-export const StyledSmallButton = styled.button`
-  background: none;
-  border: none;
-  font-family: var(--headings);
-  text-align: left;
-  font-size: 1rem;
-  padding: var(--space-xs);
-  color: ${colors.black};
-  @media ${device.desktop} {
-    margin: var(--space-xs) var(--space-s);
-    padding: var(--space-xs) var(--space-s);
-    border-radius: calc(2 * var(--border-radius));
-    text-transform: uppercase;
-    letter-spacing: var(--ls);
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: all 200ms;
-    background-color: ${colors.accent1};
-    border: var(--border) solid ${colors.accent1};
-    :hover {
-      cursor: pointer;
-      background-color: ${darken(0.1, colors.accent1)};
-      border: ${darken(0.1, colors.accent1)} var(--border) solid;
-    }
-  }
-`;
+// export const StyledSmallButton = styled.button`
+//   background: none;
+//   border: none;
+//   font-family: var(--headings);
+//   text-align: left;
+//   font-size: 1rem;
+//   padding: var(--space-xs);
+//   color: ${colors.black};
+//   @media ${device.tabletLandscape} {
+//     margin: var(--space-xs) var(--space-s);
+//     padding: var(--space-xs) var(--space-s);
+//     border-radius: calc(2 * var(--border-radius));
+//     text-transform: uppercase;
+//     letter-spacing: var(--ls);
+//     font-weight: 700;
+//     font-size: 0.9rem;
+//     transition: all 200ms;
+//     background-color: ${colors.accent1};
+//     border: var(--border) solid ${colors.accent1};
+//     :hover {
+//       cursor: pointer;
+//       background-color: ${darken(0.1, colors.accent1)};
+//       border: ${darken(0.1, colors.accent1)} var(--border) solid;
+//     }
+//   }
+// `;
 
 /* buttons for the order summary */
 export const StyledOrderButton = styled.button`

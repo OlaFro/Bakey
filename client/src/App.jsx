@@ -8,27 +8,37 @@ import {
   Redirect,
 } from "react-router-dom";
 import { bakeyContext } from "./Context";
-import Login from "./components/Login";
-import RegistrationUser from "./components/RegistrationUser";
-import RegistrationCafe from "./components/RegistrationCafe";
-import DashboardUser from "./components/DashboardUser";
-import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
-import ListingForm from "./components/ListingForm";
-
-import Profile from "./components/Profile";
-import ListView from "./components/ListView";
-import Settings from "./components/Settings";
-
-import Order from "./components/Order";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
+import RegistrationUser from "./pages/RegistrationUser";
+import RegistrationCafe from "./pages/RegistrationCafe";
+import DashboardClient from "./pages/DashboardClient";
+import DashboardCafe from "./pages/DashboardCafe";
+import ListingForm from "./pages/ListingForm";
+import Profile from "./pages/Profile";
+import ListView from "./pages/ListView";
+import Settings from "./pages/Settings";
+import LandingPage from "./pages/LandingPage";
+import AboutUs from "./pages/AboutUs";
+import Order from "./pages/Order";
 
 function App() {
-  const [isLogged, setIsLogged] = useState({ state: false, role: "" });
+  const [isLogged, setIsLogged] = useState({ state: false, role: "", id: "" });
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const [cafeName, setCafeName] = useState("");
   const [cafes, setCafes] = useState([]);
+  const [city, setCity] = useState("Leipzig");
+  const [selectedListing, setSelectedListing] = useState({
+    listingImage: "",
+    listingName: "",
+    listingAllergenes: [],
+    listingTags: [],
+    totalPieces: "",
+    pickUpDate: "",
+    piecePrice: "",
+  });
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -50,18 +60,21 @@ function App() {
         } else {
           setIsLogged({ state: false, role: "" });
         }
-        alert("This is just a demo project not offering real products!");
       })
       .catch((err) => {
         console.log(err);
         setIsLogged({ state: false, role: "" });
-        alert("This is just a demo project not offering real products!");
       });
+    // .finally(() => {
+    //   alert("This is just a demo project not offering real products!");
+    // });
   }, []);
 
   return (
     <bakeyContext.Provider
       value={{
+        city,
+        setCity,
         isLogged,
         setIsLogged,
         userName,
@@ -72,6 +85,8 @@ function App() {
         setCafeName,
         cafes,
         setCafes,
+        selectedListing,
+        setSelectedListing,
       }}
     >
       <Router>
@@ -80,7 +95,10 @@ function App() {
           <Navigation />
           <Switch>
             <Route path="/" exact>
-              <h1>Welcome to bakey</h1>
+              <LandingPage />
+            </Route>
+            <Route path="/about-us" exact>
+              <AboutUs />
             </Route>
             <Route path="/registration/user" exact>
               <RegistrationUser />
@@ -90,7 +108,7 @@ function App() {
             </Route>
             <Route path="/client-dashboard" exact>
               {isLogged.state && isLogged.role === "client" ? (
-                <DashboardUser />
+                <DashboardClient />
               ) : (
                 <Redirect to="/" />
               )}

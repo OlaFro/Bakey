@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { useHistory, Link } from "react-router-dom";
-import Listing from "./Listing";
-import Warning from "./Warning";
+import { bakeyContext } from "../Context";
+import Listing from "../components/Listing";
+import Warning from "../components/Warning";
 import StyledCentered from "../styledComponents/StyledCentered";
 import {
   StyledForm,
@@ -17,12 +18,11 @@ import { StyledButton } from "../styledComponents/StyledButton";
 import { StyledListingSteps } from "../styledComponents/StyledListingForm";
 
 export default function ListingForm() {
+  const { selectedListing, setSelectedListing, cafeName } = useContext(
+    bakeyContext
+  );
   const history = useHistory();
-  const [data, setData] = useState({
-    listingName: "",
-    listingTags: [],
-    listingAllergenes: [],
-  });
+  const [data, setData] = useState(selectedListing);
   const [msg, setMsg] = useState({});
   const [showWarning, setShowWarning] = useState(false);
   const [imageWarning, setImageWarning] = useState(false);
@@ -91,7 +91,12 @@ export default function ListingForm() {
     console.log("submiting form");
 
     let formData = new FormData();
-    formData.append("file", image.raw);
+    if (image.raw) {
+      formData.append("file", image.raw);
+    }
+    if (data.listingImage.split("images/")[1]) {
+      formData.append("listingImage", data.listingImage.split("images/")[1]);
+    }
     formData.append("listingName", data.listingName);
     formData.append("listingTags", data.listingTags);
     formData.append("listingAllergenes", data.listingAllergenes);
@@ -115,7 +120,7 @@ export default function ListingForm() {
         } else if (res.data.errorSource === "image upload") {
           setImageWarning(true);
         } else if (res.data === "added listing") {
-          history.push("/cafe-dashboard");
+          goBack();
         } else {
           setShowWarning(true);
         }
@@ -126,6 +131,19 @@ export default function ListingForm() {
       });
   };
 
+  const goBack = () => {
+    setSelectedListing({
+      listingImage: "",
+      listingName: "",
+      listingAllergenes: [],
+      listingTags: [],
+      totalPieces: "",
+      pickUpDate: "",
+      piecePrice: "",
+    });
+    history.push("/cafe-dashboard");
+  };
+
   return (
     <StyledCentered>
       <header>
@@ -134,16 +152,17 @@ export default function ListingForm() {
       <StyledListingSteps>
         <h3> 1. Fill out: </h3>
         <StyledForm id="listing-form" onSubmit={formSubmit} listing>
-          {/* <header>
-            <h2>Fill out:</h2>
-          </header> */}
           <StyledOtherInputsContainer cafe>
             <header>Upload photo</header>
             <StyledPhotoUpload cafe>
               <label htmlFor="upload-button">
                 {image.preview ? (
-                  <div className="picContainer">
+                  <figure className="picContainer">
                     <img src={image.preview} alt="Listing" />
+                  </figure>
+                ) : data.listingImage ? (
+                  <div className="picContainer">
+                    <img src={data.listingImage} alt="Listing" />
                   </div>
                 ) : (
                   <StyledPhoto />
@@ -169,6 +188,7 @@ export default function ListingForm() {
               name="listingName"
               id="listingName"
               placeholder=" "
+              value={data.listingName}
               onInput={getValue}
               required={true}
             />
@@ -187,6 +207,7 @@ export default function ListingForm() {
                 type="checkbox"
                 id="cereal"
                 name="cereal"
+                checked={data.listingAllergenes.includes("cereal")}
                 onChange={getAllergenes}
               />
               <label htmlFor="cereal">cereal</label>
@@ -196,6 +217,7 @@ export default function ListingForm() {
                 type="checkbox"
                 id="eggs"
                 name="eggs"
+                checked={data.listingAllergenes.includes("eggs")}
                 onChange={getAllergenes}
               />
               <label htmlFor="eggs">eggs</label>
@@ -205,6 +227,7 @@ export default function ListingForm() {
                 type="checkbox"
                 id="peanut"
                 name="peanut"
+                checked={data.listingAllergenes.includes("peanut")}
                 onChange={getAllergenes}
               />
               <label htmlFor="peanut">peanut</label>
@@ -215,6 +238,7 @@ export default function ListingForm() {
                 id="soja"
                 name="soja"
                 onChange={getAllergenes}
+                checked={data.listingAllergenes.includes("soja")}
               />
               <label htmlFor="soja">soja</label>
             </div>
@@ -224,6 +248,7 @@ export default function ListingForm() {
                 id="dairy"
                 name="dairy"
                 onChange={getAllergenes}
+                checked={data.listingAllergenes.includes("dairy")}
               />
               <label htmlFor="dairy">dairy</label>
             </div>
@@ -233,6 +258,7 @@ export default function ListingForm() {
                 id="celery"
                 name="celery"
                 onChange={getAllergenes}
+                checked={data.listingAllergenes.includes("celery")}
               />
               <label htmlFor="celery">celery</label>
             </div>
@@ -242,6 +268,7 @@ export default function ListingForm() {
                 id="mustard"
                 name="mustard"
                 onChange={getAllergenes}
+                checked={data.listingAllergenes.includes("mustard")}
               />
               <label htmlFor="mustard">mustard</label>
             </div>
@@ -251,6 +278,7 @@ export default function ListingForm() {
                 id="lupins"
                 name="lupins"
                 onChange={getAllergenes}
+                checked={data.listingAllergenes.includes("lupins")}
               />
               <label htmlFor="lupins">lupins</label>
             </div>
@@ -263,6 +291,7 @@ export default function ListingForm() {
                 id="vegan"
                 name="vegan"
                 onChange={getTags}
+                checked={data.listingTags.includes("vegan")}
               />
               <label htmlFor="vegan">vegan</label>
             </div>
@@ -272,6 +301,7 @@ export default function ListingForm() {
                 id="organic"
                 name="organic"
                 onChange={getTags}
+                checked={data.listingTags.includes("organic")}
               />
               <label htmlFor="organic">organic</label>
             </div>
@@ -281,6 +311,7 @@ export default function ListingForm() {
                 id="glutenFree"
                 name="glutenFree"
                 onChange={getTags}
+                checked={data.listingTags.includes("glutenFree")}
               />
               <label htmlFor="glutenFree">gluten-free</label>
             </div>
@@ -290,6 +321,7 @@ export default function ListingForm() {
                 id="lactoseFree"
                 name="lactoseFree"
                 onChange={getTags}
+                checked={data.listingTags.includes("lactoseFree")}
               />
               <label htmlFor="lactoseFree">lactose-free</label>
             </div>
@@ -299,6 +331,7 @@ export default function ListingForm() {
                 id="sugarFree"
                 name="sugarFree"
                 onChange={getTags}
+                checked={data.listingTags.includes("sugarFree")}
               />
               <label htmlFor="sugarFree">sugar-free</label>
             </div>
@@ -308,6 +341,7 @@ export default function ListingForm() {
                 id="wheatFree"
                 name="wheatFree"
                 onChange={getTags}
+                checked={data.listingTags.includes("wheatFree")}
               />
               <label htmlFor="wheatFree">wheat-free</label>
             </div>
@@ -324,6 +358,7 @@ export default function ListingForm() {
                 id="piecePrice"
                 placeholder=" "
                 onInput={getValue}
+                value={data.piecePrice}
                 required={true}
               />
               <StyledLabel htmlFor="piecePrice">
@@ -343,6 +378,7 @@ export default function ListingForm() {
                 id="totalPieces"
                 placeholder=" "
                 onInput={getValue}
+                value={data.totalPieces}
                 required={true}
               />
               <StyledLabel htmlFor="availablePieces">
@@ -377,12 +413,14 @@ export default function ListingForm() {
         <h3> 2. Preview: </h3>
         <Listing
           title={data.listingName}
+          cafeName={cafeName}
           totalPieces={data.totalPieces}
           pickUpDate={data.pickUpDate}
           piecePrice={data.piecePrice}
           listingAllergenes={data.listingAllergenes}
           listingTags={data.listingTags}
-          image={image.preview}
+          image={data.listingImage || image.preview}
+          preview={true}
         />
         <h3> 3. Save: </h3>
         <div className="communication">
@@ -391,9 +429,9 @@ export default function ListingForm() {
               Click "cancel" to go back to Your dashboard. <p></p>Your changes
               won't be saved.
             </p>
-            <Link to="/cafe-dashboard">
-              <StyledButton cafeSecondary>Cancel</StyledButton>
-            </Link>
+            <StyledButton cafeSecondary onClick={goBack}>
+              Cancel
+            </StyledButton>
           </div>
           <div>
             <p>

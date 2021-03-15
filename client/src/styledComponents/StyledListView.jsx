@@ -26,7 +26,8 @@ export const StyledHeader = styled.div`
       display: flex;
       flex-wrap: wrap;
 
-      > div {
+      div,
+      label {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -35,7 +36,31 @@ export const StyledHeader = styled.div`
           margin: var(--space-xs) 0;
           font-size: 0.9rem;
         }
+
+        input {
+          margin-right: var(--space-xs);
+        }
       }
+    }
+  }
+`;
+
+export const StyledViewWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media ${device.desktop} {
+    flex-direction: row;
+    gap: var(--space-l);
+  }
+
+  > article {
+    width: 100%;
+    max-width: 600px;
+    order: 2;
+
+    @media ${device.desktop} {
+      order: 0;
     }
   }
 `;

@@ -100,8 +100,21 @@ export const StyledAbout = styled.div`
   margin: var(--space-l) 0;
 `;
 
-export const StyledAddress = styled.div`
+export const StyledAddressContainer = styled.section`
   display: ${(props) => props.display};
+  flex-wrap: wrap;
+  > div {
+    width: 100%;
+    max-height: 300px;
+
+    @media ${device.tabletPortrait} {
+      width: 48%;
+    }
+  }
+`;
+
+export const StyledAddress = styled.div`
+  display: flex;
   width: 50%;
   flex-direction: column;
   align-items: flex-start;

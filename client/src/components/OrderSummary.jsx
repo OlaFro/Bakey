@@ -101,7 +101,7 @@ export default function OrderSummary(props) {
             <span>
               <strong>
                 Total:{" "}
-                {orderInfo.price ? orderInfo.price * orderInfo.pieces : "0.00"}{" "}
+                {orderInfo.price ? parseFloat(orderInfo.price * orderInfo.pieces).toFixed(2) : "0.00"}{" "}
                 €
               </strong>
             </span>

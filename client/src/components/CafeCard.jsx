@@ -10,6 +10,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 import Tag from "./Tag";
 
+
 export default function ListViewCafe(props) {
   const { cafe } = props;
 

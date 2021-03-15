@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import {
   StyledMenu,
   StyledExit,
@@ -10,10 +10,10 @@ import {
   StyledLogoContainer,
   StyledNavBtn,
 } from "../styledComponents/StyledNavigation";
-import StyledLogo from "../styledComponents/StyledLogo";
 import { StyledSmallButton } from "../styledComponents/StyledButton";
 import { bakeyContext } from "../Context";
 import axios from "axios";
+import Logo from "./Logo";
 
 export default function Navigation(props) {
   const [open, setOpen] = useState(0);
@@ -44,35 +44,46 @@ export default function Navigation(props) {
   return (
     <StyledNavigation>
       <StyledLogoContainer>
-        <StyledLogo>
-          <Link to="/">bakey</Link>
-        </StyledLogo>
+        <Link to="/">
+          <Logo nav />
+        </Link>
+
         <StyledExit onClick={handleClose} display={open} />
         <StyledMenu onClick={handleOpen} display={open} />
       </StyledLogoContainer>
       <StyledNavContainer display={open}>
-        <Link to="/cafes-list">cafés</Link>
-        <Link to="/">about us</Link>
+        <NavLink
+          to="/cafes-list"
+          activeClassName="active"
+          onClick={handleClose}
+        >
+          cafés
+        </NavLink>
+        <NavLink to="/about-us" activeClassName="active" onClick={handleClose}>
+          about us
+        </NavLink>
       </StyledNavContainer>
       <StyledNavBtnsContainer display={open}>
         {isLogged.state ? (
-          <Link to={`/${isLogged.role}-dashboard`}>Dashboard</Link>
+          <NavLink
+            to={`/${isLogged.role}-dashboard`}
+            activeClassName="active"
+            onClick={handleClose}
+          >
+            dashboard
+          </NavLink>
         ) : null}
-        {isLogged.state ? (
-          isLogged.role === "cafe" ? (
-            <Link to={`/settings`}>Settings</Link>
-          ) : null
-        ) : (
-          <StyledNavBtn login>
-            <Link to="/login">log in</Link>
-          </StyledNavBtn>
+        {isLogged.state ? null : (
+          <NavLink to="/login" activeClassName="active" onClick={handleClose}>
+            log in
+          </NavLink>
         )}
         {isLogged.state ? (
-          <StyledSmallButton onClick={logout}>Log out</StyledSmallButton>
+          <span onClick={logout}>log out</span>
         ) : (
-          <StyledNavBtn registration>
-            <Link to="/registration/user">register</Link>
-          </StyledNavBtn>
+          <NavLink to="/registration/user" onClick={handleClose}>
+            register
+          </NavLink>
         )}
       </StyledNavBtnsContainer>
     </StyledNavigation>

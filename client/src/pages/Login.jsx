@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 
-import Warning from "./Warning";
+import Warning from "../components/Warning";
 import {
   StyledForm,
   StyledLabel,
@@ -18,9 +18,13 @@ import { StyledButton } from "../styledComponents/StyledButton";
 export default function Login(props) {
   const [loginData, setData] = useState({});
   const [warning, setWarning] = useState(false);
-  const { setIsLogged, setUserName, setProfilePic, setCafeName } = useContext(
-    bakeyContext
-  );
+  const {
+    setIsLogged,
+    setUserName,
+    setProfilePic,
+    setCafeName,
+    setCity,
+  } = useContext(bakeyContext);
   const [visible, setVisible] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
 
@@ -72,6 +76,7 @@ export default function Login(props) {
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
+          setCity(res.data.city);
           setData({});
           if (orderInfo && res.data.userType === "client") {
             history.push("/order");
@@ -92,7 +97,7 @@ export default function Login(props) {
     <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
-          <h2>Login</h2>
+          <h2>Log in</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField

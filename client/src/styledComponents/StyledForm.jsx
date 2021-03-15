@@ -95,16 +95,14 @@ export const StyledPhotoUpload = styled.div`
     }
     > .picContainer {
       margin: 0;
-      position: relative;
       overflow: hidden;
       width: 125px;
       height: 125px;
       border-radius: var(--border-radius);
       > img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 125px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     > div {
@@ -142,16 +140,15 @@ export const StyledCoverUpload = styled.div`
     }
     > .picContainer {
       margin: 0;
-      position: relative;
+
       overflow: hidden;
       width: 125px;
       height: 125px;
       border-radius: var(--border-radius);
       > img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 125px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     > div {
@@ -198,6 +195,12 @@ export const StyledInputContainer = styled.div`
       @media (min-width: 100px) {
         width: 100%;
       }
+    `}
+
+    ${(props) =>
+    props.listing &&
+    css`
+      margin-top: var(--space-m);
     `}
 `;
 
@@ -301,14 +304,35 @@ export const StyledSelect = styled.select`
     letter-spacing: calc(0.66 * var(--ls));
   }
 
-  /* ${(props) =>
-    props.number &&
+  ${(props) =>
+    props.landingPage &&
     css`
-      background-color: transparent;
-      :not(:placeholder-shown) + label {
-        background-color: ${lighten(0.28, colors.gray)};
+      border: var(--border) solid ${colors.gray};
+
+      height: 4.2rem;
+      padding: var(--space-xs) var(--space-s) 0 15px;
+      font-size: 1.2rem;
+      background: rgba(255, 255, 255, 0.829);
+      color: #2e2e2e;
+
+      @media ${device.mobile} {
+        border: var(--border) solid transparent;
       }
-    `}; */
+
+      :hover {
+        border: var(--border) solid ${darken(0.2, colors.gray)};
+      }
+
+      :focus + label,
+      :not(:placeholder-shown) + label {
+        font-size: 0.8rem;
+        top: 10px;
+        left: 15px;
+        background: transparent;
+        padding: 0 calc(0.2 * var(--space-s));
+        letter-spacing: calc(0.66 * var(--ls));
+      }
+    `};
 
   ${(props) =>
     props.cafe &&
@@ -414,6 +438,14 @@ export const StyledArrow = styled(ArrowDown)`
   right: 12px;
   top: 19.2px;
   pointer-events: none;
+
+  ${(props) =>
+    props.landingPage &&
+    css`
+      width: 19.2px;
+      height: 19.2px;
+      top: 30px;
+    `}
 `;
 
 export const StyledPhoto = styled(ImageAdd)`

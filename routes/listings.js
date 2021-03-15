@@ -3,8 +3,16 @@ var router = express.Router();
 const ListingModel = require("../models/ListingModel");
 const UserModel = require("../models/UserModel");
 const uploadFile = require("../controllers/multerController");
-const { authenticateToken } = require("../controllers/authControllers");
-const { sanitize, newListing } = require("../controllers/validControllers");
+const {
+  authenticateToken,
+  authorizeCafe,
+} = require("../controllers/authControllers");
+const {
+  sanitize,
+  newListing,
+  reactivateListing,
+} = require("../controllers/validControllers");
+const listingAction = require("../controllers/listingControllers");
 /* 
 
 */
@@ -33,6 +41,18 @@ router.post(
         UserModel.findById(user.id)
           .then((cafe) => {
             if (cafe.userType === "cafe") {
+              let image = "../uploads/images/bakey-placeholder.png";
+
+              console.log(req.files["file"], addListing.listingImage);
+
+              if (req.files["file"]) {
+                image = req.files["file"][0].path;
+              } else if (addListing.listingImage) {
+                image = "../uploads/images/" + addListing.listingImage;
+              }
+
+              console.log(image);
+
               let addedListing = new ListingModel({
                 id: addListing.id,
                 cafeId: user.id,
@@ -43,18 +63,13 @@ router.post(
                 totalPieces: +addListing.totalPieces,
                 availablePieces: +addListing.totalPieces,
                 piecePrice: +addListing.piecePrice,
-                listingPicture: req.files["file"]
-                  ? req.files["file"][0].path
-                  : "../uploads/images/listingplaceholder.png",
+                listingPicture: image,
                 pickUpDate: addListing.pickUpDate,
                 listingStatus: "active",
               });
-              console.log(addedListing);
               addedListing
                 .save()
                 .then((result) => {
-                  console.log("result", result);
-                  console.log(cafe);
                   UserModel.findByIdAndUpdate(user.id, {
                     $push: { cafeListings: result._id },
                   })
@@ -110,10 +125,16 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
         }
         ListingModel.findByIdAndUpdate(listing, {
           $set: modification,
-          $push: { buyers: { _id: buyer, pcs: pcs } },
+          $push: { buyers: buyer, boughtPieces: pcs },
         })
           .then((result) => {
-            res.send({ boughtPieces: pcs });
+            UserModel.findByIdAndUpdate(buyer, { $push: { orders: listingId } })
+              .then((result) => {
+                res.send({ boughtPieces: pcs });
+              })
+              .catch((err) => {
+                res.send(err);
+              });
           })
           .catch((err) => {
             res.send(err);
@@ -125,55 +146,68 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
     });
 });
 
-/* 
-router.put("/update", (req, res, next) => {
-  const ListingId = req.body.id;
-  const updatedListing = req.body;
-  ListingModel.findByIdAndUpdate(ListingId, {
-    listingName: updatedListing.listingName,
-    listingTags: updatedListing.listingTags,
-    listingAllergenes: updatedListing.listingAllergenes,
-    totalPieces: updatedListing.totalPieces,
-    availablePieces: updatedListing.availablePieces,
-    piecePrice: updatedListing.piecePrice,
-  })
-    .then((update) => {
-      console.log(update);
-      res.send({ updated: true });
+router.get("/cafe", authenticateToken, (req, res, next) => {
+  const user = req.user;
+  ListingModel.find({ cafeId: user.id })
+    .populate({
+      path: "buyers",
+      select: "email",
+    })
+    .then((listings) => {
+      res.send(listings);
     })
     .catch((err) => {
       res.send(err);
     });
 });
 
+router.post(
+  "/archive",
+  authenticateToken,
+  authorizeCafe,
+  listingAction.inactivate,
+  (req, res, next) => {
+    const today = req.date;
+    const listingID = req.body.listingID;
+    ListingModel.findOneAndUpdate(
+      {
+        _id: listingID,
+        $or: [{ listingStatus: "sold" }, { pickUpDate: { $lte: today } }],
+      },
+      {
+        listingStatus: "inactive",
+        buyers: [],
+        boughtPieces: [],
+      },
+      { new: true }
+    )
+      .then((listing) => {
+        if (listing) {
+          res.send({
+            status: "changed",
+            listing: listing,
+          });
+        } else {
+          res.send({ status: "not changed" });
+        }
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
+);
 
-router.put("/updatepic", (req, res, next) => {
-  const ListingId = req.body.id;
-  ListingModel.findByIdAndUpdate(
-    ListingId,
-    {
-      listingPicture: req.file.path,
-    },
-    { useFindAndModify: false }
-  )
-    .then((result) => {
-      console.log(result);
+router.get("/end-soon", listingAction.inactivate, (req, res, next) => {
+  const today = req.date;
+  ListingModel.find({ listingStatus: "active", pickUpDate: { $gte: today } })
+    .sort({ pickUpDate: 1 })
+    .limit(3)
+    .then((listings) => {
+      res.send(listings);
     })
     .catch((err) => {
       res.send(err);
     });
 });
-
-router.delete("/delete", (req, res, next) => {
-  const ListingId = req.body.id;
-  ListingModel.deleteOne(ListingId)
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((err)=>{
-      console.log(err)
-  });
-});
- */
 
 module.exports = router;

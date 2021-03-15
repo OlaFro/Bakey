@@ -6,8 +6,9 @@ import {
   KeyboardArrowDown,
   KeyboardArrowUp,
 } from "styled-icons/material-sharp";
+import { Link } from "react-router-dom";
 
-export const StyledListingContainer = styled.div`
+export const StyledListingContainer = styled.article`
   width: 100%;
   max-width: 400px;
   display: grid;
@@ -18,13 +19,21 @@ export const StyledListingContainer = styled.div`
 
   @media ${device.tabletLandscape} {
     max-width: 800px;
-    height: 400px;
+    min-height: 400px;
     grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
   }
+
+  ${(props) =>
+    props.cafeDashboard &&
+    css`
+      margin: 0 auto var(--space-l);
+    `}
 `;
 
-export const StyledPhotoContainer = styled.div`
-  height: 100%;
+export const StyledPhotoContainer = styled.figure`
+  height: 400px;
+  margin: 0;
   > img {
     width: 100%;
     height: 100%;
@@ -43,9 +52,9 @@ export const StyledDescContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-xs) var(--space-xs);
+  padding: var(--space-s) var(--space-xs);
   min-height: 500px;
-
+  padding-bottom: var(--space-s);
   @media ${device.tabletLandscape} {
     min-height: 400px;
   }
@@ -114,7 +123,7 @@ export const StyledAllergenesContainer = styled.div`
 `;
 
 export const StyledTagContainer = styled.div`
-  display: flex;
+  display: ${(props) => props.display};
   justify-content: center;
   width: 192px;
   height: 2rem;
@@ -220,4 +229,25 @@ export const StyledBtnContainer = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  color: #4a4a4a;
+  text-decoration: none;
+  border-bottom: 3px solid #ed8db2;
+  :hover {
+    border-bottom: 3px solid transparent;
+  }
+`;
+
+export const StyledMessage = styled.p`
+  color: ${colors.black};
+  font-weight: 900;
+  padding: 0 var(--space-s);
+
+  ${(props) =>
+    props.warning &&
+    css`
+      color: ${colors.accent2};
+    `};
 `;

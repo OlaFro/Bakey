@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { bakeyContext } from "../Context";
+import Axios from "axios";
 import {
   StyledListingContainer,
   StyledPhotoContainer,
@@ -10,6 +11,8 @@ import {
   StyledMore,
   StyledLess,
   StyledTimers,
+  StyledLink,
+  StyledMessage,
 } from "../styledComponents/StyledListing";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
@@ -17,32 +20,23 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
-import placeholder from "../assets/placeholder_400px.jpg";
+import placeholder from "../assets/bakey-placeholder.png";
 import Tag from "./Tag";
-import { useParams, useHistory, useLocation } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Listing(props) {
-  const { isLogged } = useContext(bakeyContext);
+  const { isLogged, setSelectedListing, cafeName } = useContext(bakeyContext);
   let history = useHistory();
 
   const params = useParams();
 
   const [open, setOpen] = useState(false);
 
-  //session storage
-
   const cafeId = params.id ? params.id.split(":")[1] : "";
 
   const availablePieces = props.availablePieces;
   const maxValue = props.totalPieces;
   const soldPieces = maxValue - props.availablePieces || 0;
-
-  // const listingIdentifier = props.title
-  //   .split(" ")
-  //   .map((word) => {
-  //     return word.substr(0, 1).toLowerCase() + word.substr(1);
-  //   })
-  //   .join("-");
 
   const handleOpen = () => {
     setOpen(true);
@@ -68,16 +62,12 @@ export default function Listing(props) {
   };
 
   const handleDate = () => {
-    console.log(props.pickUpDate);
     if (props.pickUpDate) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
-      // 02-22 10:48
-
-      // 22-02 10:48
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
         " " +
-        (cafeId
+        (!props.preview
           ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
           : niceDate.split(" ")[1].substring(0, 2)) +
         niceDate.split(" ")[1].substring(2, 5)
@@ -101,7 +91,6 @@ export default function Listing(props) {
         : "0.00"
     }€`;
   };
-  console.log(soldPieces);
 
   const storeOrderInfo = (pcs) => {
     var pieces;
@@ -118,7 +107,7 @@ export default function Listing(props) {
       price: props.piecePrice,
       pieces: pieces,
       availablePieces: availablePieces,
-      cafeId: cafeId,
+      cafeId: cafeId || props.cafeId,
       listingImg: props.image,
       listingIdentifier: props.listingIdentifier,
     };
@@ -126,8 +115,63 @@ export default function Listing(props) {
     isLogged.state ? history.push("/order") : history.push("/login");
   };
 
+  const archiveListing = () => {
+    console.log("request sent");
+    props.setWarningContent("the service is out of order.");
+    props.setShowWarning(false);
+    Axios({
+      method: "POST",
+      url: `listings/archive`,
+      data: { listingID: props.id },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === "changed") {
+          props.setListings((prevListings) =>
+            prevListings.map((listing, index, array) => {
+              if (listing._id === res.data.listing._id) {
+                return (array[index] = res.data.listing);
+              } else {
+                return listing;
+              }
+            })
+          );
+        } else if (res.data.status === "no authorization") {
+          props.setWarningContent(
+            "that you are not authorized to change the status of the offer."
+          );
+          props.setShowWarning(true);
+        } else {
+          props.setWarningContent(
+            "that the state of this offer can not be changed, please contact our helpdesk."
+          );
+          props.setShowWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        props.setShowWarning(true);
+      });
+  };
+
+  const wantReactivate = () => {
+    setSelectedListing({
+      listingImage: props.image,
+      listingName: props.title,
+      listingAllergenes: props.listingAllergenes,
+      listingTags: props.listingTags,
+      totalPieces: props.totalPieces,
+      pickUpDate: "",
+      piecePrice: props.piecePrice,
+    });
+    history.push("/listingform");
+  };
+
   return (
-    <StyledListingContainer id={params.id ? props.listingIdentifier : null}>
+    <StyledListingContainer
+      id={params.id ? props.listingIdentifier : null}
+      cafeDashboard={props.dashboard ? true : false}
+    >
       <StyledPhotoContainer>
         <img src={props.image ? props.image : placeholder} alt="my offer"></img>
       </StyledPhotoContainer>
@@ -148,8 +192,22 @@ export default function Listing(props) {
           <StyledAllergenesContainer display={open ? 1 : 0}>
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
-          <StyledTagContainer>{tags()}</StyledTagContainer>
-          <span>{props.cafeName}</span>
+          <StyledTagContainer
+            display={
+              props.listingTags[0] === "" || props.listingTags.length < 1
+                ? "none"
+                : "flex"
+            }
+          >
+            {tags()}
+          </StyledTagContainer>
+          {props.withLink ? (
+            <StyledLink to={`/cafe:${props.cafeId}`}>
+              {props.cafeName}
+            </StyledLink>
+          ) : (
+            <span>{props.cafeName ? props.cafeName : cafeName}</span>
+          )}
         </header>
 
         <div style={{ width: "130px" }}>
@@ -203,30 +261,58 @@ export default function Listing(props) {
             <strong>{props.pickUpDate ? handleDate() : "Day and hour"}</strong>
           </StyledCentered>
         </StyledTimers>
-        <StyledBtnContainer>
-          <StyledButton
-            buy
-            onClick={() => {
-              if (params.id) {
-                storeOrderInfo("one");
-              }
-            }}
-          >
-            Buy a piece for {props.piecePrice ? props.piecePrice : "0.00"}€
-            {/* working, but not updated version: */}
-            {/* {props.piecePrice ? parseInt(props.piecePrice).toFixed(2) : "0.00"}€ */}
-          </StyledButton>
-          <StyledButton
-            buy
-            onClick={() => {
-              if (params.id) {
-                storeOrderInfo("many");
-              }
-            }}
-          >
-            {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
-          </StyledButton>
-        </StyledBtnContainer>
+        {props.dashboard ? null : (
+          <StyledBtnContainer>
+            <StyledButton
+              buy
+              onClick={() => {
+                if (params.id || props.landingPage) {
+                  storeOrderInfo("one");
+                }
+              }}
+            >
+              Buy a piece for{" "}
+              {props.piecePrice
+                ? parseFloat(props.piecePrice).toFixed(2)
+                : "0.00"}
+              €
+            </StyledButton>
+            <StyledButton
+              buy
+              onClick={() => {
+                if (params.id || props.landingPage) {
+                  storeOrderInfo("many");
+                }
+              }}
+            >
+              {availablePieces < props.totalPieces ? buyRest() : buyWhole()}
+            </StyledButton>
+          </StyledBtnContainer>
+        )}
+        {props.expired ? (
+          <StyledBtnContainer>
+            <StyledButton buy onClick={wantReactivate}>
+              Reactivate
+            </StyledButton>
+            {props.archive ? null : (
+              <StyledButton buy onClick={archiveListing}>
+                Archive
+              </StyledButton>
+            )}
+          </StyledBtnContainer>
+        ) : null}
+        {props.expiredClient ? (
+          <StyledMessage warning>
+            There were not enough customers to bake a cake. Your money will be
+            sent back.
+          </StyledMessage>
+        ) : null}
+        {props.soldClient ? (
+          <StyledMessage>
+            Congratulations, you will get your cake! Details in the email from
+            baker.
+          </StyledMessage>
+        ) : null}
       </StyledDescContainer>
     </StyledListingContainer>
   );

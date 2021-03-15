@@ -21,6 +21,16 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+    "email":"aloevera@gmail.com",
+    "password":"12345678910"
+}
+
+###
 POST http://localhost:5000/users/register
 Content-Type: application/json
 
@@ -98,3 +108,27 @@ Content-Type: application/json
     "listingId": "60339e23ebc07c6a9dec75ca"
 }
 
+###
+
+GET http://localhost:5000/listings/cafe
+
+###
+POST http://localhost:5000/listings/archive
+Content-Type: application/json
+
+{
+    "listingID": "603e3a1b6ba690001562ef34",
+}
+
+###
+
+GET http://localhost:5000/listings/end-soon
+
+
+###
+
+GET http://localhost:5000/users/orders
+
+###
+
+GET http://localhost:5000/users/cities

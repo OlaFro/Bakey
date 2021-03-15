@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Warning from "./Warning";
+import Warning from "../components/Warning";
 import {
   StyledForm,
   StyledLabel,
@@ -148,9 +148,9 @@ export default function Settings() {
           <StyledCoverUpload cafe>
             <label htmlFor="cafeCover">
               {cover.preview ? (
-                <div className="picContainer">
+                <figure className="picContainer">
                   <img src={cover.preview} alt="cafe cover" />
-                </div>
+                </figure>
               ) : (
                 <StyledPhoto cover />
               )}

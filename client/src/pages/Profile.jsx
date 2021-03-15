@@ -13,10 +13,12 @@ import {
   StyledAbout,
   StyledAddress,
   StyledListingContainer,
+  StyledAddressContainer,
 } from "../styledComponents/StyledProfile";
 import Axios from "axios";
-import Listing from "./Listing";
-import Warning from "./Warning";
+import Listing from "../components/Listing";
+import Warning from "../components/Warning";
+import MapCardView from "../components/MapCardView";
 
 export default function Profile() {
   const params = useParams();
@@ -32,6 +34,7 @@ export default function Profile() {
   console.log(urlHash);
 
   const [cafeInfo, setCafeInfo] = useState({});
+  const [cafeLocation, setCafeLocation] = useState({});
 
   const [showWarning, setShowWarning] = useState(false);
   const [offerWarning, setOfferWarning] = useState(false);
@@ -73,6 +76,36 @@ export default function Profile() {
         showWarning(true);
       });
   }, []);
+
+  useEffect(() => {
+    getCafeLocation(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [cafeInfo]);
+
+  const getCafeLocation = (API_KEY) => {
+    let address = [
+      cafeInfo.cafeStreet,
+      cafeInfo.cafeStreetNr,
+      cafeInfo.cafeZip,
+      cafeInfo.city,
+    ];
+    let parsedAddress = address.join("+");
+    console.log(parsedAddress);
+    Axios({
+      method: "GET",
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
+    })
+      .then((res) => {
+        let location = res.data.results[0].geometry.location;
+        console.log(location);
+        setCafeLocation({
+          lat: location.lat,
+          lng: location.lng,
+        });
+      })
+      .catch((err) => {
+        console.log(err, "it didnt connected");
+      });
+  };
 
   return (
     <StyledCentered>
@@ -135,27 +168,27 @@ export default function Profile() {
             </p>
           )}
         </StyledAbout>
-        <StyledAddress display={showAddress ? "flex" : "none"}>
-          <span>
-            <strong>{cafeInfo.cafeName}</strong>
-          </span>
-          <div>
+        <StyledAddressContainer display={showAddress ? "flex" : "none"}>
+          <StyledAddress>
             <span>
-              {cafeInfo.cafeStreet} {cafeInfo.cafeStreetNr}
+              <strong>{cafeInfo.cafeName}</strong>
             </span>
-            <span>
-              {" "}
-              {cafeInfo.cafeZip} {cafeInfo.city}
-            </span>
-          </div>
-          <div>
-            <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
-            <span> {cafeInfo.email}</span>
-          </div>
-
-          {/* place for the map in the future */}
-        </StyledAddress>
-
+            <div>
+              <span>
+                {cafeInfo.cafeStreet} {cafeInfo.cafeStreetNr}
+              </span>
+              <span>
+                {" "}
+                {cafeInfo.cafeZip} {cafeInfo.city}
+              </span>
+            </div>
+            <div>
+              <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
+              <span> {cafeInfo.email}</span>
+            </div>
+          </StyledAddress>
+          {cafeLocation ? <MapCardView cafeLocation={cafeLocation} /> : null}
+        </StyledAddressContainer>
         <StyledHr cafe />
       </StyledContentContainer>
       <StyledListingContainer ref={warningRef}>

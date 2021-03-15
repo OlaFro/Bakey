@@ -36,6 +36,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
         profilePic: result.profilePic,
         userType: result.userType,
         cafeName: result.cafeName,
+        city: result.city,
       });
     })
     .catch((err) => {
@@ -119,6 +120,7 @@ router.post(
       profilePic: user.profilePic,
       userType: user.userType,
       cafeName: user.cafeName,
+      city: user.city,
     });
   }
 );
@@ -202,5 +204,26 @@ router.put(
       });
   }
 );
+
+router.get("/orders", authenticateToken, (req, res, next) => {
+  const user = req.user;
+  UserModel.findById(user.id)
+    .populate({ path: "orders", select: ["-buyers", "-boughtPieces"] })
+    .select("orders")
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+router.get("/cities", (req, res, next) => {
+  UserModel.distinct('city', { userType: "cafe" })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => res.send(err));
+});
 
 module.exports = router;

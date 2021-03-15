@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
   --space-s: 1em;
   --space-m: 2em; 
   --space-l: 3em;
+  --space-xl:4em;
 
   --ls: 0.15em;
 
@@ -57,6 +58,18 @@ h3{
 
 p {
   font-family: var(--text);
+}
+
+a {
+    text-decoration: underline;
+    text-decoration-color: #ED8DB2;
+    text-decoration-thickness: 2px;
+    text-underline-position: under;
+
+    :hover {
+      text-decoration: none;
+    }
+
 }
 
 .wrapper{
