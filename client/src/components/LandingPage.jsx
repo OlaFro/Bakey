@@ -61,11 +61,6 @@ export default function LandingPage() {
   //function to put something in the city context when uses press go without picking a city
 
 
- const selectCity = () => {
-   if (!city) {
-     setCity(availableCities[0])
-   }
- }
   return (
     <StyledCentered>
       <StyledHeader>
@@ -92,7 +87,6 @@ export default function LandingPage() {
             </StyledInputContainer>) : null }  
             <StyledButton
               onClick={() => {
-                selectCity();
                 history.push("/cafes-list");
               }}
             >
