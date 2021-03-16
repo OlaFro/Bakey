@@ -23,7 +23,7 @@ import cafeMarker from "../assets/newCafeMarker.png";
 export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
-  const { cafes, setCafes, city, setCity } = useContext(bakeyContext);
+  const { cafes, setCafes, city, setCity, availableCities } = useContext(bakeyContext);
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
