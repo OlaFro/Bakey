@@ -52,12 +52,11 @@ router.post(
     console.log(req.body);
     let newUser = req.body;
 
-    UserModel.estimatedDocumentCount({}, (err, result) => {
-      if (err) {
-        res.send(err);
-      } else {
-        newUser.id = result + 1;
-        console.log(newUser);
+    UserModel.find()
+      .sort({ _id: -1 })
+      .limit(1)
+      .then((newest) => {
+        newUser.id = +newest[0].id + 1;
 
         let addedUser = new UserModel({
           id: newUser.id,
@@ -91,8 +90,10 @@ router.post(
             res.send({ errorSource: "BCRYPT" });
           }
         });
-      }
-    });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
   }
 );
 
@@ -219,7 +220,7 @@ router.get("/orders", authenticateToken, (req, res, next) => {
 });
 
 router.get("/cities", (req, res, next) => {
-  UserModel.distinct('city', { userType: "cafe" })
+  UserModel.distinct("city", { userType: "cafe" })
     .then((result) => {
       res.send(result);
     })
