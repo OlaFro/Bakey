@@ -109,7 +109,7 @@ export default function LandingPage() {
           </StyledCTA>
           <StyledDesc>
             <h2>Support your local café and order a piece of cake.</h2>
-            <h2> We will find other customers to bake the whole one.</h2>
+            <h2> We will find other customers to buy the rest.</h2>
           </StyledDesc>
         </div>
       </StyledHeader>
@@ -122,7 +122,7 @@ export default function LandingPage() {
             <Slider {...settings}>
               <figure className="carrousel-card">
                 <img src={slide1} alt="slide1" />
-                <h3>1. Café publishes new offer of a cake.</h3>
+                <h3>1. Café offers a cake.</h3>
               </figure>
               <figure className="carrousel-card">
                 <img src={slide2} alt="slide2" />
@@ -131,7 +131,7 @@ export default function LandingPage() {
               <figure className="carrousel-card">
                 <img src={slide3} alt="slide3" />
                 <h3>
-                  3. You invite your friends to participate and buy other
+                  3. Invite your friends to participate and buy the other
                   portions
                 </h3>
               </figure>
@@ -144,7 +144,7 @@ export default function LandingPage() {
           <StyledNoCarousel>
             <figure className="carrousel-card">
               <img src={slide1} alt="slide1" />
-              <h3>Café publishes new offer of a cake.</h3>
+              <h3>Café offers a cake.</h3>
             </figure>
             <figure className="carrousel-card">
               <img src={slide2} alt="slide2" />
@@ -153,7 +153,7 @@ export default function LandingPage() {
             <figure className="carrousel-card">
               <img src={slide3} alt="slide3" />
               <h3>
-                Invite your friends to participate<br></br> and buy other
+                Invite your friends to participate<br></br> and buy the other
                 portions
               </h3>
             </figure>
@@ -170,19 +170,20 @@ export default function LandingPage() {
           </StyledTitle>
 
           <p>
-            Everyone would like to have a piece of cake, but it's hard to bake
-            only one slice! Usually, cafés were estimating their production
-            based on regular visitors. In the hard times of the Covid-19
-            lockdown, they can offer their food only to-go, but many of them are
-            not taking the risk of baking products that won't be sold.{" "}
+            Everyone would love to have a piece of cake but it‘s hard to bake
+            only one slice! Cafés used to estimate their production based on
+            their daily customers. However, during the hard Covid-19 lockdowns,
+            cafés were allowed to offer nothing but food to-go and many of them
+            would not even take the risk of baking products that might not be
+            sold..{" "}
           </p>
           <p>
-            Bakey is a web-application that allows clients to order small
-            portions in their local café and in form of small crowdfunding
-            campaigns gathers other customers to reach the profitable minimum
-            for the café to bake the cake. If the goal won't be met, clients get
-            their money back. To increase the chance of the campaign to succeed
-            users can recommend it to friends.
+            Bakey comes to rescue and offers clients the possibility to order
+            small portions from their local café through small crowdfunding
+            campaigns, gathering other customers to reach a minimum quantity
+            that is profitable for the café. Clients will get their money back
+            if the goal isn‘t met. They can also recommend it to friends in
+            order to increase their chance of success.
           </p>
           <StyledButton
             onClick={() => {
@@ -192,13 +193,7 @@ export default function LandingPage() {
             Explore Bakey
           </StyledButton>
           <p>
-            Bakey is a final project of web development students of Digital
-            Career Institute in Leipzig. It is only demo containing the
-            functionalities we personally would use in the app like this and not
-            offering real products. It shows all skills we've learned during the
-            one-year MERN-stack course. If you want to learn more about used
-            technologies and us - Alice, Ola, and Willy that created Bakey -
-            visit ours About Us page.
+          Bakey is the final project of web development students of Digital Career Institute Leipzig. It is just a demo not offering real products and displaying the functionalities we would personally use in a similar app, as a result of all skills we‘ve learned during a one year MERN-Stack course. If you want to learn more about the applied technologies and us – Alice, Ola and Willy, creators of Bakey – visit our About Us section
           </p>
           <StyledButton
             onClick={() => {
@@ -209,7 +204,7 @@ export default function LandingPage() {
           </StyledButton>
         </StyledAbout>
         <StyledTitle>
-          <h2>This campaigns end soon!</h2>
+          <h2>These campaigns end soon!</h2>
         </StyledTitle>
         <StyledEndSoon>
           {warning ? <Warning msg={warningContent} /> : null}
