@@ -60,8 +60,8 @@ export default function OrderConfirmation(props) {
           <strong>You have just supported Your local cafe ❤️</strong>
         </p>
         <p>
-          And if the campaign will be successful too, you will soon eat your
-          cake. To increase the chance for meeting the goal of the campaign,
+          And if the campaign succeeds, you will be soon eating your
+          cake. To increase the chances of meeting the goal of this campaign,
           <strong> copy the link and invite your friends!</strong>
         </p>
         <div>
@@ -90,8 +90,8 @@ export default function OrderConfirmation(props) {
 
         </div>
         <p>
-          If the campaign will reach the goal, we will send You an e-mail with
-          the confirmation and pick-up details.
+          As soon as the campaign reaches the goal, you will get a confirmation email with
+          the pick-up details.
         </p>
         <StyledButton
           onClick={() => {
