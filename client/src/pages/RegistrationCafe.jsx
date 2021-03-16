@@ -1,8 +1,8 @@
 import Axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { bakeyContext } from "../Context";
-import Warning from "./Warning";
+
+import Warning from "../components/Warning";
 import {
   StyledForm,
   StyledLabel,

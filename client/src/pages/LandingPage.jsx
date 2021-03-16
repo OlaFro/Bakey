@@ -2,7 +2,18 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 import Axios from "axios";
-import Listing from "./Listing";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import Listing from "../components/Listing";
+import Logo from "../components/Logo";
+import Warning from "../components/Warning";
+
+import slide1 from "../assets/slide-one.png";
+import slide2 from "../assets/slide-two.png";
+import slide3 from "../assets/slide-three.png";
+import slide4 from "../assets/slide-four.png";
 
 import {
   StyledHeader,
@@ -10,7 +21,8 @@ import {
   StyledTitle,
   StyledMain,
   StyledDesc,
-  StyledCarrousel,
+  StyledNoCarousel,
+  StyledCarousel,
   StyledAbout,
   StyledEndSoon,
   StyledForCafe,
@@ -22,10 +34,7 @@ import {
   StyledArrow,
 } from "../styledComponents/StyledForm";
 import { StyledButton } from "../styledComponents/StyledButton";
-
 import StyledCentered from "../styledComponents/StyledCentered";
-import Logo from "./Logo";
-import Warning from "./Warning";
 
 export default function LandingPage() {
   let history = useHistory();
@@ -58,9 +67,13 @@ export default function LandingPage() {
       });
   }, []);
 
-  //function to put something in the city context when uses press go without picking a city
-
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <StyledCentered>
       <StyledHeader>
@@ -99,14 +112,56 @@ export default function LandingPage() {
           </StyledDesc>
         </div>
       </StyledHeader>
-
       <StyledMain>
         <StyledTitle>
           <h2>Easy as a piece of cake!</h2>
         </StyledTitle>
-        <StyledCarrousel>
-          <div></div>
-        </StyledCarrousel>
+        <StyledCarousel>
+          <div className="carrousel-container">
+            <Slider {...settings}>
+              <figure className="carrousel-card">
+                <img src={slide1} alt="slide1" />
+                <h3>1. Café publishes new offer of a cake.</h3>
+              </figure>
+              <figure className="carrousel-card">
+                <img src={slide2} alt="slide2" />
+                <h3>2. You buy your portion a.k.a. piece of cake</h3>
+              </figure>
+              <figure className="carrousel-card">
+                <img src={slide3} alt="slide3" />
+                <h3>
+                  3. You invite your friends to participate and buy other
+                  portions
+                </h3>
+              </figure>
+              <figure className="carrousel-card">
+                <img src={slide4} alt="slide4" />
+                <h3>4. Your cake is ready for the pick up!</h3>
+              </figure>
+            </Slider>
+          </div>
+          <StyledNoCarousel>
+            <figure className="carrousel-card">
+              <img src={slide1} alt="slide1" />
+              <h3>Café publishes new offer of a cake.</h3>
+            </figure>
+            <figure className="carrousel-card">
+              <img src={slide2} alt="slide2" />
+              <h3>Buy your portion a.k.a. piece of cake</h3>
+            </figure>
+            <figure className="carrousel-card">
+              <img src={slide3} alt="slide3" />
+              <h3>
+                Invite your friends to participate<br></br> and buy other
+                portions
+              </h3>
+            </figure>
+            <figure className="carrousel-card">
+              <img src={slide4} alt="slide4" />
+              <h3>Your cake is ready for the pick up!</h3>
+            </figure>
+          </StyledNoCarousel>
+        </StyledCarousel>
 
         <StyledAbout>
           <StyledTitle>
@@ -142,7 +197,7 @@ export default function LandingPage() {
             offering real products. It shows all skills we've learned during the
             one-year MERN-stack course. If you want to learn more about used
             technologies and us - Alice, Ola, and Willy that created Bakey -
-            visit ours About Us section.
+            visit ours About Us page.
           </p>
           <StyledButton
             onClick={() => {
@@ -184,7 +239,14 @@ export default function LandingPage() {
       </StyledMain>
       <StyledForCafe>
         <h3>Do you want to offer your products on Bakey? </h3>
-        <StyledButton cafe>register</StyledButton>
+        <StyledButton
+          cafe
+          onClick={() => {
+            history.push("/registration/cafe");
+          }}
+        >
+          register
+        </StyledButton>
       </StyledForCafe>
     </StyledCentered>
   );

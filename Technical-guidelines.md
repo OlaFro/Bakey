@@ -8,6 +8,7 @@
 - for implementing any features, create a new branch with prefixes features: **feature/feature-name** (for example feature/map-view)
 - for every feature new branch! (can be created from the previous one)
 - for debugging, create a new branch with prefix bug: **bug/name** (for example bug/wrong-display-for-map-view)
+- for the final reviews use prefixes **layout-review** and **code-review**
 - Pull Requests are reviewed and approved just by one person (Alice)
 - if you get comment to your pull request, fix the things and push once again the same branch
 

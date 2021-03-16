@@ -1,30 +1,20 @@
 import React, { useState, useContext, useEffect } from "react";
 import { bakeyContext } from "../Context";
-import { Link } from "react-router-dom";
 import Axios from "axios";
-import Warning from "./Warning";
-import {
-  StyledPlusLink,
-  StyledPlusLinkInfo,
-  StyledIcon,
-  StyledPlusIcon,
-} from "../styledComponents/StyledPlusLink";
+import Warning from "../components/Warning";
 import {
   StyledButtonContainer,
   StyledCafeDashboard,
-  StyledQuickLinks,
 } from "../styledComponents/StyledCafeDashboard";
-import cafeProfileIcon from "../assets/cafe.svg";
 import { Settings } from "@styled-icons/feather/Settings";
 import StyledHr from "../styledComponents/StyledHr";
-import DashboardCafeActiveTab from "./DashboardCafeActiveTab";
-import DashboardCafeExpiredTab from "./DashboardCafeExpiredTab";
-import DashboardCafePickupTab from "./DashboardCafePickupTab";
-import DashboardCafeArchiveTab from "./DashboardCafeArchiveTab";
+import DashboardCafeActiveTab from "../components/DashboardCafeActiveTab";
+import DashboardCafeArchiveTab from "../components/DashboardCafeArchiveTab";
 import { StyledButton } from "../styledComponents/StyledButton";
+import DashboardClientPickupTab from "../components/DashboardClientPickupTab";
 
-export default function DashboardCafe() {
-  const { userName, isLogged } = useContext(bakeyContext);
+export default function DashboardClient() {
+  const { userName } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
@@ -35,12 +25,12 @@ export default function DashboardCafe() {
   useEffect(() => {
     Axios({
       method: "GET",
-      url: `listings/cafe`,
+      url: `users/orders`,
     })
       .then((res) => {
         console.log(res.data);
-        if (res.data.length) {
-          setListings(res.data);
+        if (res.data.orders.length) {
+          setListings(res.data.orders);
         }
         if (!res.data) {
           setShowWarning(true);
@@ -62,7 +52,7 @@ export default function DashboardCafe() {
         <h2>Hello, {userName}! </h2>
       </header>
       <main>
-        <StyledQuickLinks>
+        {/* <StyledQuickLinks>
           <StyledPlusLink>
             <Link to="/listingform">
               <StyledPlusIcon></StyledPlusIcon>
@@ -88,24 +78,22 @@ export default function DashboardCafe() {
               <StyledPlusLinkInfo>settings</StyledPlusLinkInfo>
             </Link>
           </StyledPlusLink>
-        </StyledQuickLinks>
+        </StyledQuickLinks> */}
 
-        <StyledHr cafe dashboard />
+        {/* <StyledHr cafe dashboard /> */}
 
         <StyledButtonContainer>
           <StyledButton
-            cafe
-            headerBtn={display === "active" ? true : false}
+            headerBtnClient={display === "active" ? true : false}
             onClick={() => {
               changeDisplay("active");
             }}
           >
-            Active Offers
+            Open Orders
           </StyledButton>
 
           <StyledButton
-            cafe
-            headerBtn={display === "pickup" ? true : false}
+            headerBtnClient={display === "pickup" ? true : false}
             onClick={() => {
               changeDisplay("pickup");
             }}
@@ -113,17 +101,7 @@ export default function DashboardCafe() {
             PickUps
           </StyledButton>
           <StyledButton
-            cafe
-            headerBtn={display === "expired" ? true : false}
-            onClick={() => {
-              changeDisplay("expired");
-            }}
-          >
-            Expired Offers
-          </StyledButton>
-          <StyledButton
-            cafe
-            headerBtn={display === "archive" ? true : false}
+            headerBtnClient={display === "archive" ? true : false}
             onClick={() => {
               changeDisplay("archive");
             }}
@@ -135,18 +113,16 @@ export default function DashboardCafe() {
         {showWarning ? <Warning msg="the service is out of order" /> : null}
 
         {display === "active" ? (
-          <DashboardCafeActiveTab activeListings={listings} />
-        ) : null}
-
-        {display === "expired" ? (
-          <DashboardCafeExpiredTab
-            expiredListings={listings}
-            setListings={setListings}
+          <DashboardCafeActiveTab
+            activeListings={listings.filter(
+              (item) => item.listingStatus === "active"
+            )}
+            dashboardClient={true}
           />
         ) : null}
 
         {display === "pickup" ? (
-          <DashboardCafePickupTab
+          <DashboardClientPickupTab
             soldListings={listings.filter(
               (item) => item.listingStatus === "sold"
             )}
@@ -159,7 +135,7 @@ export default function DashboardCafe() {
             inactiveListings={listings.filter(
               (item) => item.listingStatus === "inactive"
             )}
-            setListings={setListings}
+            dashboardClient={true}
           />
         ) : null}
       </main>

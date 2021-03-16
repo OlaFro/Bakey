@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { bakeyContext } from "../Context";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import Warning from "./Warning";
+import Warning from "../components/Warning";
 import {
   StyledPlusLink,
   StyledPlusLinkInfo,
@@ -17,14 +17,13 @@ import {
 import cafeProfileIcon from "../assets/cafe.svg";
 import { Settings } from "@styled-icons/feather/Settings";
 import StyledHr from "../styledComponents/StyledHr";
-import DashboardCafeActiveTab from "./DashboardCafeActiveTab";
-import DashboardCafeExpiredTab from "./DashboardCafeExpiredTab";
-import DashboardCafePickupTab from "./DashboardCafePickupTab";
-import DashboardCafeArchiveTab from "./DashboardCafeArchiveTab";
+import DashboardCafeActiveTab from "../components/DashboardCafeActiveTab";
+import DashboardCafeExpiredTab from "../components/DashboardCafeExpiredTab";
+import DashboardCafePickupTab from "../components/DashboardCafePickupTab";
+import DashboardCafeArchiveTab from "../components/DashboardCafeArchiveTab";
 import { StyledButton } from "../styledComponents/StyledButton";
-import DashboardClientPickupTab from "./DashboardClientPickupTab";
 
-export default function DashboardClient() {
+export default function DashboardCafe() {
   const { userName, isLogged } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
@@ -36,12 +35,12 @@ export default function DashboardClient() {
   useEffect(() => {
     Axios({
       method: "GET",
-      url: `users/orders`,
+      url: `listings/cafe`,
     })
       .then((res) => {
         console.log(res.data);
-        if (res.data.orders.length) {
-          setListings(res.data.orders);
+        if (res.data.length) {
+          setListings(res.data);
         }
         if (!res.data) {
           setShowWarning(true);
@@ -63,7 +62,7 @@ export default function DashboardClient() {
         <h2>Hello, {userName}! </h2>
       </header>
       <main>
-        {/* <StyledQuickLinks>
+        <StyledQuickLinks>
           <StyledPlusLink>
             <Link to="/listingform">
               <StyledPlusIcon></StyledPlusIcon>
@@ -89,22 +88,24 @@ export default function DashboardClient() {
               <StyledPlusLinkInfo>settings</StyledPlusLinkInfo>
             </Link>
           </StyledPlusLink>
-        </StyledQuickLinks> */}
+        </StyledQuickLinks>
 
-        {/* <StyledHr cafe dashboard /> */}
+        <StyledHr cafe dashboard />
 
         <StyledButtonContainer>
           <StyledButton
-            headerBtnClient={display === "active" ? true : false}
+            cafe
+            headerBtn={display === "active" ? true : false}
             onClick={() => {
               changeDisplay("active");
             }}
           >
-            Open Orders
+            Active Offers
           </StyledButton>
 
           <StyledButton
-            headerBtnClient={display === "pickup" ? true : false}
+            cafe
+            headerBtn={display === "pickup" ? true : false}
             onClick={() => {
               changeDisplay("pickup");
             }}
@@ -112,7 +113,17 @@ export default function DashboardClient() {
             PickUps
           </StyledButton>
           <StyledButton
-            headerBtnClient={display === "archive" ? true : false}
+            cafe
+            headerBtn={display === "expired" ? true : false}
+            onClick={() => {
+              changeDisplay("expired");
+            }}
+          >
+            Expired Offers
+          </StyledButton>
+          <StyledButton
+            cafe
+            headerBtn={display === "archive" ? true : false}
             onClick={() => {
               changeDisplay("archive");
             }}
@@ -124,16 +135,18 @@ export default function DashboardClient() {
         {showWarning ? <Warning msg="the service is out of order" /> : null}
 
         {display === "active" ? (
-          <DashboardCafeActiveTab
-            activeListings={listings.filter(
-              (item) => item.listingStatus === "active"
-            )}
-            dashboardClient={true}
+          <DashboardCafeActiveTab activeListings={listings} />
+        ) : null}
+
+        {display === "expired" ? (
+          <DashboardCafeExpiredTab
+            expiredListings={listings}
+            setListings={setListings}
           />
         ) : null}
 
         {display === "pickup" ? (
-          <DashboardClientPickupTab
+          <DashboardCafePickupTab
             soldListings={listings.filter(
               (item) => item.listingStatus === "sold"
             )}
@@ -146,7 +159,7 @@ export default function DashboardClient() {
             inactiveListings={listings.filter(
               (item) => item.listingStatus === "inactive"
             )}
-            dashboardClient={true}
+            setListings={setListings}
           />
         ) : null}
       </main>

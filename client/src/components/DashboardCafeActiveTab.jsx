@@ -31,7 +31,7 @@ export default function DashboardCafeActiveTab(props) {
               key={`listing-${index}`}
               id={listing._id}
               dashboard={true}
-              expiredClient={today.getTime() > pickUpTime.getTime()}
+              expiredClient={today.getTime() >= pickUpTime.getTime()}
             />
           );
         } else {

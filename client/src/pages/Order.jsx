@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import OrderSummary from "./OrderSummary";
-import OrderPayment from "./OrderPayment";
-import OrderConfirmation from "./OrderConfirmation";
-import Warning from "./Warning";
+import OrderSummary from "../components/OrderSummary";
+import OrderPayment from "../components/OrderPayment";
+import OrderConfirmation from "../components/OrderConfirmation";
+import Warning from "../components/Warning";
 
 import { StyledOrderContainer } from "../styledComponents/StyledOrder";
 

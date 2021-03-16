@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bakeyContext } from "../Context";
 
-import Warning from "./Warning";
+import Warning from "../components/Warning";
 import {
   StyledForm,
   StyledLabel,
@@ -97,7 +97,7 @@ export default function Login(props) {
     <StyledCentered>
       <StyledForm onSubmit={submit}>
         <header>
-          <h2>Login</h2>
+          <h2>Log in</h2>
         </header>
         <StyledInputContainer>
           <StyledInputField

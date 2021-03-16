@@ -90,28 +90,85 @@ export const StyledMain = styled.main`
   width: 100%;
   margin-top: calc(6 * var(--space-l));
 `;
-export const StyledCarrousel = styled.section`
-  padding: 30vh 1rem;
+export const StyledCarousel = styled.div`
+  padding: 30vh 0;
   background-color: ${lighten(0.18, colors.accent2)};
   clip-path: polygon(0 7%, 100% 15%, 100% 100%, 0 90%);
   margin-top: calc(-1 * var(--space-l));
+  display: flex;
+  justify-content: center;
 
-  > div {
-    height: 400px;
-    max-width: 900px;
-    background-color: gray;
-    margin: auto;
+  .carrousel-container {
+    width: 100%;
+    max-width: 500px;
+    display: none;
+    @media ${device.tabletPortrait} {
+      display: block;
+    }
+    @media ${device.tabletLandscape} {
+      max-width: 700px;
+    }
+    > .slick-slider > button::before {
+      color: ${colors.black};
+      font-size: 25px;
+    }
+  }
+  .carrousel-card {
+    width: inherit;
+    margin: 1rem;
+
+    img {
+      height: 250px;
+      margin: auto;
+      @media ${device.tabletLandscape} {
+        height: 480px;
+      }
+    }
+    h3 {
+      text-align: center;
+      padding: 0 1rem;
+    }
   }
 `;
 
+export const StyledNoCarousel = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media ${device.tabletPortrait} {
+    display: none;
+  }
+
+  .carrousel-card {
+    width: inherit;
+    margin: 2rem 0;
+
+
+    img {
+      /* height: 250px; */
+      margin: auto;
+   
+    }
+    h3 {
+      text-align: center;
+      font-size: 0.8rem;
+      margin: inherit 0;
+      padding: 1rem;
+    }
+`;
+
 export const StyledAbout = styled.section`
-  width: 60%;
+  width: 80%;
   padding: var(--space-l);
   background-color: ${lighten(0.28, colors.gray)};
   margin: 30vh auto;
   border-radius: var(--border-radius);
   text-align: center;
 
+  @media ${device.tabletPortrait} {
+    width: 60%;
+  }
   p {
     line-height: 29px;
     font-size: 1.2rem;
@@ -140,7 +197,15 @@ export const StyledForCafe = styled.section`
   padding: var(--space-l);
   display: flex;
   align-items: center;
+  flex-direction: column;
   > h3 {
-    margin-right: var(--space-m);
+    text-align: center;
+    padding: var(--space-m);
+    @media ${device.tabletLandscape} {
+      text-align: left;
+    }
+  }
+  @media ${device.tabletLandscape} {
+    flex-direction: row;
   }
 `;

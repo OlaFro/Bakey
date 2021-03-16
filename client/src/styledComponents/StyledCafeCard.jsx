@@ -27,7 +27,8 @@ export const StyledCafeCard = styled.article`
       width: 100px;
       height: 100px;
       border-radius: 100%;
-      border: calc(2 * var(--border)) solid ${lighten(0.3, colors.black)};
+
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       overflow: hidden;
       margin: var(--space-xs) auto;
       position: relative;
@@ -37,7 +38,10 @@ export const StyledCafeCard = styled.article`
       > img {
         width: 100px;
         height: 100px;
-        object-fit: scale-down;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       > ${StyledIcon} {
         position: absolute;

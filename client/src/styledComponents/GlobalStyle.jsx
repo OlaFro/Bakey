@@ -60,6 +60,18 @@ p {
   font-family: var(--text);
 }
 
+a {
+    text-decoration: underline;
+    text-decoration-color: #ED8DB2;
+    text-decoration-thickness: 2px;
+    text-underline-position: under;
+
+    :hover {
+      text-decoration: none;
+    }
+
+}
+
 .wrapper{
   min-height: 100vh;
   display: grid;

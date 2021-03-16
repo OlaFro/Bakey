@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-import Warning from "./Warning";
+import Warning from "../components/Warning";
 import {
   StyledForm,
   StyledLabel,

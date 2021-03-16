@@ -20,17 +20,12 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import colors from "../styledComponents/colors";
 import TimeLeftTimer from "./TimeLeftTimer";
-import placeholder from "../assets/placeholder_400px.jpg";
+import placeholder from "../assets/bakey-placeholder.png";
 import Tag from "./Tag";
-import { useParams, useHistory, Link } from "react-router-dom";
-import {
-  StyledInputContainer,
-  StyledInputField,
-  StyledLabel
-} from "../styledComponents/StyledForm";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Listing(props) {
-  const { isLogged, setSelectedListing } = useContext(bakeyContext);
+  const { isLogged, setSelectedListing, cafeName } = useContext(bakeyContext);
   let history = useHistory();
 
   const params = useParams();
@@ -67,11 +62,11 @@ export default function Listing(props) {
   };
 
   const handleDate = () => {
-    if (props.pickUpDate) {
+    if (props.pickUpDate && props.pickUpDate.includes("T")) {
       let niceDate = props.pickUpDate.substring(5).replace("T", " ");
       return (
         niceDate.split(" ")[0].split("-").reverse().join(".") +
-        " " +
+        ". " +
         (!props.preview
           ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
           : niceDate.split(" ")[1].substring(0, 2)) +
@@ -197,13 +192,21 @@ export default function Listing(props) {
           <StyledAllergenesContainer display={open ? 1 : 0}>
             <p> Allergenes: </p> {allergenes()}
           </StyledAllergenesContainer>
-          <StyledTagContainer>{tags()}</StyledTagContainer>
+          <StyledTagContainer
+            display={
+              props.listingTags[0] === "" || props.listingTags.length < 1
+                ? "none"
+                : "flex"
+            }
+          >
+            {tags()}
+          </StyledTagContainer>
           {props.withLink ? (
             <StyledLink to={`/cafe:${props.cafeId}`}>
               {props.cafeName}
             </StyledLink>
           ) : (
-            <span>{props.cafeName}</span>
+            <span>{props.cafeName ? props.cafeName : cafeName}</span>
           )}
         </header>
 
@@ -268,7 +271,11 @@ export default function Listing(props) {
                 }
               }}
             >
-              Buy a piece for {props.piecePrice ? parseFloat(props.piecePrice).toFixed(2): "0.00"}€
+              Buy a piece for{" "}
+              {props.piecePrice
+                ? parseFloat(props.piecePrice).toFixed(2)
+                : "0.00"}
+              €
             </StyledButton>
             <StyledButton
               buy

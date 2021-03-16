@@ -8,22 +8,20 @@ import {
   Redirect,
 } from "react-router-dom";
 import { bakeyContext } from "./Context";
-import Login from "./components/Login";
-import RegistrationUser from "./components/RegistrationUser";
-import RegistrationCafe from "./components/RegistrationCafe";
-import DashboardClient from "./components/DashboardClient";
-import DashboardCafe from "./components/DashboardCafe";
 import Navigation from "./components/Navigation";
-import ListingForm from "./components/ListingForm";
-
-import Profile from "./components/Profile";
-import ListView from "./components/ListView";
-import Settings from "./components/Settings";
-import LandingPage from "./components/LandingPage";
-import AboutUs from "./components/AboutUs";
-
-import Order from "./components/Order";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
+import RegistrationUser from "./pages/RegistrationUser";
+import RegistrationCafe from "./pages/RegistrationCafe";
+import DashboardClient from "./pages/DashboardClient";
+import DashboardCafe from "./pages/DashboardCafe";
+import ListingForm from "./pages/ListingForm";
+import Profile from "./pages/Profile";
+import ListView from "./pages/ListView";
+import Settings from "./pages/Settings";
+import LandingPage from "./pages/LandingPage";
+import AboutUs from "./pages/AboutUs";
+import Order from "./pages/Order";
 
 function App() {
   const [isLogged, setIsLogged] = useState({ state: false, role: "", id: "" });
