@@ -65,6 +65,9 @@ export const StyledForm = styled.form`
     color: ${colors.warning};
     text-align: center;
   }
+  .info {
+    color: ${colors.black};
+  }
   .warning {
     color: ${colors.warning};
   }
