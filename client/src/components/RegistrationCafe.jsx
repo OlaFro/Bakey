@@ -1,7 +1,7 @@
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-
+import { bakeyContext } from "../Context";
 import Warning from "./Warning";
 import {
   StyledForm,
@@ -26,6 +26,7 @@ export default function RegistrationCafe() {
   const [warningValidation, setWarningValidation] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [visible, setVisible] = useState(false);
+  const { availableCities, setAvailableCities } = useContext(bakeyContext);
 
   useEffect(() => {
     return function () {
@@ -87,6 +88,13 @@ export default function RegistrationCafe() {
         console.log(err);
         setShowWarning(true);
       });
+  };
+
+  const addNewCity = () => {
+    let newCity = data.city;
+    if (!availableCities.includes(newCity)) {
+      setAvailableCities((availableCities) => [...availableCities, newCity]);
+    }
   };
 
   return (
@@ -270,7 +278,7 @@ export default function RegistrationCafe() {
           </div>
         </StyledOtherInputsContainer>
 
-        <StyledButton cafe cafeRegister>
+        <StyledButton cafe cafeRegister onClick={addNewCity}>
           Register
         </StyledButton>
         {warning ? (
