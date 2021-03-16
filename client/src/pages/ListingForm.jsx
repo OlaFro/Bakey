@@ -397,7 +397,7 @@ export default function ListingForm() {
                 type="datetime-local"
                 name="pickUpDate"
                 id="pickUpDate"
-                placeholder=" "
+                placeholder="YYYY-MM-DDT--:--"
                 onInput={getValue}
                 required={true}
               />

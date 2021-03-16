@@ -222,6 +222,9 @@ export const StyledInputField = styled.input`
   font-family: var(--heading);
   border: var(--border) solid ${colors.accent1};
   border-radius: var(--border-radius);
+  ::placeholder {
+    color: white;
+  }
   :hover {
     cursor: text;
     border: var(--border) solid ${darken(0.2, colors.gray)};
@@ -229,6 +232,9 @@ export const StyledInputField = styled.input`
   :focus {
     outline: none;
     border: var(--border) solid ${darken(0.2, colors.gray)};
+  }
+  :focus::placeholder {
+    color: inherit;
   }
   :focus + label,
   :not(:placeholder-shown) + label {
