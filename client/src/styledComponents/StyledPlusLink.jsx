@@ -30,6 +30,13 @@ export const StyledPlusLink = styled.div`
       justify-content: center;
     }
   }
+
+  ${(props) =>
+    props.client &&
+    css`
+      justify-content: center;
+      cursor: pointer;
+    `}
 `;
 
 export const StyledPlusIcon = styled(Plus)`

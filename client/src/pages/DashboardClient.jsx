@@ -5,6 +5,8 @@ import Warning from "../components/Warning";
 import {
   StyledButtonContainer,
   StyledCafeDashboard,
+  StyledQuickLinks,
+  StyledSelectContainer,
 } from "../styledComponents/StyledCafeDashboard";
 import { Settings } from "@styled-icons/feather/Settings";
 import StyledHr from "../styledComponents/StyledHr";
@@ -12,13 +14,27 @@ import DashboardCafeActiveTab from "../components/DashboardCafeActiveTab";
 import DashboardCafeArchiveTab from "../components/DashboardCafeArchiveTab";
 import { StyledButton } from "../styledComponents/StyledButton";
 import DashboardClientPickupTab from "../components/DashboardClientPickupTab";
+import {
+  StyledIcon,
+  StyledPlusLink,
+  StyledPlusLinkInfo,
+} from "../styledComponents/StyledPlusLink";
+import { Link } from "react-router-dom";
+import {
+  StyledArrow,
+  StyledInputContainer,
+  StyledLabel,
+  StyledSelect,
+} from "../styledComponents/StyledForm";
 
 export default function DashboardClient() {
-  const { userName } = useContext(bakeyContext);
+  const { userName, city, setCity, availableCities } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
   const [showWarning, setShowWarning] = useState(false);
+
+  const [showSelect, setShowSelect] = useState(false);
 
   const [display, setDisplay] = useState("active");
 
@@ -46,41 +62,51 @@ export default function DashboardClient() {
     setDisplay(page);
   };
 
+  const toggleSelect = () => {
+    setShowSelect((prevValue) => {
+      return !prevValue;
+    });
+  };
+
   return (
     <StyledCafeDashboard>
       <header>
         <h2>Hello, {userName}! </h2>
       </header>
       <main>
-        {/* <StyledQuickLinks>
-          <StyledPlusLink>
-            <Link to="/listingform">
-              <StyledPlusIcon></StyledPlusIcon>
-              <StyledPlusLinkInfo>create new offer</StyledPlusLinkInfo>
-            </Link>
-          </StyledPlusLink>
-          <StyledPlusLink>
-            <Link to={`/cafe:${isLogged.id}`}>
-              <StyledIcon profile>
-                <img
-                  src={cafeProfileIcon}
-                  alt="icon of the cafe in the circle"
-                />
-              </StyledIcon>
-              <StyledPlusLinkInfo>café profile</StyledPlusLinkInfo>
-            </Link>
-          </StyledPlusLink>
-          <StyledPlusLink>
-            <Link to="/settings">
+        {showSelect ? (
+          <StyledSelectContainer>
+            <StyledInputContainer>
+              <StyledSelect
+                id="city"
+                name="city"
+                defaultValue={city}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                }}
+              >
+                {availableCities.map((city) => {
+                  return <option value={city}>{`${city}`}</option>;
+                })}
+              </StyledSelect>
+              <StyledLabel htmlFor="city">Preferred city:</StyledLabel>
+              <StyledArrow />
+            </StyledInputContainer>
+            <StyledButton onClick={toggleSelect}>Cancel</StyledButton>
+            <StyledButton>Save</StyledButton>
+          </StyledSelectContainer>
+        ) : (
+          <StyledQuickLinks>
+            <StyledPlusLink client role="button" onClick={toggleSelect}>
               <StyledIcon settings>
                 <Settings />
               </StyledIcon>
-              <StyledPlusLinkInfo>settings</StyledPlusLinkInfo>
-            </Link>
-          </StyledPlusLink>
-        </StyledQuickLinks> */}
+              <StyledPlusLinkInfo>change preferred city</StyledPlusLinkInfo>
+            </StyledPlusLink>
+          </StyledQuickLinks>
+        )}
 
-        {/* <StyledHr cafe dashboard /> */}
+        <StyledHr dashboard />
 
         <StyledButtonContainer>
           <StyledButton
