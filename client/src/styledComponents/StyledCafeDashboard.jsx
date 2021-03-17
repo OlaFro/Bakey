@@ -62,7 +62,6 @@ export const StyledSelectContainer = styled.section`
   width: 90%;
   max-width: 1000px;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 `;

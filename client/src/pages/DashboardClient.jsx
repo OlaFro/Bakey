@@ -92,8 +92,10 @@ export default function DashboardClient() {
               <StyledLabel htmlFor="city">Preferred city:</StyledLabel>
               <StyledArrow />
             </StyledInputContainer>
-            <StyledButton onClick={toggleSelect}>Cancel</StyledButton>
-            <StyledButton>Save</StyledButton>
+            <div>
+              <StyledButton onClick={toggleSelect}>Cancel</StyledButton>
+              <StyledButton>Save</StyledButton>
+            </div>
           </StyledSelectContainer>
         ) : (
           <StyledQuickLinks>
