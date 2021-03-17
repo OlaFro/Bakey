@@ -20,7 +20,7 @@ import {
   StyledPlusLink,
   StyledPlusLinkInfo,
 } from "../styledComponents/StyledPlusLink";
-import { Link } from "react-router-dom";
+
 import {
   StyledArrow,
   StyledInputContainer,
@@ -29,7 +29,7 @@ import {
 } from "../styledComponents/StyledForm";
 
 export default function DashboardClient() {
-  const { userName, city, availableCities } = useContext(bakeyContext);
+  const { userName, city, setCity, availableCities } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
@@ -40,6 +40,10 @@ export default function DashboardClient() {
   const [display, setDisplay] = useState("active");
 
   const [newCity, setNewCity] = useState(city);
+
+  const [cityWarning, setCityWarning] = useState(false);
+
+  const [warningContent, setWarningContent] = useState();
 
   useEffect(() => {
     Axios({
@@ -71,6 +75,36 @@ export default function DashboardClient() {
     });
   };
 
+  const saveCity = () => {
+    setCityWarning(false);
+
+    let formData = new FormData();
+    formData.append("city", newCity);
+
+    Axios({
+      method: "PUT",
+      url: "/users/update",
+      data: formData,
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data === "info updated") {
+          setCity(newCity);
+          setShowSelect(false);
+        } else {
+          setWarningContent(
+            "something went wrong, please contact the help service."
+          );
+          setCityWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setWarningContent("the service is out of order");
+        setCityWarning(true);
+      });
+  };
+
   return (
     <StyledCafeDashboard>
       <header>
@@ -100,7 +134,7 @@ export default function DashboardClient() {
               <StyledButton userSecondary onClick={toggleSelect}>
                 Cancel
               </StyledButton>
-              <StyledButton>Save</StyledButton>
+              <StyledButton onClick={saveCity}>Save</StyledButton>
             </StyledButtons>
           </StyledSelectContainer>
         ) : (
@@ -113,6 +147,8 @@ export default function DashboardClient() {
             </StyledPlusLink>
           </StyledQuickLinks>
         )}
+
+        {cityWarning ? <Warning msg={warningContent} /> : null}
 
         <StyledHr dashboard />
 
