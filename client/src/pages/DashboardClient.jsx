@@ -29,7 +29,7 @@ import {
 } from "../styledComponents/StyledForm";
 
 export default function DashboardClient() {
-  const { userName, city, setCity, availableCities } = useContext(bakeyContext);
+  const { userName, city, availableCities } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
@@ -38,6 +38,8 @@ export default function DashboardClient() {
   const [showSelect, setShowSelect] = useState(false);
 
   const [display, setDisplay] = useState("active");
+
+  const [newCity, setNewCity] = useState(city);
 
   useEffect(() => {
     Axios({
@@ -81,9 +83,9 @@ export default function DashboardClient() {
               <StyledSelect
                 id="city"
                 name="city"
-                defaultValue={city}
+                defaultValue={newCity}
                 onChange={(e) => {
-                  setCity(e.target.value);
+                  setNewCity(e.target.value);
                 }}
               >
                 {availableCities.map((city) => {
