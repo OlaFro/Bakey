@@ -27,10 +27,29 @@ export default function ListingForm() {
   const [showWarning, setShowWarning] = useState(false);
   const [imageWarning, setImageWarning] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
+  const [wrongInputType, setWrongInputType] = useState(false);
 
   const getValue = (e) => {
     setShowWarning(false);
-    setData({ ...data, [e.target.name]: e.target.value });
+    if (e.target.name === "pickUpDate" && e.target.type === "text") {
+      console.log("wrong format");
+      setWrongInputType(true);
+      const newHour = +e.target.value.substr(e.target.value.length - 5, 2) + 1;
+      console.log(newHour < 10);
+      const newDate =
+        newHour < 10
+          ? e.target.value.substr(0, e.target.value.length - 5) +
+            "0" +
+            newHour +
+            e.target.value.substr(e.target.value.length - 3, 3)
+          : e.target.value.substr(0, e.target.value.length - 5) +
+            newHour +
+            e.target.value.substr(e.target.value.length - 3, 3);
+      console.log(newDate);
+      setData({ ...data, pickUpDate: newDate });
+    } else {
+      setData({ ...data, [e.target.name]: e.target.value });
+    }
   };
 
   const getTags = (e) => {
@@ -397,14 +416,23 @@ export default function ListingForm() {
                 type="datetime-local"
                 name="pickUpDate"
                 id="pickUpDate"
-                placeholder=" "
+                placeholder="YYYY-MM-DDT--:--"
                 onInput={getValue}
                 required={true}
               />
               <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
               <div>
                 {msg.pickUpDate ? (
-                  <small>Pick up time has to be in the future</small>
+                  <small>
+                    Pick up time has to be in the future{" "}
+                    {wrongInputType ? "and in the correct format." : null}{" "}
+                  </small>
+                ) : null}
+                {wrongInputType ? (
+                  <small className="info">
+                    Use the format YYYY-MM-DDT--:--. After T write time in hours
+                    and minutes.
+                  </small>
                 ) : null}
               </div>
             </StyledInputContainer>
@@ -421,6 +449,7 @@ export default function ListingForm() {
           listingTags={data.listingTags}
           image={data.listingImage || image.preview}
           preview={true}
+          wrongInputType={wrongInputType}
         />
         <h3> 3. Save: </h3>
         <div className="communication">
