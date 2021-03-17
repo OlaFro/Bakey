@@ -23,17 +23,21 @@ import cafeMarker from "../assets/newCafeMarker.png";
 export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
-  const { cafes, setCafes, city, setCity, availableCities } = useContext(bakeyContext);
+  const { cafes, setCafes, city, setCity, availableCities } = useContext(
+    bakeyContext
+  );
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [loadCoor, setLoadCoor] = useState(false);
 
   let history = useHistory();
 
   const getCafes = (city) => {
     setDbError(false);
     setEmptyWarning(false);
+    console.log(city);
     Axios({
       method: "POST",
       url: "/cafes",
@@ -42,6 +46,7 @@ export default function ListView() {
       .then((res) => {
         if (res.data.length === 0) {
           setEmptyWarning(true);
+          setCafes([]);
         } else {
           setCafes(res.data);
           setMapFlag((prevValue) => {
@@ -56,14 +61,15 @@ export default function ListView() {
   };
 
   useEffect(() => {
-    if (city) {
-      getCafes(city);
-    } else {
-      history.push("/");
-    }
+    getCafes(city);
   }, []);
 
+  useEffect(() => {
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [city]);
+
   const getCityCoordinates = (API_KEY) => {
+    console.log("getting coordinates for", city);
     Axios({
       method: "GET",
       url: `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+germany&key=${API_KEY}`,
@@ -78,6 +84,7 @@ export default function ListView() {
   };
 
   const getMapInfo = async (API_KEY) => {
+    console.log("call for markers");
     await cafes.map((cafe, i) => {
       let address = [
         cafe.cafeStreet.split(" ").join("+"),
@@ -138,6 +145,7 @@ export default function ListView() {
       });
     }
   };
+  console.log(city, center);
 
   return (
     <StyledListView>
@@ -146,14 +154,14 @@ export default function ListView() {
           <StyledSelect
             id="city"
             name="city"
-            defaultValue={city}
+            value={city}
             onChange={(e) => {
               setCity(e.target.value);
               getCafes(e.target.value);
             }}
           >
-            {availableCities.map((city) => {
-              return <option value={city}>{`${city}`}</option>;
+            {availableCities.map((cityElem) => {
+              return <option value={cityElem}>{`${cityElem}`}</option>;
             })}
           </StyledSelect>
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
@@ -222,25 +230,25 @@ export default function ListView() {
         </div>
       </StyledHeader>
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
-      {emptyWarning === true ? (
-        <Warning msg="there are no offers available for this city" />
-      ) : null}
+
       <StyledViewWrapper>
         <article>
-          {emptyWarning === false
-            ? cafes.map((cafe, index) => {
-                if (
-                  !filter.length ||
-                  cafe.cafeListings.some((listing) =>
-                    listing.listingTags.some((tag) => filter.includes(tag))
-                  )
-                ) {
-                  return <CafeCard key={index} cafe={cafe} />;
-                } else {
-                  return null;
-                }
-              })
-            : null}
+          {emptyWarning === false ? (
+            cafes.map((cafe, index) => {
+              if (
+                !filter.length ||
+                cafe.cafeListings.some((listing) =>
+                  listing.listingTags.some((tag) => filter.includes(tag))
+                )
+              ) {
+                return <CafeCard key={index} cafe={cafe} />;
+              } else {
+                return null;
+              }
+            })
+          ) : (
+            <Warning msg={`there are no offers available for ${city}`} />
+          )}
         </article>
         {cafes.every((cafe) => cafe.lat && cafe.lng) ? (
           <StyledMap>

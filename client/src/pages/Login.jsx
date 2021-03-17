@@ -133,7 +133,7 @@ export default function Login(props) {
       </StyledForm>
       <p>
         If you have no account yet, please{" "}
-        <Link to="/registration/user">register</Link>.
+        <Link to="/registration-user">register</Link>.
       </p>
     </StyledCentered>
   );
