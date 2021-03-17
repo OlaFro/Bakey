@@ -11,6 +11,7 @@ import {
   StyledLinkContainer,
   StyledLink,
   StyledCopied,
+  StyledCopyToClipboard
 } from "../styledComponents/StyledConfirmation";
 
 import { StyledButton } from "../styledComponents/StyledButton";
@@ -64,7 +65,7 @@ export default function OrderConfirmation(props) {
           cake. To increase the chances of meeting the goal of this campaign,
           <strong> copy the link and invite your friends!</strong>
         </p>
-        <div>
+        <StyledCopyToClipboard>
           <CopyToClipboard
             onCopy={handleCopy}
             text={props.urlListing ? copy.value : "TEST COPIED URL"}
@@ -88,7 +89,7 @@ export default function OrderConfirmation(props) {
             <StyledCopied display={clicked ? "inline" : "none"} />
           </CopyToClipboard>
 
-        </div>
+          </StyledCopyToClipboard>
         <p>
           As soon as the campaign reaches the goal, you will get a confirmation email with
           the pick-up details.
