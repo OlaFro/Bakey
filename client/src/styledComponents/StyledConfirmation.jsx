@@ -77,7 +77,7 @@ export const StyledCopied = styled(CheckDouble)`
 `;
 
 export const StyledCopyToClipboard = styled.div`
-  @media ${device.mobile} {
+  @media (max-width: 600px) {
     overflow-wrap: break-word;
     word-wrap: break-word;
 
