@@ -78,10 +78,15 @@ function App() {
     })
       .then((res) => {
         console.log(res.data);
-        setAvailableCities(res.data);
+        if (Array.isArray(res.data)) {
+          setAvailableCities(res.data);
+        } else {
+          setAvailableCities(["Leipzig"]);
+        }
       })
       .catch((err) => {
         console.log(err);
+        setAvailableCities(["Leipzig"]);
       });
   }, []);
 

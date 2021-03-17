@@ -21,6 +21,8 @@ import { bakeyContext } from "../Context";
 export default function RegistrationUser(props) {
   const history = useHistory();
 
+  const { availableCities } = useContext(bakeyContext);
+
   const [data, setData] = useState({ userType: "client", city: "Leipzig" });
   const [msg, setMsg] = useState({});
   const [warning, setWarning] = useState(false);
@@ -28,7 +30,6 @@ export default function RegistrationUser(props) {
   const [warningValidation, setWarningValidation] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [visible, setVisible] = useState(false);
-  const { setAvailableCities, availableCities } = useContext(bakeyContext);
 
   useEffect(() => {
     return function () {
@@ -91,6 +92,8 @@ export default function RegistrationUser(props) {
         setShowWarning(true);
       });
   };
+
+  console.log(availableCities);
 
   return (
     <StyledCentered>
