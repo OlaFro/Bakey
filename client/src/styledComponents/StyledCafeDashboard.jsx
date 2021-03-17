@@ -65,3 +65,8 @@ export const StyledSelectContainer = styled.section`
   display: grid;
   place-items: center;
 `;
+
+export const StyledButtons = styled.div`
+  display: flex;
+  gap: var(--space-m);
+`;

@@ -7,6 +7,7 @@ import {
   StyledCafeDashboard,
   StyledQuickLinks,
   StyledSelectContainer,
+  StyledButtons,
 } from "../styledComponents/StyledCafeDashboard";
 import { Settings } from "@styled-icons/feather/Settings";
 import StyledHr from "../styledComponents/StyledHr";
@@ -92,10 +93,13 @@ export default function DashboardClient() {
               <StyledLabel htmlFor="city">Preferred city:</StyledLabel>
               <StyledArrow />
             </StyledInputContainer>
-            <div>
-              <StyledButton onClick={toggleSelect}>Cancel</StyledButton>
+
+            <StyledButtons>
+              <StyledButton userSecondary onClick={toggleSelect}>
+                Cancel
+              </StyledButton>
               <StyledButton>Save</StyledButton>
-            </div>
+            </StyledButtons>
           </StyledSelectContainer>
         ) : (
           <StyledQuickLinks>
