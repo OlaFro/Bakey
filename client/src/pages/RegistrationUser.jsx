@@ -37,16 +37,16 @@ export default function RegistrationUser(props) {
     };
   }, []);
 
-  useEffect(()=>{
-    Axios({
-      method:"GET",
-      url: "users/cities"
-    }).then((res)=>{
-      setAvailableCities(res.data)
-    }).catch((err)=> {
-      console.log(err)
-    })
-  },[])
+  // useEffect(()=>{
+  //   Axios({
+  //     method:"GET",
+  //     url: "users/cities"
+  //   }).then((res)=>{
+  //     setAvailableCities(res.data)
+  //   }).catch((err)=> {
+  //     console.log(err)
+  //   })
+  // },[])
 
   const showPassword = () => {
     setVisible(true);
@@ -191,17 +191,19 @@ export default function RegistrationUser(props) {
             ) : null}
           </div>
         </StyledInputContainer>
-        {availableCities.length > 0 ? (<StyledInputContainer>
-          <StyledSelect id="city" name="city" onInput={getValue}>
-          {availableCities.map((city) => {
-                 return <option value={city}>{`${city}`}</option>
-                })}
-            {/* we can later add a map function with dynamic city names */}
-          </StyledSelect>
+        {availableCities.length > 0 ? (
+          <StyledInputContainer>
+            <StyledSelect id="city" name="city" onInput={getValue}>
+              {availableCities.map((city) => {
+                return <option value={city}>{`${city}`}</option>;
+              })}
+              {/* we can later add a map function with dynamic city names */}
+            </StyledSelect>
 
-          <StyledLabel htmlFor="city">See offers from:</StyledLabel>
-          <StyledArrow />
-        </StyledInputContainer> ) : null }  
+            <StyledLabel htmlFor="city">See offers from:</StyledLabel>
+            <StyledArrow />
+          </StyledInputContainer>
+        ) : null}
         <StyledOtherInputsContainer registerUser>
           <header>Terms</header>
           <div>
