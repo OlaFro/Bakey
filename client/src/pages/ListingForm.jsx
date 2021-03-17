@@ -34,7 +34,7 @@ export default function ListingForm() {
     if (e.target.name === "pickUpDate" && e.target.type === "text") {
       console.log("wrong format");
       setWrongInputType(true);
-      const newHour = +e.target.value.substr(e.target.value.length - 5, 2) + 1;
+      const newHour = +e.target.value.substr(e.target.value.length - 5, 2) - 1;
       console.log(newHour < 10);
       const newDate =
         newHour < 10
@@ -122,6 +122,8 @@ export default function ListingForm() {
     formData.append("totalPieces", data.totalPieces);
     formData.append("piecePrice", data.piecePrice);
     formData.append("pickUpDate", data.pickUpDate);
+
+    console.log(formData);
 
     Axios({
       method: "POST",

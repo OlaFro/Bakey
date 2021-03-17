@@ -68,9 +68,9 @@ export default function Listing(props) {
         niceDate.split(" ")[0].split("-").reverse().join(".") +
         ". " +
         (!props.preview
-          ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
+          ? Number(niceDate.split(" ")[1].substring(0, 2)) + 2
           : props.wrongInputType
-          ? Number(niceDate.split(" ")[1].substring(0, 2)) - 1
+          ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
           : niceDate.split(" ")[1].substring(0, 2)) +
         niceDate.split(" ")[1].substring(2, 5)
       );

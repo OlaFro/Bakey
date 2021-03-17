@@ -51,7 +51,7 @@ router.post(
                 image = "../uploads/images/" + addListing.listingImage;
               }
 
-              console.log(image);
+              console.log(addListing);
 
               let addedListing = new ListingModel({
                 id: addListing.id,
@@ -67,9 +67,11 @@ router.post(
                 pickUpDate: addListing.pickUpDate,
                 listingStatus: "active",
               });
+              console.log(addedListing);
               addedListing
                 .save()
                 .then((result) => {
+                  console.log(result);
                   UserModel.findByIdAndUpdate(user.id, {
                     $push: { cafeListings: result._id },
                   })
