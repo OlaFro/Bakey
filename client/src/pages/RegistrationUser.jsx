@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import Warning from "../components/Warning";
@@ -16,6 +16,7 @@ import {
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
+import { bakeyContext } from "../Context";
 
 export default function RegistrationUser(props) {
   const history = useHistory();
@@ -27,6 +28,7 @@ export default function RegistrationUser(props) {
   const [warningValidation, setWarningValidation] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [visible, setVisible] = useState(false);
+  const { setAvailableCities, availableCities } = useContext(bakeyContext);
 
   useEffect(() => {
     return function () {
@@ -178,17 +180,17 @@ export default function RegistrationUser(props) {
             ) : null}
           </div>
         </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledSelect id="city" name="city" onInput={getValue}>
-            <option value="Leipzig">Leipzig</option>
-            <option value="Hamburg">Hamburg</option>
-            <option value="Düsseldorf">Düsseldorf</option>
+        {availableCities.length > 0 ? (<StyledInputContainer>
+          <StyledSelect id="city" name="city" defaultValue={"Leipzig"} onInput={getValue}>
+          {availableCities.map((city) => {
+                 return <option value={city}>{`${city}`}</option>
+                })}
             {/* we can later add a map function with dynamic city names */}
           </StyledSelect>
 
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
-        </StyledInputContainer>
+        </StyledInputContainer> ) : null }  
         <StyledOtherInputsContainer registerUser>
           <header>Terms</header>
           <div>

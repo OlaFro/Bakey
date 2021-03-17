@@ -23,7 +23,7 @@ import cafeMarker from "../assets/newCafeMarker.png";
 export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
-  const { cafes, setCafes, city, setCity } = useContext(bakeyContext);
+  const { cafes, setCafes, city, setCity, availableCities } = useContext(bakeyContext);
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
@@ -31,7 +31,7 @@ export default function ListView() {
 
   let history = useHistory();
 
-  const getCities = (city) => {
+  const getCafes = (city) => {
     setDbError(false);
     setEmptyWarning(false);
     Axios({
@@ -56,7 +56,11 @@ export default function ListView() {
   };
 
   useEffect(() => {
-    getCities(city);
+    if (city) {
+      getCafes(city);
+    } else {
+      history.push("/");
+    }
   }, []);
 
   const getCityCoordinates = (API_KEY) => {
@@ -145,12 +149,12 @@ export default function ListView() {
             defaultValue={city}
             onChange={(e) => {
               setCity(e.target.value);
-              getCities(e.target.value);
+              getCafes(e.target.value);
             }}
           >
-            <option value="Leipzig">Leipzig</option>
-            <option value="Hamburg">Hamburg</option>
-            <option value="Düsseldorf">Düsseldorf</option>
+            {availableCities.map((city) => {
+              return <option value={city}>{`${city}`}</option>;
+            })}
           </StyledSelect>
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
