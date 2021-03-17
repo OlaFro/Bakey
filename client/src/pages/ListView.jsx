@@ -30,6 +30,7 @@ export default function ListView() {
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [loadCoor, setLoadCoor] = useState(false);
 
   let history = useHistory();
 
@@ -83,6 +84,7 @@ export default function ListView() {
   };
 
   const getMapInfo = async (API_KEY) => {
+    console.log("call for markers");
     await cafes.map((cafe, i) => {
       let address = [
         cafe.cafeStreet.split(" ").join("+"),
@@ -117,7 +119,7 @@ export default function ListView() {
 
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
-    // getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
 
   const center = {
@@ -230,24 +232,23 @@ export default function ListView() {
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
 
       <StyledViewWrapper>
-        {emptyWarning === true ? (
-          <Warning msg={`there are no offers available for ${city}`} />
-        ) : null}
         <article>
-          {emptyWarning === false
-            ? cafes.map((cafe, index) => {
-                if (
-                  !filter.length ||
-                  cafe.cafeListings.some((listing) =>
-                    listing.listingTags.some((tag) => filter.includes(tag))
-                  )
-                ) {
-                  return <CafeCard key={index} cafe={cafe} />;
-                } else {
-                  return null;
-                }
-              })
-            : null}
+          {emptyWarning === false ? (
+            cafes.map((cafe, index) => {
+              if (
+                !filter.length ||
+                cafe.cafeListings.some((listing) =>
+                  listing.listingTags.some((tag) => filter.includes(tag))
+                )
+              ) {
+                return <CafeCard key={index} cafe={cafe} />;
+              } else {
+                return null;
+              }
+            })
+          ) : (
+            <Warning msg={`there are no offers available for ${city}`} />
+          )}
         </article>
         {cafes.every((cafe) => cafe.lat && cafe.lng) ? (
           <StyledMap>
