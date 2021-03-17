@@ -36,6 +36,7 @@ export default function ListView() {
   const getCafes = (city) => {
     setDbError(false);
     setEmptyWarning(false);
+    console.log(city);
     Axios({
       method: "POST",
       url: "/cafes",
@@ -59,14 +60,15 @@ export default function ListView() {
   };
 
   useEffect(() => {
-    if (city) {
-      getCafes(city);
-    } else {
-      history.push("/");
-    }
+    getCafes(city);
   }, []);
 
+  useEffect(() => {
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [city]);
+
   const getCityCoordinates = (API_KEY) => {
+    console.log("getting coordinates for", city);
     Axios({
       method: "GET",
       url: `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+germany&key=${API_KEY}`,
@@ -115,7 +117,7 @@ export default function ListView() {
 
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
-    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+    // getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
 
   const center = {
@@ -141,7 +143,7 @@ export default function ListView() {
       });
     }
   };
-  console.log(city);
+  console.log(city, center);
 
   return (
     <StyledListView>
