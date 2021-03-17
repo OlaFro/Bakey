@@ -26,7 +26,7 @@ export default function PickUpCard(props) {
     );
     const time =
       Number(props.pickUpDate.split("T")[1].substr(0, 2)) * 60 +
-      60 +
+      120 +
       Number(props.pickUpDate.split("T")[1].substr(3, 2)) +
       addedTime;
 
