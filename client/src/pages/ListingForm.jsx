@@ -35,6 +35,7 @@ export default function ListingForm() {
       console.log("wrong format");
       setWrongInputType(true);
       const newHour = +e.target.value.substr(e.target.value.length - 5, 2) + 1;
+      console.log(newHour < 10);
       const newDate =
         newHour < 10
           ? e.target.value.substr(0, e.target.value.length - 5) +
@@ -42,7 +43,6 @@ export default function ListingForm() {
             newHour +
             e.target.value.substr(e.target.value.length - 3, 3)
           : e.target.value.substr(0, e.target.value.length - 5) +
-            "0" +
             newHour +
             e.target.value.substr(e.target.value.length - 3, 3);
       console.log(newDate);

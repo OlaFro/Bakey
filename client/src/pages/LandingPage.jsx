@@ -39,7 +39,7 @@ import StyledCentered from "../styledComponents/StyledCentered";
 export default function LandingPage() {
   let history = useHistory();
 
-  const { city, setCity } = useContext(bakeyContext);
+  const { city, setCity, availableCities } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
   const [warning, setWarning] = useState(false);
@@ -53,7 +53,6 @@ export default function LandingPage() {
       url: "/listings/end-soon",
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data.length === 0) {
           setWarningContent("there are no offers yet");
           setWarning(true);
@@ -82,7 +81,7 @@ export default function LandingPage() {
           <Logo />
           <h1>Let them order cake!</h1>
           <StyledCTA>
-            <StyledInputContainer>
+          {availableCities.length > 0 ? (<StyledInputContainer>
               <StyledSelect
                 landingPage
                 id="city"
@@ -90,15 +89,15 @@ export default function LandingPage() {
                 onChange={(e) => {
                   setCity(e.target.value);
                 }}
-                value={city ? city : "Leipzig"}
+                value={city ? city : "Leipzig" }
               >
-                <option value="Leipzig">Leipzig</option>
-                <option value="Hamburg">Hamburg</option>
-                <option value="Düsseldorf">Düsseldorf</option>
+                {availableCities.map((city) => {
+                 return <option value={city}>{`${city}`}</option>
+                })}
               </StyledSelect>
               <StyledLabel htmlFor="city">See offers from:</StyledLabel>
               <StyledArrow landingPage />
-            </StyledInputContainer>
+            </StyledInputContainer>) : null }  
             <StyledButton
               onClick={() => {
                 history.push("/cafes-list");
