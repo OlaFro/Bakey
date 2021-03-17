@@ -89,7 +89,7 @@ export default function LandingPage() {
                 onChange={(e) => {
                   setCity(e.target.value);
                 }}
-                value={city ? city : availableCities[0] }
+                value={city ? city : "Leipzig" }
               >
                 {availableCities.map((city) => {
                  return <option value={city}>{`${city}`}</option>

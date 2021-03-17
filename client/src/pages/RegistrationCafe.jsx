@@ -81,6 +81,7 @@ export default function RegistrationCafe() {
         ) {
           setWarningValidation(true);
         } else {
+          addNewCity();
           history.push("/login");
         }
       })
@@ -278,7 +279,7 @@ export default function RegistrationCafe() {
           </div>
         </StyledOtherInputsContainer>
 
-        <StyledButton cafe cafeRegister onClick={addNewCity}>
+        <StyledButton cafe cafeRegister>
           Register
         </StyledButton>
         {warning ? (

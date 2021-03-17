@@ -37,17 +37,6 @@ export default function RegistrationUser(props) {
     };
   }, []);
 
-  useEffect(()=>{
-    Axios({
-      method:"GET",
-      url: "users/cities"
-    }).then((res)=>{
-      setAvailableCities(res.data)
-    }).catch((err)=> {
-      console.log(err)
-    })
-  },[])
-
   const showPassword = () => {
     setVisible(true);
   };
@@ -192,7 +181,7 @@ export default function RegistrationUser(props) {
           </div>
         </StyledInputContainer>
         {availableCities.length > 0 ? (<StyledInputContainer>
-          <StyledSelect id="city" name="city" onInput={getValue}>
+          <StyledSelect id="city" name="city" defaultValue={"Leipzig"} onInput={getValue}>
           {availableCities.map((city) => {
                  return <option value={city}>{`${city}`}</option>
                 })}
