@@ -182,7 +182,12 @@ export default function RegistrationUser(props) {
         </StyledInputContainer>
         {availableCities.length > 0 ? (
           <StyledInputContainer>
-            <StyledSelect id="city" name="city" onInput={getValue}>
+            <StyledSelect
+              id="city"
+              name="city"
+              onInput={getValue}
+              defaultValue={"Leipzig"}
+            >
               {availableCities.map((city) => {
                 return <option value={city}>{`${city}`}</option>;
               })}
