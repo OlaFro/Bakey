@@ -23,7 +23,9 @@ import cafeMarker from "../assets/newCafeMarker.png";
 export default function ListView() {
   const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
-  const { cafes, setCafes, city, setCity, availableCities } = useContext(bakeyContext);
+  const { cafes, setCafes, city, setCity, availableCities } = useContext(
+    bakeyContext
+  );
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
@@ -42,6 +44,7 @@ export default function ListView() {
       .then((res) => {
         if (res.data.length === 0) {
           setEmptyWarning(true);
+          setCafes([]);
         } else {
           setCafes(res.data);
           setMapFlag((prevValue) => {
@@ -222,10 +225,11 @@ export default function ListView() {
         </div>
       </StyledHeader>
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
-      {emptyWarning === true ? (
-        <Warning msg="there are no offers available for this city" />
-      ) : null}
+
       <StyledViewWrapper>
+        {emptyWarning === true ? (
+          <Warning msg={`there are no offers available for ${city}`} />
+        ) : null}
         <article>
           {emptyWarning === false
             ? cafes.map((cafe, index) => {
