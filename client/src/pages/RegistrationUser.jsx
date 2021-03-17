@@ -37,17 +37,6 @@ export default function RegistrationUser(props) {
     };
   }, []);
 
-  // useEffect(()=>{
-  //   Axios({
-  //     method:"GET",
-  //     url: "users/cities"
-  //   }).then((res)=>{
-  //     setAvailableCities(res.data)
-  //   }).catch((err)=> {
-  //     console.log(err)
-  //   })
-  // },[])
-
   const showPassword = () => {
     setVisible(true);
   };
