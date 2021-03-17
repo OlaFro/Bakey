@@ -244,7 +244,7 @@ export default function LandingPage() {
         <StyledButton
           cafe
           onClick={() => {
-            history.push("/registration/cafe");
+            history.push("/registration-cafe");
           }}
         >
           register

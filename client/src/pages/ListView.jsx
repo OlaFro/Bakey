@@ -150,14 +150,14 @@ export default function ListView() {
           <StyledSelect
             id="city"
             name="city"
-            defaultValue={city}
+            value={city}
             onChange={(e) => {
               setCity(e.target.value);
               getCafes(e.target.value);
             }}
           >
-            {availableCities.map((city) => {
-              return <option value={city}>{`${city}`}</option>;
+            {availableCities.map((cityElem) => {
+              return <option value={cityElem}>{`${cityElem}`}</option>;
             })}
           </StyledSelect>
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>

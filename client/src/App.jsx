@@ -58,6 +58,7 @@ function App() {
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
+          setCity(res.data.city);
         } else {
           setIsLogged({ state: false, role: "" });
         }
@@ -122,10 +123,10 @@ function App() {
             <Route path="/about-us" exact>
               <AboutUs />
             </Route>
-            <Route path="/registration/user" exact>
+            <Route path="/registration-user" exact>
               <RegistrationUser />
             </Route>
-            <Route path="/registration/cafe" exact>
+            <Route path="/registration-cafe" exact>
               <RegistrationCafe />
             </Route>
             <Route path="/client-dashboard" exact>

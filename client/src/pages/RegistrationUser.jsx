@@ -229,7 +229,7 @@ export default function RegistrationUser(props) {
         If you have already registered, please <Link to="/login">log in</Link>.{" "}
         <br></br>
         If you want to register as a café owner, please click{" "}
-        <Link to="/registration/cafe">here</Link>.
+        <Link to="/registration-cafe">here</Link>.
       </p>
     </StyledCentered>
   );
