@@ -141,6 +141,7 @@ export default function ListView() {
       });
     }
   };
+  console.log(city);
 
   return (
     <StyledListView>
