@@ -81,23 +81,27 @@ export default function LandingPage() {
           <Logo />
           <h1>Let them order cake!</h1>
           <StyledCTA>
-          {availableCities.length > 0 ? (<StyledInputContainer>
-              <StyledSelect
-                landingPage
-                id="city"
-                name="city"
-                onChange={(e) => {
-                  setCity(e.target.value);
-                }}
-                value={city ? city : "Leipzig" }
-              >
-                {availableCities.map((city) => {
-                 return <option value={city}>{`${city}`}</option>
-                })}
-              </StyledSelect>
-              <StyledLabel htmlFor="city">See offers from:</StyledLabel>
-              <StyledArrow landingPage />
-            </StyledInputContainer>) : null }  
+
+            {availableCities.length > 0 ? (
+              <StyledInputContainer>
+                <StyledSelect
+                  landingPage
+                  id="city"
+                  name="city"
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                  defaultValue={city}
+                >
+                  {availableCities.map((city) => {
+                    return <option value={city}>{`${city}`}</option>;
+                  })}
+                </StyledSelect>
+                <StyledLabel htmlFor="city">See offers from:</StyledLabel>
+                <StyledArrow landingPage />
+              </StyledInputContainer>
+            ) : null}
+
             <StyledButton
               onClick={() => {
                 history.push("/cafes-list");
@@ -237,7 +241,7 @@ export default function LandingPage() {
         <StyledButton
           cafe
           onClick={() => {
-            history.push("/registration/cafe");
+            history.push("/registration-cafe");
           }}
         >
           register

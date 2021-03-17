@@ -81,7 +81,7 @@ export default function Navigation(props) {
         {isLogged.state ? (
           <span onClick={logout}>log out</span>
         ) : (
-          <NavLink to="/registration/user" onClick={handleClose}>
+          <NavLink to="/registration-user" onClick={handleClose}>
             register
           </NavLink>
         )}
