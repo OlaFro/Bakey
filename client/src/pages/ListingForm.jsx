@@ -413,6 +413,7 @@ export default function ListingForm() {
               <StyledInputField
                 cafe
                 long
+                whitePlaceholder
                 type="datetime-local"
                 name="pickUpDate"
                 id="pickUpDate"
