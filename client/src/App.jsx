@@ -6,6 +6,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useHistory,
 } from "react-router-dom";
 import { bakeyContext } from "./Context";
 import Navigation from "./components/Navigation";
@@ -24,6 +25,7 @@ import AboutUs from "./pages/AboutUs";
 import Order from "./pages/Order";
 
 function App() {
+  const history = useHistory();
   const [isLogged, setIsLogged] = useState({ state: false, role: "", id: "" });
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
