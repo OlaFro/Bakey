@@ -27,6 +27,7 @@ import ProtectedRoute from "./ProtectedRoutes";
 
 function App() {
   const history = useHistory();
+
   const [isLogged, setIsLogged] = useState({ state: false, role: "", id: "" });
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
@@ -43,6 +44,8 @@ function App() {
     pickUpDate: "",
     piecePrice: "",
   });
+
+  const orderInfo = sessionStorage.getItem("orderInfo");
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -62,8 +65,14 @@ function App() {
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
           setCity(res.data.city);
+          if (orderInfo && res.data.userType === "client") {
+            history.push("/order");
+          } else {
+            history.push(`/${res.data.userType}-dashboard`);
+          }
         } else {
           setIsLogged({ state: false, role: "" });
+          history.push("/login");
         }
       })
       .catch((err) => {
@@ -115,64 +124,54 @@ function App() {
         setAvailableCities,
       }}
     >
-      <Router>
-        <GlobalStyle />
-        <div className="wrapper">
-          <Navigation />
-          <Switch>
-            <Route path="/" exact component={LandingPage} />
-            <Route path="/cafes-list" exact component={ListView} />
-            <Route path="/about-us" exact component={AboutUs} />
-            <Route
-              path="/registration-user"
-              exact
-              component={RegistrationUser}
-            />
-            <Route
-              path="/registration-cafe"
-              exact
-              component={RegistrationCafe}
-            />
-            <ProtectedRoute
-              path="/login"
-              exact
-              condition={!isLogged.state}
-              component={Login}
-            />
-            <ProtectedRoute
-              path="/client-dashboard"
-              exact
-              condition={isLogged.state && isLogged.role === "client"}
-              component={DashboardClient}
-            />
-            <ProtectedRoute
-              path="/cafe-dashboard"
-              exact
-              condition={isLogged.state && isLogged.role === "cafe"}
-              component={DashboardCafe}
-            />
-            <ProtectedRoute
-              path="/listingform"
-              exact
-              condition={isLogged.state && isLogged.role === "cafe"}
-              component={ListingForm}
-            />
-            <ProtectedRoute
-              path="/settings"
-              exact
-              condition={isLogged.state && isLogged.role === "cafe"}
-              component={Settings}
-            />
-            <Route path="/cafe:id" exact component={Profile} />
-            <Route path="/order" exact component={Order} />
-            <Route path="*">
-              {" "}
-              <Redirect to="/" />{" "}
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
+      <GlobalStyle />
+      <div className="wrapper">
+        <Navigation />
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/cafes-list" exact component={ListView} />
+          <Route path="/about-us" exact component={AboutUs} />
+          <Route path="/registration-user" exact component={RegistrationUser} />
+          <Route path="/registration-cafe" exact component={RegistrationCafe} />
+          <ProtectedRoute
+            path="/login"
+            exact
+            condition={!isLogged.state}
+            component={Login}
+          />
+          <ProtectedRoute
+            path="/client-dashboard"
+            exact
+            condition={isLogged.state && isLogged.role === "client"}
+            component={DashboardClient}
+          />
+          <ProtectedRoute
+            path="/cafe-dashboard"
+            exact
+            condition={isLogged.state && isLogged.role === "cafe"}
+            component={DashboardCafe}
+          />
+          <ProtectedRoute
+            path="/listingform"
+            exact
+            condition={isLogged.state && isLogged.role === "cafe"}
+            component={ListingForm}
+          />
+          <ProtectedRoute
+            path="/settings"
+            exact
+            condition={isLogged.state && isLogged.role === "cafe"}
+            component={Settings}
+          />
+          <Route path="/cafe:id" exact component={Profile} />
+          <Route path="/order" exact component={Order} />
+          <Route path="*">
+            {" "}
+            <Redirect to="/" />{" "}
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
     </bakeyContext.Provider>
   );
 }
