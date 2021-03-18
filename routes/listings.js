@@ -46,7 +46,7 @@ router.post(
         let addedListing = new ListingModel({
           id: addListing.id,
           cafeId: user.id,
-          cafeName: cafe.cafeName,
+          cafeName: user.cafeName,
           listingName: addListing.listingName,
           listingTags: addListing.listingTags.split(","),
           listingAllergenes: addListing.listingAllergenes.split(","),
