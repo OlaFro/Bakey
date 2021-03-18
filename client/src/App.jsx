@@ -75,7 +75,7 @@ function App() {
   useEffect(() => {
     Axios({
       method: "GET",
-      url: "users/cities",
+      url: "cities/all",
     })
       .then((res) => {
         console.log(res.data);
