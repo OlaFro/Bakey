@@ -34,22 +34,23 @@ export default function ListingForm() {
     if (e.target.name === "pickUpDate" && e.target.type === "text") {
       console.log("wrong format");
       setWrongInputType(true);
-      const newHour = +e.target.value.substr(e.target.value.length - 5, 2) + 1;
-      console.log(newHour < 10);
-      const newDate =
-        newHour < 10
-          ? e.target.value.substr(0, e.target.value.length - 5) +
-            "0" +
-            newHour +
-            e.target.value.substr(e.target.value.length - 3, 3)
-          : e.target.value.substr(0, e.target.value.length - 5) +
-            newHour +
-            e.target.value.substr(e.target.value.length - 3, 3);
-      console.log(newDate);
-      setData({ ...data, pickUpDate: newDate });
-    } else {
-      setData({ ...data, [e.target.name]: e.target.value });
+      // const newHour = +e.target.value.substr(e.target.value.length - 5, 2) - 1;
+      // console.log(newHour < 10);
+      // const newDate =
+      //   newHour < 10
+      //     ? e.target.value.substr(0, e.target.value.length - 5) +
+      //       "0" +
+      //       newHour +
+      //       e.target.value.substr(e.target.value.length - 3, 3)
+      //     : e.target.value.substr(0, e.target.value.length - 5) +
+      //       newHour +
+      //       e.target.value.substr(e.target.value.length - 3, 3);
+      // console.log(newDate);
+      // setData({ ...data, pickUpDate: newDate });
     }
+    //   setData({ ...data, [e.target.name]: e.target.value });
+    // }
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const getTags = (e) => {
