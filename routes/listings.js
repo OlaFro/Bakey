@@ -18,6 +18,7 @@ router.post(
   sanitize,
   newListing,
   (req, res, next) => {
+    console.log("adding listing");
     const addListing = req.body;
     const user = req.user;
     console.log(user);

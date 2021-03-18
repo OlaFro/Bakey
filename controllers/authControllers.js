@@ -15,6 +15,7 @@ allowedAccess.authenticateToken = (req, res, next) => {
       if (err) {
         res.send({ errorSource: "JWT" });
       } else {
+        console.log(payload);
         req.user = payload;
         next();
       }

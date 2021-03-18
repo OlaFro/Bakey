@@ -19,7 +19,7 @@ router.get("/auth", authenticateToken, (req, res, next) => {
   console.log("authentication request");
   const user = req.user;
   let token = jwt.sign(
-    { id: user.id, userType: user.userType },
+    { id: user.id, userType: user.userType, cafeName: user.cafeName },
     process.env.JWT_SECRET,
     {
       expiresIn: "3d",
@@ -110,7 +110,7 @@ router.post(
     console.log(user);
 
     let token = jwt.sign(
-      { id: user._id, userType: user.userType },
+      { id: user._id, userType: user.userType, cafeName: user.cafeName },
       process.env.JWT_SECRET,
       {
         expiresIn: "3d",
