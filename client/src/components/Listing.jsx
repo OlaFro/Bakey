@@ -175,7 +175,14 @@ export default function Listing(props) {
       cafeDashboard={props.dashboard ? true : false}
     >
       <StyledPhotoContainer>
-        <img src={props.image ? props.image : placeholder} alt="my offer"></img>
+        <img
+          src={props.image ? props.image : placeholder}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = placeholder;
+          }}
+          alt="my offer"
+        ></img>
       </StyledPhotoContainer>
       <StyledDescContainer>
         <header>
