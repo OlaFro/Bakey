@@ -119,17 +119,21 @@ function App() {
         <div className="wrapper">
           <Navigation />
           <Switch>
-            <Route path="/" exact>
-              <LandingPage />
-            </Route>
-            <Route path="/about-us" exact>
-              <AboutUs />
-            </Route>
-            <Route path="/registration-user" exact>
-              <RegistrationUser />
-            </Route>
-            <Route path="/registration-cafe" exact>
-              <RegistrationCafe />
+            <Route path="/" exact component={LandingPage} />
+            <Route path="/cafes-list" exact component={ListView} />
+            <Route path="/about-us" exact component={AboutUs} />
+            <Route
+              path="/registration-user"
+              exact
+              component={RegistrationUser}
+            />
+            <Route
+              path="/registration-cafe"
+              exact
+              component={RegistrationCafe}
+            />
+            <Route path="/login" exact>
+              {isLogged.state ? <Redirect to="/" /> : <Login />}
             </Route>
             <Route path="/client-dashboard" exact>
               {isLogged.state && isLogged.role === "client" ? (
@@ -145,9 +149,7 @@ function App() {
                 <Redirect to="/" />
               )}
             </Route>
-            <Route path="/login" exact>
-              {isLogged.state ? <Redirect to="/" /> : <Login />}
-            </Route>
+
             <Route path="/listingform" exact>
               {isLogged.state && isLogged.role === "cafe" ? (
                 <ListingForm />
@@ -155,18 +157,11 @@ function App() {
                 <Redirect to="/" />
               )}
             </Route>
-            <Route path="/cafes-list" exact>
-              <ListView />
-            </Route>
             <Route path="/settings" exact>
               {isLogged.role === "cafe" ? <Settings /> : <Redirect to="/" />}
             </Route>
-            <Route path="/cafe:id" exact>
-              <Profile />
-            </Route>
-            <Route path="/order" exact>
-              <Order />
-            </Route>
+            <Route path="/cafe:id" exact component={Profile} />
+            <Route path="/order" exact component={Order} />
             <Route path="*">
               {" "}
               <Redirect to="/" />{" "}
