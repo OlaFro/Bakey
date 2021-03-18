@@ -183,7 +183,7 @@ export default function Profile() {
               </span>
             </div>
             <div>
-              <a href={cafeInfo.cafeURL}>{cafeInfo.cafeURL}</a>
+              <a href={`https://${cafeInfo.cafeURL}`}>{cafeInfo.cafeURL}</a>
               <span> {cafeInfo.email}</span>
             </div>
           </StyledAddress>
