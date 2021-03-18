@@ -46,6 +46,7 @@ function App() {
   });
 
   const orderInfo = sessionStorage.getItem("orderInfo");
+  const location = sessionStorage.getItem("location");
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -67,8 +68,9 @@ function App() {
           setCity(res.data.city);
           if (orderInfo && res.data.userType === "client") {
             history.push("/order");
-          } else {
-            history.push(`/${res.data.userType}-dashboard`);
+          }
+          if (location) {
+            history.push(`/${location}`);
           }
         } else {
           setIsLogged({ state: false, role: "" });

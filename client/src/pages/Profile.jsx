@@ -50,6 +50,7 @@ export default function Profile() {
   };
 
   useEffect(() => {
+    sessionStorage.removeItem("location");
     console.log(params.id.split(":")[1]);
     setOfferWarning(false);
     Axios({

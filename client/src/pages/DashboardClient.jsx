@@ -46,6 +46,8 @@ export default function DashboardClient() {
   const [warningContent, setWarningContent] = useState();
 
   useEffect(() => {
+    sessionStorage.setItem("location", "cafe-client");
+
     Axios({
       method: "GET",
       url: `users/orders`,

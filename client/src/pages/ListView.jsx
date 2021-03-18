@@ -61,6 +61,7 @@ export default function ListView() {
   };
 
   useEffect(() => {
+    sessionStorage.removeItem("location");
     getCafes(city);
   }, []);
 

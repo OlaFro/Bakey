@@ -33,6 +33,7 @@ export default function Settings() {
   };
 
   useEffect(() => {
+    sessionStorage.setItem("location", "settings");
     Axios({
       method: "GET",
       url: `/users/profile-info`,

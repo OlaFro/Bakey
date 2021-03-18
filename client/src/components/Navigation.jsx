@@ -36,6 +36,7 @@ export default function Navigation(props) {
     })
       .then((res) => {
         setIsLogged(res.data.logged);
+        sessionStorage.removeItem("location");
         history.push("/login");
       })
       .catch((err) => console.log(err));
