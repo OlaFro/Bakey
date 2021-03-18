@@ -129,7 +129,7 @@ router.put("/checkout", authenticateToken, (req, res, next) => {
     });
 });
 
-router.get("/cafe", authenticateToken, (req, res, next) => {
+router.get("/cafe", authenticateToken, authorizeCafe, (req, res, next) => {
   const user = req.user;
   ListingModel.find({ cafeId: user.id })
     .populate({
