@@ -2,11 +2,13 @@
 
 <h2 align="center" style="color: #ED8DB2; font-size: 40px">Let them order cake!</h2>
 
-Explore the [deployed version](https://bakey-app.herokuapp.com/) directly or see the instructions below.
+Explore the [deployed version](https://bakey-app.herokuapp.com/) directly or use the QR code below.
+
+<h3 align="center"><img src="./readme_assets/bakeyQR.png" width="200px"></h3>
 
 ## About
 
- <h3 style="color:#ED8DB2">Origin of Bakey</h3>
+<h3 style="color:#ED8DB2">Origin of Bakey</h3>
 
 Bakey was a vision of [Ola](https://github.com/OlaFro) for the final project together with [Alice](https://github.com/Alice-Rez) and [willoid](https://github.com/willoid) after [our](https://bakey-app.herokuapp.com/about-us) one year web development course at [DCI](https://digitalcareerinstitute.org/).
 
