@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import { bakeyContext } from "../Context";
@@ -28,6 +28,10 @@ export default function ListingForm() {
   const [imageWarning, setImageWarning] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [wrongInputType, setWrongInputType] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem("location", "listingform");
+  }, []);
 
   const getValue = (e) => {
     setShowWarning(false);

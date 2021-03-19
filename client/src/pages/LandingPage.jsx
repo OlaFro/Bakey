@@ -48,6 +48,7 @@ export default function LandingPage() {
   );
 
   useEffect(() => {
+    sessionStorage.removeItem("location");
     Axios({
       method: "GET",
       url: "/listings/end-soon",
@@ -81,7 +82,6 @@ export default function LandingPage() {
           <Logo />
           <h1>Let them order cake!</h1>
           <StyledCTA>
-
             {availableCities.length > 0 ? (
               <StyledInputContainer>
                 <StyledSelect
@@ -196,7 +196,13 @@ export default function LandingPage() {
             Explore Bakey
           </StyledButton>
           <p>
-          Bakey is the final project of web development students of Digital Career Institute Leipzig. It is just a demo not offering real products and displaying the functionalities we would personally use in a similar app, as a result of all skills we‘ve learned during a one year MERN-Stack course. If you want to learn more about the applied technologies and us – Alice, Ola and Willy, creators of Bakey – visit our About Us section
+            Bakey is the final project of web development students of Digital
+            Career Institute Leipzig. It is just a demo not offering real
+            products and displaying the functionalities we would personally use
+            in a similar app, as a result of all skills we‘ve learned during a
+            one year MERN-Stack course. If you want to learn more about the
+            applied technologies and us – Alice, Ola and Willy, creators of
+            Bakey – visit our About Us section
           </p>
           <StyledButton
             onClick={() => {

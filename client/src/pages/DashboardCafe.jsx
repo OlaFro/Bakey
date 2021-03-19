@@ -33,6 +33,7 @@ export default function DashboardCafe() {
   const [display, setDisplay] = useState("active");
 
   useEffect(() => {
+    sessionStorage.setItem("location", "cafe-dashboard");
     Axios({
       method: "GET",
       url: `listings/cafe`,
