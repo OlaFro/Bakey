@@ -40,6 +40,7 @@ function App() {
     pickUpDate: "",
     piecePrice: "",
   });
+  const [cityCoor, setCityCoor] = useState({})
 
   useEffect(() => {
     console.log("authentication  request sent");
@@ -91,6 +92,20 @@ function App() {
       });
   }, []);
 
+  useEffect(()=>{
+    Axios({
+      method: "GET",
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+germany&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+    })
+      .then((res) => {
+        let cityCoordinates = res.data.results[0].geometry.location;
+        setCityCoor(cityCoordinates);
+      })
+      .catch((err) => {
+        console.log("no results from GM");
+      });
+  })
+
   return (
     <bakeyContext.Provider
       value={{
@@ -110,6 +125,8 @@ function App() {
         setSelectedListing,
         availableCities,
         setAvailableCities,
+        cityCoor,
+        setCityCoor
       }}
     >
       <Router>

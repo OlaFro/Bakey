@@ -21,23 +21,19 @@ import StyledMap from "../styledComponents/StyledMap";
 import cafeMarker from "../assets/newCafeMarker.png";
 
 export default function ListView() {
-  const [cityCoor, setCityCoor] = useState({});
   const [mapFlag, setMapFlag] = useState(false);
-  const { cafes, setCafes, city, setCity, availableCities } = useContext(
+  const { cafes, setCafes, city, setCity, availableCities, cityCoor, setCityCoor } = useContext(
     bakeyContext
   );
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
-  const [mapLoaded, setMapLoaded] = useState(false);
-  const [loadCoor, setLoadCoor] = useState(false);
 
   let history = useHistory();
 
-  const getCafes = (city) => {
+  const getCafes =(city) => {
     setDbError(false);
     setEmptyWarning(false);
-    console.log(city);
     Axios({
       method: "POST",
       url: "/cafes",
@@ -64,28 +60,23 @@ export default function ListView() {
     getCafes(city);
   }, []);
 
-  useEffect(() => {
-    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
-  }, [city]);
-
-  const getCityCoordinates = (API_KEY) => {
-    console.log("getting coordinates for", city);
-    Axios({
-      method: "GET",
-      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+germany&key=${API_KEY}`,
+  const getCityCoordinates = () => {
+  Axios({
+    method: "GET",
+    url: `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+germany&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+  })
+    .then((res) => {
+      let cityCoordinates = res.data.results[0].geometry.location;
+      setCityCoor(cityCoordinates);
     })
-      .then((res) => {
-        let cityCoordinates = res.data.results[0].geometry.location;
-        setCityCoor(cityCoordinates);
-      })
-      .catch((err) => {
-        console.log("no results from GM");
-      });
+    .catch((err) => {
+      console.log("no results from GM");
+    });
   };
 
-  const getMapInfo = async (API_KEY) => {
+  const getMapInfo = () => {
     console.log("call for markers");
-    await cafes.map((cafe, i) => {
+    cafes.map((cafe, i) => {
       let address = [
         cafe.cafeStreet.split(" ").join("+"),
         cafe.cafeStreetNr,
@@ -95,20 +86,17 @@ export default function ListView() {
       let parsedAddress = address.join("+");
       Axios({
         method: "GET",
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
       })
-        .then(async (res) => {
+        .then((res) => {
           let location = res.data.results[0].geometry.location;
-          await setCafes(() => {
+         setCafes(() => {
             cafes[i] = {
               ...cafe,
               lat: location.lat,
               lng: location.lng,
             };
             return cafes;
-          });
-          setMapLoaded((prevValue) => {
-            return !prevValue;
           });
         })
         .catch((err) => {
@@ -118,14 +106,9 @@ export default function ListView() {
   };
 
   useEffect(() => {
-    getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
-    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+    getMapInfo();
+    getCityCoordinates();
   }, [mapFlag]);
-
-  const center = {
-    lat: cityCoor.lat,
-    lng: cityCoor.lng,
-  };
 
   //necessary for the map
 
@@ -145,7 +128,6 @@ export default function ListView() {
       });
     }
   };
-  console.log(city, center);
 
   return (
     <StyledListView>
@@ -255,7 +237,7 @@ export default function ListView() {
             <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
               <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={center}
+                center={cityCoor}
                 zoom={13}
               >
                 {cafes.map((cafe) => {
