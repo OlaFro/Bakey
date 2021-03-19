@@ -1,4 +1,4 @@
-<h1><img src="./readme_assets/bakey-logo.png" width="70%"/></h1>
+<h1 align="center"><img src="./readme_assets/bakey-logo.png" width="70%"/></h1>
 
 <h2 align="center" style="color: #ED8DB2; font-size: 40px">Let them order cake!</h2>
 
