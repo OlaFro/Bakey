@@ -30,6 +30,7 @@ function App() {
   const [cafeName, setCafeName] = useState("");
   const [cafes, setCafes] = useState([]);
   const [city, setCity] = useState("Leipzig");
+  const [availableCities, setAvailableCities] = useState([]);
   const [selectedListing, setSelectedListing] = useState({
     listingImage: "",
     listingName: "",
@@ -57,6 +58,7 @@ function App() {
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
+          setCity(res.data.city);
         } else {
           setIsLogged({ state: false, role: "" });
         }
@@ -68,6 +70,25 @@ function App() {
     // .finally(() => {
     //   alert("This is just a demo project not offering real products!");
     // });
+  }, []);
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: "cities/all",
+    })
+      .then((res) => {
+        console.log(res.data);
+        if (Array.isArray(res.data)) {
+          setAvailableCities(res.data);
+        } else {
+          setAvailableCities(["Leipzig"]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setAvailableCities(["Leipzig"]);
+      });
   }, []);
 
   return (
@@ -87,6 +108,8 @@ function App() {
         setCafes,
         selectedListing,
         setSelectedListing,
+        availableCities,
+        setAvailableCities,
       }}
     >
       <Router>
@@ -100,10 +123,10 @@ function App() {
             <Route path="/about-us" exact>
               <AboutUs />
             </Route>
-            <Route path="/registration/user" exact>
+            <Route path="/registration-user" exact>
               <RegistrationUser />
             </Route>
-            <Route path="/registration/cafe" exact>
+            <Route path="/registration-cafe" exact>
               <RegistrationCafe />
             </Route>
             <Route path="/client-dashboard" exact>

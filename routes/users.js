@@ -18,9 +18,13 @@ router.get("/", function (req, res, next) {
 router.get("/auth", authenticateToken, (req, res, next) => {
   console.log("authentication request");
   const user = req.user;
-  let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: "3d",
-  });
+  let token = jwt.sign(
+    { id: user.id, userType: user.userType, cafeName: user.cafeName },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "3d",
+    }
+  );
   res.cookie("token", token, {
     httpOnly: true,
     sameSite: "strict",
@@ -105,9 +109,13 @@ router.post(
     const user = req.user;
     console.log(user);
 
-    let token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "3d",
-    });
+    let token = jwt.sign(
+      { id: user._id, userType: user.userType, cafeName: user.cafeName },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "3d",
+      }
+    );
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: "strict",
@@ -217,14 +225,6 @@ router.get("/orders", authenticateToken, (req, res, next) => {
     .catch((err) => {
       res.send(err);
     });
-});
-
-router.get("/cities", (req, res, next) => {
-  UserModel.distinct("city", { userType: "cafe" })
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => res.send(err));
 });
 
 module.exports = router;

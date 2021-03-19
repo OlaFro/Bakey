@@ -57,3 +57,16 @@ export const StyledButtonContainer = styled.section`
     }
   }
 `;
+
+export const StyledSelectContainer = styled.section`
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  place-items: center;
+`;
+
+export const StyledButtons = styled.div`
+  display: flex;
+  gap: var(--space-m);
+`;

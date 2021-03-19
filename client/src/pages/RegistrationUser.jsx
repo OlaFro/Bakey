@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import Warning from "../components/Warning";
@@ -16,9 +16,12 @@ import {
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
+import { bakeyContext } from "../Context";
 
 export default function RegistrationUser(props) {
   const history = useHistory();
+
+  const { availableCities } = useContext(bakeyContext);
 
   const [data, setData] = useState({ userType: "client", city: "Leipzig" });
   const [msg, setMsg] = useState({});
@@ -89,6 +92,8 @@ export default function RegistrationUser(props) {
         setShowWarning(true);
       });
   };
+
+  console.log(availableCities);
 
   return (
     <StyledCentered>
@@ -178,17 +183,24 @@ export default function RegistrationUser(props) {
             ) : null}
           </div>
         </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledSelect id="city" name="city" onInput={getValue}>
-            <option value="Leipzig">Leipzig</option>
-            <option value="Hamburg">Hamburg</option>
-            <option value="Düsseldorf">Düsseldorf</option>
-            {/* we can later add a map function with dynamic city names */}
-          </StyledSelect>
+        {availableCities.length > 0 ? (
+          <StyledInputContainer>
+            <StyledSelect
+              id="city"
+              name="city"
+              onInput={getValue}
+              defaultValue={"Leipzig"}
+            >
+              {availableCities.map((city) => {
+                return <option value={city}>{`${city}`}</option>;
+              })}
+              {/* we can later add a map function with dynamic city names */}
+            </StyledSelect>
 
-          <StyledLabel htmlFor="city">See offers from:</StyledLabel>
-          <StyledArrow />
-        </StyledInputContainer>
+            <StyledLabel htmlFor="city">See offers from:</StyledLabel>
+            <StyledArrow />
+          </StyledInputContainer>
+        ) : null}
         <StyledOtherInputsContainer registerUser>
           <header>Terms</header>
           <div>
@@ -217,7 +229,7 @@ export default function RegistrationUser(props) {
         If you have already registered, please <Link to="/login">log in</Link>.{" "}
         <br></br>
         If you want to register as a café owner, please click{" "}
-        <Link to="/registration/cafe">here</Link>.
+        <Link to="/registration-cafe">here</Link>.
       </p>
     </StyledCentered>
   );
