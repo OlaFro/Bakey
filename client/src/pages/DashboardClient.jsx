@@ -46,7 +46,7 @@ export default function DashboardClient() {
   const [warningContent, setWarningContent] = useState();
 
   useEffect(() => {
-    sessionStorage.setItem("location", "cafe-client");
+    sessionStorage.setItem("location", "client-dashboard");
 
     Axios({
       method: "GET",
