@@ -62,10 +62,10 @@ export default function ListView() {
 
   useEffect(() => {
     sessionStorage.removeItem("location");
-    getCafes(city);
   }, []);
 
   useEffect(() => {
+    getCafes(city);
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [city]);
 
