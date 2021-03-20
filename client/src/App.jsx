@@ -74,7 +74,6 @@ function App() {
           }
         } else {
           setIsLogged({ state: false, role: "" });
-          history.push("/login");
         }
       })
       .catch((err) => {
