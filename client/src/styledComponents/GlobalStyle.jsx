@@ -61,6 +61,7 @@ p {
 }
 
 a {
+  color: #4A4A4A;
     text-decoration: underline;
     text-decoration-color: #ED8DB2;
     text-decoration-thickness: 2px;

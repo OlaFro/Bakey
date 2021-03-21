@@ -5,7 +5,7 @@ import device from "./device";
 import { EyeClose, Eye, ArrowDown, ImageAdd } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
-  margin-top: var(--space-l);
+  margin-top: 10vh;
   width: 90%;
   max-width: 448px;
   border: var(--border) solid ${colors.accent1};

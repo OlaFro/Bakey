@@ -165,7 +165,9 @@ export default function ListView() {
             }}
           >
             {availableCities.map((cityElem) => {
-              return <option value={cityElem}>{`${cityElem}`}</option>;
+              return (
+                <option value={cityElem} key={cityElem}>{`${cityElem}`}</option>
+              );
             })}
           </StyledSelect>
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
