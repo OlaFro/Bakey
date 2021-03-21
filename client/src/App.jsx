@@ -2,7 +2,8 @@ import GlobalStyle from "./styledComponents/GlobalStyle";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import {
-  BrowserRouter as  Switch,
+  BrowserRouter as Router,
+  Switch,
   Route,
   Redirect,
   useHistory,
