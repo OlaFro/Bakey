@@ -93,8 +93,8 @@ export const StyledTitle = styled.span`
 
   > h2 {
     @media (max-width: 600px) {
-      padding: var(--space-s);
-      padding: var(--space-s);
+      padding-left: var(--space-s);
+      padding-right: var(--space-s);
     }
   }
 `;
