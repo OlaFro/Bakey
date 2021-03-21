@@ -72,7 +72,7 @@ export default function DashboardCafe() {
           </StyledPlusLink>
           <StyledPlusLink>
             <Link to={`/cafe:${isLogged.id}`}>
-              <StyledIcon profile>
+              <StyledIcon profileIcon>
                 <img
                   src={cafeProfileIcon}
                   alt="icon of the cafe in the circle"

@@ -124,8 +124,13 @@ export default function DashboardClient() {
                   setNewCity(e.target.value);
                 }}
               >
-                {availableCities.map((city) => {
-                  return <option value={city}>{`${city}`}</option>;
+                {availableCities.map((city, index) => {
+                  return (
+                    <option
+                      value={city}
+                      key={`option-${index}`}
+                    >{`${city}`}</option>
+                  );
                 })}
               </StyledSelect>
               <StyledLabel htmlFor="city">Preferred city:</StyledLabel>

@@ -61,7 +61,7 @@ export const StyledIcon = styled.figure`
   }
 
   ${(props) =>
-    props.profile &&
+    props.profileIcon &&
     css`
       border: var(--border) solid ${colors.black};
       border-radius: 50%;

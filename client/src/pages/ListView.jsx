@@ -21,7 +21,10 @@ import StyledMap from "../styledComponents/StyledMap";
 import cafeMarker from "../assets/newCafeMarker.png";
 
 export default function ListView() {
-  const [cityCoor, setCityCoor] = useState({});
+  const [cityCoor, setCityCoor] = useState({
+    lat: 51.3396955,
+    lng: 12.3730747,
+  });
   const [mapFlag, setMapFlag] = useState(false);
   const { cafes, setCafes, city, setCity, availableCities } = useContext(
     bakeyContext
@@ -261,6 +264,7 @@ export default function ListView() {
                 center={center}
                 zoom={13}
               >
+                {console.log("city coordinates of", city, cityCoor)}
                 {cafes.map((cafe) => {
                   if (
                     !filter.length ||
