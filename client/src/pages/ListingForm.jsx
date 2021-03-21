@@ -169,7 +169,7 @@ export default function ListingForm() {
   };
 
   return (
-    <StyledCentered>
+    <StyledCentered marginTop>
       <header>
         <h2>Add a new listing</h2>
       </header>

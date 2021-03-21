@@ -20,6 +20,10 @@ const StyledCentered = styled.section`
         padding-left: 0;
         padding-right: 0;
       }
+      ${(props) => 
+    props.marginTop &&
+    css`{
+      margin-top: 10vh;
     `}
 `;
 

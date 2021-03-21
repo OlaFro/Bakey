@@ -135,7 +135,7 @@ export default function Settings() {
   };
 
   return (
-    <StyledCentered settings>
+    <StyledCentered settings marginTop>
       <header>
         <h2>Change your settings</h2>
       </header>
