@@ -460,19 +460,15 @@ export default function ListingForm() {
         <h3> 3. Save: </h3>
         <div className="communication">
           <div>
-            <p>
-              Click "cancel" to go back to Your dashboard. <p></p>Your changes
-              won't be saved.
-            </p>
+            <p>Click "cancel" to go back to Your dashboard.</p>
+            <p>Your changes won't be saved.</p>
             <StyledButton cafeSecondary onClick={goBack}>
               Cancel
             </StyledButton>
           </div>
           <div>
-            <p>
-              Click "save" to activate your listing. <p></p>Once it's active,
-              you won't be able to change it.
-            </p>
+            <p>Click "save" to activate your listing.</p>
+            <p>Once it's active, you won't be able to change it.</p>
             <StyledButton type="submit" form="listing-form" cafe>
               Save
             </StyledButton>
