@@ -112,7 +112,9 @@ export default function RegistrationUser(props) {
           />
           <StyledLabel htmlFor="firstName">First Name*</StyledLabel>
           <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
+            {msg.firstName ? (
+              <small>Please use only letters or -.</small>
+            ) : null}
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
@@ -126,7 +128,7 @@ export default function RegistrationUser(props) {
           />
           <StyledLabel htmlFor="lastName">Last Name*</StyledLabel>
           <div>
-            {msg.lastName ? <small>Please use only letters</small> : null}
+            {msg.lastName ? <small>Please use only letters or -.</small> : null}
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
@@ -221,7 +223,7 @@ export default function RegistrationUser(props) {
           <div>
             <p className="warning">
               User with this {warningContent} already exists, please log-in or
-              use another password
+              use another email.
             </p>
           </div>
         ) : null}
