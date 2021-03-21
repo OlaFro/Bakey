@@ -85,14 +85,9 @@ export default function OrderSummary(props) {
             </span>
 
             <StyledAmount>
-              <StyledOrderButton order onClick={decrement}>
-                {" "}
-                –
-              </StyledOrderButton>
+              <StyledOrderButton onClick={decrement}> –</StyledOrderButton>
               <span>{orderInfo.pieces}</span>
-              <StyledOrderButton order onClick={increment}>
-                +
-              </StyledOrderButton>
+              <StyledOrderButton onClick={increment}>+</StyledOrderButton>
             </StyledAmount>
           </StyledAdd>
 
@@ -101,7 +96,9 @@ export default function OrderSummary(props) {
             <span>
               <strong>
                 Total:{" "}
-                {orderInfo.price ? parseFloat(orderInfo.price * orderInfo.pieces).toFixed(2) : "0.00"}{" "}
+                {orderInfo.price
+                  ? parseFloat(orderInfo.price * orderInfo.pieces).toFixed(2)
+                  : "0.00"}{" "}
                 €
               </strong>
             </span>
