@@ -94,7 +94,7 @@ export default function LandingPage() {
                   defaultValue={city}
                 >
                   {availableCities.map((city) => {
-                    return <option value={city}>{`${city}`}</option>;
+                    return <option value={city} key={city}>{`${city}`}</option>;
                   })}
                 </StyledSelect>
                 <StyledLabel htmlFor="city">See offers from:</StyledLabel>

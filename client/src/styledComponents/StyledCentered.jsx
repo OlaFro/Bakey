@@ -9,6 +9,11 @@ const StyledCentered = styled.section`
     css`
       text-align: center;
     `}
+  ${(props) =>
+    props.marginTop &&
+    css`
+      margin-top: 10vh;
+    `}
 `;
 
 export default StyledCentered;
