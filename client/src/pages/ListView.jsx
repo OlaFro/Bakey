@@ -62,8 +62,13 @@ export default function ListView() {
   };
 
   useEffect(() => {
-    getCities(city);
+    sessionStorage.removeItem("location");
   }, []);
+
+  useEffect(() => {
+    getCities(city);
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [city]);
 
   const getCityCoordinates = (API_KEY) => {
     Axios({
@@ -114,7 +119,7 @@ export default function ListView() {
 
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
-    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+    // getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
 
   const center = {
@@ -226,25 +231,24 @@ export default function ListView() {
         </div>
       </StyledHeader>
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
-      {emptyWarning === true ? (
-        <Warning msg="there are no offers available for this city" />
-      ) : null}
       <StyledViewWrapper>
         <article>
-          {emptyWarning === false
-            ? cafes.map((cafe, index) => {
-                if (
-                  !filter.length ||
-                  cafe.cafeListings.some((listing) =>
-                    listing.listingTags.some((tag) => filter.includes(tag))
-                  )
-                ) {
-                  return <CafeCard key={index} cafe={cafe} />;
-                } else {
-                  return null;
-                }
-              })
-            : null}
+          {emptyWarning === false ? (
+            cafes.map((cafe, index) => {
+              if (
+                !filter.length ||
+                cafe.cafeListings.some((listing) =>
+                  listing.listingTags.some((tag) => filter.includes(tag))
+                )
+              ) {
+                return <CafeCard key={index} cafe={cafe} />;
+              } else {
+                return null;
+              }
+            })
+          ) : (
+            <Warning msg={`there are no offers available for ${city}`} />
+          )}
         </article>
         {cafes.every((cafe) => cafe.lat && cafe.lng) ? (
           <StyledMap>
