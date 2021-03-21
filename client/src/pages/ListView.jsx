@@ -71,11 +71,6 @@ export default function ListView() {
     getCities(city);
   }, []);
 
-  // useEffect(() => {
-  //   getCities(city);
-  //   // getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
-  // }, [city]);
-
   const getCityCoordinates = (API_KEY) => {
     Axios({
       method: "GET",
