@@ -191,8 +191,13 @@ export default function RegistrationUser(props) {
               onInput={getValue}
               defaultValue={"Leipzig"}
             >
-              {availableCities.map((city) => {
-                return <option value={city}>{`${city}`}</option>;
+              {availableCities.map((city, index) => {
+                return (
+                  <option
+                    value={city}
+                    key={`option-${index}`}
+                  >{`${city}`}</option>
+                );
               })}
               {/* we can later add a map function with dynamic city names */}
             </StyledSelect>
