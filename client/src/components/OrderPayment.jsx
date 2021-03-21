@@ -35,7 +35,6 @@ export default function OrderPayment(props) {
       },
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data.boughtPieces) {
           setOrderInfo((prevInfo) => {
             return { ...prevInfo, boughtPcs: res.data.boughtPieces };

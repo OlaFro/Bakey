@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { darken, lighten } from "polished";
+import { darken} from "polished";
 import colors from "./colors";
 import device from "./device";
 import { EyeClose, Eye, ArrowDown, ImageAdd } from "styled-icons/remix-line";

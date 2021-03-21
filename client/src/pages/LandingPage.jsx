@@ -70,9 +70,7 @@ export default function LandingPage() {
         setWarning(true);
       });
     return function () {
-      console.log("landing page is unmounting");
       if (source) {
-        console.log("source exists");
         source.cancel("Landing Component got unmounted");
       }
     };

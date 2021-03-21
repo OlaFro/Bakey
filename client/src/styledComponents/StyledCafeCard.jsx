@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { lighten, darken } from "polished";
+import { lighten} from "polished";
 import colors from "./colors";
 import device from "./device";
 import { Cake3 } from "styled-icons/remix-line/";

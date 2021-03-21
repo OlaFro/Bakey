@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import colors from "./colors";
 import { darken, lighten } from "polished";
-import device from "./device";
 
 export const StyledButton = styled.button`
   /* basic button style for yellow buttons */

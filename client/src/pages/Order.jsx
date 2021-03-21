@@ -19,7 +19,6 @@ export default function Order() {
     "#" +
     orderInfo.listingIdentifier;
 
-  console.log(urlListing);
 
   useEffect(() => {
     sessionStorage.removeItem("location");

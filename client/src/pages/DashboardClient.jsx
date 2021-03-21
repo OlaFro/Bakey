@@ -53,7 +53,6 @@ export default function DashboardClient() {
       url: `users/orders`,
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data.orders.length) {
           setListings(res.data.orders);
         }
@@ -89,7 +88,6 @@ export default function DashboardClient() {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
         if (res.data === "info updated") {
           setCity(newCity);
           setShowSelect(false);
