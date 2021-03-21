@@ -38,6 +38,7 @@ export default function ListView() {
   let history = useHistory();
 
   const getCities = (city) => {
+    console.log("calling for cafes for city", city);
     setDbError(false);
     setEmptyWarning(false);
     Axios({
@@ -48,6 +49,10 @@ export default function ListView() {
       .then((res) => {
         if (res.data.length === 0) {
           setEmptyWarning(true);
+          setCafes([]);
+          setLoadCoor((prevValue) => {
+            return !prevValue;
+          });
         } else {
           setCafes(res.data);
           setMapFlag((prevValue) => {
@@ -63,12 +68,13 @@ export default function ListView() {
 
   useEffect(() => {
     sessionStorage.removeItem("location");
+    getCities(city);
   }, []);
 
-  useEffect(() => {
-    getCities(city);
-    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
-  }, [city]);
+  // useEffect(() => {
+  //   getCities(city);
+  //   // getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+  // }, [city]);
 
   const getCityCoordinates = (API_KEY) => {
     Axios({
@@ -119,8 +125,12 @@ export default function ListView() {
 
   useEffect(() => {
     getMapInfo(process.env.REACT_APP_GOOGLE_API_KEY);
-    // getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
+
+  useEffect(() => {
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [loadCoor]);
 
   const center = {
     lat: cityCoor.lat,
