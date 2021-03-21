@@ -5,7 +5,12 @@ import device from "./device";
 
 import { CheckDouble, Link } from "styled-icons/boxicons-regular";
 
-export const StyledConfirmationContainer = styled.div``;
+export const StyledConfirmationContainer = styled.div`
+  @media ${device.mobile} {
+    width: 95vw;
+    margin: auto;
+  }
+`;
 
 export const StyledLoader = styled.div`
   display: ${(props) => props.display};
@@ -50,6 +55,9 @@ export const StyledLinkContainer = styled.div`
   :active {
     background-color: ${colors.accent1};
   }
+
+  @media ${device.mobile} {
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -66,4 +74,15 @@ export const StyledCopied = styled(CheckDouble)`
   margin-left: var(--space-xs);
   cursor: pointer;
   display: ${(props) => props.display};
+`;
+
+export const StyledCopyToClipboard = styled.div`
+  @media (max-width: 600px) {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+  }
 `;

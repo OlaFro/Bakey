@@ -21,6 +21,11 @@ const StyledCentered = styled.section`
         padding-right: 0;
       }
     `}
+    ${(props) =>
+    props.marginTop &&
+    css`
+      margin-top: 10vh;
+    `}
 `;
 
 export default StyledCentered;

@@ -12,6 +12,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var listingsRouter = require("./routes/listings");
 var cafesRouter = require("./routes/cafes");
+var citiesRouter = require("./routes/cities");
 
 var app = express();
 
@@ -53,6 +54,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/listings", listingsRouter);
 app.use("/cafes", cafesRouter);
+app.use("/cities", citiesRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));

@@ -33,6 +33,7 @@ export default function Settings() {
   };
 
   useEffect(() => {
+    sessionStorage.setItem("location", "settings");
     Axios({
       method: "GET",
       url: `/users/profile-info`,
@@ -134,7 +135,7 @@ export default function Settings() {
   };
 
   return (
-    <StyledCentered settings>
+    <StyledCentered settings marginTop>
       <header>
         <h2>Change your settings</h2>
       </header>
