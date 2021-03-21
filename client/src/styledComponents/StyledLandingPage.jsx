@@ -79,12 +79,24 @@ export const StyledDesc = styled.div`
     text-transform: none;
     letter-spacing: 0;
   }
+
+  @media (max-width: 600px) {
+    margin-left: var(--space-s);
+    margin-right: var(--space-s);
+  }
 `;
 
 export const StyledTitle = styled.span`
   color: ${colors.accent2};
   text-align: center;
   padding: var(--space-m);
+
+  > h2 {
+    @media (max-width: 600px) {
+      padding-left: var(--space-s);
+      padding-right: var(--space-s);
+    }
+  }
 `;
 export const StyledMain = styled.main`
   width: 100%;
@@ -188,6 +200,10 @@ export const StyledEndSoon = styled.section`
     flex-direction: column;
     > * {
       margin: var(--space-m) auto;
+    }
+    @media (max-width: 600px) {
+      padding-left: var(--space-s);
+      padding-right: var(--space-s);
     }
   }
 `;

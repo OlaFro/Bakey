@@ -76,7 +76,7 @@ export default function LandingPage() {
     slidesToScroll: 1,
   };
   return (
-    <StyledCentered>
+    <StyledCentered landing>
       <StyledHeader>
         <div className="headingContainer">
           <Logo />
