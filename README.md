@@ -21,6 +21,7 @@ Take a look at our thorough [technical guidelines](./Technical-guidelines.md) to
 
 Bakey was developed in seven weeks between February and March 2021, including a long planning of every feature and the different sprints. While [Ola](https://github.com/OlaFro) took over the role of product owner and front-end lead, [Alice](https://github.com/Alice-Rez) lead the back-end and was the tech-mastermind but all three of us worked fullstack in this MERN project:
 
+<h3 style="color:#ED8DB2" align="center">Technologies showcase</h3>
 <span><img src="./readme_assets/mongo-new.svg" width="100px"><img src="./readme_assets/express-new.svg" width="100px"><img src="./readme_assets/react.svg" width="100px"><img src="./readme_assets/node.svg" width="100px"><img src="./readme_assets/Mongoose.svg" width="100px"><img src="./readme_assets/SC.svg" width="100px"><img src="./readme_assets/validator.svg" width="100px"><img src="./readme_assets/JWT.svg" width="100px"><img src="./readme_assets/Bcrypt.svg" width="100px"><img src="./readme_assets/Google-maps.svg" width="100px"><img src="./readme_assets/npm.svg" width="100px"></span>
 
 
