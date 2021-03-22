@@ -6,6 +6,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useHistory,
 } from "react-router-dom";
 import { bakeyContext } from "./Context";
 import Navigation from "./components/Navigation";
@@ -22,14 +23,18 @@ import Settings from "./pages/Settings";
 import LandingPage from "./pages/LandingPage";
 import AboutUs from "./pages/AboutUs";
 import Order from "./pages/Order";
+import ProtectedRoute from "./ProtectedRoutes";
 
 function App() {
+  const history = useHistory();
+
   const [isLogged, setIsLogged] = useState({ state: false, role: "", id: "" });
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const [cafeName, setCafeName] = useState("");
   const [cafes, setCafes] = useState([]);
   const [city, setCity] = useState("Leipzig");
+  const [availableCities, setAvailableCities] = useState([]);
   const [selectedListing, setSelectedListing] = useState({
     listingImage: "",
     listingName: "",
@@ -40,15 +45,16 @@ function App() {
     piecePrice: "",
   });
 
+  const orderInfo = sessionStorage.getItem("orderInfo");
+  const location = sessionStorage.getItem("location");
+
   useEffect(() => {
-    console.log("authentication  request sent");
     Axios({
       method: "GET",
       url: `users/auth`,
     })
       .then((res) => {
         if (res.data.authenticated) {
-          console.log(res.data);
           setIsLogged({
             state: true,
             role: res.data.userType,
@@ -57,6 +63,13 @@ function App() {
           setUserName(res.data.firstName);
           setProfilePic(res.data.profilePic);
           setCafeName(res.data.cafeName);
+          setCity(res.data.city);
+          if (orderInfo && res.data.userType === "client") {
+            history.push("/order");
+          }
+          if (location) {
+            history.push(`/${location}`);
+          }
         } else {
           setIsLogged({ state: false, role: "" });
         }
@@ -68,6 +81,24 @@ function App() {
     // .finally(() => {
     //   alert("This is just a demo project not offering real products!");
     // });
+  }, []);
+
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      url: "cities/all",
+    })
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setAvailableCities(res.data);
+        } else {
+          setAvailableCities(["Leipzig"]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setAvailableCities(["Leipzig"]);
+      });
   }, []);
 
   return (
@@ -87,69 +118,58 @@ function App() {
         setCafes,
         selectedListing,
         setSelectedListing,
+        availableCities,
+        setAvailableCities,
       }}
     >
-      <Router>
-        <GlobalStyle />
-        <div className="wrapper">
-          <Navigation />
-          <Switch>
-            <Route path="/" exact>
-              <LandingPage />
-            </Route>
-            <Route path="/about-us" exact>
-              <AboutUs />
-            </Route>
-            <Route path="/registration/user" exact>
-              <RegistrationUser />
-            </Route>
-            <Route path="/registration/cafe" exact>
-              <RegistrationCafe />
-            </Route>
-            <Route path="/client-dashboard" exact>
-              {isLogged.state && isLogged.role === "client" ? (
-                <DashboardClient />
-              ) : (
-                <Redirect to="/" />
-              )}
-            </Route>
-            <Route path="/cafe-dashboard" exact>
-              {isLogged.state && isLogged.role === "cafe" ? (
-                <DashboardCafe />
-              ) : (
-                <Redirect to="/" />
-              )}
-            </Route>
-            <Route path="/login" exact>
-              {isLogged.state ? <Redirect to="/" /> : <Login />}
-            </Route>
-            <Route path="/listingform" exact>
-              {isLogged.state && isLogged.role === "cafe" ? (
-                <ListingForm />
-              ) : (
-                <Redirect to="/" />
-              )}
-            </Route>
-            <Route path="/cafes-list" exact>
-              <ListView />
-            </Route>
-            <Route path="/settings" exact>
-              {isLogged.role === "cafe" ? <Settings /> : <Redirect to="/" />}
-            </Route>
-            <Route path="/cafe:id" exact>
-              <Profile />
-            </Route>
-            <Route path="/order" exact>
-              <Order />
-            </Route>
-            <Route path="*">
-              {" "}
-              <Redirect to="/" />{" "}
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
+      <GlobalStyle />
+      <div className="wrapper">
+        <Navigation />
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/cafes-list" exact component={ListView} />
+          <Route path="/about-us" exact component={AboutUs} />
+          <Route path="/registration-user" exact component={RegistrationUser} />
+          <Route path="/registration-cafe" exact component={RegistrationCafe} />
+          <ProtectedRoute
+            path="/login"
+            exact
+            condition={!isLogged.state}
+            component={Login}
+          />
+          <ProtectedRoute
+            path="/client-dashboard"
+            exact
+            condition={isLogged.state && isLogged.role === "client"}
+            component={DashboardClient}
+          />
+          <ProtectedRoute
+            path="/cafe-dashboard"
+            exact
+            condition={isLogged.state && isLogged.role === "cafe"}
+            component={DashboardCafe}
+          />
+          <ProtectedRoute
+            path="/listingform"
+            exact
+            condition={isLogged.state && isLogged.role === "cafe"}
+            component={ListingForm}
+          />
+          <ProtectedRoute
+            path="/settings"
+            exact
+            condition={isLogged.state && isLogged.role === "cafe"}
+            component={Settings}
+          />
+          <Route path="/cafe:id" exact component={Profile} />
+          <Route path="/order" exact component={Order} />
+          <Route path="*">
+            {" "}
+            <Redirect to="/" />{" "}
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
     </bakeyContext.Provider>
   );
 }

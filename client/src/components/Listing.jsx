@@ -69,7 +69,9 @@ export default function Listing(props) {
         ". " +
         (!props.preview
           ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
-          : niceDate.split(" ")[1].substring(0, 2)) +
+          : // : props.wrongInputType
+            // ? Number(niceDate.split(" ")[1].substring(0, 2)) + 1
+            niceDate.split(" ")[1].substring(0, 2)) +
         niceDate.split(" ")[1].substring(2, 5)
       );
     }
@@ -173,7 +175,14 @@ export default function Listing(props) {
       cafeDashboard={props.dashboard ? true : false}
     >
       <StyledPhotoContainer>
-        <img src={props.image ? props.image : placeholder} alt="my offer"></img>
+        <img
+          src={props.image ? props.image : placeholder}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = placeholder;
+          }}
+          alt="my offer"
+        ></img>
       </StyledPhotoContainer>
       <StyledDescContainer>
         <header>

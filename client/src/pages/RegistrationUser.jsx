@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import Warning from "../components/Warning";
@@ -16,9 +16,12 @@ import {
 } from "../styledComponents/StyledForm";
 import StyledCentered from "../styledComponents/StyledCentered";
 import { StyledButton } from "../styledComponents/StyledButton";
+import { bakeyContext } from "../Context";
 
 export default function RegistrationUser(props) {
   const history = useHistory();
+
+  const { availableCities } = useContext(bakeyContext);
 
   const [data, setData] = useState({ userType: "client", city: "Leipzig" });
   const [msg, setMsg] = useState({});
@@ -30,7 +33,6 @@ export default function RegistrationUser(props) {
 
   useEffect(() => {
     return function () {
-      console.log("component is unmounting");
       setData({});
     };
   }, []);
@@ -65,7 +67,6 @@ export default function RegistrationUser(props) {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;
@@ -107,7 +108,9 @@ export default function RegistrationUser(props) {
           />
           <StyledLabel htmlFor="firstName">First Name*</StyledLabel>
           <div>
-            {msg.firstName ? <small>Please use only letters</small> : null}
+            {msg.firstName ? (
+              <small>Please use only letters or -.</small>
+            ) : null}
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
@@ -121,7 +124,7 @@ export default function RegistrationUser(props) {
           />
           <StyledLabel htmlFor="lastName">Last Name*</StyledLabel>
           <div>
-            {msg.lastName ? <small>Please use only letters</small> : null}
+            {msg.lastName ? <small>Please use only letters or -.</small> : null}
           </div>
         </StyledInputContainer>
         <StyledInputContainer>
@@ -178,17 +181,29 @@ export default function RegistrationUser(props) {
             ) : null}
           </div>
         </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledSelect id="city" name="city" onInput={getValue}>
-            <option value="Leipzig">Leipzig</option>
-            <option value="Hamburg">Hamburg</option>
-            <option value="Düsseldorf">Düsseldorf</option>
-            {/* we can later add a map function with dynamic city names */}
-          </StyledSelect>
+        {availableCities.length > 0 ? (
+          <StyledInputContainer>
+            <StyledSelect
+              id="city"
+              name="city"
+              onInput={getValue}
+              defaultValue={"Leipzig"}
+            >
+              {availableCities.map((city, index) => {
+                return (
+                  <option
+                    value={city}
+                    key={`option-${index}`}
+                  >{`${city}`}</option>
+                );
+              })}
+              {/* we can later add a map function with dynamic city names */}
+            </StyledSelect>
 
-          <StyledLabel htmlFor="city">See offers from:</StyledLabel>
-          <StyledArrow />
-        </StyledInputContainer>
+            <StyledLabel htmlFor="city">See offers from:</StyledLabel>
+            <StyledArrow />
+          </StyledInputContainer>
+        ) : null}
         <StyledOtherInputsContainer registerUser>
           <header>Terms</header>
           <div>
@@ -204,7 +219,7 @@ export default function RegistrationUser(props) {
           <div>
             <p className="warning">
               User with this {warningContent} already exists, please log-in or
-              use another password
+              use another email.
             </p>
           </div>
         ) : null}
@@ -217,7 +232,7 @@ export default function RegistrationUser(props) {
         If you have already registered, please <Link to="/login">log in</Link>.{" "}
         <br></br>
         If you want to register as a café owner, please click{" "}
-        <Link to="/registration/cafe">here</Link>.
+        <Link to="/registration-cafe">here</Link>.
       </p>
     </StyledCentered>
   );

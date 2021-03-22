@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import colors from "./colors";
 import device from "./device";
 import { Plus } from "styled-icons/feather/";
-import { Settings } from "@styled-icons/feather/Settings";
 
 export const StyledPlusLink = styled.div`
   padding: var(--space-xs);
@@ -30,6 +29,13 @@ export const StyledPlusLink = styled.div`
       justify-content: center;
     }
   }
+
+  ${(props) =>
+    props.client &&
+    css`
+      justify-content: center;
+      cursor: pointer;
+    `}
 `;
 
 export const StyledPlusIcon = styled(Plus)`
@@ -54,7 +60,7 @@ export const StyledIcon = styled.figure`
   }
 
   ${(props) =>
-    props.profile &&
+    props.profileIcon &&
     css`
       border: var(--border) solid ${colors.black};
       border-radius: 50%;

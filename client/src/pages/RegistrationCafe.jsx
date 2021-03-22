@@ -1,7 +1,7 @@
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-
+import { bakeyContext } from "../Context";
 import Warning from "../components/Warning";
 import {
   StyledForm,
@@ -26,10 +26,10 @@ export default function RegistrationCafe() {
   const [warningValidation, setWarningValidation] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [visible, setVisible] = useState(false);
+  const { availableCities, setAvailableCities } = useContext(bakeyContext);
 
   useEffect(() => {
     return function () {
-      console.log("component is unmounting");
       setData({});
     };
   }, []);
@@ -64,7 +64,6 @@ export default function RegistrationCafe() {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;
@@ -80,6 +79,7 @@ export default function RegistrationCafe() {
         ) {
           setWarningValidation(true);
         } else {
+          addNewCity();
           history.push("/login");
         }
       })
@@ -87,6 +87,13 @@ export default function RegistrationCafe() {
         console.log(err);
         setShowWarning(true);
       });
+  };
+
+  const addNewCity = () => {
+    let newCity = data.city;
+    if (!availableCities.includes(newCity)) {
+      setAvailableCities((availableCities) => [...availableCities, newCity]);
+    }
   };
 
   return (

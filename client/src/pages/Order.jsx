@@ -19,9 +19,9 @@ export default function Order() {
     "#" +
     orderInfo.listingIdentifier;
 
-  console.log(urlListing);
 
   useEffect(() => {
+    sessionStorage.removeItem("location");
     if (sessionStorage.getItem("orderInfo")) {
       setOrderInfo(JSON.parse(sessionStorage.getItem("orderInfo")));
     }

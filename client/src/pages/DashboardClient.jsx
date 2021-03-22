@@ -5,6 +5,9 @@ import Warning from "../components/Warning";
 import {
   StyledButtonContainer,
   StyledCafeDashboard,
+  StyledQuickLinks,
+  StyledSelectContainer,
+  StyledButtons,
 } from "../styledComponents/StyledCafeDashboard";
 import { Settings } from "@styled-icons/feather/Settings";
 import StyledHr from "../styledComponents/StyledHr";
@@ -12,23 +15,44 @@ import DashboardCafeActiveTab from "../components/DashboardCafeActiveTab";
 import DashboardCafeArchiveTab from "../components/DashboardCafeArchiveTab";
 import { StyledButton } from "../styledComponents/StyledButton";
 import DashboardClientPickupTab from "../components/DashboardClientPickupTab";
+import {
+  StyledIcon,
+  StyledPlusLink,
+  StyledPlusLinkInfo,
+} from "../styledComponents/StyledPlusLink";
+
+import {
+  StyledArrow,
+  StyledInputContainer,
+  StyledLabel,
+  StyledSelect,
+} from "../styledComponents/StyledForm";
 
 export default function DashboardClient() {
-  const { userName } = useContext(bakeyContext);
+  const { userName, city, setCity, availableCities } = useContext(bakeyContext);
 
   const [listings, setListings] = useState([]);
 
   const [showWarning, setShowWarning] = useState(false);
 
+  const [showSelect, setShowSelect] = useState(false);
+
   const [display, setDisplay] = useState("active");
 
+  const [newCity, setNewCity] = useState(city);
+
+  const [cityWarning, setCityWarning] = useState(false);
+
+  const [warningContent, setWarningContent] = useState();
+
   useEffect(() => {
+    sessionStorage.setItem("location", "client-dashboard");
+
     Axios({
       method: "GET",
       url: `users/orders`,
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data.orders.length) {
           setListings(res.data.orders);
         }
@@ -46,41 +70,92 @@ export default function DashboardClient() {
     setDisplay(page);
   };
 
+  const toggleSelect = () => {
+    setShowSelect((prevValue) => {
+      return !prevValue;
+    });
+  };
+
+  const saveCity = () => {
+    setCityWarning(false);
+
+    let formData = new FormData();
+    formData.append("city", newCity);
+
+    Axios({
+      method: "PUT",
+      url: "/users/update",
+      data: formData,
+    })
+      .then((res) => {
+        if (res.data === "info updated") {
+          setCity(newCity);
+          setShowSelect(false);
+        } else {
+          setWarningContent(
+            "something went wrong, please contact the help service."
+          );
+          setCityWarning(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setWarningContent("the service is out of order");
+        setCityWarning(true);
+      });
+  };
+
   return (
     <StyledCafeDashboard>
       <header>
         <h2>Hello, {userName}! </h2>
       </header>
       <main>
-        {/* <StyledQuickLinks>
-          <StyledPlusLink>
-            <Link to="/listingform">
-              <StyledPlusIcon></StyledPlusIcon>
-              <StyledPlusLinkInfo>create new offer</StyledPlusLinkInfo>
-            </Link>
-          </StyledPlusLink>
-          <StyledPlusLink>
-            <Link to={`/cafe:${isLogged.id}`}>
-              <StyledIcon profile>
-                <img
-                  src={cafeProfileIcon}
-                  alt="icon of the cafe in the circle"
-                />
-              </StyledIcon>
-              <StyledPlusLinkInfo>café profile</StyledPlusLinkInfo>
-            </Link>
-          </StyledPlusLink>
-          <StyledPlusLink>
-            <Link to="/settings">
+        {showSelect ? (
+          <StyledSelectContainer>
+            <StyledInputContainer>
+              <StyledSelect
+                id="city"
+                name="city"
+                defaultValue={newCity}
+                onChange={(e) => {
+                  setNewCity(e.target.value);
+                }}
+              >
+                {availableCities.map((city, index) => {
+                  return (
+                    <option
+                      value={city}
+                      key={`option-${index}`}
+                    >{`${city}`}</option>
+                  );
+                })}
+              </StyledSelect>
+              <StyledLabel htmlFor="city">Preferred city:</StyledLabel>
+              <StyledArrow />
+            </StyledInputContainer>
+
+            <StyledButtons>
+              <StyledButton userSecondary onClick={toggleSelect}>
+                Cancel
+              </StyledButton>
+              <StyledButton onClick={saveCity}>Save</StyledButton>
+            </StyledButtons>
+          </StyledSelectContainer>
+        ) : (
+          <StyledQuickLinks>
+            <StyledPlusLink client role="button" onClick={toggleSelect}>
               <StyledIcon settings>
                 <Settings />
               </StyledIcon>
-              <StyledPlusLinkInfo>settings</StyledPlusLinkInfo>
-            </Link>
-          </StyledPlusLink>
-        </StyledQuickLinks> */}
+              <StyledPlusLinkInfo>change preferred city</StyledPlusLinkInfo>
+            </StyledPlusLink>
+          </StyledQuickLinks>
+        )}
 
-        {/* <StyledHr cafe dashboard /> */}
+        {cityWarning ? <Warning msg={warningContent} /> : null}
+
+        <StyledHr dashboard />
 
         <StyledButtonContainer>
           <StyledButton

@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
-import { darken, lighten } from "polished";
+import { darken} from "polished";
 import colors from "./colors";
 import device from "./device";
 import { EyeClose, Eye, ArrowDown, ImageAdd } from "styled-icons/remix-line";
 
 export const StyledForm = styled.form`
-  margin-top: var(--space-l);
+  margin-top: 10vh;
   width: 90%;
   max-width: 448px;
   border: var(--border) solid ${colors.accent1};
@@ -64,6 +64,9 @@ export const StyledForm = styled.form`
     padding: var(--space-xs);
     color: ${colors.warning};
     text-align: center;
+  }
+  .info {
+    color: ${colors.black};
   }
   .warning {
     color: ${colors.warning};
@@ -222,6 +225,7 @@ export const StyledInputField = styled.input`
   font-family: var(--heading);
   border: var(--border) solid ${colors.accent1};
   border-radius: var(--border-radius);
+
   :hover {
     cursor: text;
     border: var(--border) solid ${darken(0.2, colors.gray)};
@@ -256,6 +260,17 @@ export const StyledInputField = styled.input`
     props.long &&
     css`
       width: 100%;
+    `}
+
+  ${(props) =>
+    props.whitePlaceholder &&
+    css`
+      ::placeholder {
+        color: white;
+      }
+      :focus::placeholder {
+        color: inherit;
+      }
     `}
 
   /* style for credit card mock-up for transparent background in the labels. than changed to white but maybe we can re use it somehow in the future? */

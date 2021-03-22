@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Menu, X } from "styled-icons/feather";
 import device from "./device";
 import colors from "./colors";

@@ -35,7 +35,6 @@ export default function OrderPayment(props) {
       },
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data.boughtPieces) {
           setOrderInfo((prevInfo) => {
             return { ...prevInfo, boughtPcs: res.data.boughtPieces };
@@ -129,7 +128,13 @@ export default function OrderPayment(props) {
               </StyledInputContainer>
             </StyledSmallInputs>
 
-            <input type="checkbox" id="terms" name="terms" checked />
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              checked
+              readOnly={true}
+            />
             <label htmlFor="terms">
               I have read and accept the terms of use of Bakey
             </label>

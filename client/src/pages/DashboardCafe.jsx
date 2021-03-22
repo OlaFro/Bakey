@@ -33,12 +33,12 @@ export default function DashboardCafe() {
   const [display, setDisplay] = useState("active");
 
   useEffect(() => {
+    sessionStorage.setItem("location", "cafe-dashboard");
     Axios({
       method: "GET",
       url: `listings/cafe`,
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data.length) {
           setListings(res.data);
         }
@@ -71,7 +71,7 @@ export default function DashboardCafe() {
           </StyledPlusLink>
           <StyledPlusLink>
             <Link to={`/cafe:${isLogged.id}`}>
-              <StyledIcon profile>
+              <StyledIcon profileIcon>
                 <img
                   src={cafeProfileIcon}
                   alt="icon of the cafe in the circle"

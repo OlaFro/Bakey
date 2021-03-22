@@ -21,17 +21,24 @@ import StyledMap from "../styledComponents/StyledMap";
 import cafeMarker from "../assets/newCafeMarker.png";
 
 export default function ListView() {
-  const [cityCoor, setCityCoor] = useState({});
+  const [cityCoor, setCityCoor] = useState({
+    lat: 51.3396955,
+    lng: 12.3730747,
+  });
   const [mapFlag, setMapFlag] = useState(false);
-  const { cafes, setCafes, city, setCity } = useContext(bakeyContext);
+  const { cafes, setCafes, city, setCity, availableCities } = useContext(
+    bakeyContext
+  );
   const [filter, setFilter] = useState([]);
   const [dbError, setDbError] = useState(false);
   const [emptyWarning, setEmptyWarning] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [loadCoor, setLoadCoor] = useState(false);
 
   let history = useHistory();
 
   const getCities = (city) => {
+    console.log("calling for cafes for city", city);
     setDbError(false);
     setEmptyWarning(false);
     Axios({
@@ -42,6 +49,10 @@ export default function ListView() {
       .then((res) => {
         if (res.data.length === 0) {
           setEmptyWarning(true);
+          setCafes([]);
+          setLoadCoor((prevValue) => {
+            return !prevValue;
+          });
         } else {
           setCafes(res.data);
           setMapFlag((prevValue) => {
@@ -56,6 +67,7 @@ export default function ListView() {
   };
 
   useEffect(() => {
+    sessionStorage.removeItem("location");
     getCities(city);
   }, []);
 
@@ -111,6 +123,10 @@ export default function ListView() {
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
 
+  useEffect(() => {
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [loadCoor]);
+
   const center = {
     lat: cityCoor.lat,
     lng: cityCoor.lng,
@@ -142,15 +158,17 @@ export default function ListView() {
           <StyledSelect
             id="city"
             name="city"
-            defaultValue={city}
+            value={city}
             onChange={(e) => {
               setCity(e.target.value);
               getCities(e.target.value);
             }}
           >
-            <option value="Leipzig">Leipzig</option>
-            <option value="Hamburg">Hamburg</option>
-            <option value="Düsseldorf">Düsseldorf</option>
+            {availableCities.map((cityElem) => {
+              return (
+                <option value={cityElem} key={cityElem}>{`${cityElem}`}</option>
+              );
+            })}
           </StyledSelect>
           <StyledLabel htmlFor="city">See offers from:</StyledLabel>
           <StyledArrow />
@@ -218,25 +236,24 @@ export default function ListView() {
         </div>
       </StyledHeader>
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
-      {emptyWarning === true ? (
-        <Warning msg="there are no offers available for this city" />
-      ) : null}
       <StyledViewWrapper>
         <article>
-          {emptyWarning === false
-            ? cafes.map((cafe, index) => {
-                if (
-                  !filter.length ||
-                  cafe.cafeListings.some((listing) =>
-                    listing.listingTags.some((tag) => filter.includes(tag))
-                  )
-                ) {
-                  return <CafeCard key={index} cafe={cafe} />;
-                } else {
-                  return null;
-                }
-              })
-            : null}
+          {emptyWarning === false ? (
+            cafes.map((cafe, index) => {
+              if (
+                !filter.length ||
+                cafe.cafeListings.some((listing) =>
+                  listing.listingTags.some((tag) => filter.includes(tag))
+                )
+              ) {
+                return <CafeCard key={index} cafe={cafe} />;
+              } else {
+                return null;
+              }
+            })
+          ) : (
+            <Warning msg={`there are no offers available for ${city}`} />
+          )}
         </article>
         {cafes.every((cafe) => cafe.lat && cafe.lng) ? (
           <StyledMap>

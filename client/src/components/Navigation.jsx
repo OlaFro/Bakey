@@ -8,9 +8,7 @@ import {
   StyledNavContainer,
   StyledNavBtnsContainer,
   StyledLogoContainer,
-  StyledNavBtn,
 } from "../styledComponents/StyledNavigation";
-import { StyledSmallButton } from "../styledComponents/StyledButton";
 import { bakeyContext } from "../Context";
 import axios from "axios";
 import Logo from "./Logo";
@@ -36,6 +34,7 @@ export default function Navigation(props) {
     })
       .then((res) => {
         setIsLogged(res.data.logged);
+        sessionStorage.removeItem("location");
         history.push("/login");
       })
       .catch((err) => console.log(err));
@@ -81,7 +80,7 @@ export default function Navigation(props) {
         {isLogged.state ? (
           <span onClick={logout}>log out</span>
         ) : (
-          <NavLink to="/registration/user" onClick={handleClose}>
+          <NavLink to="/registration-user" onClick={handleClose}>
             register
           </NavLink>
         )}

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { bakeyContext } from "../Context";
 import Listing from "../components/Listing";
 import Warning from "../components/Warning";
@@ -27,9 +27,32 @@ export default function ListingForm() {
   const [showWarning, setShowWarning] = useState(false);
   const [imageWarning, setImageWarning] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
+  const [wrongInputType, setWrongInputType] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem("location", "listingform");
+  }, []);
 
   const getValue = (e) => {
     setShowWarning(false);
+    if (e.target.name === "pickUpDate" && e.target.type === "text") {
+      setWrongInputType(true);
+      // const newHour = +e.target.value.substr(e.target.value.length - 5, 2) - 1;
+      // console.log(newHour < 10);
+      // const newDate =
+      //   newHour < 10
+      //     ? e.target.value.substr(0, e.target.value.length - 5) +
+      //       "0" +
+      //       newHour +
+      //       e.target.value.substr(e.target.value.length - 3, 3)
+      //     : e.target.value.substr(0, e.target.value.length - 5) +
+      //       newHour +
+      //       e.target.value.substr(e.target.value.length - 3, 3);
+      // console.log(newDate);
+      // setData({ ...data, pickUpDate: newDate });
+    }
+    //   setData({ ...data, [e.target.name]: e.target.value });
+    // }
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
@@ -88,8 +111,6 @@ export default function ListingForm() {
 
     setShowWarning(false);
 
-    console.log("submiting form");
-
     let formData = new FormData();
     if (image.raw) {
       formData.append("file", image.raw);
@@ -110,7 +131,6 @@ export default function ListingForm() {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;
@@ -145,7 +165,7 @@ export default function ListingForm() {
   };
 
   return (
-    <StyledCentered>
+    <StyledCentered marginTop>
       <header>
         <h2>Add a new listing</h2>
       </header>
@@ -394,17 +414,27 @@ export default function ListingForm() {
               <StyledInputField
                 cafe
                 long
+                whitePlaceholder
                 type="datetime-local"
                 name="pickUpDate"
                 id="pickUpDate"
-                placeholder=" "
+                placeholder="YYYY-MM-DDT--:--"
                 onInput={getValue}
                 required={true}
               />
               <StyledLabel htmlFor="pickUpTime">Pick-up time*</StyledLabel>
               <div>
                 {msg.pickUpDate ? (
-                  <small>Pick up time has to be in the future</small>
+                  <small>
+                    Pick up time has to be in the future{" "}
+                    {wrongInputType ? "and in the correct format." : null}{" "}
+                  </small>
+                ) : null}
+                {wrongInputType ? (
+                  <small className="info">
+                    Use the format YYYY-MM-DDT--:--. After T write time in hours
+                    and minutes.
+                  </small>
                 ) : null}
               </div>
             </StyledInputContainer>
@@ -421,23 +451,20 @@ export default function ListingForm() {
           listingTags={data.listingTags}
           image={data.listingImage || image.preview}
           preview={true}
+          wrongInputType={wrongInputType}
         />
         <h3> 3. Save: </h3>
         <div className="communication">
           <div>
-            <p>
-              Click "cancel" to go back to Your dashboard. <p></p>Your changes
-              won't be saved.
-            </p>
+            <p>Click "cancel" to go back to Your dashboard.</p>
+            <p>Your changes won't be saved.</p>
             <StyledButton cafeSecondary onClick={goBack}>
               Cancel
             </StyledButton>
           </div>
           <div>
-            <p>
-              Click "save" to activate your listing. <p></p>Once it's active,
-              you won't be able to change it.
-            </p>
+            <p>Click "save" to activate your listing.</p>
+            <p>Once it's active, you won't be able to change it.</p>
             <StyledButton type="submit" form="listing-form" cafe>
               Save
             </StyledButton>
