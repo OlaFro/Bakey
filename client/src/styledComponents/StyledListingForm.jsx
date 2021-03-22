@@ -34,6 +34,11 @@ export const StyledListingSteps = styled.div`
       > p {
         text-align: center;
       }
+
+      p:last-of-type {
+        margin-top: 0;
+      }
+
       > button,
       > a {
         margin-top: var(--space-s);
