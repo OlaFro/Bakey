@@ -30,7 +30,6 @@ export default function RegistrationCafe() {
 
   useEffect(() => {
     return function () {
-      console.log("component is unmounting");
       setData({});
     };
   }, []);
@@ -65,7 +64,6 @@ export default function RegistrationCafe() {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;

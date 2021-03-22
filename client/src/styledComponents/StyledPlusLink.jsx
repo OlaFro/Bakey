@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import colors from "./colors";
 import device from "./device";
 import { Plus } from "styled-icons/feather/";
-import { Settings } from "@styled-icons/feather/Settings";
 
 export const StyledPlusLink = styled.div`
   padding: var(--space-xs);

@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import colors from "../styledComponents/colors";
 import device from "./device";
-import { lighten, darken } from "polished";
+import { lighten} from "polished";
 
 import hero from "../assets/hero.jpg";
 

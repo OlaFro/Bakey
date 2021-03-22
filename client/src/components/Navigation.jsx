@@ -8,9 +8,7 @@ import {
   StyledNavContainer,
   StyledNavBtnsContainer,
   StyledLogoContainer,
-  StyledNavBtn,
 } from "../styledComponents/StyledNavigation";
-import { StyledSmallButton } from "../styledComponents/StyledButton";
 import { bakeyContext } from "../Context";
 import axios from "axios";
 import Logo from "./Logo";

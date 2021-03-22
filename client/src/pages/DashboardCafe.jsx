@@ -39,7 +39,6 @@ export default function DashboardCafe() {
       url: `listings/cafe`,
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data.length) {
           setListings(res.data);
         }

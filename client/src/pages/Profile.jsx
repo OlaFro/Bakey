@@ -31,8 +31,6 @@ export default function Profile() {
 
   const warningRef = useRef(null);
 
-  console.log(urlHash);
-
   const [cafeInfo, setCafeInfo] = useState({});
   const [cafeLocation, setCafeLocation] = useState({});
 
@@ -51,7 +49,6 @@ export default function Profile() {
 
   useEffect(() => {
     sessionStorage.removeItem("location");
-    console.log(params.id.split(":")[1]);
     setOfferWarning(false);
     Axios({
       method: "POST",
@@ -59,7 +56,6 @@ export default function Profile() {
       data: { id: params.id.split(":")[1] },
     })
       .then((res) => {
-        console.log(res.data);
         if (!res.data) {
           setShowWarning(true);
         } else {
@@ -90,14 +86,12 @@ export default function Profile() {
       cafeInfo.city,
     ];
     let parsedAddress = address.join("+");
-    console.log(parsedAddress);
     Axios({
       method: "GET",
       url: `https://maps.googleapis.com/maps/api/geocode/json?address=${parsedAddress}+germany&key=${API_KEY}`,
     })
       .then((res) => {
         let location = res.data.results[0].geometry.location;
-        console.log(location);
         setCafeLocation({
           lat: location.lat,
           lng: location.lng,

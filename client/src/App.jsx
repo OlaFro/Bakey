@@ -49,14 +49,12 @@ function App() {
   const location = sessionStorage.getItem("location");
 
   useEffect(() => {
-    console.log("authentication  request sent");
     Axios({
       method: "GET",
       url: `users/auth`,
     })
       .then((res) => {
         if (res.data.authenticated) {
-          console.log(res.data);
           setIsLogged({
             state: true,
             role: res.data.userType,
@@ -91,7 +89,6 @@ function App() {
       url: "cities/all",
     })
       .then((res) => {
-        console.log(res.data);
         if (Array.isArray(res.data)) {
           setAvailableCities(res.data);
         } else {

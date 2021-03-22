@@ -20,10 +20,6 @@ export default function PickUpCard(props) {
   };
 
   const getTime = (addedTime) => {
-    console.log(
-      props.pickUpDate.split("T")[1].substr(0, 2),
-      props.pickUpDate.split("T")[1].substr(3, 2)
-    );
     const time =
       Number(props.pickUpDate.split("T")[1].substr(0, 2)) * 60 +
       60 +
@@ -56,7 +52,6 @@ export default function PickUpCard(props) {
   };
 
   const archiveListing = () => {
-    console.log("request sent");
     props.setWarningContent("the service is out of order.");
     props.setShowWarning(false);
     Axios({
@@ -65,7 +60,6 @@ export default function PickUpCard(props) {
       data: { listingID: props.dbID, totalPieces: props.totalPieces },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.status === "changed") {
           props.setListings((prevListings) =>
             prevListings.map((listing, index, array) => {

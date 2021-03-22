@@ -108,7 +108,6 @@ export default function Settings() {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
         setUserName(data.firstName);
         setCafeName(data.cafeName);
         if (res.data.profilePic) {

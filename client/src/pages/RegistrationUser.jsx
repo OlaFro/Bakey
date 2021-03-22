@@ -33,7 +33,6 @@ export default function RegistrationUser(props) {
 
   useEffect(() => {
     return function () {
-      console.log("component is unmounting");
       setData({});
     };
   }, []);
@@ -68,7 +67,6 @@ export default function RegistrationUser(props) {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;
@@ -92,8 +90,6 @@ export default function RegistrationUser(props) {
         setShowWarning(true);
       });
   };
-
-  console.log(availableCities);
 
   return (
     <StyledCentered>

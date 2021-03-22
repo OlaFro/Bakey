@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import Axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { bakeyContext } from "../Context";
 import Listing from "../components/Listing";
 import Warning from "../components/Warning";
@@ -36,7 +36,6 @@ export default function ListingForm() {
   const getValue = (e) => {
     setShowWarning(false);
     if (e.target.name === "pickUpDate" && e.target.type === "text") {
-      console.log("wrong format");
       setWrongInputType(true);
       // const newHour = +e.target.value.substr(e.target.value.length - 5, 2) - 1;
       // console.log(newHour < 10);
@@ -112,8 +111,6 @@ export default function ListingForm() {
 
     setShowWarning(false);
 
-    console.log("submiting form");
-
     let formData = new FormData();
     if (image.raw) {
       formData.append("file", image.raw);
@@ -134,7 +131,6 @@ export default function ListingForm() {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
         if (res.data.msg) {
           let msgChanged = res.data.msg.reduce((acc, item) => {
             acc[item.param] = true;

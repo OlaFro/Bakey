@@ -34,7 +34,6 @@ export default function Login(props) {
 
   useEffect(() => {
     return function () {
-      console.log("component is unmounting");
       setData({});
     };
   }, []);
@@ -55,7 +54,6 @@ export default function Login(props) {
   const submit = (e) => {
     e.preventDefault();
     setShowWarning(false);
-    console.log("request send", loginData);
 
     Axios({
       method: "POST",
@@ -67,7 +65,6 @@ export default function Login(props) {
     })
       .then((res) => {
         if (res.data.logged) {
-          console.log(res.data);
           setIsLogged({
             state: true,
             role: res.data.userType,

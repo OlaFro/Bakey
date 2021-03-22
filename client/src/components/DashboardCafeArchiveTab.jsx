@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { bakeyContext } from "../Context";
+import React, { useState } from "react";
 import Listing from "./Listing";
 import Warning from "./Warning";
 

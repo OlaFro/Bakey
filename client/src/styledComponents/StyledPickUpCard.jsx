@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { lighten, darken } from "polished";
+import styled from "styled-components";
+import { lighten } from "polished";
 import colors from "./colors";
 import device from "./device";
 import { Mail } from "@styled-icons/foundation/Mail";

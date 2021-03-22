@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import device from "./device";
 
 const StyledMap = styled.div`
   width: 100%;
