@@ -76,7 +76,11 @@ export default function AboutUs() {
         <p>
           We are Alice, Ola, and Willy - three friends that studied together Web
           Development at{" "}
-          <a href="https://digitalcareerinstitute.org/">
+          <a
+            href="https://digitalcareerinstitute.org/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             Digital Career Institute
           </a>{" "}
           in Leipzig in 2020. We've started as absolute beginners having no clue
@@ -124,7 +128,16 @@ export default function AboutUs() {
         </p>
         <h3>Feedback</h3>
         <p>
-          We would love to hear your feedback about Bakey! If you have any
+          You will find the Bakey repository{" "}
+          <a
+            href="https://github.com/OlaFro/Bakey"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {" "}
+            here
+          </a>
+          . We would love to hear your feedback about Bakey! If you have any
           suggestions, please share them with us via{" "}
           <a href="mailto:bakey-app@gmail.com">bakey-app@gmail.com</a>.
         </p>
