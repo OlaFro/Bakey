@@ -2,9 +2,9 @@
 
 <h2 align="center" style="color: #ED8DB2; font-size: 40px">Let them order cake!</h2>
 
-Explore the [deployed version](https://bakey-app.herokuapp.com/) directly or use the QR code below.
+Explore the [deployed version](https://bakey-app.herokuapp.com/) directly or use the QR code below to access from your mobile device.
 
-<h3 align="center"><img src="./readme_assets/bakeyQR.png" width="200px"></h3>
+<span><img src="./readme_assets/presentation.png" width="500px"><img src="./readme_assets/bakeyQR.png" width="200px"></span>
 
 ## About
 
@@ -19,7 +19,9 @@ During the Covid19 lockdowns from 2020 and 2021 cafés weren't allowed to offer 
 
 Take a look at our thorough [technical guidelines](./Technical-guidelines.md) to learn everything about the technologies applied during the development.
 
-Bakey was developed in seven weeks between February and March 2021, including a long planning of every feature and the different sprints. While [Ola](https://github.com/OlaFro) took over the role of product owner and front-end lead, [Alice](https://github.com/Alice-Rez) lead the back-end and was the tech-mastermind but all three of us worked fullstack in this MERN project. 
+Bakey was developed in seven weeks between February and March 2021, including a long planning of every feature and the different sprints. While [Ola](https://github.com/OlaFro) took over the role of product owner and front-end lead, [Alice](https://github.com/Alice-Rez) lead the back-end and was the tech-mastermind but all three of us worked fullstack in this MERN project:
+
+<span><img src="./readme_assets/mongo-new.svg" width="100px"><img src="./readme_assets/express-new.svg" width="100px"><img src="./readme_assets/react.svg" width="100px"><img src="./readme_assets/node.svg" width="100px"><img src="./readme_assets/Mongoose.svg" width="100px"><img src="./readme_assets/SC.svg" width="100px"><img src="./readme_assets/validator.svg" width="100px"><img src="./readme_assets/JWT.svg" width="100px"><img src="./readme_assets/Bcrypt.svg" width="100px"><img src="./readme_assets/Google-maps.svg" width="100px"></span>
 
 
 ## How to use Bakey
