@@ -20,7 +20,7 @@
 - React context for the sharing state variables (like isLogged flag, role...)?
 - order stored in Local/Session storage
 - react components/styled components with extension `.jsx`
-- google map API + api for geolocation ([video tutorial](https://www.youtube.com/watch?v=Pf7g32CwX_s))
+- google maps API + geocoding
 
 **Backend:**
 
@@ -33,7 +33,7 @@
 
 **Packages:**
 
-Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-router-dom, styled components, styled icons, react-router-hashlink (for internal linking through page), ant-design (antd).....
+Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-router-dom, styled components, styled icons, react-router-hashlink (for internal linking through page), @react-google-maps/api.
 
 **VSCode:**
 
@@ -50,7 +50,6 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 
 ## Styling
 
-- using [ant design](https://ant.design/components/overview/) for finished components to save a time
 - using [Styled components](https://styled-components.com/) with props for styling
 - at beginning, defining Global style - colors, breakpoints, sizes of the white spaces, fonts etc.
 - try to make the styling as responsive as possible from beginning:
@@ -119,7 +118,7 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 
 - `.vscode/launch.json` - configuration for the debugging of node (using nodemon)
 - `controllers` - middlewares for authentication and validation of the data
-- `models` - model of database in Mongoos
+- `models` - model of database in Mongoose
 - `routes` - routes for backend APIs
 - `uploads` - everything that users upload - profile images, images for listings etc.....
 - `.env`- environment file to store all of the secret (everything that can not go to GH!)
