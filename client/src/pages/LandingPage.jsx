@@ -39,7 +39,7 @@ import StyledCentered from "../styledComponents/StyledCentered";
 export default function LandingPage() {
   const history = useHistory();
 
-  const source = Axios.CancelToken.source();
+  // const source = Axios.CancelToken.source();
 
   const { city, setCity, availableCities } = useContext(bakeyContext);
 
@@ -54,7 +54,7 @@ export default function LandingPage() {
     Axios({
       method: "GET",
       url: "/listings/end-soon",
-      cancelToken: source.token,
+      // cancelToken: source.token,
     })
       .then((res) => {
         if (res.data.length === 0) {
@@ -69,11 +69,13 @@ export default function LandingPage() {
         setWarningContent("the server is out of service");
         setWarning(true);
       });
-    return function () {
-      if (source) {
-        source.cancel("Landing Component got unmounted");
-      }
-    };
+    // return function () {
+    //   console.log("landing page is unmounting");
+    //   if (source) {
+    //     console.log("source exists");
+    //     source.cancel("Landing Component got unmounted");
+    //   }
+    // };
   }, []);
 
   const settings = {
