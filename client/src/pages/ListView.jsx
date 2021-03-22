@@ -37,7 +37,8 @@ export default function ListView() {
 
   let history = useHistory();
 
-  const getCafes = (city) => {
+  const getCities = (city) => {
+    console.log("calling for cafes for city", city);
     setDbError(false);
     setEmptyWarning(false);
     Axios({
@@ -49,6 +50,9 @@ export default function ListView() {
         if (res.data.length === 0) {
           setEmptyWarning(true);
           setCafes([]);
+          setLoadCoor((prevValue) => {
+            return !prevValue;
+          });
         } else {
           setCafes(res.data);
           setMapFlag((prevValue) => {
@@ -64,12 +68,8 @@ export default function ListView() {
 
   useEffect(() => {
     sessionStorage.removeItem("location");
+    getCities(city);
   }, []);
-
-  useEffect(() => {
-    getCafes(city);
-    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
-  }, [city]);
 
   const getCityCoordinates = (API_KEY) => {
     Axios({
@@ -123,6 +123,10 @@ export default function ListView() {
     getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
   }, [mapFlag]);
 
+  useEffect(() => {
+    getCityCoordinates(process.env.REACT_APP_GOOGLE_API_KEY);
+  }, [loadCoor]);
+
   const center = {
     lat: cityCoor.lat,
     lng: cityCoor.lng,
@@ -157,7 +161,7 @@ export default function ListView() {
             value={city}
             onChange={(e) => {
               setCity(e.target.value);
-              getCafes(e.target.value);
+              getCities(e.target.value);
             }}
           >
             {availableCities.map((cityElem) => {
@@ -232,7 +236,6 @@ export default function ListView() {
         </div>
       </StyledHeader>
       {dbError === true ? <Warning msg="the server is out of service" /> : null}
-
       <StyledViewWrapper>
         <article>
           {emptyWarning === false ? (
