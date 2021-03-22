@@ -9,11 +9,6 @@ const StyledCentered = styled.section`
     padding-right: var(--space-s);
   }
   ${(props) =>
-    props.settings &&
-    css`
-      text-align: center;
-    `}
-  ${(props) =>
     props.landing &&
     css`
       @media (max-width: 600px) {
@@ -21,7 +16,7 @@ const StyledCentered = styled.section`
         padding-right: 0;
       }
     `}
-    ${(props) =>
+  ${(props) =>
     props.marginTop &&
     css`
       margin-top: 10vh;
