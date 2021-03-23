@@ -18,7 +18,7 @@
 
 - React functional components (Hooks)
 - React context for the sharing state variables (like isLogged flag, role...)?
-- order stored in Local/Session storage
+- order stored in Session storage
 - react components/styled components with extension `.jsx`
 - google maps API + geocoding
 
@@ -28,12 +28,12 @@
 - basic file structure for deploying on heroku
 - all secrets (db url, JWT secret) from beginning in .env file (add .env will be on .gitignore!)
 - routes for users, listings, cafes, messages/notifications?
-- every request that is done by loged user is necessary to verify token (authentication middleware)
-- use middlewares for data validation, authentication of token (viz. Alice's fullstack register), uploading of the image - make code more readable and cleaner
+- for every request that is done by logged user is necessary to verify token (authentication middleware)
+- use middlewares for data validation, authentication of token (viz. Alice's fullstack register), uploading of the image, etc. - make code more readable and cleaner
 
 **Packages:**
 
-Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-router-dom, styled components, styled icons, react-router-hashlink (for internal linking through page), @react-google-maps/api.
+Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid, react-router-dom, styled components, styled icons, react-router-hashlink (for internal linking through page), @react-google-maps/api.
 
 **VSCode:**
 
@@ -45,7 +45,7 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 - use semantic tags from beginning! Eliminate divs
 - add alt to the images (at least something generic, it can be also name of the cake etc....)
 - use labels for inputs, not just place holders (or at least use aria-label in that case!)
-- do not disable focus
+- do not disable focus!
 - use anchor tag when redirecting to another page or button when click event - not both at once :)
 
 ## Styling
@@ -59,7 +59,7 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 - units best praxis:
   - `rem` for font size (can then be changed just in root)
   - variables defined in `em` for padding/margins/spacings - proportional everytime to font size
-  - px for widths/heights/positions that should be absolute, not changable
+  - px for widths/heights/positions that should be absolute, not changeable
 
 ## Axios
 
@@ -86,39 +86,53 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
 │   ├── src
 │   │   ├── assets
 │   │   │   └── ...
+│   │   ├── pages
+│   │   │   └── ...
 │   │   ├── components
 │   │   │   └── ...
 │   │   ├── styledComponents
 │   │   │   └── ...
+│   │   ├── ProtectedRoutes.js
+│   │   ├── Context.js
 │   │   ├── App.jsx
-│   │   ├── index.css
 │   │   └── index.jsx
+│   ├── .env.local
 │   ├── package.json
 │   └── package-lock.json
 ├── controllers
 │   ├── authControllers.js
+│   ├── listingControllers.js
+│   ├── multerControllers.js
 │   └── validControllers.js
 ├── models
+│   ├── ListingModel.js
+│   └── UserModel.js
 ├── node_modules
 │   └── ...
 ├── routes
+│   ├── listings.js
+│   ├── cities.js
+│   ├── cafes.js
 │   ├── index.js
 │   └── users.js
 ├── uploads
 ├── .env
 ├── .gitignore
 ├── app.js
+├── LICENSE
 ├── package.json
 ├── package-lock.json
+├── requests.rest
 ├── README.md
-└── server.js
+├── server.js
+└── technical-guidelines.md
 
 
 ```
 
 - `.vscode/launch.json` - configuration for the debugging of node (using nodemon)
-- `controllers` - middlewares for authentication and validation of the data
-- `models` - model of database in Mongoose
+- `controllers` - middlewares for authentication of the access, svaing images using multer, getting the date for reactivation of listings and validation of the data
+- `models` - model of user and listing database record in Mongoose
 - `routes` - routes for backend APIs
 - `uploads` - everything that users upload - profile images, images for listings etc.....
 - `.env`- environment file to store all of the secret (everything that can not go to GH!)
@@ -128,7 +142,10 @@ Axios, Multer, jasonwebtoken, dotenv, bcrypt, cors, mongoose, uuid?, react-route
   - `build` - builded version of React app that is served by server
   - `src` - source for react app:
     - `assets` - all images needed for creation of the frontend
-    - `components` - individual React components (with `.jsx` extension)
+    - `pages` - react components that creates the page - have their own route in react-router-dom (with `.jsx` extension)
+    - `components` - individual React components that creates just part of the page and are often reusable (with `.jsx` extension)
     - `styledComponents` - all styled components + Global Style (extension `.jsx`), files with breakpoints, colors etc. variables (extension `.js`)
+    - `Context.js` - file with created context for the whole application
+    - `ProtectedRoutes.js` - Route component that has protection according to the isnerted condition
     - `App.jsx` - main component of the whole app (it gives context to the all components)
     - `index.jsx` - rendering of the app
